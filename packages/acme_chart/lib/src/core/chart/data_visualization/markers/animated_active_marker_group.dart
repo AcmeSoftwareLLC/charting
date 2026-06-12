@@ -89,13 +89,13 @@ class _AnimatedActiveMarkerGroupState extends State<AnimatedActiveMarkerGroup>
     // check if the active marker group has a corresponding contractMarker in the base marker group
     final bool hasCorrespondingBaseMarkerGroup =
         widget.markerSeries.markerGroupList?.any(
-              (group) =>
-                  group.id == markerGroupToShow?.id &&
-                  group.markers.any(
-                    (marker) => marker.markerType == MarkerType.contractMarker,
-                  ),
-            ) ??
-            false;
+          (group) =>
+              group.id == markerGroupToShow?.id &&
+              group.markers.any(
+                (marker) => marker.markerType == MarkerType.contractMarker,
+              ),
+        ) ??
+        false;
 
     if (markerGroupToShow == null || !hasCorrespondingBaseMarkerGroup) {
       return const SizedBox.shrink();
@@ -108,7 +108,8 @@ class _AnimatedActiveMarkerGroupState extends State<AnimatedActiveMarkerGroup>
       builder: (BuildContext context, _) => CustomPaint(
         painter: ActiveMarkerGroupPainter(
           activeMarkerGroup: markerGroupToShow,
-          style: widget.markerSeries.style as MarkerStyle? ??
+          style:
+              widget.markerSeries.style as MarkerStyle? ??
               context.watch<ChartTheme>().markerStyle,
           epochToX: xAxis.xFromEpochSnapped,
           quoteToY: widget.quoteToCanvasY,

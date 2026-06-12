@@ -36,8 +36,9 @@ class LineDrawingMobile extends Drawing with LineVectorDrawingMixin {
       _$LineDrawingMobileFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$LineDrawingMobileToJson(this)
-    ..putIfAbsent(Drawing.classNameKey, () => nameKey);
+  Map<String, dynamic> toJson() =>
+      _$LineDrawingMobileToJson(this)
+        ..putIfAbsent(Drawing.classNameKey, () => nameKey);
 
   /// Key of drawing tool name property in JSON.
   static const String nameKey = 'LineDrawingMobile';
@@ -79,8 +80,7 @@ class LineDrawingMobile extends Drawing with LineVectorDrawingMixin {
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
-  }) =>
-      true;
+  }) => true;
 
   /// Paint the line
   @override
@@ -96,7 +96,7 @@ class LineDrawingMobile extends Drawing with LineVectorDrawingMixin {
     DrawingData drawingData,
     DataSeries<Tick> series,
     Point Function(EdgePoint edgePoint, DraggableEdgePoint draggableEdgePoint)
-        updatePositionCallback,
+    updatePositionCallback,
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
@@ -124,11 +124,13 @@ class LineDrawingMobile extends Drawing with LineVectorDrawingMixin {
     final double endQuoteToY = _endPoint!.y;
 
     if (drawingPart == DrawingParts.marker) {
-      final double glowRadius =
-          shouldEnableMarkerGlow ? lineStyle.markerRadius * 3 : 0;
+      final double glowRadius = shouldEnableMarkerGlow
+          ? lineStyle.markerRadius * 3
+          : 0;
 
-      markerFullSize =
-          shouldEnableMarkerGlow ? glowRadius * 2 : lineStyle.markerRadius * 2;
+      markerFullSize = shouldEnableMarkerGlow
+          ? glowRadius * 2
+          : lineStyle.markerRadius * 2;
 
       if (endEdgePoint.epoch != 0 && endQuoteToY != 0) {
         /// Draw first point
@@ -227,7 +229,8 @@ class LineDrawingMobile extends Drawing with LineVectorDrawingMixin {
 
     /// Computes the distance between a point and a line which should be less
     /// than the line thickness + 6 to make sure the user can easily click on
-    final double distance = ((endQuoteToY - startQuoteToY) * position.dx -
+    final double distance =
+        ((endQuoteToY - startQuoteToY) * position.dx -
             (endXCoord - startXCoord) * position.dy +
             endXCoord * startQuoteToY -
             endQuoteToY * startXCoord) /
@@ -239,7 +242,8 @@ class LineDrawingMobile extends Drawing with LineVectorDrawingMixin {
     final double yDistToStart = position.dy - startQuoteToY;
 
     /// Limit the detection to start and end point of the line
-    final double dotProduct = (xDistToStart * (endXCoord - startXCoord) +
+    final double dotProduct =
+        (xDistToStart * (endXCoord - startXCoord) +
             yDistToStart * (endQuoteToY - startQuoteToY)) /
         lineLength;
 
@@ -288,9 +292,9 @@ class LineDrawingMobile extends Drawing with LineVectorDrawingMixin {
     if (drawingData.isSelected && drawingData.isDrawingFinished) {
       final LineDrawingToolLabelPainter? lineDrawingToolLabelPainter =
           lineConfig.getLabelPainter(
-        startPoint: _startPoint!,
-        endPoint: _endPoint!,
-      );
+            startPoint: _startPoint!,
+            endPoint: _endPoint!,
+          );
 
       lineDrawingToolLabelPainter?.paint(
         canvas,

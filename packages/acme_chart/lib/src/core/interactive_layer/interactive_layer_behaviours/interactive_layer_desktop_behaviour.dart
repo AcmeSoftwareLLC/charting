@@ -14,6 +14,5 @@ class InteractiveLayerDesktopBehaviour extends InteractiveLayerBehaviour {
   DrawingAddingPreview getAddingDrawingPreview(
     InteractableDrawing<DrawingToolConfig> drawing,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-      drawing.getAddingPreviewForDesktopBehaviour(this, onAddingStateChange);
+  ) => drawing.getAddingPreviewForDesktopBehaviour(this, onAddingStateChange);
 }

@@ -31,27 +31,24 @@ class DropdownMenu<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        children: <Widget>[
-          Text(
-            label,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          DropdownButton<T>(
-            value: initialValue,
-            items: items
-                .map<DropdownMenuItem<T>>((T type) => DropdownMenuItem<T>(
-                      value: type,
-                      child: Text(
-                        labelForItem == null
-                            ? type.toString()
-                            : labelForItem!(type),
-                        style: const TextStyle(fontSize: 10),
-                      ),
-                    ))
-                .toList(),
-            onChanged: onItemSelected,
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(label, style: const TextStyle(fontSize: 10)),
+      const SizedBox(width: 4),
+      DropdownButton<T>(
+        value: initialValue,
+        items: items
+            .map<DropdownMenuItem<T>>(
+              (T type) => DropdownMenuItem<T>(
+                value: type,
+                child: Text(
+                  labelForItem == null ? type.toString() : labelForItem!(type),
+                  style: const TextStyle(fontSize: 10),
+                ),
+              ),
+            )
+            .toList(),
+        onChanged: onItemSelected,
+      ),
+    ],
+  );
 }

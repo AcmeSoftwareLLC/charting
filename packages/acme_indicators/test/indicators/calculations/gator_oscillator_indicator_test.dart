@@ -33,36 +33,48 @@ void main() {
       ];
     });
 
-    test('Gator Oscillator Top bar Indicator calculates the correct result',
-        () {
-      final Indicator<MockResult> medianPrice =
-          HL2Indicator<MockResult>(MockInput(ticks));
+    test(
+      'Gator Oscillator Top bar Indicator calculates the correct result',
+      () {
+        final Indicator<MockResult> medianPrice = HL2Indicator<MockResult>(
+          MockInput(ticks),
+        );
 
-      final GatorOscillatorIndicatorTopBar<MockResult>
-          gatorOscillatorIndicatorTopBar =
-          GatorOscillatorIndicatorTopBar<MockResult>(medianPrice);
+        final GatorOscillatorIndicatorTopBar<MockResult>
+        gatorOscillatorIndicatorTopBar =
+            GatorOscillatorIndicatorTopBar<MockResult>(medianPrice);
 
-      expect(roundDouble(gatorOscillatorIndicatorTopBar.getValue(20).quote, 4),
-          0.5883);
-      expect(roundDouble(gatorOscillatorIndicatorTopBar.getValue(21).quote, 4),
-          0.5634);
-    });
+        expect(
+          roundDouble(gatorOscillatorIndicatorTopBar.getValue(20).quote, 4),
+          0.5883,
+        );
+        expect(
+          roundDouble(gatorOscillatorIndicatorTopBar.getValue(21).quote, 4),
+          0.5634,
+        );
+      },
+    );
 
-    test('Gator Oscillator Bottom bar Indicator calculates the correct result',
-        () {
-      final Indicator<MockResult> medianPrice =
-          HL2Indicator<MockResult>(MockInput(ticks));
+    test(
+      'Gator Oscillator Bottom bar Indicator calculates the correct result',
+      () {
+        final Indicator<MockResult> medianPrice = HL2Indicator<MockResult>(
+          MockInput(ticks),
+        );
 
-      final GatorOscillatorIndicatorBottomBar<MockResult>
-          gatorOscillatorIndicatorBottomBar =
-          GatorOscillatorIndicatorBottomBar<MockResult>(medianPrice);
+        final GatorOscillatorIndicatorBottomBar<MockResult>
+        gatorOscillatorIndicatorBottomBar =
+            GatorOscillatorIndicatorBottomBar<MockResult>(medianPrice);
 
-      expect(
+        expect(
           roundDouble(gatorOscillatorIndicatorBottomBar.getValue(20).quote, 4),
-          -0.3424);
-      expect(
+          -0.3424,
+        );
+        expect(
           roundDouble(gatorOscillatorIndicatorBottomBar.getValue(21).quote, 4),
-          -0.349);
-    });
+          -0.349,
+        );
+      },
+    );
   });
 }

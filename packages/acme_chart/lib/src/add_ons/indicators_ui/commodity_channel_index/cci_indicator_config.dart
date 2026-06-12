@@ -30,10 +30,7 @@ class CCIIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? CCIIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? CCIIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory CCIIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -43,8 +40,9 @@ class CCIIndicatorConfig extends IndicatorConfig {
   static const String name = 'commodity_channel_index';
 
   @override
-  Map<String, dynamic> toJson() => _$CCIIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$CCIIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period to calculate the average gain and loss.
   final int period;
@@ -60,27 +58,26 @@ class CCIIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => CCISeries(
-        indicatorInput,
-        CCIOptions(period),
-        overboughtValue: oscillatorLinesConfig.overboughtValue,
-        oversoldValue: oscillatorLinesConfig.oversoldValue,
-        overboughtLineStyle: oscillatorLinesConfig.overboughtStyle,
-        oversoldLineStyle: oscillatorLinesConfig.oversoldStyle,
-        showZones: showZones,
-        cciLineStyle: lineStyle,
-        showLastIndicator: showLastIndicator,
-      );
+    indicatorInput,
+    CCIOptions(period),
+    overboughtValue: oscillatorLinesConfig.overboughtValue,
+    oversoldValue: oscillatorLinesConfig.oversoldValue,
+    overboughtLineStyle: oscillatorLinesConfig.overboughtStyle,
+    oversoldLineStyle: oscillatorLinesConfig.oversoldStyle,
+    showZones: showZones,
+    cciLineStyle: lineStyle,
+    showLastIndicator: showLastIndicator,
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      CCIIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => CCIIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   CCIIndicatorConfig copyWith({
@@ -92,16 +89,14 @@ class CCIIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      CCIIndicatorConfig(
-        period: period ?? this.period,
-        oscillatorLinesConfig:
-            oscillatorLinesConfig ?? this.oscillatorLinesConfig,
-        lineStyle: lineStyle ?? this.lineStyle,
-        showZones: showZones ?? this.showZones,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => CCIIndicatorConfig(
+    period: period ?? this.period,
+    oscillatorLinesConfig: oscillatorLinesConfig ?? this.oscillatorLinesConfig,
+    lineStyle: lineStyle ?? this.lineStyle,
+    showZones: showZones ?? this.showZones,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

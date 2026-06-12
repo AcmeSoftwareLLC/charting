@@ -36,25 +36,27 @@ void main() {
 
   group('Relative Strength Index Indicator test.', () {
     test(
-        'Relative Strength Index should calculate the correct results from the given closed value indicator ticks.',
-        () {
-      final CloseValueIndicator<MockResult> closeValueIndicator =
-          CloseValueIndicator<MockResult>(MockInput(ticks));
-      final RSIIndicator<MockResult> rsiIndicator =
-          RSIIndicator<MockResult>.fromIndicator(closeValueIndicator, 14);
+      'Relative Strength Index should calculate the correct results from the given closed value indicator ticks.',
+      () {
+        final CloseValueIndicator<MockResult> closeValueIndicator =
+            CloseValueIndicator<MockResult>(MockInput(ticks));
+        final RSIIndicator<MockResult> rsiIndicator =
+            RSIIndicator<MockResult>.fromIndicator(closeValueIndicator, 14);
 
-      expect(rsiIndicator.getValue(0).quote, 0);
-      expect(roundDouble(rsiIndicator.getValue(14).quote, 2), 52.88);
-      expect(roundDouble(rsiIndicator.getValue(15).quote, 2), 65.42);
-      expect(roundDouble(rsiIndicator.getValue(16).quote, 2), 65.96);
-      expect(roundDouble(rsiIndicator.getValue(17).quote, 2), 71.28);
-    });
-    test('RSI Indicator copyValuesFrom and refreshValueFor should works fine',
-        () {
+        expect(rsiIndicator.getValue(0).quote, 0);
+        expect(roundDouble(rsiIndicator.getValue(14).quote, 2), 52.88);
+        expect(roundDouble(rsiIndicator.getValue(15).quote, 2), 65.42);
+        expect(roundDouble(rsiIndicator.getValue(16).quote, 2), 65.96);
+        expect(roundDouble(rsiIndicator.getValue(17).quote, 2), 71.28);
+      },
+    );
+    test('RSI Indicator copyValuesFrom and refreshValueFor should works fine', () {
       // defining 1st indicator
       final RSIIndicator<MockResult> rsiIndicator1 =
           RSIIndicator<MockResult>.fromIndicator(
-              CloseValueIndicator<MockResult>(MockInput(ticks)), 14);
+            CloseValueIndicator<MockResult>(MockInput(ticks)),
+            14,
+          );
 
       // Checking the values of first indicator
       expect(roundDouble(rsiIndicator1.getValue(14).quote, 2), 52.88);
@@ -70,13 +72,17 @@ void main() {
       // Refreshing last value because its candle is changed
       final RSIIndicator<MockResult> rsiIndicator2 =
           RSIIndicator<MockResult>.fromIndicator(
-              CloseValueIndicator<MockResult>(MockInput(ticks2)), 14)
+              CloseValueIndicator<MockResult>(MockInput(ticks2)),
+              14,
+            )
             ..copyValuesFrom(rsiIndicator1)
             ..refreshValueFor(20);
 
       // Their result in index 19 should be the same since we've copied the result.
       expect(
-          rsiIndicator2.getValue(19).quote, rsiIndicator1.getValue(19).quote);
+        rsiIndicator2.getValue(19).quote,
+        rsiIndicator1.getValue(19).quote,
+      );
 
       // Calculated result for index 20 is different because the last data is changed.
       expect(roundDouble(rsiIndicator2.getValue(20).quote, 2), 99.78);

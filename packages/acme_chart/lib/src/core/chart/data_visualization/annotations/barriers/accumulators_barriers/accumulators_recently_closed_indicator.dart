@@ -54,13 +54,13 @@ class AccumulatorsRecentlyClosedIndicator
 
   @override
   AccumulatorObject createObject() => AccumulatorObject(
-        tick: exitTick,
-        barrierEpoch: barrierEpoch,
-        lowBarrier: lowBarrier,
-        highBarrier: highBarrier,
-        profit: activeContract?.profit,
-        barrierEndEpoch: barrierEndEpoch,
-      );
+    tick: exitTick,
+    barrierEpoch: barrierEpoch,
+    lowBarrier: lowBarrier,
+    highBarrier: highBarrier,
+    profit: activeContract?.profit,
+    barrierEndEpoch: barrierEndEpoch,
+  );
 
   @override
   int? getMaxEpoch() => barrierEpoch;

@@ -76,15 +76,14 @@ abstract class Series implements ChartData {
     ChartConfig chartConfig,
     ChartTheme theme,
     ChartScaleModel chartScaleModel,
-  ) =>
-      seriesPainter?.paint(
-        canvas: canvas,
-        size: size,
-        epochToX: epochToX,
-        quoteToY: quoteToY,
-        animationInfo: animationInfo,
-        chartConfig: chartConfig,
-        theme: theme,
-        chartScaleModel: chartScaleModel,
-      );
+  ) => seriesPainter?.paint(
+    canvas: canvas,
+    size: size,
+    epochToX: epochToX,
+    quoteToY: quoteToY,
+    animationInfo: animationInfo,
+    chartConfig: chartConfig,
+    theme: theme,
+    chartScaleModel: chartScaleModel,
+  );
 }

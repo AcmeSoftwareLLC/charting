@@ -96,9 +96,9 @@ class AroonSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        <ChartData>[aroonUpSeries, aroonDownSeries].getMinValue(),
-        <ChartData>[aroonUpSeries, aroonDownSeries].getMaxValue(),
-      ];
+    <ChartData>[aroonUpSeries, aroonDownSeries].getMinValue(),
+    <ChartData>[aroonUpSeries, aroonDownSeries].getMaxValue(),
+  ];
 
   @override
   void paint(

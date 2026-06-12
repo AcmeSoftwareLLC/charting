@@ -14,9 +14,7 @@ class ROCIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     ROCIndicatorConfig super.config = const ROCIndicatorConfig(),
-  }) : super(
-          title: 'ROC',
-        );
+  }) : super(title: 'ROC');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -40,59 +38,58 @@ class ROCIndicatorItemState extends IndicatorItemState<ROCIndicatorConfig> {
       Column(children: <Widget>[_buildPeriodField(), _buildFieldTypeMenu()]);
 
   Widget _buildPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentPeriod.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _period = int.tryParse(text);
-                } else {
-                  _period = 14;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentPeriod.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _period = int.tryParse(text);
+            } else {
+              _period = 14;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   int get _currentPeriod =>
       _period ?? (widget.config as ROCIndicatorConfig).period;
 
   Widget _buildFieldTypeMenu() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelField,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          DropdownButton<String>(
-            value: _currentField,
-            items: IndicatorConfig.supportedFieldTypes.keys
-                .map<DropdownMenuItem<String>>(
-                  (String fieldType) => DropdownMenuItem<String>(
-                    value: fieldType,
-                    child: Text(fieldType,
-                        style: const TextStyle(fontSize: 10)),
-                  ),
-                )
-                .toList(),
-            onChanged: (String? newField) => setState(() {
-              _field = newField;
-              updateIndicator();
-            }),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelField,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      DropdownButton<String>(
+        value: _currentField,
+        items: IndicatorConfig.supportedFieldTypes.keys
+            .map<DropdownMenuItem<String>>(
+              (String fieldType) => DropdownMenuItem<String>(
+                value: fieldType,
+                child: Text(fieldType, style: const TextStyle(fontSize: 10)),
+              ),
+            )
+            .toList(),
+        onChanged: (String? newField) => setState(() {
+          _field = newField;
+          updateIndicator();
+        }),
+      ),
+    ],
+  );
 
   String get _currentField =>
       _field ?? (widget.config as ROCIndicatorConfig).fieldType;

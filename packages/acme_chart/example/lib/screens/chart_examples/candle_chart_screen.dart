@@ -29,9 +29,10 @@ class _CandleChartScreenState extends BaseChartScreenState<CandleChartScreen> {
   // Create an empty indicators repository to ensure no indicators are shown
   final Repository<IndicatorConfig> _emptyIndicatorsRepo =
       AddOnsRepository<IndicatorConfig>(
-    createAddOn: (Map<String, dynamic> map) => IndicatorConfig.fromJson(map),
-    sharedPrefKey: 'candle_chart_indicators',
-  );
+        createAddOn: (Map<String, dynamic> map) =>
+            IndicatorConfig.fromJson(map),
+        sharedPrefKey: 'candle_chart_indicators',
+      );
 
   @override
   Widget buildChart() {

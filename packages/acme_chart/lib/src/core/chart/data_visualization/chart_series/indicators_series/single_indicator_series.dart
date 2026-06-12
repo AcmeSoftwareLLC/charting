@@ -11,8 +11,8 @@ import 'abstract_single_indicator_series.dart';
 import 'models/indicator_options.dart';
 
 /// Function to get a [DataPainter] object to paint the data.
-typedef DataPainterCreator = DataPainter<DataSeries<Tick>>? Function(
-    Series series);
+typedef DataPainterCreator =
+    DataPainter<DataSeries<Tick>>? Function(Series series);
 
 /// Single indicator series.
 ///
@@ -44,13 +44,13 @@ class SingleIndicatorSeries extends AbstractSingleIndicatorSeries {
     int offset = 0,
     HorizontalBarrierStyle? lastTickIndicatorStyle,
   }) : super(
-          inputIndicator,
-          id ?? '$options',
-          options: options,
-          style: style,
-          offset: offset,
-          lastTickIndicatorStyle: lastTickIndicatorStyle,
-        );
+         inputIndicator,
+         id ?? '$options',
+         options: options,
+         style: style,
+         offset: offset,
+         lastTickIndicatorStyle: lastTickIndicatorStyle,
+       );
 
   /// Function which will be called to get the painter object of this class.
   final DataPainterCreator painterCreator;

@@ -33,9 +33,7 @@ class AlligatorIndicatorConfig extends IndicatorConfig {
     String? title,
     super.number,
     super.pipSize,
-  }) : super(
-          title: title ?? AlligatorIndicatorConfig.name,
-        );
+  }) : super(title: title ?? AlligatorIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory AlligatorIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -45,8 +43,9 @@ class AlligatorIndicatorConfig extends IndicatorConfig {
   static const String name = 'alligator';
 
   @override
-  Map<String, dynamic> toJson() => _$AlligatorIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$AlligatorIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// Shift to future in jaw series
   final int jawOffset;
@@ -83,33 +82,32 @@ class AlligatorIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => AlligatorSeries(
-        indicatorInput,
-        alligatorOptions: AlligatorOptions(
-          jawPeriod: jawPeriod,
-          teethPeriod: teethPeriod,
-          lipsPeriod: lipsPeriod,
-          showLines: showLines,
-          showFractal: showFractal,
-          jawOffset: jawOffset,
-          teethOffset: teethOffset,
-          lipsOffset: lipsOffset,
-          jawLineStyle: jawLineStyle,
-          teethLineStyle: teethLineStyle,
-          lipsLineStyle: lipsLineStyle,
-          showLastIndicator: showLastIndicator,
-        ),
-      );
+    indicatorInput,
+    alligatorOptions: AlligatorOptions(
+      jawPeriod: jawPeriod,
+      teethPeriod: teethPeriod,
+      lipsPeriod: lipsPeriod,
+      showLines: showLines,
+      showFractal: showFractal,
+      jawOffset: jawOffset,
+      teethOffset: teethOffset,
+      lipsOffset: lipsOffset,
+      jawLineStyle: jawLineStyle,
+      teethLineStyle: teethLineStyle,
+      lipsLineStyle: lipsLineStyle,
+      showLastIndicator: showLastIndicator,
+    ),
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      AlligatorIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => AlligatorIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   AlligatorIndicatorConfig copyWith({
@@ -128,22 +126,21 @@ class AlligatorIndicatorConfig extends IndicatorConfig {
     String? title,
     int? pipSize,
     int? number,
-  }) =>
-      AlligatorIndicatorConfig(
-        jawPeriod: jawPeriod ?? this.jawPeriod,
-        teethPeriod: teethPeriod ?? this.teethPeriod,
-        lipsPeriod: lipsPeriod ?? this.lipsPeriod,
-        jawOffset: jawOffset ?? this.jawOffset,
-        teethOffset: teethOffset ?? this.teethOffset,
-        lipsOffset: lipsOffset ?? this.lipsOffset,
-        showLines: showLines ?? this.showLines,
-        showFractal: showFractal ?? this.showFractal,
-        jawLineStyle: jawLineStyle ?? this.jawLineStyle,
-        teethLineStyle: teethLineStyle ?? this.teethLineStyle,
-        lipsLineStyle: lipsLineStyle ?? this.lipsLineStyle,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-        pipSize: pipSize ?? this.pipSize,
-      );
+  }) => AlligatorIndicatorConfig(
+    jawPeriod: jawPeriod ?? this.jawPeriod,
+    teethPeriod: teethPeriod ?? this.teethPeriod,
+    lipsPeriod: lipsPeriod ?? this.lipsPeriod,
+    jawOffset: jawOffset ?? this.jawOffset,
+    teethOffset: teethOffset ?? this.teethOffset,
+    lipsOffset: lipsOffset ?? this.lipsOffset,
+    showLines: showLines ?? this.showLines,
+    showFractal: showFractal ?? this.showFractal,
+    jawLineStyle: jawLineStyle ?? this.jawLineStyle,
+    teethLineStyle: teethLineStyle ?? this.teethLineStyle,
+    lipsLineStyle: lipsLineStyle ?? this.lipsLineStyle,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+    pipSize: pipSize ?? this.pipSize,
+  );
 }

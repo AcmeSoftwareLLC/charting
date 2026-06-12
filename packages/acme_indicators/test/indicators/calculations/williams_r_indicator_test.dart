@@ -22,8 +22,10 @@ void main() {
         MockOHLC(13, 45.58, 45.55, 45.61, 45.39),
       ];
 
-      final WilliamsRIndicator<MockResult> wr =
-          WilliamsRIndicator<MockResult>(MockInput(ticks), 5);
+      final WilliamsRIndicator<MockResult> wr = WilliamsRIndicator<MockResult>(
+        MockInput(ticks),
+        5,
+      );
 
       expect(wr.getValue(4).quote, closeTo(-47.22222222, 0.000001));
       expect(wr.getValue(5).quote, closeTo(-54.54545454, 0.000001));

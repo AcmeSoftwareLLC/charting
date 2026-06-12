@@ -47,8 +47,9 @@ class _LineChartScreenState extends BaseChartScreenState<LineChartScreen> {
 
     final lastTick = ticks.last;
 
-    final theme =
-        _useDarkTheme ? ChartDefaultDarkTheme() : ChartDefaultLightTheme();
+    final theme = _useDarkTheme
+        ? ChartDefaultDarkTheme()
+        : ChartDefaultLightTheme();
 
     _tickIndicator = TickIndicator(
       lastTick,
@@ -73,8 +74,9 @@ class _LineChartScreenState extends BaseChartScreenState<LineChartScreen> {
     final List<ChartAnnotation<ChartObject>> annotations = [];
 
     // Define theme for use in chart components
-    final theme =
-        _useDarkTheme ? ChartDefaultDarkTheme() : ChartDefaultLightTheme();
+    final theme = _useDarkTheme
+        ? ChartDefaultDarkTheme()
+        : ChartDefaultLightTheme();
 
     if (_showTickIndicator && ticks.isNotEmpty && _tickIndicator != null) {
       annotations.add(_tickIndicator!);

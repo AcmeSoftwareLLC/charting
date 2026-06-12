@@ -23,18 +23,21 @@ void main() {
 
   group('Modifed Moving Average Indicator.', () {
     test(
-        'MMA Indicator should calculate correct results from the given closed value indicator ticks.',
-        () {
-      final CloseValueIndicator<MockResult> closeValueIndicator =
-          CloseValueIndicator<MockResult>(MockInput(ticks));
+      'MMA Indicator should calculate correct results from the given closed value indicator ticks.',
+      () {
+        final CloseValueIndicator<MockResult> closeValueIndicator =
+            CloseValueIndicator<MockResult>(MockInput(ticks));
 
-      final MMAIndicator<MockResult> mmaIndicator =
-          MMAIndicator<MockResult>(closeValueIndicator, 2);
+        final MMAIndicator<MockResult> mmaIndicator = MMAIndicator<MockResult>(
+          closeValueIndicator,
+          2,
+        );
 
-      expect(mmaIndicator.getValue(0).quote, 79.526);
-      expect(mmaIndicator.getValue(1).quote, 79.5275);
-      expect(mmaIndicator.getValue(2).quote, 79.52975);
-      expect(mmaIndicator.getValue(3).quote, 79.527375);
-    });
+        expect(mmaIndicator.getValue(0).quote, 79.526);
+        expect(mmaIndicator.getValue(1).quote, 79.5275);
+        expect(mmaIndicator.getValue(2).quote, 79.52975);
+        expect(mmaIndicator.getValue(3).quote, 79.527375);
+      },
+    );
   });
 }

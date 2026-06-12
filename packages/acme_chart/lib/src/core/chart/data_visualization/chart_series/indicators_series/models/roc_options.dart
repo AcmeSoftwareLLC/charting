@@ -3,11 +3,7 @@ import '../../../../../../core/chart/data_visualization/chart_series/indicators_
 /// ROC indicator options.
 class ROCOptions extends IndicatorOptions {
   /// Initializes
-  const ROCOptions({
-    this.period = 14,
-    super.showLastIndicator,
-    super.pipSize,
-  });
+  const ROCOptions({this.period = 14, super.showLastIndicator, super.pipSize});
 
   /// The Period
   final int period;

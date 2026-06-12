@@ -19,9 +19,7 @@ class GridStyle with EquatableMixin {
       height: 2,
       fontWeight: FontWeight.normal,
       color: Color(0x3D181C25),
-      shadows: <Shadow>[
-        Shadow(blurRadius: 4),
-      ],
+      shadows: <Shadow>[Shadow(blurRadius: 4)],
       fontFeatures: <FontFeature>[FontFeature.tabularFigures()],
     ),
     this.labelHorizontalPadding = 8,
@@ -58,12 +56,12 @@ class GridStyle with EquatableMixin {
 
   @override
   List<Object> get props => <Object>[
-        gridLineColor,
-        gridLineHighlightColor,
-        xLabelStyle,
-        yLabelStyle,
-        labelHorizontalPadding,
-        lineThickness,
-        xLabelsAreaHeight
-      ];
+    gridLineColor,
+    gridLineHighlightColor,
+    xLabelStyle,
+    yLabelStyle,
+    labelHorizontalPadding,
+    lineThickness,
+    xLabelsAreaHeight,
+  ];
 }

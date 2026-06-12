@@ -29,10 +29,7 @@ class DPOIndicatorConfig extends MAIndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? DPOIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? DPOIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory DPOIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -45,32 +42,32 @@ class DPOIndicatorConfig extends MAIndicatorConfig {
   final bool isCentered;
 
   @override
-  Map<String, dynamic> toJson() => _$DPOIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$DPOIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => DPOSeries.fromIndicator(
-        IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
-        dpoOptions: DPOOptions(
-          period: period,
-          movingAverageType: movingAverageType,
-          isCentered: isCentered,
-          lineStyle: lineStyle,
-          pipSize: pipSize,
-          showLastIndicator: showLastIndicator,
-        ),
-      );
+    IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
+    dpoOptions: DPOOptions(
+      period: period,
+      movingAverageType: movingAverageType,
+      isCentered: isCentered,
+      lineStyle: lineStyle,
+      pipSize: pipSize,
+      showLastIndicator: showLastIndicator,
+    ),
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      DPOIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => DPOIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   DPOIndicatorConfig copyWith({
@@ -85,16 +82,15 @@ class DPOIndicatorConfig extends MAIndicatorConfig {
     int? number,
     int? offset,
     bool? isOverlay,
-  }) =>
-      DPOIndicatorConfig(
-        period: period ?? this.period,
-        movingAverageType: movingAverageType ?? this.movingAverageType,
-        fieldType: fieldType ?? this.fieldType,
-        isCentered: isCentered ?? this.isCentered,
-        lineStyle: lineStyle ?? this.lineStyle,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => DPOIndicatorConfig(
+    period: period ?? this.period,
+    movingAverageType: movingAverageType ?? this.movingAverageType,
+    fieldType: fieldType ?? this.fieldType,
+    isCentered: isCentered ?? this.isCentered,
+    lineStyle: lineStyle ?? this.lineStyle,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

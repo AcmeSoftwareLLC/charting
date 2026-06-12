@@ -32,9 +32,7 @@ class DonchianChannelIndicatorConfig extends IndicatorConfig {
     String? title,
     super.number,
     super.pipSize,
-  }) : super(
-          title: title ?? DonchianChannelIndicatorConfig.name,
-        );
+  }) : super(title: title ?? DonchianChannelIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory DonchianChannelIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -44,8 +42,9 @@ class DonchianChannelIndicatorConfig extends IndicatorConfig {
   static const String name = 'donchian_channel';
 
   @override
-  Map<String, dynamic> toJson() => _$DonchianChannelIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$DonchianChannelIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// Number of last candles used to calculate the highest value.
   final int highPeriod;
@@ -82,12 +81,11 @@ class DonchianChannelIndicatorConfig extends IndicatorConfig {
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      DonchianChannelIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => DonchianChannelIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   DonchianChannelIndicatorConfig copyWith({
@@ -102,18 +100,17 @@ class DonchianChannelIndicatorConfig extends IndicatorConfig {
     String? title,
     int? number,
     int? pipSize,
-  }) =>
-      DonchianChannelIndicatorConfig(
-        highPeriod: highPeriod ?? this.highPeriod,
-        lowPeriod: lowPeriod ?? this.lowPeriod,
-        showChannelFill: showChannelFill ?? this.showChannelFill,
-        upperLineStyle: upperLineStyle ?? this.upperLineStyle,
-        middleLineStyle: middleLineStyle ?? this.middleLineStyle,
-        lowerLineStyle: lowerLineStyle ?? this.lowerLineStyle,
-        fillColor: fillColor ?? this.fillColor,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-        pipSize: pipSize ?? this.pipSize,
-      );
+  }) => DonchianChannelIndicatorConfig(
+    highPeriod: highPeriod ?? this.highPeriod,
+    lowPeriod: lowPeriod ?? this.lowPeriod,
+    showChannelFill: showChannelFill ?? this.showChannelFill,
+    upperLineStyle: upperLineStyle ?? this.upperLineStyle,
+    middleLineStyle: middleLineStyle ?? this.middleLineStyle,
+    lowerLineStyle: lowerLineStyle ?? this.lowerLineStyle,
+    fillColor: fillColor ?? this.fillColor,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+    pipSize: pipSize ?? this.pipSize,
+  );
 }

@@ -17,9 +17,7 @@ class HorizontalBarrier extends Barrier {
     super.longLine,
     HorizontalBarrierStyle? super.style,
     this.visibility = HorizontalBarrierVisibility.keepBarrierLabelVisible,
-  }) : super(
-          quote: quote,
-        );
+  }) : super(quote: quote);
 
   /// Barrier visibility behavior.
   final HorizontalBarrierVisibility visibility;
@@ -34,8 +32,8 @@ class HorizontalBarrier extends Barrier {
       // so the chart will ignore this barrier when it wants to define
       // its Y-Axis range.
       visibility == HorizontalBarrierVisibility.forceToStayOnRange
-          ? super.recalculateMinMax()
-          : <double>[double.nan, double.nan];
+      ? super.recalculateMinMax()
+      : <double>[double.nan, double.nan];
 
   @override
   BarrierObject createObject() => BarrierObject(leftEpoch: epoch, quote: quote);

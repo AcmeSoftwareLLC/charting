@@ -14,9 +14,7 @@ class AlligatorIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     AlligatorIndicatorConfig super.config = const AlligatorIndicatorConfig(),
-  }) : super(
-          title: 'Alligator',
-        );
+  }) : super(title: 'Alligator');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -50,219 +48,219 @@ class AlligatorIndicatorItemState
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          buildJawPeriodField(),
-          buildJawOffsetField(),
-          buildTeethPeriodField(),
-          buildTeethOffsetField(),
-          buildLipsPeriodField(),
-          buildLipsOffsetField(),
-          buildShowLinesField(),
-          buildShowFractalField(),
-        ],
-      );
+    children: <Widget>[
+      buildJawPeriodField(),
+      buildJawOffsetField(),
+      buildTeethPeriodField(),
+      buildTeethOffsetField(),
+      buildLipsPeriodField(),
+      buildLipsOffsetField(),
+      buildShowLinesField(),
+      buildShowFractalField(),
+    ],
+  );
 
   /// Builds show lines option
   @protected
   Widget buildShowLinesField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelShowLines,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Switch(
-            value: currentShowLines,
-            onChanged: (bool value) {
-              setState(() {
-                _showLines = value;
-              });
-              updateIndicator();
-            },
-            activeTrackColor: Colors.lightGreenAccent,
-            activeThumbColor: Colors.green,
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelShowLines,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Switch(
+        value: currentShowLines,
+        onChanged: (bool value) {
+          setState(() {
+            _showLines = value;
+          });
+          updateIndicator();
+        },
+        activeTrackColor: Colors.lightGreenAccent,
+        activeThumbColor: Colors.green,
+      ),
+    ],
+  );
 
   /// Builds show fractal indicator option
   @protected
   Widget buildShowFractalField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelShowFractals,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Switch(
-            value: currentShowFractals,
-            onChanged: (bool value) {
-              setState(() {
-                _showFractal = value;
-              });
-              updateIndicator();
-            },
-            activeTrackColor: Colors.lightGreenAccent,
-            activeThumbColor: Colors.green,
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelShowFractals,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Switch(
+        value: currentShowFractals,
+        onChanged: (bool value) {
+          setState(() {
+            _showFractal = value;
+          });
+          updateIndicator();
+        },
+        activeTrackColor: Colors.lightGreenAccent,
+        activeThumbColor: Colors.green,
+      ),
+    ],
+  );
 
   /// Builds jaw offset
   @protected
   Widget buildJawOffsetField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelJawOffset,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Slider(
-              value: currentJawOffset.toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  _jawOffset = value.toInt();
-                  updateIndicator();
-                });
-              },
-              divisions: 100,
-              max: 100,
-              label: '$currentJawOffset',
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelJawOffset,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Expanded(
+        child: Slider(
+          value: currentJawOffset.toDouble(),
+          onChanged: (double value) {
+            setState(() {
+              _jawOffset = value.toInt();
+              updateIndicator();
+            });
+          },
+          divisions: 100,
+          max: 100,
+          label: '$currentJawOffset',
+        ),
+      ),
+    ],
+  );
 
   /// Builds jaw period
   @protected
   Widget buildJawPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelJawPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Slider(
-              value: currentJawPeriod.toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  _jawPeriod = value.toInt();
-                  updateIndicator();
-                });
-              },
-              divisions: 100,
-              max: 100,
-              label: '$currentJawPeriod',
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelJawPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Expanded(
+        child: Slider(
+          value: currentJawPeriod.toDouble(),
+          onChanged: (double value) {
+            setState(() {
+              _jawPeriod = value.toInt();
+              updateIndicator();
+            });
+          },
+          divisions: 100,
+          max: 100,
+          label: '$currentJawPeriod',
+        ),
+      ),
+    ],
+  );
 
   /// Builds teeth offset
   @protected
   Widget buildTeethOffsetField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelTeethOffset,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Slider(
-              value: currentTeethOffset.toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  _teethOffset = value.toInt();
-                  updateIndicator();
-                });
-              },
-              divisions: 100,
-              max: 100,
-              label: '$currentTeethOffset',
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelTeethOffset,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Expanded(
+        child: Slider(
+          value: currentTeethOffset.toDouble(),
+          onChanged: (double value) {
+            setState(() {
+              _teethOffset = value.toInt();
+              updateIndicator();
+            });
+          },
+          divisions: 100,
+          max: 100,
+          label: '$currentTeethOffset',
+        ),
+      ),
+    ],
+  );
 
   /// Builds teeth period
   @protected
   Widget buildTeethPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelTeethPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Slider(
-              value: currentTeethPeriod.toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  _teethPeriod = value.toInt();
-                  updateIndicator();
-                });
-              },
-              divisions: 100,
-              max: 100,
-              label: '$currentTeethPeriod',
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelTeethPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Expanded(
+        child: Slider(
+          value: currentTeethPeriod.toDouble(),
+          onChanged: (double value) {
+            setState(() {
+              _teethPeriod = value.toInt();
+              updateIndicator();
+            });
+          },
+          divisions: 100,
+          max: 100,
+          label: '$currentTeethPeriod',
+        ),
+      ),
+    ],
+  );
 
   /// Builds lips offset
   @protected
   Widget buildLipsOffsetField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelLipsOffset,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Slider(
-              value: currentLipsOffset.toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  _lipsOffset = value.toInt();
-                  updateIndicator();
-                });
-              },
-              divisions: 100,
-              max: 100,
-              label: '$currentLipsOffset',
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelLipsOffset,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Expanded(
+        child: Slider(
+          value: currentLipsOffset.toDouble(),
+          onChanged: (double value) {
+            setState(() {
+              _lipsOffset = value.toInt();
+              updateIndicator();
+            });
+          },
+          divisions: 100,
+          max: 100,
+          label: '$currentLipsOffset',
+        ),
+      ),
+    ],
+  );
 
   /// Builds lips period
   @protected
   Widget buildLipsPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelLipsPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Slider(
-              value: currentLipsPeriod.toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  _lipsPeriod = value.toInt();
-                  updateIndicator();
-                });
-              },
-              divisions: 100,
-              max: 100,
-              label: '$currentLipsPeriod',
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelLipsPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Expanded(
+        child: Slider(
+          value: currentLipsPeriod.toDouble(),
+          onChanged: (double value) {
+            setState(() {
+              _lipsPeriod = value.toInt();
+              updateIndicator();
+            });
+          },
+          divisions: 100,
+          max: 100,
+          label: '$currentLipsPeriod',
+        ),
+      ),
+    ],
+  );
 
   /// Gets current jaw offset.
   @protected

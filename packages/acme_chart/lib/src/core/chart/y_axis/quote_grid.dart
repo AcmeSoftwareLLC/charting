@@ -11,24 +11,25 @@ class YAxisModel {
     required this._canvasHeight,
     required this._topPadding,
     required this._bottomPadding,
-  })  : _quoteGridInterval = quoteGridInterval(
-          quotePerPx(
-              yTopBound: yTopBound,
-              yBottomBound: yBottomBound,
-              bottomBoundQuote: bottomBoundQuote,
-              topBoundQuote: topBoundQuote),
-        ),
-        _topBoundQuote = topBoundQuote,
-        _bottomBoundQuote = bottomBoundQuote;
+  }) : _quoteGridInterval = quoteGridInterval(
+         quotePerPx(
+           yTopBound: yTopBound,
+           yBottomBound: yBottomBound,
+           bottomBoundQuote: bottomBoundQuote,
+           topBoundQuote: topBoundQuote,
+         ),
+       ),
+       _topBoundQuote = topBoundQuote,
+       _bottomBoundQuote = bottomBoundQuote;
 
   /// Initializes a model with zero values.
   YAxisModel.zero()
-      : _quoteGridInterval = 0,
-        _topBoundQuote = 0,
-        _bottomBoundQuote = 0,
-        _canvasHeight = 0,
-        _topPadding = 0,
-        _bottomPadding = 0;
+    : _quoteGridInterval = 0,
+      _topBoundQuote = 0,
+      _bottomBoundQuote = 0,
+      _canvasHeight = 0,
+      _topPadding = 0,
+      _bottomPadding = 0;
 
   final double _quoteGridInterval;
   final double _topBoundQuote;
@@ -54,15 +55,18 @@ class YAxisModel {
 
   /// Calculates the grid lines for a quote.
   List<double> gridQuotes() {
-    final double pixelToQuote = (_topBoundQuote - _bottomBoundQuote) /
+    final double pixelToQuote =
+        (_topBoundQuote - _bottomBoundQuote) /
         (_canvasHeight - _topPadding - _bottomPadding);
     final double topEdgeQuote = _topBoundQuote + _topPadding * pixelToQuote;
     final double bottomEdgeQuote =
         _bottomBoundQuote - _bottomPadding * pixelToQuote;
     final List<double> gridLineQuotes = <double>[];
-    for (double q = topEdgeQuote - topEdgeQuote % _quoteGridInterval;
-        q > bottomEdgeQuote;
-        q -= _quoteGridInterval) {
+    for (
+      double q = topEdgeQuote - topEdgeQuote % _quoteGridInterval;
+      q > bottomEdgeQuote;
+      q -= _quoteGridInterval
+    ) {
       if (q < topEdgeQuote) {
         gridLineQuotes.add(q);
       }

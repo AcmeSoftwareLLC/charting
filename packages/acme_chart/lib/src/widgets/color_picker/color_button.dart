@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 /// Button that displays a color value.
 class ColorButton extends StatelessWidget {
   /// Creates a button of color.
-  const ColorButton({
-    required this.color,
-    required this.onTap,
-    super.key,
-  });
+  const ColorButton({required this.color, required this.onTap, super.key});
 
   /// Display color value.
   final Color color;
@@ -17,23 +13,21 @@ class ColorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => InkWell(
-        borderRadius: BorderRadius.circular(4),
-        onTap: onTap,
-        child: SizedBox(
-          width: 44,
-          height: 44,
-          child: Center(
-            child: _buildColorBox(),
-          ),
-        ),
-      );
+    borderRadius: BorderRadius.circular(4),
+    onTap: onTap,
+    child: SizedBox(
+      width: 44,
+      height: 44,
+      child: Center(child: _buildColorBox()),
+    ),
+  );
 
   Container _buildColorBox() => Container(
-        width: 24,
-        height: 24,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(4),
-        ),
-      );
+    width: 24,
+    height: 24,
+    decoration: BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.circular(4),
+    ),
+  );
 }

@@ -7,10 +7,7 @@ part 'edge_point.g.dart';
 @JsonSerializable()
 class EdgePoint with EquatableMixin {
   /// Initializes
-  const EdgePoint({
-    this.epoch = 0,
-    this.quote = 0,
-  });
+  const EdgePoint({this.epoch = 0, this.quote = 0});
 
   /// Initializes from JSON.
   factory EdgePoint.fromJson(Map<String, dynamic> json) =>
@@ -26,14 +23,8 @@ class EdgePoint with EquatableMixin {
   final double quote;
 
   /// Returns a copy of this [EdgePoint] with the given values.
-  EdgePoint copyWith({
-    int? epoch,
-    double? quote,
-  }) {
-    return EdgePoint(
-      epoch: epoch ?? this.epoch,
-      quote: quote ?? this.quote,
-    );
+  EdgePoint copyWith({int? epoch, double? quote}) {
+    return EdgePoint(epoch: epoch ?? this.epoch, quote: quote ?? this.quote);
   }
 
   @override

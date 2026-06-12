@@ -11,9 +11,12 @@ CCIIndicatorConfig _$CCIIndicatorConfigFromJson(Map<String, dynamic> json) =>
       period: json['period'] as int? ?? 20,
       oscillatorLinesConfig: json['oscillatorLinesConfig'] == null
           ? const OscillatorLinesConfig(
-              overboughtValue: 100, oversoldValue: -100)
+              overboughtValue: 100,
+              oversoldValue: -100,
+            )
           : OscillatorLinesConfig.fromJson(
-              json['oscillatorLinesConfig'] as Map<String, dynamic>),
+              json['oscillatorLinesConfig'] as Map<String, dynamic>,
+            ),
       showZones: json['showZones'] as bool? ?? true,
       lineStyle: json['lineStyle'] == null
           ? const LineStyle(color: Colors.white)

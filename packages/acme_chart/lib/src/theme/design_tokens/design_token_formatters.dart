@@ -72,8 +72,10 @@ class ColorTokenFormatter implements DesignTokenValueFormatter {
         final int r = int.parse(match.group(1)!);
         final int g = int.parse(match.group(2)!);
         final int b = int.parse(match.group(3)!);
-        final double a = double.parse(
-                match.group(4)?.toString().replaceAll('%', '') ?? '0.0') *
+        final double a =
+            double.parse(
+              match.group(4)?.toString().replaceAll('%', '') ?? '0.0',
+            ) *
             0.01;
         return 'Color.fromRGBO($r, $g, $b, $a)';
       }
@@ -117,10 +119,14 @@ class ColorTokenFormatter implements DesignTokenValueFormatter {
         parts[6] == '}' &&
         parts[7] == ')') {
       // Extract the color and opacity token references
-      final String colorToken =
-          DesignTokenUtils.convertToDartPropertyName(parts[2], category);
-      final String opacityToken =
-          DesignTokenUtils.convertToDartPropertyName(parts[5], category);
+      final String colorToken = DesignTokenUtils.convertToDartPropertyName(
+        parts[2],
+        category,
+      );
+      final String opacityToken = DesignTokenUtils.convertToDartPropertyName(
+        parts[5],
+        category,
+      );
 
       // Return a Color.fromRGBO expression directly
       return 'Color.fromRGBO($colorToken.red, $colorToken.green, $colorToken.blue, $opacityToken)';
@@ -164,12 +170,15 @@ class ColorTokenFormatter implements DesignTokenValueFormatter {
     cleanedInput = cleanedInput.replaceAll('\'', '').replaceAll('"', '');
 
     // Format the token references
-    final String formattedGradient =
-        DesignTokenUtils.formatLinearGradientValue(cleanedInput, category);
+    final String formattedGradient = DesignTokenUtils.formatLinearGradientValue(
+      cleanedInput,
+      category,
+    );
 
     // Parse the angle and color stops
-    final Match? angleMatch =
-        DesignTokenUtils.linearGradientPattern.firstMatch(formattedGradient);
+    final Match? angleMatch = DesignTokenUtils.linearGradientPattern.firstMatch(
+      formattedGradient,
+    );
 
     if (angleMatch != null) {
       final String angleStr = angleMatch.group(1)!.trim();
@@ -187,15 +196,17 @@ class ColorTokenFormatter implements DesignTokenValueFormatter {
       final String angleInRadians = '${(angleInDegrees - 90) * pi / 180}';
 
       // Parse color stops
-      final List<String> colorStops =
-          colorStopsStr.split(',').map((s) => s.trim()).toList();
+      final List<String> colorStops = colorStopsStr
+          .split(',')
+          .map((s) => s.trim())
+          .toList();
       final List<String> colors = [];
       final List<String> stops = [];
 
       for (final String colorStop in colorStops) {
         // Split the color and position
-        final Match? colorStopMatch =
-            DesignTokenUtils.colorStopPattern.firstMatch(colorStop);
+        final Match? colorStopMatch = DesignTokenUtils.colorStopPattern
+            .firstMatch(colorStop);
 
         if (colorStopMatch != null) {
           final String color = colorStopMatch.group(1)!.trim();
@@ -204,7 +215,7 @@ class ColorTokenFormatter implements DesignTokenValueFormatter {
           // Convert percentage to fraction
           final double positionValue =
               double.tryParse(position.substring(0, position.length - 1)) ??
-                  0.0;
+              0.0;
           final double normalizedPosition = positionValue / 100;
 
           colors.add(color);
@@ -282,8 +293,10 @@ class PercentageTokenFormatter implements DesignTokenValueFormatter {
     final String originalValue = value;
 
     if (originalValue.endsWith('%')) {
-      final String numericPart =
-          originalValue.substring(0, originalValue.length - 1);
+      final String numericPart = originalValue.substring(
+        0,
+        originalValue.length - 1,
+      );
       final double? numValue = double.tryParse(numericPart);
       if (numValue != null) {
         return (numValue / 100).toString();
@@ -292,8 +305,10 @@ class PercentageTokenFormatter implements DesignTokenValueFormatter {
     // Check if the value is a token reference
     if (originalValue.startsWith('{') && originalValue.endsWith('}')) {
       // Extract the token reference (remove the curly braces)
-      final String tokenRef =
-          originalValue.substring(1, originalValue.length - 1);
+      final String tokenRef = originalValue.substring(
+        1,
+        originalValue.length - 1,
+      );
 
       return DesignTokenUtils.convertToDartPropertyName(tokenRef, category);
     }
@@ -314,7 +329,8 @@ class BoxShadowTokenFormatter implements DesignTokenValueFormatter {
       final List<String> shadows = [];
       for (final shadow in value) {
         shadows.add(
-            _formatSingleBoxShadow(shadow as Map<String, dynamic>, category));
+          _formatSingleBoxShadow(shadow as Map<String, dynamic>, category),
+        );
       }
       return '[${shadows.join(', ')}]';
     } else if (value is Map) {
@@ -341,8 +357,8 @@ class BoxShadowTokenFormatter implements DesignTokenValueFormatter {
     final spread = numericFormatter.format(shadow['spread'] ?? '0', category);
     final color =
         shadow['color'] != null && shadow['color'].toString().isNotEmpty
-            ? colorFormatter.format(shadow['color'], category)
-            : 'Colors.transparent';
+        ? colorFormatter.format(shadow['color'], category)
+        : 'Colors.transparent';
 
     return 'BoxShadow(color: $color, offset: Offset($x, $y), blurRadius: $blur, spreadRadius: $spread)';
   }
@@ -453,8 +469,10 @@ class LineHeightTokenFormatter implements DesignTokenValueFormatter {
         }
         // If it ends with px, remove it and parse
         if (lineHeight.endsWith('px')) {
-          final String numericPart =
-              lineHeight.substring(0, lineHeight.length - 2);
+          final String numericPart = lineHeight.substring(
+            0,
+            lineHeight.length - 2,
+          );
           final double? pxValue = double.tryParse(numericPart);
           if (pxValue != null) {
             return pxValue.toString();
@@ -530,7 +548,8 @@ class FontWeightTokenFormatter implements DesignTokenValueFormatter {
     return lowerValue == 'solid' ||
         lowerValue == 'fill' ||
         lowerValue.contains(
-            'bold italic'); // Keep compound styles as strings. They would need to be handled differently in actual usage.
+          'bold italic',
+        ); // Keep compound styles as strings. They would need to be handled differently in actual usage.
   }
 
   /// Maps font style strings to Flutter FontStyle constants
@@ -589,8 +608,10 @@ class DurationTokenFormatter implements DesignTokenValueFormatter {
     // Check if the value ends with 'ms' (milliseconds)
     if (cleanedValue.endsWith('ms')) {
       // Extract the numeric part
-      final String numericPart =
-          cleanedValue.substring(0, cleanedValue.length - 2);
+      final String numericPart = cleanedValue.substring(
+        0,
+        cleanedValue.length - 2,
+      );
       final int? milliseconds = int.tryParse(numericPart);
 
       if (milliseconds != null) {
@@ -660,8 +681,10 @@ class MotionTokenFormatter implements DesignTokenValueFormatter {
       default:
         // For unrecognized values, throw an error to prevent invalid code generation
         // This is safer than silently converting to a potentially incorrect fallback
-        throw ArgumentError('Unrecognized motion easing value: "$value". '
-            'Expected cubic-bezier(...) function, token reference, or standard CSS easing keyword.');
+        throw ArgumentError(
+          'Unrecognized motion easing value: "$value". '
+          'Expected cubic-bezier(...) function, token reference, or standard CSS easing keyword.',
+        );
     }
   }
 }
@@ -679,8 +702,9 @@ class CubicBezierTokenFormatter implements DesignTokenValueFormatter {
     final String cleanedInput = input.replaceAll('\'', '').replaceAll('"', '');
 
     // Pattern to match cubic-bezier values
-    final Match? match =
-        DesignTokenUtils.cubicBezierPattern.firstMatch(cleanedInput);
+    final Match? match = DesignTokenUtils.cubicBezierPattern.firstMatch(
+      cleanedInput,
+    );
 
     if (match != null) {
       final double x1 = double.parse(match.group(1)!);
@@ -806,8 +830,9 @@ class _DefaultTokenFormatter implements DesignTokenValueFormatter {
     if (value is String) {
       // Handle references like {core.color.solid.slate.50}
       if (value.contains('rgba')) {
-        return TokenFormatterFactory.getFormatter('color')
-            .format(value, category);
+        return TokenFormatterFactory.getFormatter(
+          'color',
+        ).format(value, category);
       } else if (value.contains('linear-gradient')) {
         final colorFormatter = TokenFormatterFactory.getFormatter('color');
         // Convert linear gradient string to LinearGradient object
@@ -815,8 +840,9 @@ class _DefaultTokenFormatter implements DesignTokenValueFormatter {
             ? colorFormatter.convertGradientStringToDartObject(value, category)
             : 'Invalid formatter';
       } else if (value.contains('cubic-bezier')) {
-        return TokenFormatterFactory.getFormatter('motion')
-            .format(value, category);
+        return TokenFormatterFactory.getFormatter(
+          'motion',
+        ).format(value, category);
       } else if (value.startsWith('{') && value.endsWith('}')) {
         // Extract the token reference (remove the curly braces)
         final String tokenRef = value.substring(1, value.length - 1);
@@ -824,8 +850,9 @@ class _DefaultTokenFormatter implements DesignTokenValueFormatter {
         return DesignTokenUtils.convertToDartPropertyName(tokenRef, category);
       } else if (value.endsWith('ms')) {
         // Handle motion duration values
-        return TokenFormatterFactory.getFormatter('duration')
-            .format(value, category);
+        return TokenFormatterFactory.getFormatter(
+          'duration',
+        ).format(value, category);
       }
       return "'$value'";
     } else {

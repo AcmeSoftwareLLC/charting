@@ -26,13 +26,15 @@ class GlassyBlurEffectWidget extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: theme.floatingMenuContainerGlassColor),
+            borderRadius: BorderRadius.circular(8),
+            color: theme.floatingMenuContainerGlassColor,
+          ),
           child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(
-                textScaler: const TextScaler.linear(1),
-              ),
-              child: child),
+            data: MediaQuery.of(
+              context,
+            ).copyWith(textScaler: const TextScaler.linear(1)),
+            child: child,
+          ),
         ),
       ),
     );

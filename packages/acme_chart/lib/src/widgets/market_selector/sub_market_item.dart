@@ -42,8 +42,8 @@ class SubMarketItem extends StatelessWidget {
     final List<Asset?> assets = filterText.isEmpty
         ? subMarket.assets
         : subMarket.assets
-            .where((Asset? a) => a != null && a.containsText(filterText))
-            .toList();
+              .where((Asset? a) => a != null && a.containsText(filterText))
+              .toList();
     return assets.isEmpty
         ? const SizedBox.shrink()
         : Material(

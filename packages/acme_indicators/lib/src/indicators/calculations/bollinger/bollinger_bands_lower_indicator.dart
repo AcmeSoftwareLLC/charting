@@ -14,7 +14,7 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
   /// [indicator] the deviation above and below the middle, factored by k.
   ///             Typically a StandardDeviationIndicator is used.
   BollingerBandsLowerIndicator(this.bbm, this.indicator, {this.k = 2})
-      : super.fromIndicator(bbm);
+    : super.fromIndicator(bbm);
 
   /// Indicator
   final CachedIndicator<T> indicator;
@@ -27,10 +27,9 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
 
   @override
   T calculate(int index) => createResult(
-        index: index,
-        quote:
-            bbm.getValue(index).quote - (indicator.getValue(index).quote * k),
-      );
+    index: index,
+    quote: bbm.getValue(index).quote - (indicator.getValue(index).quote * k),
+  );
 
   @override
   void copyValuesFrom(covariant BollingerBandsLowerIndicator<T> other) {

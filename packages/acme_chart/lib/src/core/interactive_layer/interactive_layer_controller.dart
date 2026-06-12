@@ -22,7 +22,7 @@ class InteractiveLayerController extends ChangeNotifier {
   /// Once it appears on this initial position, it can be moved by the user
   /// and the internal [floatingMenuPosition] will be updated accordingly.
   InteractiveLayerController({Offset floatingMenuInitialPosition = Offset.zero})
-      : floatingMenuPosition = floatingMenuInitialPosition;
+    : floatingMenuPosition = floatingMenuInitialPosition;
 
   /// The current state of the interactive layer.
   late InteractiveState _currentState;

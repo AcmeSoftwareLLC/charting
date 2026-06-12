@@ -95,31 +95,31 @@ class ChartDefaultDarkTheme extends ChartDefaultTheme {
 
   @override
   GridStyle get gridStyle => GridStyle(
-        gridLineColor: gridLineColor,
-        xLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
-        yLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
-      );
+    gridLineColor: gridLineColor,
+    xLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
+    yLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
+  );
 
   @override
   LineStyle get lineStyle => LineStyle(
-        color: areaLineColor,
-        hasArea: true,
-        areaGradientColors: (start: areaGradientStart, end: areaGradientEnd),
-        thickness: areaLineThickness,
-      );
+    color: areaLineColor,
+    hasArea: true,
+    areaGradientColors: (start: areaGradientStart, end: areaGradientEnd),
+    thickness: areaLineThickness,
+  );
 
   @override
   HorizontalBarrierStyle get currentSpotStyle => HorizontalBarrierStyle(
-        color: currentSpotContainerColor,
-        textStyle: textStyle(
-          textStyle: currentSpotTextStyle,
-          color: currentSpotTextColor,
-        ),
-        isDashed: false,
-        labelShapeBackgroundColor: currentSpotContainerColor,
-        lineColor: currentSpotLineColor,
-        blinkingDotColor: currentSpotDotColor,
-      );
+    color: currentSpotContainerColor,
+    textStyle: textStyle(
+      textStyle: currentSpotTextStyle,
+      color: currentSpotTextColor,
+    ),
+    isDashed: false,
+    labelShapeBackgroundColor: currentSpotContainerColor,
+    lineColor: currentSpotLineColor,
+    blinkingDotColor: currentSpotDotColor,
+  );
 
   @override
   TextStyle get overLine => TextStyles.overLine;
@@ -253,9 +253,9 @@ class ChartDefaultDarkTheme extends ChartDefaultTheme {
 
   @override
   MarkerStyle get markerStyle => const MarkerStyle(
-        lineDefaultColor: DarkThemeColors.markerPaletteBorderColor,
-        upColorProminent: DarkThemeColors.upColorProminent,
-        downColorProminent: DarkThemeColors.downColorProminent,
-        markerTextColor: DarkThemeColors.markerTextColor,
-      );
+    lineDefaultColor: DarkThemeColors.markerPaletteBorderColor,
+    upColorProminent: DarkThemeColors.upColorProminent,
+    downColorProminent: DarkThemeColors.downColorProminent,
+    markerTextColor: DarkThemeColors.markerTextColor,
+  );
 }

@@ -33,8 +33,9 @@ class ChannelDrawingToolConfig extends DrawingToolConfig {
   static const String name = 'dt_channel';
 
   @override
-  Map<String, dynamic> toJson() => _$ChannelDrawingToolConfigToJson(this)
-    ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$ChannelDrawingToolConfigToJson(this)
+        ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
   final LineStyle lineStyle;
@@ -50,12 +51,11 @@ class ChannelDrawingToolConfig extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) =>
-      ChannelDrawingToolItem(
-        config: this,
-        updateDrawingTool: updateDrawingTool,
-        deleteDrawingTool: deleteDrawingTool,
-      );
+  ) => ChannelDrawingToolItem(
+    config: this,
+    updateDrawingTool: updateDrawingTool,
+    deleteDrawingTool: deleteDrawingTool,
+  );
 
   @override
   ChannelDrawingToolConfig copyWith({
@@ -67,14 +67,13 @@ class ChannelDrawingToolConfig extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) =>
-      ChannelDrawingToolConfig(
-        configId: configId ?? this.configId,
-        drawingData: drawingData ?? this.drawingData,
-        lineStyle: lineStyle ?? this.lineStyle,
-        fillStyle: fillStyle ?? this.fillStyle,
-        pattern: pattern ?? this.pattern,
-        edgePoints: edgePoints ?? this.edgePoints,
-        number: number ?? this.number,
-      );
+  }) => ChannelDrawingToolConfig(
+    configId: configId ?? this.configId,
+    drawingData: drawingData ?? this.drawingData,
+    lineStyle: lineStyle ?? this.lineStyle,
+    fillStyle: fillStyle ?? this.fillStyle,
+    pattern: pattern ?? this.pattern,
+    edgePoints: edgePoints ?? this.edgePoints,
+    number: number ?? this.number,
+  );
 }

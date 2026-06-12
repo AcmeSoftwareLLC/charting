@@ -19,18 +19,18 @@ class ColorPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => _ColorPickerIcon(
-        color: currentColor,
-        onTap: () {
-          showModalBottomSheet<void>(
-            backgroundColor: Colors.transparent,
-            context: context,
-            builder: (BuildContext context) => ColorPickerSheet(
-              selectedColor: currentColor,
-              onChanged: onColorChanged,
-            ),
-          );
-        },
+    color: currentColor,
+    onTap: () {
+      showModalBottomSheet<void>(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (BuildContext context) => ColorPickerSheet(
+          selectedColor: currentColor,
+          onChanged: onColorChanged,
+        ),
       );
+    },
+  );
 }
 
 class _ColorPickerIcon extends StatelessWidget {
@@ -45,26 +45,26 @@ class _ColorPickerIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => TextButton(
-        onPressed: onTap,
-        style: TextButton.styleFrom(
-          foregroundColor: Colors.white38,
-          padding: const EdgeInsets.all(0),
-          alignment: Alignment.center,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        ),
-        child: SizedBox(
-          width: 32,
-          height: 32,
-          child: Center(child: _buildColorBox()),
-        ),
-      );
+    onPressed: onTap,
+    style: TextButton.styleFrom(
+      foregroundColor: Colors.white38,
+      padding: const EdgeInsets.all(0),
+      alignment: Alignment.center,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+    ),
+    child: SizedBox(
+      width: 32,
+      height: 32,
+      child: Center(child: _buildColorBox()),
+    ),
+  );
 
   Container _buildColorBox() => Container(
-        width: 14,
-        height: 14,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(4),
-        ),
-      );
+    width: 14,
+    height: 14,
+    decoration: BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.circular(4),
+    ),
+  );
 }

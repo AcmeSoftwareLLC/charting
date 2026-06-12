@@ -32,8 +32,9 @@ class FibfanDrawingToolConfig extends DrawingToolConfig {
   static const String name = 'dt_fibfan';
 
   @override
-  Map<String, dynamic> toJson() => _$FibfanDrawingToolConfigToJson(this)
-    ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$FibfanDrawingToolConfigToJson(this)
+        ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
   final LineStyle lineStyle;
@@ -45,12 +46,11 @@ class FibfanDrawingToolConfig extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) =>
-      FibfanDrawingToolItem(
-        config: this,
-        updateDrawingTool: updateDrawingTool,
-        deleteDrawingTool: deleteDrawingTool,
-      );
+  ) => FibfanDrawingToolItem(
+    config: this,
+    updateDrawingTool: updateDrawingTool,
+    deleteDrawingTool: deleteDrawingTool,
+  );
 
   @override
   FibfanDrawingToolConfig copyWith({
@@ -62,13 +62,12 @@ class FibfanDrawingToolConfig extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) =>
-      FibfanDrawingToolConfig(
-        configId: configId ?? this.configId,
-        drawingData: drawingData ?? this.drawingData,
-        lineStyle: lineStyle ?? this.lineStyle,
-        fillStyle: fillStyle ?? this.fillStyle,
-        edgePoints: edgePoints ?? this.edgePoints,
-        number: number ?? this.number,
-      );
+  }) => FibfanDrawingToolConfig(
+    configId: configId ?? this.configId,
+    drawingData: drawingData ?? this.drawingData,
+    lineStyle: lineStyle ?? this.lineStyle,
+    fillStyle: fillStyle ?? this.fillStyle,
+    edgePoints: edgePoints ?? this.edgePoints,
+    number: number ?? this.number,
+  );
 }

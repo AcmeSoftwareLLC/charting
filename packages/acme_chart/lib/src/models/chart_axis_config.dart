@@ -78,12 +78,11 @@ class ChartAxisConfig {
     double? initialBottomBoundQuote,
     double? maxCurrentTickOffset,
     double? defaultTickOffset,
-  }) =>
-      ChartAxisConfig(
-        initialTopBoundQuote: initialTopBoundQuote ?? this.initialTopBoundQuote,
-        initialBottomBoundQuote:
-            initialBottomBoundQuote ?? this.initialBottomBoundQuote,
-        maxCurrentTickOffset: maxCurrentTickOffset ?? this.maxCurrentTickOffset,
-        defaultTickOffset: defaultTickOffset ?? this.defaultTickOffset,
-      );
+  }) => ChartAxisConfig(
+    initialTopBoundQuote: initialTopBoundQuote ?? this.initialTopBoundQuote,
+    initialBottomBoundQuote:
+        initialBottomBoundQuote ?? this.initialBottomBoundQuote,
+    maxCurrentTickOffset: maxCurrentTickOffset ?? this.maxCurrentTickOffset,
+    defaultTickOffset: defaultTickOffset ?? this.defaultTickOffset,
+  );
 }

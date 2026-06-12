@@ -262,8 +262,9 @@ class _DrawingToolsScreenState
                     ),
                     const SizedBox(width: 16),
                     ElevatedButton(
-                      onPressed:
-                          _selectedDrawingTool != null ? _addDrawingTool : null,
+                      onPressed: _selectedDrawingTool != null
+                          ? _addDrawingTool
+                          : null,
                       child: const Text('Add'),
                     ),
                   ],

@@ -14,25 +14,22 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// [indicator] An indicator (usually close price)
   /// [period]  The time frame
   /// [k]         The K multiplier (usually 2.0)
-  PercentBIndicator(
-    Indicator<T> indicator,
-    int period, {
-    double k = 2,
-  }) : this._(
-          indicator,
-          StandardDeviationIndicator<T>(indicator, period),
-          SMAIndicator<T>(indicator, period),
-          k,
-        );
+  PercentBIndicator(Indicator<T> indicator, int period, {double k = 2})
+    : this._(
+        indicator,
+        StandardDeviationIndicator<T>(indicator, period),
+        SMAIndicator<T>(indicator, period),
+        k,
+      );
 
   PercentBIndicator._(
     this.indicator,
     StandardDeviationIndicator<T> sd,
     this.bbm,
     double k,
-  )   : bbu = BollingerBandsUpperIndicator<T>(bbm, sd, k: k),
-        bbl = BollingerBandsLowerIndicator<T>(bbm, sd, k: k),
-        super.fromIndicator(indicator);
+  ) : bbu = BollingerBandsUpperIndicator<T>(bbm, sd, k: k),
+      bbl = BollingerBandsLowerIndicator<T>(bbm, sd, k: k),
+      super.fromIndicator(indicator);
 
   /// Indicator
   final Indicator<T> indicator;

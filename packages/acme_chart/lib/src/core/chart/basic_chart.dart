@@ -35,7 +35,7 @@ class BasicChart extends StatefulWidget {
     this.onQuoteAreaChanged,
     this.currentTickAnimationDuration = _defaultDuration,
     this.quoteBoundsAnimationDuration = _defaultDuration,
-  })  : chartAxisConfig = chartAxisConfig ?? const ChartAxisConfig();
+  }) : chartAxisConfig = chartAxisConfig ?? const ChartAxisConfig();
 
   /// The main series to display on the chart.
   final Series mainSeries;
@@ -242,14 +242,14 @@ class BasicChartState<T extends BasicChart> extends State<T>
   }
 
   YAxisModel _setupYAxisModel(Size canvasSize) => yAxisModel = YAxisModel(
-        yTopBound: chartQuoteToCanvasY(_topBoundQuote),
-        yBottomBound: chartQuoteToCanvasY(_bottomBoundQuote),
-        topBoundQuote: _topBoundQuote,
-        bottomBoundQuote: _bottomBoundQuote,
-        canvasHeight: canvasSize.height,
-        topPadding: _topPadding,
-        bottomPadding: _bottomPadding,
-      );
+    yTopBound: chartQuoteToCanvasY(_topBoundQuote),
+    yBottomBound: chartQuoteToCanvasY(_bottomBoundQuote),
+    topBoundQuote: _topBoundQuote,
+    bottomBoundQuote: _bottomBoundQuote,
+    canvasHeight: canvasSize.height,
+    topPadding: _topPadding,
+    bottomPadding: _bottomPadding,
+  );
 
   /// Called to setup the current tick bounds and crosshair zoom out animations.
   void setupAnimations() {
@@ -313,9 +313,9 @@ class BasicChartState<T extends BasicChart> extends State<T>
 
   /// Returns the charts min/max quotes.
   List<double> getSeriesMinMaxValue() => <double>[
-        widget.mainSeries.minValue,
-        widget.mainSeries.maxValue,
-      ];
+    widget.mainSeries.minValue,
+    widget.mainSeries.maxValue,
+  ];
 
   void _updateQuoteBoundTargets() {
     final List<double> minMaxValues = getSeriesMinMaxValue();
@@ -364,57 +364,56 @@ class BasicChartState<T extends BasicChart> extends State<T>
 
   /// Converts the chart quote to y axis value inside the canvas.
   double chartQuoteToCanvasY(double quote) => quoteToCanvasY(
-        quote: quote,
-        topBoundQuote: _topBoundQuote,
-        bottomBoundQuote: _bottomBoundQuote,
-        canvasHeight: canvasSize?.height ?? 200,
-        topPadding: _topPadding,
-        bottomPadding: _bottomPadding,
-      );
+    quote: quote,
+    topBoundQuote: _topBoundQuote,
+    bottomBoundQuote: _bottomBoundQuote,
+    canvasHeight: canvasSize?.height ?? 200,
+    topPadding: _topPadding,
+    bottomPadding: _bottomPadding,
+  );
 
   /// Returns quote based on the y-coordinate.
   double chartQuoteFromCanvasY(double y) => quoteFromCanvasY(
-        y: y,
-        topBoundQuote: _topBoundQuote,
-        bottomBoundQuote: _bottomBoundQuote,
-        canvasHeight: canvasSize?.height ?? 200,
-        topPadding: _topPadding,
-        bottomPadding: _bottomPadding,
-      );
+    y: y,
+    topBoundQuote: _topBoundQuote,
+    bottomBoundQuote: _bottomBoundQuote,
+    canvasHeight: canvasSize?.height ?? 200,
+    topPadding: _topPadding,
+    bottomPadding: _bottomPadding,
+  );
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-        key: _key,
-        builder: (BuildContext context, BoxConstraints constraints) {
-          final XAxisModel xAxis = context.watch<XAxisModel>();
+    key: _key,
+    builder: (BuildContext context, BoxConstraints constraints) {
+      final XAxisModel xAxis = context.watch<XAxisModel>();
 
-          canvasSize = Size(xAxis.width!, constraints.maxHeight);
+      canvasSize = Size(xAxis.width!, constraints.maxHeight);
 
-          updateVisibleData();
-          if (!_quoteBoundUpdateScheduled) {
-            _quoteBoundUpdateScheduled = true;
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              _quoteBoundUpdateScheduled = false;
-              _updateQuoteBoundTargets();
-            });
-          }
+      updateVisibleData();
+      if (!_quoteBoundUpdateScheduled) {
+        _quoteBoundUpdateScheduled = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _quoteBoundUpdateScheduled = false;
+          _updateQuoteBoundTargets();
+        });
+      }
 
-          final YAxisModel yAxisModel = _setupYAxisModel(canvasSize!);
+      final YAxisModel yAxisModel = _setupYAxisModel(canvasSize!);
 
-          final List<double> gridLineQuotes =
-              calculateGridLineQuotes(yAxisModel);
-          return Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid)
-                _buildQuoteGridLine(gridLineQuotes),
-              _buildChartData(),
-              if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid)
-                _buildQuoteGridLabel(gridLineQuotes),
-            ],
-          );
-        },
+      final List<double> gridLineQuotes = calculateGridLineQuotes(yAxisModel);
+      return Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid)
+            _buildQuoteGridLine(gridLineQuotes),
+          _buildChartData(),
+          if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid)
+            _buildQuoteGridLabel(gridLineQuotes),
+        ],
       );
+    },
+  );
 
   Widget _buildQuoteGridLine(List<double> gridLineQuotes) {
     final double calculatedLabelWidth = (gridLineQuotes.isNotEmpty)
@@ -451,23 +450,23 @@ class BasicChartState<T extends BasicChart> extends State<T>
 
   /// Returns a list of animation controllers to animate the top quote grid.
   List<Listenable> getQuoteGridAnimations() => <Listenable>[
-        // One bound animation is enough since they animate at the same time.
-        topBoundQuoteAnimationController,
-      ];
+    // One bound animation is enough since they animate at the same time.
+    topBoundQuoteAnimationController,
+  ];
 
   /// Returns a list of animation controllers for animating the quote label.
   List<Listenable> getQuoteLabelAnimations() => <Listenable>[
-        topBoundQuoteAnimationController,
-        bottomBoundQuoteAnimationController,
-      ];
+    topBoundQuoteAnimationController,
+    bottomBoundQuoteAnimationController,
+  ];
 
   /// Returns a list of animation controllers to animate the chart data inside
   /// the chart.
   List<Listenable> getChartDataAnimations() => <Listenable>[
-        topBoundQuoteAnimationController,
-        bottomBoundQuoteAnimationController,
-        currentTickAnimation,
-      ];
+    topBoundQuoteAnimationController,
+    bottomBoundQuoteAnimationController,
+    currentTickAnimation,
+  ];
 
   Widget _buildQuoteGridLabel(List<double> gridLineQuotes) =>
       MultipleAnimatedBuilder(
@@ -502,30 +501,30 @@ class BasicChartState<T extends BasicChart> extends State<T>
 
   // Main series and indicators on top of main series.
   Widget _buildChartData() => MultipleAnimatedBuilder(
-        animations: getChartDataAnimations(),
-        builder: (BuildContext context, _) => RepaintBoundary(
-          child: Opacity(
-            opacity: widget.opacity,
-            child: CustomPaint(
-              painter: ChartDataPainter(
-                animationInfo: AnimationInfo(
-                  currentTickPercent: currentTickAnimation.value,
-                ),
-                mainSeries: widget.mainSeries,
-                chartConfig: context.watch<ChartConfig>(),
-                theme: context.watch<ChartTheme>(),
-                epochToCanvasX: xAxis.xFromEpoch,
-                quoteToCanvasY: chartQuoteToCanvasY,
-                rightBoundEpoch: xAxis.rightBoundEpoch,
-                leftBoundEpoch: xAxis.leftBoundEpoch,
-                topY: chartQuoteToCanvasY(widget.mainSeries.maxValue),
-                bottomY: chartQuoteToCanvasY(widget.mainSeries.minValue),
-                chartScaleModel: context.watch<ChartScaleModel>(),
-              ),
+    animations: getChartDataAnimations(),
+    builder: (BuildContext context, _) => RepaintBoundary(
+      child: Opacity(
+        opacity: widget.opacity,
+        child: CustomPaint(
+          painter: ChartDataPainter(
+            animationInfo: AnimationInfo(
+              currentTickPercent: currentTickAnimation.value,
             ),
+            mainSeries: widget.mainSeries,
+            chartConfig: context.watch<ChartConfig>(),
+            theme: context.watch<ChartTheme>(),
+            epochToCanvasX: xAxis.xFromEpoch,
+            quoteToCanvasY: chartQuoteToCanvasY,
+            rightBoundEpoch: xAxis.rightBoundEpoch,
+            leftBoundEpoch: xAxis.leftBoundEpoch,
+            topY: chartQuoteToCanvasY(widget.mainSeries.maxValue),
+            bottomY: chartQuoteToCanvasY(widget.mainSeries.minValue),
+            chartScaleModel: context.watch<ChartScaleModel>(),
           ),
         ),
-      );
+      ),
+    ),
+  );
 
   void _onPanStart(ScaleStartDetails details) {
     _panStartedOnQuoteLabelsArea = _onQuoteLabelsTouchArea(details.focalPoint);
@@ -556,8 +555,8 @@ class BasicChartState<T extends BasicChart> extends State<T>
 
   void _scaleVertically(double dy) {
     setState(() {
-      verticalPaddingFraction =
-          ((verticalPadding + dy) / canvasSize!.height).clamp(0.05, 0.49);
+      verticalPaddingFraction = ((verticalPadding + dy) / canvasSize!.height)
+          .clamp(0.05, 0.49);
     });
     _onScaleYAxis();
   }

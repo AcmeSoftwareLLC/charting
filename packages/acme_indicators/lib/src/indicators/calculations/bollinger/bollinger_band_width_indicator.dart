@@ -33,11 +33,12 @@ class BollingerBandWidthIndicator<T extends IndicatorResult>
 
   @override
   T calculate(int index) => createResult(
-        index: index,
-        quote: ((bbu.getValue(index).quote - bbl.getValue(index).quote) /
-                bbm.getValue(index).quote) *
-            hundred,
-      );
+    index: index,
+    quote:
+        ((bbu.getValue(index).quote - bbl.getValue(index).quote) /
+            bbm.getValue(index).quote) *
+        hundred,
+  );
 
   @override
   void copyValuesFrom(covariant BollingerBandWidthIndicator<T> other) {

@@ -15,9 +15,7 @@ class LineDrawingToolItem extends DrawingToolItem {
     required super.deleteDrawingTool,
     super.key,
     LineDrawingToolConfig super.config = const LineDrawingToolConfig(),
-  }) : super(
-          title: 'Line',
-        );
+  }) : super(title: 'Line');
 
   @override
   DrawingToolItemState<DrawingToolConfig> createDrawingToolItemState() =>
@@ -32,35 +30,35 @@ class LineDrawingToolItemState
 
   @override
   LineDrawingToolConfig createDrawingToolConfig() => LineDrawingToolConfig(
-        lineStyle: _currentLineStyle,
-        pattern: _currentPattern,
-      );
+    lineStyle: _currentLineStyle,
+    pattern: _currentPattern,
+  );
 
   @override
   Widget getDrawingToolOptions() => Column(
-        children: <Widget>[
-          _buildColorField(),
-          // TODO(maryia-binary): implement _buildPatternField() to set pattern
-        ],
-      );
+    children: <Widget>[
+      _buildColorField(),
+      // TODO(maryia-binary): implement _buildPatternField() to set pattern
+    ],
+  );
 
   Widget _buildColorField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelColor,
-            style: const TextStyle(fontSize: 16),
-          ),
-          ColorSelector(
-            currentColor: _currentLineStyle.color,
-            onColorChanged: (Color selectedColor) {
-              setState(() {
-                _lineStyle = _currentLineStyle.copyWith(color: selectedColor);
-              });
-              updateDrawingTool();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelColor,
+        style: const TextStyle(fontSize: 16),
+      ),
+      ColorSelector(
+        currentColor: _currentLineStyle.color,
+        onColorChanged: (Color selectedColor) {
+          setState(() {
+            _lineStyle = _currentLineStyle.copyWith(color: selectedColor);
+          });
+          updateDrawingTool();
+        },
+      ),
+    ],
+  );
 
   LineStyle get _currentLineStyle =>
       _lineStyle ?? (widget.config as LineDrawingToolConfig).lineStyle;

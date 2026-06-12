@@ -37,8 +37,10 @@ class ChartDateUtils {
   /// Note: This method uses the 24-hour time format (HH) rather than 12-hour (hh)
   /// to avoid ambiguity in chart displays.
   static String formatDateTimeWithSeconds(int timestamp, {bool isUtc = true}) {
-    final DateTime time =
-        DateTime.fromMillisecondsSinceEpoch(timestamp, isUtc: isUtc);
+    final DateTime time = DateTime.fromMillisecondsSinceEpoch(
+      timestamp,
+      isUtc: isUtc,
+    );
     return DateFormat('dd MMM yyyy HH:mm:ss').format(time);
   }
 
@@ -66,8 +68,10 @@ class ChartDateUtils {
   /// Note: This method is useful for daily charts or when displaying date ranges
   /// where the time component is not relevant.
   static String formatDate(int timestamp, {bool isUtc = true}) {
-    final DateTime time =
-        DateTime.fromMillisecondsSinceEpoch(timestamp, isUtc: isUtc);
+    final DateTime time = DateTime.fromMillisecondsSinceEpoch(
+      timestamp,
+      isUtc: isUtc,
+    );
     return DateFormat('dd MMM yyyy').format(time);
   }
 
@@ -100,8 +104,10 @@ class ChartDateUtils {
   /// to avoid ambiguity in chart displays. It's particularly useful for intraday
   /// trading charts where precise time information is important.
   static String formatTimeWithSeconds(int timestamp, {bool isUtc = true}) {
-    final DateTime time =
-        DateTime.fromMillisecondsSinceEpoch(timestamp, isUtc: isUtc);
+    final DateTime time = DateTime.fromMillisecondsSinceEpoch(
+      timestamp,
+      isUtc: isUtc,
+    );
     return DateFormat('HH:mm:ss').format(time);
   }
 
@@ -129,8 +135,10 @@ class ChartDateUtils {
   /// Note: This format is more compact than the full date format and is suitable
   /// for labels where space is limited.
   static String formatCompactDateTime(int timestamp, {bool isUtc = true}) {
-    final DateTime dateTime =
-        DateTime.fromMillisecondsSinceEpoch(timestamp, isUtc: isUtc);
+    final DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(
+      timestamp,
+      isUtc: isUtc,
+    );
     return DateFormat('MM/dd/yy HH:mm:ss').format(dateTime);
   }
 }

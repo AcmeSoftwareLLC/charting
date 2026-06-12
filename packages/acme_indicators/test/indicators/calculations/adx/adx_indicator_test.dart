@@ -47,41 +47,51 @@ void main() {
 
   group('adx Indicator tests.', () {
     test(
-        'adx indicator should calculate the correct results from the given ticks',
-        () {
-      final ADXIndicator<MockResult> adxIndicator =
-          ADXIndicator<MockResult>(MockInput(ticks))..calculateValues();
+      'adx indicator should calculate the correct results from the given ticks',
+      () {
+        final ADXIndicator<MockResult> adxIndicator = ADXIndicator<MockResult>(
+          MockInput(ticks),
+        )..calculateValues();
 
-      expect(roundDouble(adxIndicator.getValue(27).quote, 2), 23.86);
-      expect(roundDouble(adxIndicator.getValue(29).quote, 2), 23.86);
-    });
-
-    test(
-        'Negative DI Indicator should calculate the correct results from the given ticks',
-        () {
-      expect(roundDouble(negativeDIIndicator.getValue(14).quote, 2), 14.22);
-      expect(roundDouble(negativeDIIndicator.getValue(15).quote, 2), 14.46);
-      expect(roundDouble(negativeDIIndicator.getValue(29).quote, 2), 29.12);
-    });
+        expect(roundDouble(adxIndicator.getValue(27).quote, 2), 23.86);
+        expect(roundDouble(adxIndicator.getValue(29).quote, 2), 23.86);
+      },
+    );
 
     test(
-        'Positive DI Indicator should calculate the correct results from the given ticks',
-        () {
-      expect(roundDouble(positiveDIIndicator.getValue(14).quote, 2), 17.03);
-      expect(roundDouble(positiveDIIndicator.getValue(15).quote, 2), 15.45);
-      expect(roundDouble(positiveDIIndicator.getValue(29).quote, 2), 16.33);
-    });
+      'Negative DI Indicator should calculate the correct results from the given ticks',
+      () {
+        expect(roundDouble(negativeDIIndicator.getValue(14).quote, 2), 14.22);
+        expect(roundDouble(negativeDIIndicator.getValue(15).quote, 2), 14.46);
+        expect(roundDouble(negativeDIIndicator.getValue(29).quote, 2), 29.12);
+      },
+    );
 
     test(
-        'ADX Histogram Indicator should calculate the correct results from the given indicators',
-        () {
-      final ADXHistogramIndicator<MockResult> adxHistogramIndicator =
-          ADXHistogramIndicator<MockResult>.fromIndicator(
-              positiveDIIndicator, negativeDIIndicator);
+      'Positive DI Indicator should calculate the correct results from the given ticks',
+      () {
+        expect(roundDouble(positiveDIIndicator.getValue(14).quote, 2), 17.03);
+        expect(roundDouble(positiveDIIndicator.getValue(15).quote, 2), 15.45);
+        expect(roundDouble(positiveDIIndicator.getValue(29).quote, 2), 16.33);
+      },
+    );
 
-      expect(roundDouble(adxHistogramIndicator.getValue(14).quote, 2), 2.81);
-      expect(roundDouble(adxHistogramIndicator.getValue(15).quote, 2), 0.99);
-      expect(roundDouble(adxHistogramIndicator.getValue(29).quote, 2), -12.79);
-    });
+    test(
+      'ADX Histogram Indicator should calculate the correct results from the given indicators',
+      () {
+        final ADXHistogramIndicator<MockResult> adxHistogramIndicator =
+            ADXHistogramIndicator<MockResult>.fromIndicator(
+              positiveDIIndicator,
+              negativeDIIndicator,
+            );
+
+        expect(roundDouble(adxHistogramIndicator.getValue(14).quote, 2), 2.81);
+        expect(roundDouble(adxHistogramIndicator.getValue(15).quote, 2), 0.99);
+        expect(
+          roundDouble(adxHistogramIndicator.getValue(29).quote, 2),
+          -12.79,
+        );
+      },
+    );
   });
 }

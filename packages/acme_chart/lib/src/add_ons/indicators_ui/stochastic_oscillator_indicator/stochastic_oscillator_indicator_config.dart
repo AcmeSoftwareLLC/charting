@@ -37,15 +37,14 @@ class StochasticOscillatorIndicatorConfig extends IndicatorConfig {
     String? title,
     super.number,
   }) : super(
-          isOverlay: false,
-          title: title ?? StochasticOscillatorIndicatorConfig.name,
-        );
+         isOverlay: false,
+         title: title ?? StochasticOscillatorIndicatorConfig.name,
+       );
 
   /// Initializes from JSON.
   factory StochasticOscillatorIndicatorConfig.fromJson(
     Map<String, dynamic> json,
-  ) =>
-      _$StochasticOscillatorIndicatorConfigFromJson(json);
+  ) => _$StochasticOscillatorIndicatorConfigFromJson(json);
 
   /// Unique name for this indicator.
   static const String name = 'StochasticOscillator';
@@ -89,24 +88,23 @@ class StochasticOscillatorIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => StochasticOscillatorSeries(
-        IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
-        this,
-        stochasticOscillatorOptions: StochasticOscillatorOptions(
-          period: period,
-          isSmooth: isSmooth,
-        ),
-      );
+    IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
+    this,
+    stochasticOscillatorOptions: StochasticOscillatorOptions(
+      period: period,
+      isSmooth: isSmooth,
+    ),
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      StochasticOscillatorIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => StochasticOscillatorIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   StochasticOscillatorIndicatorConfig copyWith({
@@ -124,22 +122,20 @@ class StochasticOscillatorIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      StochasticOscillatorIndicatorConfig(
-        period: period ?? this.period,
-        fieldType: fieldType ?? this.fieldType,
-        overBoughtPrice: overBoughtPrice ?? this.overBoughtPrice,
-        overSoldPrice: overSoldPrice ?? this.overSoldPrice,
-        lineStyle: lineStyle ?? this.lineStyle,
-        oscillatorLinesConfig:
-            oscillatorLinesConfig ?? this.oscillatorLinesConfig,
-        isSmooth: isSmooth ?? this.isSmooth,
-        showZones: showZones ?? this.showZones,
-        fastLineStyle: fastLineStyle ?? this.fastLineStyle,
-        slowLineStyle: slowLineStyle ?? this.slowLineStyle,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => StochasticOscillatorIndicatorConfig(
+    period: period ?? this.period,
+    fieldType: fieldType ?? this.fieldType,
+    overBoughtPrice: overBoughtPrice ?? this.overBoughtPrice,
+    overSoldPrice: overSoldPrice ?? this.overSoldPrice,
+    lineStyle: lineStyle ?? this.lineStyle,
+    oscillatorLinesConfig: oscillatorLinesConfig ?? this.oscillatorLinesConfig,
+    isSmooth: isSmooth ?? this.isSmooth,
+    showZones: showZones ?? this.showZones,
+    fastLineStyle: fastLineStyle ?? this.fastLineStyle,
+    slowLineStyle: slowLineStyle ?? this.slowLineStyle,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

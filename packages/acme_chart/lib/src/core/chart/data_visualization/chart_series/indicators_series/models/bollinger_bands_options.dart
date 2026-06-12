@@ -17,9 +17,7 @@ class BollingerBandsOptions extends MAOptions {
     this.fillColor = Colors.white12,
     this.showChannelFill = true,
     super.showLastIndicator,
-  }) : super(
-          type: movingAverageType,
-        );
+  }) : super(type: movingAverageType);
 
   /// Standard Deviation value
   final double standardDeviationFactor;

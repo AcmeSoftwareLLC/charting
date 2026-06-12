@@ -10,31 +10,34 @@ import 'fast_stochastic_indicator.dart';
 class SlowStochasticIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes a Slow Stochastic Indicator from the given [IndicatorDataInput].
-  SlowStochasticIndicator(
-    super.input, {
-    int period = 3,
-  })  : _stochasticOscillatorDIndicator =
-            SMAIndicator<T>(FastStochasticIndicator<T>(input), period);
+  SlowStochasticIndicator(super.input, {int period = 3})
+    : _stochasticOscillatorDIndicator = SMAIndicator<T>(
+        FastStochasticIndicator<T>(input),
+        period,
+      );
 
   /// Initializes a Slow Stochastic Indicator from the given [FastStochasticIndicator].
-  SlowStochasticIndicator.fromIndicator(
-    super.fastStochasticIndicator,
-  )   : _stochasticOscillatorDIndicator =
-            SMAIndicator<T>(fastStochasticIndicator, 3),
-        super.fromIndicator();
+  SlowStochasticIndicator.fromIndicator(super.fastStochasticIndicator)
+    : _stochasticOscillatorDIndicator = SMAIndicator<T>(
+        fastStochasticIndicator,
+        3,
+      ),
+      super.fromIndicator();
 
   final SMAIndicator<T> _stochasticOscillatorDIndicator;
 
   @override
   T calculate(int index) => createResult(
-      index: index,
-      quote: _stochasticOscillatorDIndicator.getValue(index).quote);
+    index: index,
+    quote: _stochasticOscillatorDIndicator.getValue(index).quote,
+  );
 
   @override
   void copyValuesFrom(covariant SlowStochasticIndicator<T> other) {
     super.copyValuesFrom(other);
-    _stochasticOscillatorDIndicator
-        .copyValuesFrom(other._stochasticOscillatorDIndicator);
+    _stochasticOscillatorDIndicator.copyValuesFrom(
+      other._stochasticOscillatorDIndicator,
+    );
   }
 
   @override

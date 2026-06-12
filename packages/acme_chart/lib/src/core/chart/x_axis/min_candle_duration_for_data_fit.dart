@@ -23,7 +23,5 @@ Duration minCandleDurationForDataFit(
 ) {
   final double availableWidth = chartWidth - defaultDataFitPadding.horizontal;
   final double msPerPx = entriesDuration.inMilliseconds / availableWidth;
-  return Duration(
-    milliseconds: (msPerPx * chartDefaultIntervalWidth).ceil(),
-  );
+  return Duration(milliseconds: (msPerPx * chartDefaultIntervalWidth).ceil());
 }

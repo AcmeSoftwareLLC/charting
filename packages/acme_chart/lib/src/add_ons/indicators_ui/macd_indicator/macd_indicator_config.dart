@@ -29,10 +29,7 @@ class MACDIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? MACDIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? MACDIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory MACDIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -40,26 +37,27 @@ class MACDIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => MACDSeries(
-        indicatorInput,
-        config: this,
-        options: MACDOptions(
-          fastMAPeriod: fastMAPeriod,
-          slowMAPeriod: slowMAPeriod,
-          signalPeriod: signalPeriod,
-          barStyle: barStyle,
-          lineStyle: lineStyle,
-          signalLineStyle: signalLineStyle,
-          showLastIndicator: showLastIndicator,
-          pipSize: pipSize,
-        ),
-      );
+    indicatorInput,
+    config: this,
+    options: MACDOptions(
+      fastMAPeriod: fastMAPeriod,
+      slowMAPeriod: slowMAPeriod,
+      signalPeriod: signalPeriod,
+      barStyle: barStyle,
+      lineStyle: lineStyle,
+      signalLineStyle: signalLineStyle,
+      showLastIndicator: showLastIndicator,
+      pipSize: pipSize,
+    ),
+  );
 
   /// Unique name for this indicator.
   static const String name = 'macd';
 
   @override
-  Map<String, dynamic> toJson() => _$MACDIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$MACDIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period to calculate the fast MA value.
   final int fastMAPeriod;
@@ -92,12 +90,11 @@ class MACDIndicatorConfig extends IndicatorConfig {
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      MACDIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => MACDIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   MACDIndicatorConfig copyWith({
@@ -111,17 +108,16 @@ class MACDIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      MACDIndicatorConfig(
-        fastMAPeriod: fastMAPeriod ?? this.fastMAPeriod,
-        slowMAPeriod: slowMAPeriod ?? this.slowMAPeriod,
-        signalPeriod: signalPeriod ?? this.signalPeriod,
-        barStyle: barStyle ?? this.barStyle,
-        lineStyle: lineStyle ?? this.lineStyle,
-        signalLineStyle: signalLineStyle ?? this.signalLineStyle,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => MACDIndicatorConfig(
+    fastMAPeriod: fastMAPeriod ?? this.fastMAPeriod,
+    slowMAPeriod: slowMAPeriod ?? this.slowMAPeriod,
+    signalPeriod: signalPeriod ?? this.signalPeriod,
+    barStyle: barStyle ?? this.barStyle,
+    lineStyle: lineStyle ?? this.lineStyle,
+    signalLineStyle: signalLineStyle ?? this.signalLineStyle,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

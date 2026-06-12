@@ -36,8 +36,9 @@ class VerticalDrawing extends Drawing {
       _$VerticalDrawingFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$VerticalDrawingToJson(this)
-    ..putIfAbsent(Drawing.classNameKey, () => nameKey);
+  Map<String, dynamic> toJson() =>
+      _$VerticalDrawingToJson(this)
+        ..putIfAbsent(Drawing.classNameKey, () => nameKey);
 
   /// Key of drawing tool name property in JSON.
   static const String nameKey = 'VerticalDrawing';
@@ -61,8 +62,7 @@ class VerticalDrawing extends Drawing {
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
-  }) =>
-      draggableStartPoint.isInViewPortRange(leftEpoch, rightEpoch);
+  }) => draggableStartPoint.isInViewPortRange(leftEpoch, rightEpoch);
 
   //Paint the label
   @override
@@ -108,7 +108,7 @@ class VerticalDrawing extends Drawing {
     DrawingData drawingData,
     DataSeries<Tick> series,
     Point Function(EdgePoint edgePoint, DraggableEdgePoint draggableEdgePoint)
-        updatePositionCallback,
+    updatePositionCallback,
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,

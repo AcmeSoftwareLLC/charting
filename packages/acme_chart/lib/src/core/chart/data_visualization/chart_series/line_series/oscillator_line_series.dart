@@ -30,10 +30,10 @@ class OscillatorLineSeries extends LineSeries {
 
   @override
   SeriesPainter<DataSeries<Tick>> createPainter() => OscillatorLinePainter(
-        this,
-        bottomHorizontalLine: _bottomHorizontalLine,
-        secondaryHorizontalLines: _secondaryHorizontalLines,
-        secondaryHorizontalLinesStyle: _secondaryHorizontalLinesStyle,
-        topHorizontalLine: _topHorizontalLine,
-      );
+    this,
+    bottomHorizontalLine: _bottomHorizontalLine,
+    secondaryHorizontalLines: _secondaryHorizontalLines,
+    secondaryHorizontalLinesStyle: _secondaryHorizontalLinesStyle,
+    topHorizontalLine: _topHorizontalLine,
+  );
 }

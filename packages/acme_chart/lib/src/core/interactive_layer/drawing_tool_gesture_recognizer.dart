@@ -154,11 +154,13 @@ class DrawingToolGestureRecognizer extends OneSequenceGestureRecognizer {
           _cancelLongPressTimer();
 
           // Now that we know it's a drag, call pan start
-          onDrawingToolPanStart(DragStartDetails(
-            sourceTimeStamp: _startTimeStamp ?? event.timeStamp,
-            globalPosition: _globalStartPosition!,
-            localPosition: _localStartPosition ?? event.localPosition,
-          ));
+          onDrawingToolPanStart(
+            DragStartDetails(
+              sourceTimeStamp: _startTimeStamp ?? event.timeStamp,
+              globalPosition: _globalStartPosition!,
+              localPosition: _localStartPosition ?? event.localPosition,
+            ),
+          );
         }
       }
 
@@ -177,13 +179,15 @@ class DrawingToolGestureRecognizer extends OneSequenceGestureRecognizer {
           primaryDelta = delta.dx;
         }
 
-        onDrawingToolPanUpdate(DragUpdateDetails(
-          sourceTimeStamp: event.timeStamp,
-          globalPosition: event.position,
-          localPosition: localOffset,
-          delta: delta,
-          primaryDelta: primaryDelta,
-        ));
+        onDrawingToolPanUpdate(
+          DragUpdateDetails(
+            sourceTimeStamp: event.timeStamp,
+            globalPosition: event.position,
+            localPosition: localOffset,
+            delta: delta,
+            primaryDelta: primaryDelta,
+          ),
+        );
       }
     } else if (event is PointerUpEvent) {
       _cancelLongPressTimer();
@@ -194,11 +198,13 @@ class DrawingToolGestureRecognizer extends OneSequenceGestureRecognizer {
       } else if (!_hasMovedSignificantly) {
         // If no significant movement and no long press, it's a tap
         // Call pan start and immediately pan end for tap handling
-        onDrawingToolPanStart(DragStartDetails(
-          sourceTimeStamp: _startTimeStamp ?? event.timeStamp,
-          globalPosition: _globalStartPosition ?? event.position,
-          localPosition: _localStartPosition ?? event.localPosition,
-        ));
+        onDrawingToolPanStart(
+          DragStartDetails(
+            sourceTimeStamp: _startTimeStamp ?? event.timeStamp,
+            globalPosition: _globalStartPosition ?? event.position,
+            localPosition: _localStartPosition ?? event.localPosition,
+          ),
+        );
       }
 
       // Only call pan end if we had movement or it was a tap
@@ -213,10 +219,9 @@ class DrawingToolGestureRecognizer extends OneSequenceGestureRecognizer {
           primaryVelocity = velocity.pixelsPerSecond.dx;
         }
 
-        onDrawingToolPanEnd(DragEndDetails(
-          velocity: velocity,
-          primaryVelocity: primaryVelocity,
-        ));
+        onDrawingToolPanEnd(
+          DragEndDetails(velocity: velocity, primaryVelocity: primaryVelocity),
+        );
       }
 
       _resetState();
@@ -247,10 +252,7 @@ class DrawingToolGestureRecognizer extends OneSequenceGestureRecognizer {
     final seconds = duration.inMicroseconds / Duration.microsecondsPerSecond;
 
     return Velocity(
-      pixelsPerSecond: Offset(
-        distance.dx / seconds,
-        distance.dy / seconds,
-      ),
+      pixelsPerSecond: Offset(distance.dx / seconds, distance.dy / seconds),
     );
   }
 

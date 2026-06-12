@@ -9,8 +9,8 @@ import 'indicator_config.dart';
 typedef IndicatorBuilder = Series Function(List<Tick> ticks);
 
 /// A function which takes list of ticks and creates an Indicator on it.
-typedef FieldIndicatorBuilder = Indicator<Tick> Function(
-    IndicatorInput indicatorInput);
+typedef FieldIndicatorBuilder =
+    Indicator<Tick> Function(IndicatorInput indicatorInput);
 
 /// Callback to update indicator with new [indicatorConfig].
 typedef UpdateIndicator = Function(IndicatorConfig indicatorConfig);

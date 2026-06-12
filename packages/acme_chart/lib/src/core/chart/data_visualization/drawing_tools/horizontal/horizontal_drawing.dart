@@ -36,8 +36,9 @@ class HorizontalDrawing extends Drawing {
       _$HorizontalDrawingFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$HorizontalDrawingToJson(this)
-    ..putIfAbsent(Drawing.classNameKey, () => nameKey);
+  Map<String, dynamic> toJson() =>
+      _$HorizontalDrawingToJson(this)
+        ..putIfAbsent(Drawing.classNameKey, () => nameKey);
 
   /// Key of drawing tool name property in JSON.
   static const String nameKey = 'HorizontalDrawing';
@@ -62,8 +63,7 @@ class HorizontalDrawing extends Drawing {
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
-  }) =>
-      true;
+  }) => true;
 
   /// Paint
   @override
@@ -79,7 +79,7 @@ class HorizontalDrawing extends Drawing {
     DrawingData drawingData,
     DataSeries<Tick> series,
     Point Function(EdgePoint edgePoint, DraggableEdgePoint draggableEdgePoint)
-        updatePositionCallback,
+    updatePositionCallback,
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,

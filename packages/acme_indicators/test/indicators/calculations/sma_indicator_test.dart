@@ -28,7 +28,9 @@ void main() {
 
     test('SMAIndicator calculates the correct results', () {
       final SMAIndicator<MockResult> smaIndicator = SMAIndicator<MockResult>(
-          CloseValueIndicator<MockResult>(MockInput(ticks)), 3);
+        CloseValueIndicator<MockResult>(MockInput(ticks)),
+        3,
+      );
 
       expect(1, smaIndicator.getValue(0).quote);
       expect(1.5, smaIndicator.getValue(1).quote);

@@ -7,47 +7,49 @@ part of 'bollinger_bands_indicator_config.dart';
 // **************************************************************************
 
 BollingerBandsIndicatorConfig _$BollingerBandsIndicatorConfigFromJson(
-        Map<String, dynamic> json) =>
-    BollingerBandsIndicatorConfig(
-      period: json['period'] as int? ?? 50,
-      movingAverageType: $enumDecodeNullable(
-              _$MovingAverageTypeEnumMap, json['movingAverageType']) ??
-          MovingAverageType.simple,
-      fieldType: json['fieldType'] as String? ?? 'close',
-      standardDeviation: (json['standardDeviation'] as num?)?.toDouble() ?? 2,
-      upperLineStyle: json['upperLineStyle'] == null
-          ? const LineStyle(color: Colors.white)
-          : LineStyle.fromJson(json['upperLineStyle'] as Map<String, dynamic>),
-      middleLineStyle: json['middleLineStyle'] == null
-          ? const LineStyle(color: Colors.white)
-          : LineStyle.fromJson(json['middleLineStyle'] as Map<String, dynamic>),
-      lowerLineStyle: json['lowerLineStyle'] == null
-          ? const LineStyle(color: Colors.white)
-          : LineStyle.fromJson(json['lowerLineStyle'] as Map<String, dynamic>),
-      fillColor: json['fillColor'] == null
-          ? Colors.white12
-          : const ColorConverter().fromJson(json['fillColor'] as int),
-      showChannelFill: json['showChannelFill'] as bool? ?? true,
-      showLastIndicator: json['showLastIndicator'] as bool? ?? false,
-      number: json['number'] as int? ?? 0,
-    );
+  Map<String, dynamic> json,
+) => BollingerBandsIndicatorConfig(
+  period: json['period'] as int? ?? 50,
+  movingAverageType:
+      $enumDecodeNullable(
+        _$MovingAverageTypeEnumMap,
+        json['movingAverageType'],
+      ) ??
+      MovingAverageType.simple,
+  fieldType: json['fieldType'] as String? ?? 'close',
+  standardDeviation: (json['standardDeviation'] as num?)?.toDouble() ?? 2,
+  upperLineStyle: json['upperLineStyle'] == null
+      ? const LineStyle(color: Colors.white)
+      : LineStyle.fromJson(json['upperLineStyle'] as Map<String, dynamic>),
+  middleLineStyle: json['middleLineStyle'] == null
+      ? const LineStyle(color: Colors.white)
+      : LineStyle.fromJson(json['middleLineStyle'] as Map<String, dynamic>),
+  lowerLineStyle: json['lowerLineStyle'] == null
+      ? const LineStyle(color: Colors.white)
+      : LineStyle.fromJson(json['lowerLineStyle'] as Map<String, dynamic>),
+  fillColor: json['fillColor'] == null
+      ? Colors.white12
+      : const ColorConverter().fromJson(json['fillColor'] as int),
+  showChannelFill: json['showChannelFill'] as bool? ?? true,
+  showLastIndicator: json['showLastIndicator'] as bool? ?? false,
+  number: json['number'] as int? ?? 0,
+);
 
 Map<String, dynamic> _$BollingerBandsIndicatorConfigToJson(
-        BollingerBandsIndicatorConfig instance) =>
-    <String, dynamic>{
-      'number': instance.number,
-      'showLastIndicator': instance.showLastIndicator,
-      'period': instance.period,
-      'movingAverageType':
-          _$MovingAverageTypeEnumMap[instance.movingAverageType]!,
-      'fieldType': instance.fieldType,
-      'standardDeviation': instance.standardDeviation,
-      'upperLineStyle': instance.upperLineStyle,
-      'middleLineStyle': instance.middleLineStyle,
-      'lowerLineStyle': instance.lowerLineStyle,
-      'fillColor': const ColorConverter().toJson(instance.fillColor),
-      'showChannelFill': instance.showChannelFill,
-    };
+  BollingerBandsIndicatorConfig instance,
+) => <String, dynamic>{
+  'number': instance.number,
+  'showLastIndicator': instance.showLastIndicator,
+  'period': instance.period,
+  'movingAverageType': _$MovingAverageTypeEnumMap[instance.movingAverageType]!,
+  'fieldType': instance.fieldType,
+  'standardDeviation': instance.standardDeviation,
+  'upperLineStyle': instance.upperLineStyle,
+  'middleLineStyle': instance.middleLineStyle,
+  'lowerLineStyle': instance.lowerLineStyle,
+  'fillColor': const ColorConverter().toJson(instance.fillColor),
+  'showChannelFill': instance.showChannelFill,
+};
 
 const _$MovingAverageTypeEnumMap = {
   MovingAverageType.simple: 'simple',

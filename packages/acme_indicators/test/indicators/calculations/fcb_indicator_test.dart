@@ -39,26 +39,30 @@ void main() {
       ];
     });
 
-    test('FractalChaosBandHighIndicator should calculates the correct results',
-        () {
-      final FCBHighIndicator<MockResult> fractalChaosBandHighIndicator =
-          FCBHighIndicator<MockResult>(MockInput(candles));
-      expect(fractalChaosBandHighIndicator.getValue(7).quote, 215.17);
-      expect(fractalChaosBandHighIndicator.getValue(8).quote, 215.17);
-      expect(fractalChaosBandHighIndicator.getValue(10).quote, 215.17);
-      expect(fractalChaosBandHighIndicator.getValue(11).quote, 214.84);
-      expect(fractalChaosBandHighIndicator.getValue(12).quote, 214.84);
-      expect(fractalChaosBandHighIndicator.getValue(26).quote, 217.02);
-    });
+    test(
+      'FractalChaosBandHighIndicator should calculates the correct results',
+      () {
+        final FCBHighIndicator<MockResult> fractalChaosBandHighIndicator =
+            FCBHighIndicator<MockResult>(MockInput(candles));
+        expect(fractalChaosBandHighIndicator.getValue(7).quote, 215.17);
+        expect(fractalChaosBandHighIndicator.getValue(8).quote, 215.17);
+        expect(fractalChaosBandHighIndicator.getValue(10).quote, 215.17);
+        expect(fractalChaosBandHighIndicator.getValue(11).quote, 214.84);
+        expect(fractalChaosBandHighIndicator.getValue(12).quote, 214.84);
+        expect(fractalChaosBandHighIndicator.getValue(26).quote, 217.02);
+      },
+    );
 
-    test('FractalChaosBandLowIndicator should calculates the correct results',
-        () {
-      final FCBLowIndicator<MockResult> fractalChaosBandLowIndicator =
-          FCBLowIndicator<MockResult>(MockInput(candles));
-      expect(fractalChaosBandLowIndicator.getValue(10).quote, 212.53);
-      expect(fractalChaosBandLowIndicator.getValue(17).quote, 212.83);
-      expect(fractalChaosBandLowIndicator.getValue(25).quote, 213.82);
-      expect(fractalChaosBandLowIndicator.getValue(26).quote, 213.82);
-    });
+    test(
+      'FractalChaosBandLowIndicator should calculates the correct results',
+      () {
+        final FCBLowIndicator<MockResult> fractalChaosBandLowIndicator =
+            FCBLowIndicator<MockResult>(MockInput(candles));
+        expect(fractalChaosBandLowIndicator.getValue(10).quote, 212.53);
+        expect(fractalChaosBandLowIndicator.getValue(17).quote, 212.83);
+        expect(fractalChaosBandLowIndicator.getValue(25).quote, 213.82);
+        expect(fractalChaosBandLowIndicator.getValue(26).quote, 213.82);
+      },
+    );
   });
 }

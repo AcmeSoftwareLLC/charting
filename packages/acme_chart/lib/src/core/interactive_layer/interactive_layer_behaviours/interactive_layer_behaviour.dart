@@ -32,7 +32,7 @@ import '../interactive_layer_states/interactive_state.dart';
 abstract class InteractiveLayerBehaviour {
   /// Creates an instance of [InteractiveLayerBehaviour].
   InteractiveLayerBehaviour({InteractiveLayerController? controller})
-      : _controller = controller ?? InteractiveLayerController() {
+    : _controller = controller ?? InteractiveLayerController() {
     _controller
       ..currentState = InteractiveNormalState(interactiveLayerBehaviour: this)
       ..onCancelAdding = () {
@@ -153,13 +153,13 @@ abstract class InteractiveLayerBehaviour {
   /// By default, it will update the state to [InteractiveSelectedToolState]
   /// with the newly added drawing.
   void aNewToolsIsAdded(InteractableDrawing drawing) => updateStateTo(
-        InteractiveSelectedToolState(
-          selected: drawing,
-          interactiveLayerBehaviour: this,
-        ),
-        StateChangeAnimationDirection.forward,
-        waitForAnimation: false,
-      );
+    InteractiveSelectedToolState(
+      selected: drawing,
+      interactiveLayerBehaviour: this,
+    ),
+    StateChangeAnimationDirection.forward,
+    waitForAnimation: false,
+  );
 
   /// The drawings of the interactive layer.
   Set<DrawingToolState> getToolState(DrawingV2 drawing) =>

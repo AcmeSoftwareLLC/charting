@@ -14,9 +14,7 @@ class FibfanDrawingToolItem extends DrawingToolItem {
     required super.deleteDrawingTool,
     super.key,
     FibfanDrawingToolConfig super.config = const FibfanDrawingToolConfig(),
-  }) : super(
-          title: 'Fib fan',
-        );
+  }) : super(title: 'Fib fan');
 
   @override
   DrawingToolItemState<DrawingToolConfig> createDrawingToolItemState() =>
@@ -31,43 +29,43 @@ class FibfanDrawingToolItemState
 
   @override
   FibfanDrawingToolConfig createDrawingToolConfig() => FibfanDrawingToolConfig(
-        fillStyle: _currentFillStyle,
-        lineStyle: _currentLineStyle,
-      );
+    fillStyle: _currentFillStyle,
+    lineStyle: _currentLineStyle,
+  );
 
   @override
   Widget getDrawingToolOptions() => Column(
-        children: <Widget>[
-          _buildColorField(
-            ChartLocalization.of(context).labelColor,
-            _currentLineStyle,
-          ),
-          _buildColorField(
-            ChartLocalization.of(context).labelFillColor,
-            _currentFillStyle,
-          ),
-        ],
-      );
+    children: <Widget>[
+      _buildColorField(
+        ChartLocalization.of(context).labelColor,
+        _currentLineStyle,
+      ),
+      _buildColorField(
+        ChartLocalization.of(context).labelFillColor,
+        _currentFillStyle,
+      ),
+    ],
+  );
 
   Widget _buildColorField(String label, LineStyle style) => Row(
-        children: <Widget>[
-          Text(label, style: const TextStyle(fontSize: 16)),
-          ColorSelector(
-            currentColor: style.color,
-            onColorChanged: (Color selectedColor) {
-              setState(() {
-                final LineStyle newColor = style.copyWith(color: selectedColor);
-                if (label == ChartLocalization.of(context).labelColor) {
-                  _lineStyle = newColor;
-                } else {
-                  _fillStyle = newColor;
-                }
-              });
-              updateDrawingTool();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(label, style: const TextStyle(fontSize: 16)),
+      ColorSelector(
+        currentColor: style.color,
+        onColorChanged: (Color selectedColor) {
+          setState(() {
+            final LineStyle newColor = style.copyWith(color: selectedColor);
+            if (label == ChartLocalization.of(context).labelColor) {
+              _lineStyle = newColor;
+            } else {
+              _fillStyle = newColor;
+            }
+          });
+          updateDrawingTool();
+        },
+      ),
+    ],
+  );
 
   LineStyle get _currentFillStyle =>
       _fillStyle ?? (widget.config as FibfanDrawingToolConfig).fillStyle;

@@ -18,9 +18,11 @@ class GainIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     }
     if (indicator.getValue(index).quote > indicator.getValue(index - 1).quote) {
       return createResult(
-          index: index,
-          quote: indicator.getValue(index).quote -
-              indicator.getValue(index - 1).quote);
+        index: index,
+        quote:
+            indicator.getValue(index).quote -
+            indicator.getValue(index - 1).quote,
+      );
     } else {
       return createResult(index: 0, quote: 0);
     }

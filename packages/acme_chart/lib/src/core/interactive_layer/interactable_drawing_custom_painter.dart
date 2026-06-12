@@ -120,7 +120,8 @@ class InteractableDrawingCustomPainter extends CustomPainter {
       oldDelegate.quoteRange,
     );
 
-    final bool isSeriesChanged = series.input.isEmpty ||
+    final bool isSeriesChanged =
+        series.input.isEmpty ||
         oldDelegate.series.input.isEmpty ||
         series.input.first != oldDelegate.series.input.first;
 

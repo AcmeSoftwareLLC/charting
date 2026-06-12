@@ -7,7 +7,7 @@ class DonchianMiddleChannelIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes
   DonchianMiddleChannelIndicator(this.upperChannel, this.lowerChannel)
-      : super(upperChannel.input);
+    : super(upperChannel.input);
 
   /// Donchian upper channel indicator.
   final CachedIndicator<T> upperChannel;
@@ -19,10 +19,7 @@ class DonchianMiddleChannelIndicator<T extends IndicatorResult>
   T calculate(int index) {
     final double upper = upperChannel.getValue(index).quote;
     final double lower = lowerChannel.getValue(index).quote;
-    return createResult(
-      index: index,
-      quote: lower + (upper - lower) / 2,
-    );
+    return createResult(index: index, quote: lower + (upper - lower) / 2);
   }
 
   @override

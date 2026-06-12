@@ -17,9 +17,7 @@ class TrendDrawingToolItem extends DrawingToolItem {
     required super.deleteDrawingTool,
     super.key,
     TrendDrawingToolConfig super.config = const TrendDrawingToolConfig(),
-  }) : super(
-         title: 'Trend',
-       );
+  }) : super(title: 'Trend');
 
   @override
   DrawingToolItemState<DrawingToolConfig> createDrawingToolItemState() =>

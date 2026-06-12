@@ -135,9 +135,9 @@ class SMISeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        _innerSeries.getMinValue(),
-        _innerSeries.getMaxValue(),
-      ];
+    _innerSeries.getMinValue(),
+    _innerSeries.getMaxValue(),
+  ];
 
   @override
   void paint(

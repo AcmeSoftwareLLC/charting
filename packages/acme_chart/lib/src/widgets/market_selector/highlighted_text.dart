@@ -33,8 +33,9 @@ class HighLightedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int highlightIndex =
-        text.toLowerCase().indexOf(highlightText.toLowerCase());
+    final int highlightIndex = text.toLowerCase().indexOf(
+      highlightText.toLowerCase(),
+    );
     if (highlightText.isEmpty || highlightIndex == -1) {
       return Text(text, style: style);
     }

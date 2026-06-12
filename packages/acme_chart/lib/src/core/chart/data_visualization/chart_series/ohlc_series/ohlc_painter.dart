@@ -34,12 +34,15 @@ abstract class OhlcPainter extends DataPainter<DataSeries<Candle>> {
     final double candleWidth = intervalWidth * 0.6;
 
     // Painting visible candles except the last one that might be animated.
-    for (int i = series.visibleEntries.startIndex;
-        i < series.visibleEntries.endIndex - 1;
-        i++) {
+    for (
+      int i = series.visibleEntries.startIndex;
+      i < series.visibleEntries.endIndex - 1;
+      i++
+    ) {
       final Candle candle = series.entries![i];
-      final Candle prevCandle =
-          i != 0 ? series.entries![i - 1] : series.entries![0];
+      final Candle prevCandle = i != 0
+          ? series.entries![i - 1]
+          : series.entries![0];
 
       onPaintCandle(
         canvas,

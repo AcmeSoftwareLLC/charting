@@ -20,11 +20,11 @@ class ROCSeries extends AbstractSingleIndicatorSeries {
     LineStyle? lineStyle,
     String? id,
   }) : this.fromIndicator(
-          CloseValueIndicator<Tick>(indicatorInput),
-          rocOptions: rocOptions,
-          lineStyle: lineStyle,
-          id: id ?? 'ROCIndicator',
-        );
+         CloseValueIndicator<Tick>(indicatorInput),
+         rocOptions: rocOptions,
+         lineStyle: lineStyle,
+         id: id ?? 'ROCIndicator',
+       );
 
   /// Initializes an ROC Indicator from the given [inputIndicator].
   ROCSeries.fromIndicator(
@@ -32,19 +32,19 @@ class ROCSeries extends AbstractSingleIndicatorSeries {
     required this.rocOptions,
     LineStyle? lineStyle,
     String? id,
-  })  : _inputIndicator = inputIndicator,
-        super(
-          inputIndicator,
-          id ?? 'ROCIndicator',
-          options: rocOptions,
-          style: lineStyle,
-          lastTickIndicatorStyle: lineStyle != null
-              ? getLastIndicatorStyle(
-                  lineStyle.color,
-                  showLastIndicator: rocOptions.showLastIndicator,
-                )
-              : null,
-        );
+  }) : _inputIndicator = inputIndicator,
+       super(
+         inputIndicator,
+         id ?? 'ROCIndicator',
+         options: rocOptions,
+         style: lineStyle,
+         lastTickIndicatorStyle: lineStyle != null
+             ? getLastIndicatorStyle(
+                 lineStyle.color,
+                 showLastIndicator: rocOptions.showLastIndicator,
+               )
+             : null,
+       );
 
   final Indicator<Tick> _inputIndicator;
 
@@ -53,11 +53,10 @@ class ROCSeries extends AbstractSingleIndicatorSeries {
 
   @override
   SeriesPainter<Series> createPainter() => OscillatorLinePainter(
-        this,
-        secondaryHorizontalLines: const <double>[0],
-        secondaryHorizontalLinesStyle:
-            const LineStyle(color: Color(0xFF3E3E3E)),
-      );
+    this,
+    secondaryHorizontalLines: const <double>[0],
+    secondaryHorizontalLinesStyle: const LineStyle(color: Color(0xFF3E3E3E)),
+  );
 
   @override
   CachedIndicator<Tick> initializeIndicator() =>

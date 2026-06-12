@@ -21,10 +21,12 @@ class CommodityChannelIndexIndicator<T extends IndicatorResult>
     this.period,
     HLC3Indicator<T> typicalPriceIndicator, {
     required this.factor,
-  })  : _typicalPriceIndicator = typicalPriceIndicator,
-        _smaIndicator = SMAIndicator<T>(typicalPriceIndicator, period),
-        _meanDeviationIndicator =
-            MeanDeviationIndicator<T>(typicalPriceIndicator, period);
+  }) : _typicalPriceIndicator = typicalPriceIndicator,
+       _smaIndicator = SMAIndicator<T>(typicalPriceIndicator, period),
+       _meanDeviationIndicator = MeanDeviationIndicator<T>(
+         typicalPriceIndicator,
+         period,
+       );
 
   /// Factor. Usually is `0.015`.
   final double factor;

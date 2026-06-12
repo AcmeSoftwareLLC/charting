@@ -33,8 +33,9 @@ class LineDrawing extends Drawing with LineVectorDrawingMixin {
       _$LineDrawingFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$LineDrawingToJson(this)
-    ..putIfAbsent(Drawing.classNameKey, () => nameKey);
+  Map<String, dynamic> toJson() =>
+      _$LineDrawingToJson(this)
+        ..putIfAbsent(Drawing.classNameKey, () => nameKey);
 
   /// Key of drawing tool name property in JSON.
   static const String nameKey = 'LineDrawing';
@@ -72,8 +73,7 @@ class LineDrawing extends Drawing with LineVectorDrawingMixin {
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
-  }) =>
-      true;
+  }) => true;
 
   /// Paint the line
   @override
@@ -89,7 +89,7 @@ class LineDrawing extends Drawing with LineVectorDrawingMixin {
     DrawingData drawingData,
     DataSeries<Tick> series,
     Point Function(EdgePoint edgePoint, DraggableEdgePoint draggableEdgePoint)
-        updatePositionCallback,
+    updatePositionCallback,
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
@@ -210,7 +210,8 @@ class LineDrawing extends Drawing with LineVectorDrawingMixin {
 
     /// Computes the distance between a point and a line which should be less
     /// than the line thickness + 6 to make sure the user can easily click on
-    final double distance = ((endQuoteToY - startQuoteToY) * position.dx -
+    final double distance =
+        ((endQuoteToY - startQuoteToY) * position.dx -
             (endXCoord - startXCoord) * position.dy +
             endXCoord * startQuoteToY -
             endQuoteToY * startXCoord) /
@@ -222,7 +223,8 @@ class LineDrawing extends Drawing with LineVectorDrawingMixin {
     final double yDistToStart = position.dy - startQuoteToY;
 
     /// Limit the detection to start and end point of the line
-    final double dotProduct = (xDistToStart * (endXCoord - startXCoord) +
+    final double dotProduct =
+        (xDistToStart * (endXCoord - startXCoord) +
             yDistToStart * (endQuoteToY - startQuoteToY)) /
         lineLength;
 
@@ -230,8 +232,8 @@ class LineDrawing extends Drawing with LineVectorDrawingMixin {
 
     final returnValue =
         isWithinRange && distance.abs() <= lineStyle.thickness + 6 ||
-            (_startPoint!.isClicked(position, markerRadius) ||
-                _endPoint!.isClicked(position, markerRadius));
+        (_startPoint!.isClicked(position, markerRadius) ||
+            _endPoint!.isClicked(position, markerRadius));
 
     return returnValue;
   }

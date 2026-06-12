@@ -10,7 +10,7 @@ class HighestValueIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes
   HighestValueIndicator(this.indicator, this.period)
-      : super.fromIndicator(indicator);
+    : super.fromIndicator(indicator);
 
   /// Calculating highest value on the result of this indicator
   final Indicator<T> indicator;

@@ -47,7 +47,7 @@ import 'package:flutter/material.dart';
 
     final bool newRegion =
         (isTopBand && firstSeriesTick.quote < secondSeriesTick.quote) ||
-            (isBottomBand && firstSeriesTick.quote > secondSeriesTick.quote);
+        (isBottomBand && firstSeriesTick.quote > secondSeriesTick.quote);
 
     if (newRegion) {
       // Find intersection point and creates a path

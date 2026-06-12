@@ -13,9 +13,7 @@ class DPOOptions extends MAOptions {
     this.lineStyle,
     super.showLastIndicator,
     super.pipSize,
-  }) : super(
-          type: movingAverageType,
-        );
+  }) : super(type: movingAverageType);
 
   /// Line style.
   final LineStyle? lineStyle;

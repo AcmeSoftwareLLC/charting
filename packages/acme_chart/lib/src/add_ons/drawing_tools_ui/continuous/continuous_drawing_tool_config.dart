@@ -32,8 +32,9 @@ class ContinuousDrawingToolConfig extends DrawingToolConfig {
   static const String name = 'dt_continuous';
 
   @override
-  Map<String, dynamic> toJson() => _$ContinuousDrawingToolConfigToJson(this)
-    ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$ContinuousDrawingToolConfigToJson(this)
+        ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
   final LineStyle lineStyle;
@@ -46,12 +47,11 @@ class ContinuousDrawingToolConfig extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) =>
-      ContinuousDrawingToolItem(
-        config: this,
-        updateDrawingTool: updateDrawingTool,
-        deleteDrawingTool: deleteDrawingTool,
-      );
+  ) => ContinuousDrawingToolItem(
+    config: this,
+    updateDrawingTool: updateDrawingTool,
+    deleteDrawingTool: deleteDrawingTool,
+  );
 
   @override
   ContinuousDrawingToolConfig copyWith({
@@ -63,13 +63,12 @@ class ContinuousDrawingToolConfig extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) =>
-      ContinuousDrawingToolConfig(
-        configId: configId ?? this.configId,
-        drawingData: drawingData ?? this.drawingData,
-        lineStyle: lineStyle ?? this.lineStyle,
-        pattern: pattern ?? this.pattern,
-        edgePoints: edgePoints ?? this.edgePoints,
-        number: number ?? this.number,
-      );
+  }) => ContinuousDrawingToolConfig(
+    configId: configId ?? this.configId,
+    drawingData: drawingData ?? this.drawingData,
+    lineStyle: lineStyle ?? this.lineStyle,
+    pattern: pattern ?? this.pattern,
+    edgePoints: edgePoints ?? this.edgePoints,
+    number: number ?? this.number,
+  );
 }

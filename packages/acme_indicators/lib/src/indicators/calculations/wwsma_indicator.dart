@@ -22,10 +22,13 @@ class WWSMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
     if (index == 0) {
       return createResult(
-          index: index, quote: indicator.getValue(index).quote / realPeriod);
+        index: index,
+        quote: indicator.getValue(index).quote / realPeriod,
+      );
     }
 
-    final double result = getValue(index - 1).quote +
+    final double result =
+        getValue(index - 1).quote +
         (indicator.getValue(index).quote - getValue(index - 1).quote) /
             realPeriod;
     return createResult(index: index, quote: result);

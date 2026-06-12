@@ -10,7 +10,9 @@ MAIndicatorConfig _$MAIndicatorConfigFromJson(Map<String, dynamic> json) =>
     MAIndicatorConfig(
       period: json['period'] as int?,
       movingAverageType: $enumDecodeNullable(
-          _$MovingAverageTypeEnumMap, json['movingAverageType']),
+        _$MovingAverageTypeEnumMap,
+        json['movingAverageType'],
+      ),
       fieldType: json['fieldType'] as String?,
       lineStyle: json['lineStyle'] == null
           ? null
@@ -23,20 +25,20 @@ MAIndicatorConfig _$MAIndicatorConfigFromJson(Map<String, dynamic> json) =>
       number: json['number'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$MAIndicatorConfigToJson(MAIndicatorConfig instance) =>
-    <String, dynamic>{
-      'isOverlay': instance.isOverlay,
-      'number': instance.number,
-      'title': instance.title,
-      'showLastIndicator': instance.showLastIndicator,
-      'pipSize': instance.pipSize,
-      'period': instance.period,
-      'movingAverageType':
-          _$MovingAverageTypeEnumMap[instance.movingAverageType]!,
-      'fieldType': instance.fieldType,
-      'lineStyle': instance.lineStyle,
-      'offset': instance.offset,
-    };
+Map<String, dynamic> _$MAIndicatorConfigToJson(
+  MAIndicatorConfig instance,
+) => <String, dynamic>{
+  'isOverlay': instance.isOverlay,
+  'number': instance.number,
+  'title': instance.title,
+  'showLastIndicator': instance.showLastIndicator,
+  'pipSize': instance.pipSize,
+  'period': instance.period,
+  'movingAverageType': _$MovingAverageTypeEnumMap[instance.movingAverageType]!,
+  'fieldType': instance.fieldType,
+  'lineStyle': instance.lineStyle,
+  'offset': instance.offset,
+};
 
 const _$MovingAverageTypeEnumMap = {
   MovingAverageType.simple: 'simple',

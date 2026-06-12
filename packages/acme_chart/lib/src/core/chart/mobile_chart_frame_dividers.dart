@@ -25,15 +25,15 @@ class MobileChartFrameDividers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CustomPaint(
-        painter: _ChartFramePainter(rightPadding, color, thickness, sides),
-      );
+    painter: _ChartFramePainter(rightPadding, color, thickness, sides),
+  );
 }
 
 class _ChartFramePainter extends CustomPainter {
   _ChartFramePainter(this.rightPadding, this.color, this.thickness, this.sides)
-      : _paint = Paint()
-          ..color = color
-          ..strokeWidth = thickness;
+    : _paint = Paint()
+        ..color = color
+        ..strokeWidth = thickness;
 
   final double rightPadding;
   final Color color;
@@ -84,9 +84,9 @@ class ChartFrameSides {
 
   /// Initializes all sides of the chart frame as true.
   const ChartFrameSides.all({bool value = false})
-      : top = value,
-        right = value,
-        bottom = value;
+    : top = value,
+      right = value,
+      bottom = value;
 
   /// Top side is visible.
   final bool top;

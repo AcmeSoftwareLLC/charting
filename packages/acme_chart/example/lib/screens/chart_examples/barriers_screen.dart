@@ -98,8 +98,9 @@ class _BarriersScreenState extends BaseChartScreenState<BarriersScreen> {
   String getTitle() => 'Chart with Barriers';
 
   Widget _buildColorButton(Color color, {required bool isHorizontal}) {
-    final currentColor =
-        isHorizontal ? _horizontalBarrierColor : _verticalBarrierColor;
+    final currentColor = isHorizontal
+        ? _horizontalBarrierColor
+        : _verticalBarrierColor;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),

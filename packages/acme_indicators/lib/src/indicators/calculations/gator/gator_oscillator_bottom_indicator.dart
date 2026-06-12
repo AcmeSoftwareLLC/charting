@@ -14,11 +14,11 @@ class GatorOscillatorIndicatorBottomBar<T extends IndicatorResult>
     int teethPeriod = 8,
     int teethOffset = 5,
   }) : this.fromIndicators(
-          MMAIndicator<T>(indicator, lipsPeriod),
-          MMAIndicator<T>(indicator, teethPeriod),
-          lipsOffset: lipsOffset,
-          teethOffset: teethOffset,
-        );
+         MMAIndicator<T>(indicator, lipsPeriod),
+         MMAIndicator<T>(indicator, teethPeriod),
+         lipsOffset: lipsOffset,
+         teethOffset: teethOffset,
+       );
 
   /// Initializes GatorBottomBar from [lipsIndicator] and [teethIndicator].
   GatorOscillatorIndicatorBottomBar.fromIndicators(
@@ -52,8 +52,8 @@ class GatorOscillatorIndicatorBottomBar<T extends IndicatorResult>
     final T teethIndicatorValue = teethIndicator.getValue(index - offsetDiff);
 
     // GatorBottomBar = – (Absolute value of (Teeth – Lips))
-    final double quote =
-        -(teethIndicatorValue.quote - lipsIndicatorValue.quote).abs();
+    final double quote = -(teethIndicatorValue.quote - lipsIndicatorValue.quote)
+        .abs();
 
     return createResult(index: index, quote: quote);
   }

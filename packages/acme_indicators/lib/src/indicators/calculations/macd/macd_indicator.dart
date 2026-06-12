@@ -14,10 +14,10 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
   }) : this.fromIndicator(
-          CloseValueIndicator<T>(input),
-          fastMAPeriod: fastMAPeriod,
-          slowMAPeriod: slowMAPeriod,
-        );
+         CloseValueIndicator<T>(input),
+         fastMAPeriod: fastMAPeriod,
+         slowMAPeriod: slowMAPeriod,
+       );
 
   /// Creates a  Moving average convergence divergence indicator from a given [indicator],
   /// with short term ema set to `12` periods([fastMAPeriod]) and long term ema set to `26` periods([slowMAPeriod]) as default.
@@ -25,19 +25,20 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     super.indicator, {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
-  })  : _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod),
-        _longTermEma = EMAIndicator<T>(indicator, slowMAPeriod),
-        super.fromIndicator();
+  }) : _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod),
+       _longTermEma = EMAIndicator<T>(indicator, slowMAPeriod),
+       super.fromIndicator();
 
   final EMAIndicator<T> _shortTermEma;
   final EMAIndicator<T> _longTermEma;
 
   @override
   T calculate(int index) => createResult(
-        index: index,
-        quote: _shortTermEma.getValue(index).quote -
-            _longTermEma.getValue(index).quote,
-      );
+    index: index,
+    quote:
+        _shortTermEma.getValue(index).quote -
+        _longTermEma.getValue(index).quote,
+  );
 
   @override
   void copyValuesFrom(covariant MACDIndicator<T> other) {

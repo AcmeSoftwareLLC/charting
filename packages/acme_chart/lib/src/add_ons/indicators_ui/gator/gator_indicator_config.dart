@@ -28,10 +28,7 @@ class GatorIndicatorConfig extends IndicatorConfig {
     super.pipSize,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? GatorIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? GatorIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory GatorIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -41,8 +38,9 @@ class GatorIndicatorConfig extends IndicatorConfig {
   static const String name = 'gator';
 
   @override
-  Map<String, dynamic> toJson() => _$GatorIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$GatorIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// Shift to future in jaw series
   final int jawOffset;
@@ -67,26 +65,25 @@ class GatorIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => GatorSeries(
-        indicatorInput,
-        gatorConfig: this,
-        gatorOptions: AlligatorOptions(
-          jawPeriod: jawPeriod,
-          teethPeriod: teethPeriod,
-          lipsPeriod: lipsPeriod,
-        ),
-        barStyle: barStyle,
-      );
+    indicatorInput,
+    gatorConfig: this,
+    gatorOptions: AlligatorOptions(
+      jawPeriod: jawPeriod,
+      teethPeriod: teethPeriod,
+      lipsPeriod: lipsPeriod,
+    ),
+    barStyle: barStyle,
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      GatorIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => GatorIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   GatorIndicatorConfig copyWith({
@@ -101,17 +98,16 @@ class GatorIndicatorConfig extends IndicatorConfig {
     String? title,
     int? number,
     bool? showLastIndicator,
-  }) =>
-      GatorIndicatorConfig(
-        jawPeriod: jawPeriod ?? this.jawPeriod,
-        teethPeriod: teethPeriod ?? this.teethPeriod,
-        lipsPeriod: lipsPeriod ?? this.lipsPeriod,
-        jawOffset: jawOffset ?? this.jawOffset,
-        teethOffset: teethOffset ?? this.teethOffset,
-        lipsOffset: lipsOffset ?? this.lipsOffset,
-        barStyle: barStyle ?? this.barStyle,
-        pipSize: pipSize ?? this.pipSize,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => GatorIndicatorConfig(
+    jawPeriod: jawPeriod ?? this.jawPeriod,
+    teethPeriod: teethPeriod ?? this.teethPeriod,
+    lipsPeriod: lipsPeriod ?? this.lipsPeriod,
+    jawOffset: jawOffset ?? this.jawOffset,
+    teethOffset: teethOffset ?? this.teethOffset,
+    lipsOffset: lipsOffset ?? this.lipsOffset,
+    barStyle: barStyle ?? this.barStyle,
+    pipSize: pipSize ?? this.pipSize,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

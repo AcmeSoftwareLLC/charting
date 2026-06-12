@@ -47,17 +47,16 @@ class StochasticOscillatorSeries extends Series {
   SeriesPainter<Series>? createPainter() {
     final FastStochasticIndicator<Tick> fastStochasticIndicator =
         FastStochasticIndicator<Tick>.fromIndicator(
-      inputIndicator,
-      period: stochasticOscillatorOptions.period,
-    );
+          inputIndicator,
+          period: stochasticOscillatorOptions.period,
+        );
 
     final SlowStochasticIndicator<Tick> slowStochasticIndicator =
         SlowStochasticIndicator<Tick>.fromIndicator(fastStochasticIndicator);
 
     if (config.isSmooth) {
       final SmoothedFastStochasticIndicator<Tick>
-          smoothedFastStochasticIndicator =
-          SmoothedFastStochasticIndicator<Tick>(
+      smoothedFastStochasticIndicator = SmoothedFastStochasticIndicator<Tick>(
         fastStochasticIndicator,
         period: stochasticOscillatorOptions.period,
       );
@@ -158,15 +157,15 @@ class StochasticOscillatorSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        <ChartData>[
-          fastPercentStochasticIndicatorSeries,
-          slowStochasticIndicatorSeries,
-        ].getMinValue(),
-        <ChartData>[
-          fastPercentStochasticIndicatorSeries,
-          slowStochasticIndicatorSeries,
-        ].getMaxValue(),
-      ];
+    <ChartData>[
+      fastPercentStochasticIndicatorSeries,
+      slowStochasticIndicatorSeries,
+    ].getMinValue(),
+    <ChartData>[
+      fastPercentStochasticIndicatorSeries,
+      slowStochasticIndicatorSeries,
+    ].getMaxValue(),
+  ];
 
   @override
   void paint(
@@ -203,13 +202,13 @@ class StochasticOscillatorSeries extends Series {
 
   @override
   int? getMaxEpoch() => <ChartData>[
-        fastPercentStochasticIndicatorSeries,
-        slowStochasticIndicatorSeries,
-      ].getMaxEpoch();
+    fastPercentStochasticIndicatorSeries,
+    slowStochasticIndicatorSeries,
+  ].getMaxEpoch();
 
   @override
   int? getMinEpoch() => <ChartData>[
-        fastPercentStochasticIndicatorSeries,
-        slowStochasticIndicatorSeries,
-      ].getMinEpoch();
+    fastPercentStochasticIndicatorSeries,
+    slowStochasticIndicatorSeries,
+  ].getMinEpoch();
 }

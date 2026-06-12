@@ -56,16 +56,19 @@ class DesignTokenUtils {
   static final RegExp tokenPattern = RegExp(r'\{([^{}]+)\}');
 
   /// Pattern to match RGBA color values, e.g. rgba(255, 0, 0, 0.5)
-  static final RegExp rgbaPattern =
-      RegExp(r'rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+%?)\s*\)');
+  static final RegExp rgbaPattern = RegExp(
+    r'rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+%?)\s*\)',
+  );
 
   /// Pattern to match cubic bezier values, e.g. cubic-bezier(0.42, 0, 1, 1)
   static final RegExp cubicBezierPattern = RegExp(
-      r'cubic-bezier\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)');
+    r'cubic-bezier\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)',
+  );
 
   /// Pattern to match linear gradient values, e.g. linear-gradient(45deg, red, blue)
-  static final RegExp linearGradientPattern =
-      RegExp(r'linear-gradient\(([^,]+),(.+)\)');
+  static final RegExp linearGradientPattern = RegExp(
+    r'linear-gradient\(([^,]+),(.+)\)',
+  );
 
   /// Pattern to match color stops in gradients, e.g. red 10%
   static final RegExp colorStopPattern = RegExp(r'(.+)\s+([0-9.]+%)');
@@ -133,8 +136,9 @@ class DesignTokenUtils {
       }
 
       // For core tokens in core category, add 'core' prefix
-      final String prefix =
-          (category == categoryCore && isCoreToken) ? 'core' : '';
+      final String prefix = (category == categoryCore && isCoreToken)
+          ? 'core'
+          : '';
       final StringBuffer result = StringBuffer(prefix);
 
       // Add first part after prefix
@@ -277,8 +281,9 @@ class DesignTokenUtils {
     final String cleanValue = value.replaceAll("'", '').replaceAll('"', '');
 
     // Replace each token reference with its camelCase version
-    final String formattedValue =
-        cleanValue.replaceAllMapped(tokenPattern, (match) {
+    final String formattedValue = cleanValue.replaceAllMapped(tokenPattern, (
+      match,
+    ) {
       final String tokenRef = match.group(1)!;
 
       // Check if the token is already in camelCase format
@@ -287,8 +292,10 @@ class DesignTokenUtils {
       }
 
       // Convert from dot notation to camelCase
-      final String camelCaseToken =
-          convertToDartPropertyName(tokenRef, category);
+      final String camelCaseToken = convertToDartPropertyName(
+        tokenRef,
+        category,
+      );
       return camelCaseToken;
     });
 
@@ -329,7 +336,7 @@ class DesignTokenUtils {
       'sizing',
       'spacing',
       'borderWidth',
-      'boxShadow'
+      'boxShadow',
     ];
     return structuralTokenTypes.contains(tokenType);
   }

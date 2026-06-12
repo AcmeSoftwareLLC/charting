@@ -16,9 +16,9 @@ class ParabolicSarIndicator<T extends IndicatorResult>
     this.accelerationStart = 0.02,
     this.maxAcceleration = 0.2,
     this.accelerationIncrement = 0.02,
-  })  : _highPriceIndicator = HighValueIndicator<T>(input),
-        _lowPriceIndicator = LowValueIndicator<T>(input),
-        accelerationFactor = accelerationStart;
+  }) : _highPriceIndicator = HighValueIndicator<T>(input),
+       _lowPriceIndicator = LowValueIndicator<T>(input),
+       accelerationFactor = accelerationStart;
 
   /// Maximum Acceleration Factor
   final double maxAcceleration;

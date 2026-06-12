@@ -13,7 +13,7 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
   ///                  Typically a StandardDeviationIndicator is used.
   ///  [k]         the scaling factor to multiply the deviation by. Typically 2
   BollingerBandsUpperIndicator(this.bbm, this.deviation, {this.k = 2})
-      : super.fromIndicator(deviation);
+    : super.fromIndicator(deviation);
 
   /// Deviation indicator
   final CachedIndicator<T> deviation;
@@ -26,10 +26,9 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
 
   @override
   T calculate(int index) => createResult(
-        index: index,
-        quote:
-            bbm.getValue(index).quote + (deviation.getValue(index).quote * k),
-      );
+    index: index,
+    quote: bbm.getValue(index).quote + (deviation.getValue(index).quote * k),
+  );
 
   @override
   void copyValuesFrom(covariant BollingerBandsUpperIndicator<T> other) {

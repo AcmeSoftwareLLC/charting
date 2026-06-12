@@ -5,7 +5,7 @@ import 'package:acme_indicators/src/models/models.dart';
 class MultiplierIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Initializes
   MultiplierIndicator(this.indicator, this.coefficient)
-      : super(indicator.input);
+    : super(indicator.input);
 
   /// Indicator
   final Indicator<T> indicator;
@@ -15,7 +15,7 @@ class MultiplierIndicator<T extends IndicatorResult> extends Indicator<T> {
 
   @override
   T getValue(int index) => createResult(
-        index: index,
-        quote: indicator.getValue(index).quote * coefficient,
-      );
+    index: index,
+    quote: indicator.getValue(index).quote * coefficient,
+  );
 }

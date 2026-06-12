@@ -13,7 +13,8 @@ RSIIndicatorConfig _$RSIIndicatorConfigFromJson(Map<String, dynamic> json) =>
       oscillatorLinesConfig: json['oscillatorLinesConfig'] == null
           ? const OscillatorLinesConfig(overboughtValue: 80, oversoldValue: 20)
           : OscillatorLinesConfig.fromJson(
-              json['oscillatorLinesConfig'] as Map<String, dynamic>),
+              json['oscillatorLinesConfig'] as Map<String, dynamic>,
+            ),
       lineStyle: json['lineStyle'] == null
           ? const LineStyle(color: Colors.white)
           : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),

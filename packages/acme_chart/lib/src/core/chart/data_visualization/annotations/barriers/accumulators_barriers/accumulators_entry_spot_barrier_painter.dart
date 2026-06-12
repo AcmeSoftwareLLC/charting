@@ -15,7 +15,9 @@ import 'accumulators_entry_spot_barrier.dart';
 
 /// A class for painting horizontal barrier with entry spot.
 class AccumulatorsEntrySpotBarrierPainter<
-    T extends AccumulatorsEntrySpotBarrier> extends SeriesPainter<T> {
+  T extends AccumulatorsEntrySpotBarrier
+>
+    extends SeriesPainter<T> {
   /// Initializes [series].
   AccumulatorsEntrySpotBarrierPainter(super.series);
 
@@ -70,8 +72,9 @@ class AccumulatorsEntrySpotBarrierPainter<
     final double y = quoteToY(animatedValue!);
 
     final double lineStartX = dotX ?? 0;
-    final double lineEndX =
-        series.epoch != null ? epochToX(series.startingEpoch) : 0;
+    final double lineEndX = series.epoch != null
+        ? epochToX(series.startingEpoch)
+        : 0;
 
     if (lineStartX > lineEndX && style.hasLine) {
       _paintLine(

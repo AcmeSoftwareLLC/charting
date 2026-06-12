@@ -232,8 +232,10 @@ class DigitMarkerIconPainter extends MarkerGroupIconPainter {
       ..drawCircle(anchor, 8 * zoom, Paint()..color = Colors.white)
       ..drawCircle(anchor, 8 * zoom, paint);
 
-    final String lastChar =
-        marker.quote.toStringAsFixed(pipSize).characters.last;
+    final String lastChar = marker.quote
+        .toStringAsFixed(pipSize)
+        .characters
+        .last;
     final TextSpan span = TextSpan(
       text: lastChar,
       style: TextStyle(

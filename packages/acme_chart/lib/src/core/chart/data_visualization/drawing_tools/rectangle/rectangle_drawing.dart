@@ -35,8 +35,9 @@ class RectangleDrawing extends Drawing {
       _$RectangleDrawingFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$RectangleDrawingToJson(this)
-    ..putIfAbsent(Drawing.classNameKey, () => nameKey);
+  Map<String, dynamic> toJson() =>
+      _$RectangleDrawingToJson(this)
+        ..putIfAbsent(Drawing.classNameKey, () => nameKey);
 
   /// Key of drawing tool name property in JSON.
   static const String nameKey = 'RectangleDrawing';
@@ -125,7 +126,7 @@ class RectangleDrawing extends Drawing {
     DrawingData drawingData,
     DataSeries<Tick> series,
     Point Function(EdgePoint edgePoint, DraggableEdgePoint draggableEdgePoint)
-        updatePositionCallback,
+    updatePositionCallback,
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,

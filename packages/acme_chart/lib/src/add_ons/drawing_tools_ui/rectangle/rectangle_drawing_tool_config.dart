@@ -34,8 +34,9 @@ class RectangleDrawingToolConfig extends DrawingToolConfig {
   static const String name = 'dt_rectangle';
 
   @override
-  Map<String, dynamic> toJson() => _$RectangleDrawingToolConfigToJson(this)
-    ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$RectangleDrawingToolConfigToJson(this)
+        ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
   final LineStyle lineStyle;
@@ -50,12 +51,11 @@ class RectangleDrawingToolConfig extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) =>
-      RectangleDrawingToolItem(
-        config: this,
-        updateDrawingTool: updateDrawingTool,
-        deleteDrawingTool: deleteDrawingTool,
-      );
+  ) => RectangleDrawingToolItem(
+    config: this,
+    updateDrawingTool: updateDrawingTool,
+    deleteDrawingTool: deleteDrawingTool,
+  );
 
   @override
   RectangleDrawingToolConfig copyWith({
@@ -67,14 +67,13 @@ class RectangleDrawingToolConfig extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) =>
-      RectangleDrawingToolConfig(
-        configId: configId ?? this.configId,
-        drawingData: drawingData ?? this.drawingData,
-        lineStyle: lineStyle ?? this.lineStyle,
-        fillStyle: fillStyle ?? this.fillStyle,
-        pattern: pattern ?? this.pattern,
-        edgePoints: edgePoints ?? this.edgePoints,
-        number: number ?? this.number,
-      );
+  }) => RectangleDrawingToolConfig(
+    configId: configId ?? this.configId,
+    drawingData: drawingData ?? this.drawingData,
+    lineStyle: lineStyle ?? this.lineStyle,
+    fillStyle: fillStyle ?? this.fillStyle,
+    pattern: pattern ?? this.pattern,
+    edgePoints: edgePoints ?? this.edgePoints,
+    number: number ?? this.number,
+  );
 }

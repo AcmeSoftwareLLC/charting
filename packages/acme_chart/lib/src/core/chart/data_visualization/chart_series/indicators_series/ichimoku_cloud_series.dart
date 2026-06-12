@@ -62,31 +62,31 @@ class IchimokuCloudSeries extends Series {
 
     final IchimokuBaseLineIndicator<Tick> baseLineIndicator =
         IchimokuBaseLineIndicator<Tick>(
-      ticks,
-      period: ichimokuCloudOptions.baseLinePeriod,
-    );
+          ticks,
+          period: ichimokuCloudOptions.baseLinePeriod,
+        );
 
     final IchimokuConversionLineIndicator<Tick> conversionLineIndicator =
         IchimokuConversionLineIndicator<Tick>(
-      ticks,
-      period: ichimokuCloudOptions.conversionLinePeriod,
-    );
+          ticks,
+          period: ichimokuCloudOptions.conversionLinePeriod,
+        );
 
     final IchimokuLaggingSpanIndicator<Tick> laggingSpanIndicator =
         IchimokuLaggingSpanIndicator<Tick>(ticks);
 
     final IchimokuSpanAIndicator<Tick> spanAIndicator =
         IchimokuSpanAIndicator<Tick>(
-      ticks,
-      conversionLineIndicator: conversionLineIndicator,
-      baseLineIndicator: baseLineIndicator,
-    );
+          ticks,
+          conversionLineIndicator: conversionLineIndicator,
+          baseLineIndicator: baseLineIndicator,
+        );
 
     final IchimokuSpanBIndicator<Tick> spanBIndicator =
         IchimokuSpanBIndicator<Tick>(
-      ticks,
-      period: ichimokuCloudOptions.leadingSpanBPeriod,
-    );
+          ticks,
+          period: ichimokuCloudOptions.leadingSpanBPeriod,
+        );
 
     conversionLineSeries = SingleIndicatorSeries(
       painterCreator: (Series series) =>
@@ -164,8 +164,12 @@ class IchimokuCloudSeries extends Series {
     return ChannelFillPainter(
       spanASeries,
       spanBSeries,
-      firstUpperChannelFillColor: config.spanALineStyle.color.withValues(alpha: 0.2),
-      secondUpperChannelFillColor: config.spanBLineStyle.color.withValues(alpha: 0.2),
+      firstUpperChannelFillColor: config.spanALineStyle.color.withValues(
+        alpha: 0.2,
+      ),
+      secondUpperChannelFillColor: config.spanBLineStyle.color.withValues(
+        alpha: 0.2,
+      ),
     );
   }
 

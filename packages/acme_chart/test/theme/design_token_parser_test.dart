@@ -53,9 +53,9 @@ void main() {
         String result =
             (TokenFormatterFactory.getFormatter('color') as ColorTokenFormatter)
                 .transformRgbaTokenString(
-          input,
-          DesignTokenUtils.categoryLight,
-        );
+                  input,
+                  DesignTokenUtils.categoryLight,
+                );
         expect(result, equals(expected));
       });
 
@@ -122,9 +122,9 @@ void main() {
         String result =
             (TokenFormatterFactory.getFormatter('color') as ColorTokenFormatter)
                 .convertGradientStringToDartObject(
-          input,
-          DesignTokenUtils.categoryCore,
-        );
+                  input,
+                  DesignTokenUtils.categoryCore,
+                );
         expect(result, contains("LinearGradient("));
         expect(
           result,
@@ -147,8 +147,8 @@ void main() {
       /// Flutter's Curves.linear and includes appropriate documentation.
       test('Cubic Bezier - Linear', () {
         String input = "cubic-bezier(0, 0, 1, 1)";
-        String result =
-            CubicBezierTokenFormatter().convertCubicBezierToDartObject(input);
+        String result = CubicBezierTokenFormatter()
+            .convertCubicBezierToDartObject(input);
         expect(result, contains("Curves.linear"));
       });
 
@@ -158,8 +158,8 @@ void main() {
       /// Flutter's Curves.ease and includes appropriate documentation.
       test('Cubic Bezier - Ease', () {
         String input = "cubic-bezier(0.42, 0, 1, 1)";
-        String result =
-            CubicBezierTokenFormatter().convertCubicBezierToDartObject(input);
+        String result = CubicBezierTokenFormatter()
+            .convertCubicBezierToDartObject(input);
         expect(result, contains("Curves.ease"));
       });
 
@@ -169,8 +169,8 @@ void main() {
       /// Flutter's Cubic constructor with the appropriate parameters.
       test('Cubic Bezier - Custom', () {
         String input = "cubic-bezier(0.1, 0.2, 0.3, 0.4)";
-        String result =
-            CubicBezierTokenFormatter().convertCubicBezierToDartObject(input);
+        String result = CubicBezierTokenFormatter()
+            .convertCubicBezierToDartObject(input);
         expect(result, contains("Cubic(0.1, 0.2, 0.3, 0.4)"));
       });
     });

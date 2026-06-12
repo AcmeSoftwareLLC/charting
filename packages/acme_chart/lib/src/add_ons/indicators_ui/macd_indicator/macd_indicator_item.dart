@@ -14,9 +14,7 @@ class MACDIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     MACDIndicatorConfig super.config = const MACDIndicatorConfig(),
-  }) : super(
-          title: 'MACD',
-        );
+  }) : super(title: 'MACD');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -39,96 +37,96 @@ class MACDIndicatorItemState extends IndicatorItemState<MACDIndicatorConfig> {
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          _buildFastMAPeriodField(),
-          _buildSlowMAPeriodField(),
-          _buildSignalPeriodField(),
-        ],
-      );
+    children: <Widget>[
+      _buildFastMAPeriodField(),
+      _buildSlowMAPeriodField(),
+      _buildSignalPeriodField(),
+    ],
+  );
 
   Widget _buildFastMAPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelFastMAPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentFastMAPeriod.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _fastMAPeriod = int.tryParse(text);
-                } else {
-                  _fastMAPeriod = 12;
-                }
-                setState(() {
-                  updateIndicator();
-                });
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelFastMAPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentFastMAPeriod.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _fastMAPeriod = int.tryParse(text);
+            } else {
+              _fastMAPeriod = 12;
+            }
+            setState(() {
+              updateIndicator();
+            });
+          },
+        ),
+      ),
+    ],
+  );
 
   Widget _buildSlowMAPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelSlowMAPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentSlowMAPeriod.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _slowMAPeriod = int.tryParse(text);
-                } else {
-                  _slowMAPeriod = 26;
-                }
-                setState(() {
-                  updateIndicator();
-                });
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelSlowMAPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentSlowMAPeriod.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _slowMAPeriod = int.tryParse(text);
+            } else {
+              _slowMAPeriod = 26;
+            }
+            setState(() {
+              updateIndicator();
+            });
+          },
+        ),
+      ),
+    ],
+  );
 
   Widget _buildSignalPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelSignalPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentSignalPeriod.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _signalPeriod = int.tryParse(text);
-                } else {
-                  _signalPeriod = 9;
-                }
-                setState(() {
-                  updateIndicator();
-                });
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelSignalPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentSignalPeriod.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _signalPeriod = int.tryParse(text);
+            } else {
+              _signalPeriod = 9;
+            }
+            setState(() {
+              updateIndicator();
+            });
+          },
+        ),
+      ),
+    ],
+  );
 
   // TODO(Ramin): Add generic type to avoid casting.
   int get _currentSlowMAPeriod =>

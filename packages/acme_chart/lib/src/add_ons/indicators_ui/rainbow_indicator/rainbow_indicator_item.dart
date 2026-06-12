@@ -17,9 +17,7 @@ class RainbowIndicatorItem extends IndicatorItem {
     required super.updateIndicator,
     required super.deleteIndicator,
     super.key,
-  }) : super(
-          title: 'Rainbow Indicator',
-        );
+  }) : super(title: 'Rainbow Indicator');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -43,44 +41,44 @@ class RainbowIndicatorItemState extends MAIndicatorItemState {
 
   @override
   Widget getIndicatorOptions() => Column(
+    children: <Widget>[
+      buildMATypeMenu(),
+      Row(
         children: <Widget>[
-          buildMATypeMenu(),
-          Row(
-            children: <Widget>[
-              buildPeriodField(),
-              const SizedBox(width: 10),
-              buildFieldTypeMenu(),
-            ],
-          ),
-          buildBandsCountField(),
+          buildPeriodField(),
+          const SizedBox(width: 10),
+          buildFieldTypeMenu(),
         ],
-      );
+      ),
+      buildBandsCountField(),
+    ],
+  );
 
   /// Renders Indicator's bands
   @protected
   Widget buildBandsCountField() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelBandsCount,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(height: 2),
-          Slider(
-            value: getCurrentBandsCount().toDouble(),
-            min: 1,
-            max: 20,
-            divisions: 20,
-            label: '${getCurrentBandsCount()}',
-            onChanged: (double value) {
-              setState(() {
-                bandsCount = value.toInt();
-              });
-              updateIndicator();
-            },
-          ),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelBandsCount,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(height: 2),
+      Slider(
+        value: getCurrentBandsCount().toDouble(),
+        min: 1,
+        max: 20,
+        divisions: 20,
+        label: '${getCurrentBandsCount()}',
+        onChanged: (double value) {
+          setState(() {
+            bandsCount = value.toInt();
+          });
+          updateIndicator();
+        },
+      ),
+    ],
+  );
 
   /// Gets Indicator current period.
   @protected

@@ -14,9 +14,9 @@ class MeanIndicator<T extends IndicatorResult> extends Indicator<T> {
 
   @override
   T getValue(int index) => createResult(
-        index: index,
-        quote: (indicator1.getValue(index).quote +
-                indicator2.getValue(index).quote) /
-            2,
-      );
+    index: index,
+    quote:
+        (indicator1.getValue(index).quote + indicator2.getValue(index).quote) /
+        2,
+  );
 }

@@ -24,10 +24,7 @@ class ROCIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? ROCIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? ROCIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory ROCIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -37,8 +34,9 @@ class ROCIndicatorConfig extends IndicatorConfig {
   static const String name = 'ROC';
 
   @override
-  Map<String, dynamic> toJson() => _$ROCIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$ROCIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period
   final int period;
@@ -51,25 +49,24 @@ class ROCIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => ROCSeries.fromIndicator(
-        IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
-        rocOptions: ROCOptions(
-          period: period,
-          pipSize: pipSize,
-          showLastIndicator: showLastIndicator,
-        ),
-        lineStyle: lineStyle,
-      );
+    IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
+    rocOptions: ROCOptions(
+      period: period,
+      pipSize: pipSize,
+      showLastIndicator: showLastIndicator,
+    ),
+    lineStyle: lineStyle,
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      ROCIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => ROCIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   ROCIndicatorConfig copyWith({
@@ -80,14 +77,13 @@ class ROCIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      ROCIndicatorConfig(
-        period: period ?? this.period,
-        fieldType: fieldType ?? this.fieldType,
-        lineStyle: lineStyle ?? this.lineStyle,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => ROCIndicatorConfig(
+    period: period ?? this.period,
+    fieldType: fieldType ?? this.fieldType,
+    lineStyle: lineStyle ?? this.lineStyle,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

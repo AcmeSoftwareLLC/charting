@@ -57,18 +57,15 @@ class MarketItem extends StatelessWidget {
               ),
             ),
           ),
-          ...market.subMarkets
-              .map(
-                (SubMarket? subMarket) => SubMarketItem(
-                  isCategorized: isSubMarketsCategorized,
-                  selectedItemKey: selectedItemKey,
-                  subMarket: subMarket!,
-                  filterText:
-                      subMarket.containsText(filterText) ? '' : filterText,
-                  onAssetClicked: onAssetClicked,
-                ),
-              )
-              ,
+          ...market.subMarkets.map(
+            (SubMarket? subMarket) => SubMarketItem(
+              isCategorized: isSubMarketsCategorized,
+              selectedItemKey: selectedItemKey,
+              subMarket: subMarket!,
+              filterText: subMarket.containsText(filterText) ? '' : filterText,
+              onAssetClicked: onAssetClicked,
+            ),
+          ),
         ],
       ),
     );

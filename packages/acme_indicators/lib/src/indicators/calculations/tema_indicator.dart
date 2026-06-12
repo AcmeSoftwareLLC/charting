@@ -31,11 +31,11 @@ class TEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) => createResult(
-        index: index,
-        quote:
-            3 * (_ema.getValue(index).quote - _emaEma.getValue(index).quote) +
-                _emaEmaEma.getValue(index).quote,
-      );
+    index: index,
+    quote:
+        3 * (_ema.getValue(index).quote - _emaEma.getValue(index).quote) +
+        _emaEmaEma.getValue(index).quote,
+  );
 
   @override
   void copyValuesFrom(covariant TEMAIndicator<T> other) {

@@ -28,8 +28,9 @@ class ChartDataProvider {
   /// Generate a list of sample candles.
   static List<Candle> generateCandles({int count = 100}) {
     final List<Candle> candles = [];
-    final baseTimestamp =
-        DateTime.now().subtract(Duration(hours: count)).millisecondsSinceEpoch;
+    final baseTimestamp = DateTime.now()
+        .subtract(Duration(hours: count))
+        .millisecondsSinceEpoch;
     double lastClose = 100;
 
     for (int i = 0; i < count; i++) {
@@ -112,8 +113,9 @@ class ChartDataProvider {
 
     // Add some up and down markers at strategic points
     for (int i = 10; i < ticks.length; i += 20) {
-      final direction =
-          i % 40 == 10 ? MarkerDirection.up : MarkerDirection.down;
+      final direction = i % 40 == 10
+          ? MarkerDirection.up
+          : MarkerDirection.down;
       markers.add(
         Marker(
           direction: direction,

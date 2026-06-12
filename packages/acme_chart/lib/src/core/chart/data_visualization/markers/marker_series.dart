@@ -23,8 +23,8 @@ class MarkerSeries extends Series {
     this.activeMarker,
     this.entryTick,
     this.exitTick,
-  })  : _entries = entries.toList(),
-        super(id ?? 'Markers', style: style);
+  }) : _entries = entries.toList(),
+       super(id ?? 'Markers', style: style);
 
   /// Marker entries.
   final List<Marker> _entries;

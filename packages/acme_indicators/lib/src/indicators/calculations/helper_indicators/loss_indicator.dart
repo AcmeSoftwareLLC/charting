@@ -18,9 +18,11 @@ class LossIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     }
     if (indicator.getValue(index).quote < indicator.getValue(index - 1).quote) {
       return createResult(
-          index: index,
-          quote: indicator.getValue(index - 1).quote -
-              indicator.getValue(index).quote);
+        index: index,
+        quote:
+            indicator.getValue(index - 1).quote -
+            indicator.getValue(index).quote,
+      );
     } else {
       return createResult(index: index, quote: 0);
     }

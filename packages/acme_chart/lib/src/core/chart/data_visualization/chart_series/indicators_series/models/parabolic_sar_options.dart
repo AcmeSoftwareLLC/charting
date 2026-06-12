@@ -15,6 +15,8 @@ class ParabolicSAROptions extends IndicatorOptions {
   final double maxAccelerationFactor;
 
   @override
-  List<Object> get props =>
-      <Object>[minAccelerationFactor, maxAccelerationFactor];
+  List<Object> get props => <Object>[
+    minAccelerationFactor,
+    maxAccelerationFactor,
+  ];
 }

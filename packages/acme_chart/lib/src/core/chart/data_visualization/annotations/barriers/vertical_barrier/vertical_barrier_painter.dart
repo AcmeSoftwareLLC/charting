@@ -48,8 +48,7 @@ class VerticalBarrierPainter extends SeriesPainter<VerticalBarrier> {
           prevObject.epoch.toDouble(),
           series.epoch,
           animationInfo.currentTickPercent,
-        )!
-            .toInt();
+        )!.toInt();
 
         if (series.annotationObject.quote != null && prevObject.quote != null) {
           dotY = quoteToY(

@@ -123,8 +123,8 @@ class VerticalLineAddingPreviewMobile
     if (interactableDrawing.startPoint != null) {
       // Delegate to main drawing with selected state simulation for full visual appearance
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paint(
         canvas,

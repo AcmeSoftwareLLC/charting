@@ -13,16 +13,14 @@ class StandardDeviationIndicator<T extends IndicatorResult>
   /// [indicator] the indicator to calculates SD on.
   /// [period]  the time frame
   StandardDeviationIndicator(super.indicator, int period)
-      : _variance = VarianceIndicator<T>(indicator, period),
-        super.fromIndicator();
+    : _variance = VarianceIndicator<T>(indicator, period),
+      super.fromIndicator();
 
   final VarianceIndicator<T> _variance;
 
   @override
-  T calculate(int index) => createResult(
-        index: index,
-        quote: sqrt(_variance.getValue(index).quote),
-      );
+  T calculate(int index) =>
+      createResult(index: index, quote: sqrt(_variance.getValue(index).quote));
 
   @override
   void copyValuesFrom(covariant StandardDeviationIndicator<T> other) {

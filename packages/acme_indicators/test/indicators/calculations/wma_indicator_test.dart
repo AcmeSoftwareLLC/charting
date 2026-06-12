@@ -22,7 +22,9 @@ void main() {
 
     test('WMAIndicator calculates the correct results', () {
       final WMAIndicator<MockResult> wmaIndicator = WMAIndicator<MockResult>(
-          CloseValueIndicator<MockResult>(MockInput(ticks)), 3);
+        CloseValueIndicator<MockResult>(MockInput(ticks)),
+        3,
+      );
 
       expect(wmaIndicator.getValue(0).quote, 1);
       expect(roundDouble(wmaIndicator.getValue(1).quote, 4), 1.6667);

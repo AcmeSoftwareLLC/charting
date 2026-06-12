@@ -155,7 +155,7 @@ class DrawingTools {
   /// A method to get the list of drawing data from the repository
   List<DrawingData?> getDrawingData() => drawingToolsRepo != null
       ? drawingToolsRepo!.items
-          .map<DrawingData?>((DrawingToolConfig config) => config.drawingData)
-          .toList()
+            .map<DrawingData?>((DrawingToolConfig config) => config.drawingData)
+            .toList()
       : <DrawingData>[];
 }

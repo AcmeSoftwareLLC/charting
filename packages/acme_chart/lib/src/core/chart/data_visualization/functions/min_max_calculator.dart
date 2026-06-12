@@ -34,7 +34,7 @@ class MinMaxCalculator {
 
   /// Efficiently calculates new min/max by comparing previous visible entries and [newVisibleEntries].
   void calculate(List<Tick> newVisibleEntries) {
-    if (/*newVisibleEntries == null || */ newVisibleEntries.isEmpty) {
+    if ( /*newVisibleEntries == null || */ newVisibleEntries.isEmpty) {
       _visibleEntriesCount.clear();
     } else if (_visibleEntries == null ||
         _visibleEntries!.isEmpty ||

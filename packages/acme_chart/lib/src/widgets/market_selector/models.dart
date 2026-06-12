@@ -4,11 +4,8 @@ import 'package:collection/collection.dart' show IterableExtension;
 /// A class to keep a market's information.
 class Market {
   /// Creates a class to keep a market's information.
-  Market({
-    required this.subMarkets,
-    this.name = '',
-    String? displayName,
-  }) : displayName = displayName ?? name;
+  Market({required this.subMarkets, this.name = '', String? displayName})
+    : displayName = displayName ?? name;
 
   /// Creates a market from a given `list` of assets.
   Market.fromAssets({
@@ -39,11 +36,9 @@ class Market {
     required this.displayName,
     required List<Asset?> assets,
   }) : subMarkets = <SubMarket>[] {
-    subMarkets.add(SubMarket(
-      name: name,
-      displayName: displayName,
-      assets: assets,
-    ));
+    subMarkets.add(
+      SubMarket(name: name, displayName: displayName, assets: assets),
+    );
   }
 
   /// The name of the market.
@@ -61,19 +56,17 @@ class Market {
   /// Returns true if any asset under this market contains the [text].
   bool containsAssetWithText(String text) =>
       containsText(text) ||
-      subMarkets.firstWhereOrNull((SubMarket? subMarket) =>
-              subMarket!.containsAssetWithText(text)) !=
+      subMarkets.firstWhereOrNull(
+            (SubMarket? subMarket) => subMarket!.containsAssetWithText(text),
+          ) !=
           null;
 }
 
 /// A class to keep a sub-market's information.
 class SubMarket {
   /// Creates a class to keep a sub-market's information.
-  SubMarket({
-    required this.name,
-    required this.assets,
-    String? displayName,
-  }) : displayName = displayName ?? name;
+  SubMarket({required this.name, required this.assets, String? displayName})
+    : displayName = displayName ?? name;
 
   /// The name of the sub-market.
   final String name;
@@ -90,8 +83,9 @@ class SubMarket {
   /// Returns true if any asset under this sub-market contains the [text].
   bool containsAssetWithText(String text) =>
       containsText(text) ||
-      assets.firstWhereOrNull((Asset? asset) =>
-              asset!.displayName.toLowerCase().contains(text)) !=
+      assets.firstWhereOrNull(
+            (Asset? asset) => asset!.displayName.toLowerCase().contains(text),
+          ) !=
           null;
 }
 
@@ -107,21 +101,21 @@ class Asset {
     String? subMarketDisplayName,
     this.isOpen = true,
     this.isFavourite = false,
-  })  : displayName = displayName ?? name,
-        marketDisplayName = marketDisplayName ?? market,
-        subMarketDisplayName = subMarketDisplayName ?? subMarket;
+  }) : displayName = displayName ?? name,
+       marketDisplayName = marketDisplayName ?? market,
+       subMarketDisplayName = subMarketDisplayName ?? subMarket;
 
   /// Creates an [Asset] object from JSON map.
   factory Asset.fromJson(Map<String, dynamic> json) => Asset(
-        name: json['name'],
-        displayName: json['display_name'],
-        market: json['market'],
-        marketDisplayName: json['market_display_name'],
-        subMarket: json['sub_market'],
-        subMarketDisplayName: json['sub_market_display_name'],
-        isOpen: json['is_open'],
-        isFavourite: json['is_favourite'],
-      );
+    name: json['name'],
+    displayName: json['display_name'],
+    market: json['market'],
+    marketDisplayName: json['market_display_name'],
+    subMarket: json['sub_market'],
+    subMarketDisplayName: json['sub_market_display_name'],
+    isOpen: json['is_open'],
+    isFavourite: json['is_favourite'],
+  );
 
   /// The name of the active symbol.
   final String name;
@@ -164,27 +158,26 @@ class Asset {
     String? subMarketDisplayName,
     bool? isOpen,
     bool? isFavourite,
-  }) =>
-      Asset(
-        name: name ?? this.name,
-        displayName: displayName ?? this.displayName,
-        market: market ?? this.market,
-        marketDisplayName: marketDisplayName ?? this.marketDisplayName,
-        subMarket: subMarket ?? this.subMarket,
-        subMarketDisplayName: subMarketDisplayName ?? this.subMarketDisplayName,
-        isOpen: isOpen ?? this.isOpen,
-        isFavourite: isFavourite ?? this.isFavourite,
-      );
+  }) => Asset(
+    name: name ?? this.name,
+    displayName: displayName ?? this.displayName,
+    market: market ?? this.market,
+    marketDisplayName: marketDisplayName ?? this.marketDisplayName,
+    subMarket: subMarket ?? this.subMarket,
+    subMarketDisplayName: subMarketDisplayName ?? this.subMarketDisplayName,
+    isOpen: isOpen ?? this.isOpen,
+    isFavourite: isFavourite ?? this.isFavourite,
+  );
 
   /// Converts this object to a JSON map.
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'name': name,
-        'display_name': displayName,
-        'market': market,
-        'market_display_name': marketDisplayName,
-        'sub_market': subMarket,
-        'sub_market_display_name': subMarketDisplayName,
-        'is_open': isOpen,
-        'is_favourite': isFavourite,
-      };
+    'name': name,
+    'display_name': displayName,
+    'market': market,
+    'market_display_name': marketDisplayName,
+    'sub_market': subMarket,
+    'sub_market_display_name': subMarketDisplayName,
+    'is_open': isOpen,
+    'is_favourite': isFavourite,
+  };
 }

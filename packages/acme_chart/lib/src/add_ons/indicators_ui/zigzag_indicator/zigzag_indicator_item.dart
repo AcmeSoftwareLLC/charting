@@ -14,9 +14,7 @@ class ZigZagIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     ZigZagIndicatorConfig super.config = const ZigZagIndicatorConfig(),
-  }) : super(
-          title: 'ZigZag',
-        );
+  }) : super(title: 'ZigZag');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -42,30 +40,30 @@ class ZigZagIndicatorItemState
   /// Builds distance TextFiled
   @protected
   Widget buildDistanceField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelDistance,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: getCurrentDistance().toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  distance = double.tryParse(text);
-                } else {
-                  distance = 10;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelDistance,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: getCurrentDistance().toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              distance = double.tryParse(text);
+            } else {
+              distance = 10;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   /// Gets Indicator current period.
   @protected

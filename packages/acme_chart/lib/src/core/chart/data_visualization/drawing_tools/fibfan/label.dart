@@ -39,14 +39,15 @@ class Label {
   /// Returns the x position of the label
   double _getX(String label, Size size, {bool isRightSide = false}) =>
       isRightSide
-          ? size.width - chartPadding - labelHorizontalPadding
-          : labelHorizontalPadding;
+      ? size.width - chartPadding - labelHorizontalPadding
+      : labelHorizontalPadding;
 
   /// Returns the position of the label on the right side of the chart
   Offset _getRightSideLabelsPosition(String label, Size size, Vector vector) {
     final double x = _getX(label, size, isRightSide: true);
 
-    final double y = (((vector.y1 - vector.y0) / (vector.x1 - vector.x0)) *
+    final double y =
+        (((vector.y1 - vector.y0) / (vector.x1 - vector.x0)) *
             (x - vector.x0)) +
         vector.y0;
     return Offset(x, y);
@@ -56,7 +57,8 @@ class Label {
   Offset _getLeftSideLabelsPosition(String label, Vector vector) {
     final double x = _getX(label, Size.zero);
 
-    final double y = (((vector.y1 - vector.y0) / (vector.x1 - vector.x0)) *
+    final double y =
+        (((vector.y1 - vector.y0) / (vector.x1 - vector.x0)) *
             (x - vector.x0)) +
         vector.y0;
     return Offset(5, y);
@@ -86,8 +88,8 @@ class Label {
     final Offset labelOffset = (startXCoord > endXCoord && startXCoord > 10)
         ? _getLeftSideLabelsPosition(label, endVector)
         : (startXCoord < endXCoord && startXCoord < size.width - chartPadding)
-            ? _getRightSideLabelsPosition(label, size, endVector)
-            : Offset.zero;
+        ? _getRightSideLabelsPosition(label, size, endVector)
+        : Offset.zero;
     if (labelOffset != Offset.zero) {
       getTextPainter(label, labelOffset, lineStyle.color)
         ..layout()

@@ -43,19 +43,22 @@ void main() {
 
   group('Previous Value Indicator test', () {
     test(
-        'Previous Value Indicator should calculate the correct result from the given ticks and period.',
-        () {
-      final CloseValueIndicator<MockResult> closeValueIndicator =
-          CloseValueIndicator<MockResult>(MockInput(ticks));
-      final PreviousValueIndicator<MockResult> previousValueIndicator =
-          PreviousValueIndicator<MockResult>.fromIndicator(closeValueIndicator,
-              period: 10);
+      'Previous Value Indicator should calculate the correct result from the given ticks and period.',
+      () {
+        final CloseValueIndicator<MockResult> closeValueIndicator =
+            CloseValueIndicator<MockResult>(MockInput(ticks));
+        final PreviousValueIndicator<MockResult> previousValueIndicator =
+            PreviousValueIndicator<MockResult>.fromIndicator(
+              closeValueIndicator,
+              period: 10,
+            );
 
-      expect(previousValueIndicator.getValue(8).quote, 48.16);
-      expect(previousValueIndicator.getValue(29).quote, 50.23);
-      expect(previousValueIndicator.getValue(28).quote, 49.37);
-      expect(previousValueIndicator.getValue(27).quote, 49.34);
-      expect(previousValueIndicator.getValue(26).quote, 50.41);
-    });
+        expect(previousValueIndicator.getValue(8).quote, 48.16);
+        expect(previousValueIndicator.getValue(29).quote, 50.23);
+        expect(previousValueIndicator.getValue(28).quote, 49.37);
+        expect(previousValueIndicator.getValue(27).quote, 49.34);
+        expect(previousValueIndicator.getValue(26).quote, 50.41);
+      },
+    );
   });
 }

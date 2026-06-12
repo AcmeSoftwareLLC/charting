@@ -11,9 +11,9 @@ class ZLEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   /// [period] Bar count.
   ZLEMAIndicator(this.indicator, this.period)
-      : _k = 2 / (period + 1),
-        _lag = (period - 1) ~/ 2,
-        super.fromIndicator(indicator);
+    : _k = 2 / (period + 1),
+      _lag = (period - 1) ~/ 2,
+      super.fromIndicator(indicator);
 
   /// Indicator to calculate ZELMA on
   final Indicator<T> indicator;
@@ -39,7 +39,8 @@ class ZLEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
     return createResult(
       index: index,
-      quote: (_k *
+      quote:
+          (_k *
               ((2 * indicator.getValue(index).quote) -
                   indicator.getValue(index - _lag).quote)) +
           ((1 - _k) * prevZlema),

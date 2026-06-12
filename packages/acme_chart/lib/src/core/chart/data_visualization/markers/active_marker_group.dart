@@ -28,16 +28,16 @@ class ActiveMarkerGroup extends MarkerGroup {
     VoidCallback? onTap,
     this.onTapOutside,
   }) : super(
-          markers,
-          type: type,
-          direction: direction,
-          id: id,
-          props: props,
-          style: style,
-          currentEpoch: currentEpoch,
-          profitAndLossText: profitAndLossText,
-          onTap: onTap,
-        );
+         markers,
+         type: type,
+         direction: direction,
+         id: id,
+         props: props,
+         style: style,
+         currentEpoch: currentEpoch,
+         profitAndLossText: profitAndLossText,
+         onTap: onTap,
+       );
 
   /// Called when a tap occurs outside the active marker group.
   final VoidCallback? onTapOutside;

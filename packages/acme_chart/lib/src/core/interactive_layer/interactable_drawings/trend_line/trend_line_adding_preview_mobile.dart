@@ -119,8 +119,8 @@ class TrendLineAddingPreviewMobile extends TrendLineAddingPreview {
         interactableDrawing.endPoint != null) {
       // Delegate to main drawing with selected state simulation for full visual appearance
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paint(
         canvas,
@@ -153,8 +153,8 @@ class TrendLineAddingPreviewMobile extends TrendLineAddingPreview {
         interactableDrawing.endPoint != null) {
       // Delegate to main drawing for consistent Y-axis labeling with neon effects
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paintOverYAxis(
         canvas,
@@ -254,14 +254,13 @@ class TrendLineAddingPreviewMobile extends TrendLineAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragUpdate(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragUpdate(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   bool shouldRepaint(Set<DrawingToolState> drawingState, DrawingV2 oldDrawing) {

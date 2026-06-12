@@ -298,15 +298,15 @@ class CrosshairArea extends StatelessWidget {
     }
 
     // Get the appropriate highlight painter for the current tick based on the series type
-    final CrosshairHighlightPainter highlightPainter =
-        mainSeries.getCrosshairHighlightPainter(
-      tick,
-      quoteToCanvasY,
-      xAxis.xFromEpoch(tick.epoch),
-      xAxis.granularity,
-      xAxis.xFromEpoch,
-      theme,
-    );
+    final CrosshairHighlightPainter highlightPainter = mainSeries
+        .getCrosshairHighlightPainter(
+          tick,
+          quoteToCanvasY,
+          xAxis.xFromEpoch(tick.epoch),
+          xAxis.granularity,
+          xAxis.xFromEpoch,
+          theme,
+        );
 
     return AnimatedPositioned(
       duration: animationDuration,

@@ -17,9 +17,7 @@ class ParabolicSARIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     ParabolicSARConfig super.config = const ParabolicSARConfig(),
-  }) : super(
-          title: 'ParabolicSAR',
-        );
+  }) : super(title: 'ParabolicSAR');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -45,89 +43,89 @@ class ParabolicSARIndicatorItemState
 
   @override
   Widget getIndicatorOptions() => Column(
+    children: <Widget>[
+      Row(
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              _buildMinAccelerationFactorField(),
-              _buildColorButton(),
-            ],
-          ),
-          _buildMaxAccelerationFactorField(),
+          _buildMinAccelerationFactorField(),
+          _buildColorButton(),
         ],
-      );
+      ),
+      _buildMaxAccelerationFactorField(),
+    ],
+  );
 
   ColorButton _buildColorButton() => ColorButton(
-        color: _currentScatterStyle.color,
-        onTap: () {
-          showModalBottomSheet<void>(
-            backgroundColor: Colors.transparent,
-            context: context,
-            builder: (BuildContext context) => ColorPickerSheet(
-              selectedColor: _currentScatterStyle.color,
-              onChanged: (Color selectedColor) {
-                setState(() {
-                  _scatterStyle = _currentScatterStyle.copyWith(
-                    color: selectedColor,
-                  );
-                });
-                updateIndicator();
-              },
-            ),
-          );
-        },
+    color: _currentScatterStyle.color,
+    onTap: () {
+      showModalBottomSheet<void>(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (BuildContext context) => ColorPickerSheet(
+          selectedColor: _currentScatterStyle.color,
+          onChanged: (Color selectedColor) {
+            setState(() {
+              _scatterStyle = _currentScatterStyle.copyWith(
+                color: selectedColor,
+              );
+            });
+            updateIndicator();
+          },
+        ),
       );
+    },
+  );
 
   Widget _buildMaxAccelerationFactorField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelMaxAF,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 30,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentMaxAccelerationFactor.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _maxAccelerationFactor = double.tryParse(text);
-                } else {
-                  _maxAccelerationFactor = 0.2;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelMaxAF,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 30,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentMaxAccelerationFactor.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _maxAccelerationFactor = double.tryParse(text);
+            } else {
+              _maxAccelerationFactor = 0.2;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   Widget _buildMinAccelerationFactorField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelMinAF,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 30,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentMinAccelerationFactor.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _minAccelerationFactor = double.tryParse(text);
-                } else {
-                  _minAccelerationFactor = 0.02;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelMinAF,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 30,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentMinAccelerationFactor.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _minAccelerationFactor = double.tryParse(text);
+            } else {
+              _minAccelerationFactor = 0.02;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   // TODO(Ramin): use generic type to avoid casting
   double get _currentMinAccelerationFactor =>

@@ -17,11 +17,11 @@ class AssetIconPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: const BorderRadius.all(Radius.circular(2)),
-        ),
-        width: size.width,
-        height: size.height,
-      );
+    decoration: BoxDecoration(
+      color: color,
+      borderRadius: const BorderRadius.all(Radius.circular(2)),
+    ),
+    width: size.width,
+    height: size.height,
+  );
 }

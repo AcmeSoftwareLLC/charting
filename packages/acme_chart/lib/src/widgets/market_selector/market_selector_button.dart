@@ -48,30 +48,30 @@ class MarketSelectorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Provider<ChartTheme>.value(
-        value: theme ?? ChartDefaultDarkTheme(),
-        child: TextButton(
-          style: ButtonStyle(
-            padding: WidgetStateProperty.resolveWith<EdgeInsetsGeometry>(
-              (Set<WidgetState> states) => const EdgeInsets.all(8),
-            ),
-            backgroundColor: WidgetStateProperty.resolveWith<Color>(
-              (Set<WidgetState> states) => backgroundColor,
-            ),
-            shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>(
-              (Set<WidgetState> states) =>
-                  RoundedRectangleBorder(borderRadius: borderRadius),
-            ),
-          ),
-          onPressed: onTap,
-          child: Row(
-            children: <Widget>[
-              SymbolIcon(symbolCode: asset.name),
-              const SizedBox(width: 8),
-              Text(asset.displayName, style: textStyle),
-              const Spacer(),
-              if (!asset.isOpen) ClosedTag(),
-            ],
-          ),
+    value: theme ?? ChartDefaultDarkTheme(),
+    child: TextButton(
+      style: ButtonStyle(
+        padding: WidgetStateProperty.resolveWith<EdgeInsetsGeometry>(
+          (Set<WidgetState> states) => const EdgeInsets.all(8),
         ),
-      );
+        backgroundColor: WidgetStateProperty.resolveWith<Color>(
+          (Set<WidgetState> states) => backgroundColor,
+        ),
+        shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>(
+          (Set<WidgetState> states) =>
+              RoundedRectangleBorder(borderRadius: borderRadius),
+        ),
+      ),
+      onPressed: onTap,
+      child: Row(
+        children: <Widget>[
+          SymbolIcon(symbolCode: asset.name),
+          const SizedBox(width: 8),
+          Text(asset.displayName, style: textStyle),
+          const Spacer(),
+          if (!asset.isOpen) ClosedTag(),
+        ],
+      ),
+    ),
+  );
 }

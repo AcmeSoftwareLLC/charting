@@ -59,8 +59,10 @@ void main() {
       final CloseValueIndicator<MockResult> closePrice =
           CloseValueIndicator<MockResult>(MockInput(ticks));
 
-      final CachedIndicator<MockResult> bbmSMA =
-          SMAIndicator<MockResult>(closePrice, period);
+      final CachedIndicator<MockResult> bbmSMA = SMAIndicator<MockResult>(
+        closePrice,
+        period,
+      );
       final StandardDeviationIndicator<MockResult> standardDeviation =
           StandardDeviationIndicator<MockResult>(closePrice, period);
       final BollingerBandsUpperIndicator<MockResult> bbuSMA =
@@ -80,8 +82,11 @@ void main() {
       expect(roundDouble(bbuSMA.getValue(9).quote, 4), 4.2761);
 
       final BollingerBandsUpperIndicator<MockResult> bbuSMAwithK =
-          BollingerBandsUpperIndicator<MockResult>(bbmSMA, standardDeviation,
-              k: 1.5);
+          BollingerBandsUpperIndicator<MockResult>(
+            bbmSMA,
+            standardDeviation,
+            k: 1.5,
+          );
 
       expect(bbuSMAwithK.k, 1.5);
 
@@ -98,11 +103,14 @@ void main() {
     });
 
     test('Bollinger Percent B calculates the correct result', () {
-      final Indicator<MockResult> closePrice =
-          CloseValueIndicator<MockResult>(MockInput(ticks));
+      final Indicator<MockResult> closePrice = CloseValueIndicator<MockResult>(
+        MockInput(ticks),
+      );
 
-      final PercentBIndicator<MockResult> pcb =
-          PercentBIndicator<MockResult>(closePrice, 5);
+      final PercentBIndicator<MockResult> pcb = PercentBIndicator<MockResult>(
+        closePrice,
+        5,
+      );
 
       expect(pcb.getValue(0).quote.isNaN, isTrue);
       expect(roundDouble(pcb.getValue(1).quote, 2), 0.75);
@@ -127,68 +135,76 @@ void main() {
     });
 
     test(
-        'Bollinger Percent B copyValuesFrom and refreshValueFor should works fine',
-        () {
-      final List<MockTick> ticks2 = ticks.toList();
-      final CloseValueIndicator<MockResult> closeValueIndicator =
-          CloseValueIndicator<MockResult>(MockInput(ticks2));
+      'Bollinger Percent B copyValuesFrom and refreshValueFor should works fine',
+      () {
+        final List<MockTick> ticks2 = ticks.toList();
+        final CloseValueIndicator<MockResult> closeValueIndicator =
+            CloseValueIndicator<MockResult>(MockInput(ticks2));
 
-      // defining 1st indicator
-      final PercentBIndicator<MockResult> pcb =
-          PercentBIndicator<MockResult>(closeValueIndicator, 5);
+        // defining 1st indicator
+        final PercentBIndicator<MockResult> pcb = PercentBIndicator<MockResult>(
+          closeValueIndicator,
+          5,
+        );
 
-      // defining 2nd indicator
-      final PercentBIndicator<MockResult> pcb2 =
-          PercentBIndicator<MockResult>(closeValueIndicator, 5);
+        // defining 2nd indicator
+        final PercentBIndicator<MockResult> pcb2 =
+            PercentBIndicator<MockResult>(closeValueIndicator, 5);
 
-      // Their result should be the same since input data is the same.
-      expect(pcb2.getValue(19).quote, pcb.getValue(19).quote);
-      expect(pcb2.getValue(18).quote, pcb.getValue(18).quote);
+        // Their result should be the same since input data is the same.
+        expect(pcb2.getValue(19).quote, pcb.getValue(19).quote);
+        expect(pcb2.getValue(18).quote, pcb.getValue(18).quote);
 
-      // add new data to this list
-      ticks2.add(const MockTick(epoch: 21, quote: 5));
+        // add new data to this list
+        ticks2.add(const MockTick(epoch: 21, quote: 5));
 
-      // Refreshing last value because we add new data
-      pcb2.refreshValueFor(20);
+        // Refreshing last value because we add new data
+        pcb2.refreshValueFor(20);
 
-      expect(roundDouble(pcb2.getValue(20).quote, 4), 0.0148);
+        expect(roundDouble(pcb2.getValue(20).quote, 4), 0.0148);
 
-      pcb.copyValuesFrom(pcb2);
-      // Their result in index 19 should be the same since we've copied the result.
-      expect(pcb.getValue(19).quote, pcb2.getValue(19).quote);
-    });
+        pcb.copyValuesFrom(pcb2);
+        // Their result in index 19 should be the same since we've copied the result.
+        expect(pcb.getValue(19).quote, pcb2.getValue(19).quote);
+      },
+    );
 
     test(
-        'Bollinger Percent B Indicator copyValuesFrom calculates correct result',
-        () {
-      // defining 1st indicator
-      final PercentBIndicator<MockResult> indicator1 =
-          PercentBIndicator<MockResult>(
-              CloseValueIndicator<MockResult>(MockInput(ticks)), 5);
+      'Bollinger Percent B Indicator copyValuesFrom calculates correct result',
+      () {
+        // defining 1st indicator
+        final PercentBIndicator<MockResult> indicator1 =
+            PercentBIndicator<MockResult>(
+              CloseValueIndicator<MockResult>(MockInput(ticks)),
+              5,
+            );
 
-      // Checking the values of first indicator
-      expect(indicator1.getValue(18).quote, 0.5);
-      expect(roundDouble(indicator1.getValue(19).quote, 4), 0.7673);
+        // Checking the values of first indicator
+        expect(indicator1.getValue(18).quote, 0.5);
+        expect(roundDouble(indicator1.getValue(19).quote, 4), 0.7673);
 
-      // define a new input Changing the last data
-      final List<MockTick> ticks2 = ticks.toList()
-        ..removeLast()
-        ..add(const MockOHLC(19, 170.75, 160, 172.56, 160));
+        // define a new input Changing the last data
+        final List<MockTick> ticks2 = ticks.toList()
+          ..removeLast()
+          ..add(const MockOHLC(19, 170.75, 160, 172.56, 160));
 
-      // Defining 2nd indicator with the new updated data
-      // Copying values of indicator1 into 2
-      // Refreshing last value because its candle is changed
-      final PercentBIndicator<MockResult> indicator2 =
-          PercentBIndicator<MockResult>(
-              CloseValueIndicator<MockResult>(MockInput(ticks2)), 5)
-            ..copyValuesFrom(indicator1)
-            ..refreshValueFor(19);
+        // Defining 2nd indicator with the new updated data
+        // Copying values of indicator1 into 2
+        // Refreshing last value because its candle is changed
+        final PercentBIndicator<MockResult> indicator2 =
+            PercentBIndicator<MockResult>(
+                CloseValueIndicator<MockResult>(MockInput(ticks2)),
+                5,
+              )
+              ..copyValuesFrom(indicator1)
+              ..refreshValueFor(19);
 
-      // Their result in index 18 should be the same since we've copied the result.
-      expect(indicator2.getValue(18).quote, indicator1.getValue(18).quote);
+        // Their result in index 18 should be the same since we've copied the result.
+        expect(indicator2.getValue(18).quote, indicator1.getValue(18).quote);
 
-      // Calculated result for index 19 is different because the last data is changed.
-      expect(roundDouble(indicator2.getValue(19).quote, 4), 1.0);
-    });
+        // Calculated result for index 19 is different because the last data is changed.
+        expect(roundDouble(indicator2.getValue(19).quote, 4), 1.0);
+      },
+    );
   });
 }

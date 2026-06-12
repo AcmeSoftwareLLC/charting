@@ -16,7 +16,7 @@ class DifferenceIndicator<T extends IndicatorResult> extends Indicator<T> {
 
   @override
   T getValue(int index) => createResult(
-        index: index,
-        quote: first.getValue(index).quote - second.getValue(index).quote,
-      );
+    index: index,
+    quote: first.getValue(index).quote - second.getValue(index).quote,
+  );
 }

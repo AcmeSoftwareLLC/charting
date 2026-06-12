@@ -12,14 +12,15 @@ class IchimokuSpanAIndicator<T extends IndicatorResult>
     super.input, {
     IchimokuConversionLineIndicator<T>? conversionLineIndicator,
     IchimokuBaseLineIndicator<T>? baseLineIndicator,
-  })  : conversionLineIndicator = conversionLineIndicator ??
-            IchimokuConversionLineIndicator<T>(input),
-        baseLineIndicator =
-            baseLineIndicator ?? IchimokuBaseLineIndicator<T>(input);
+  }) : conversionLineIndicator =
+           conversionLineIndicator ?? IchimokuConversionLineIndicator<T>(input),
+       baseLineIndicator =
+           baseLineIndicator ?? IchimokuBaseLineIndicator<T>(input);
 
   @override
   T calculate(int index) {
-    final double spanAQuote = (conversionLineIndicator.getValue(index).quote +
+    final double spanAQuote =
+        (conversionLineIndicator.getValue(index).quote +
             baseLineIndicator.getValue(index).quote) /
         2;
     return createResult(index: index, quote: spanAQuote);

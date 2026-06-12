@@ -15,9 +15,7 @@ class DPOIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     DPOIndicatorConfig super.config = const DPOIndicatorConfig(),
-  }) : super(
-          title: 'DPO',
-        );
+  }) : super(title: 'DPO');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -36,17 +34,17 @@ class DPOIndicatorItemState extends MAIndicatorItemState {
 
   @override
   Widget getIndicatorOptions() => Column(
+    children: <Widget>[
+      buildMATypeMenu(),
+      Row(
         children: <Widget>[
-          buildMATypeMenu(),
-          Row(
-            children: <Widget>[
-              buildPeriodField(),
-              const SizedBox(width: 10),
-              buildFieldTypeMenu(),
-            ],
-          ),
+          buildPeriodField(),
+          const SizedBox(width: 10),
+          buildFieldTypeMenu(),
         ],
-      );
+      ),
+    ],
+  );
 
   @override
   int getCurrentPeriod() =>

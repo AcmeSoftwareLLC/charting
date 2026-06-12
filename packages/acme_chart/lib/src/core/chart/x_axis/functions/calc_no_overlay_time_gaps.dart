@@ -18,8 +18,10 @@ List<DateTime> calculateNoOverlapGridTimestamps(
   // check if timestamp is not have overlap with Previous timestamp
   bool noOverlapWithPrevious(int timestamp) =>
       noOverlapGridTimestamps.isEmpty ||
-      pxBetween(noOverlapGridTimestamps.last.millisecondsSinceEpoch,
-              timestamp) >=
+      pxBetween(
+            noOverlapGridTimestamps.last.millisecondsSinceEpoch,
+            timestamp,
+          ) >=
           minDistanceBetweenTimeGridLines;
 
   for (final DateTime timestamp in gridTimestamps) {

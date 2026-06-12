@@ -16,9 +16,7 @@ class BollingerBandsIndicatorItem extends IndicatorItem {
     super.key,
     BollingerBandsIndicatorConfig super.config =
         const BollingerBandsIndicatorConfig(),
-  }) : super(
-          title: 'Bollinger Bands',
-        );
+  }) : super(title: 'Bollinger Bands');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -40,44 +38,44 @@ class BollingerBandsIndicatorItemState extends MAIndicatorItemState {
 
   @override
   Widget getIndicatorOptions() => Column(
+    children: <Widget>[
+      buildMATypeMenu(),
+      Row(
         children: <Widget>[
-          buildMATypeMenu(),
-          Row(
-            children: <Widget>[
-              buildPeriodField(),
-              const SizedBox(width: 10),
-              buildFieldTypeMenu(),
-            ],
-          ),
-          _buildSDMenu(),
+          buildPeriodField(),
+          const SizedBox(width: 10),
+          buildFieldTypeMenu(),
         ],
-      );
+      ),
+      _buildSDMenu(),
+    ],
+  );
 
   Widget _buildSDMenu() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelStandardDeviation,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _getCurrentStandardDeviation().toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _standardDeviation = double.tryParse(text);
-                } else {
-                  _standardDeviation = 2;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelStandardDeviation,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _getCurrentStandardDeviation().toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _standardDeviation = double.tryParse(text);
+            } else {
+              _standardDeviation = 2;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   double _getCurrentStandardDeviation() {
     final BollingerBandsIndicatorConfig config =

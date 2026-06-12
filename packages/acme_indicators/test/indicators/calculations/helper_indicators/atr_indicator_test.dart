@@ -44,13 +44,15 @@ void main() {
 
   group('ATR Indicator test', () {
     test(
-        'ATR Indicator should calculate the correct result from the given ticks and period.',
-        () {
-      final ATRIndicator<MockResult> atrIndicator =
-          ATRIndicator<MockResult>(MockInput(ticks));
+      'ATR Indicator should calculate the correct result from the given ticks and period.',
+      () {
+        final ATRIndicator<MockResult> atrIndicator = ATRIndicator<MockResult>(
+          MockInput(ticks),
+        );
 
-      expect(roundDouble(atrIndicator.getValue(28).quote, 2), 25.32);
-      expect(roundDouble(atrIndicator.getValue(29).quote, 2), 23.59);
-    });
+        expect(roundDouble(atrIndicator.getValue(28).quote, 2), 25.32);
+        expect(roundDouble(atrIndicator.getValue(29).quote, 2), 23.59);
+      },
+    );
   });
 }

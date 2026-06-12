@@ -11,11 +11,11 @@ class ADXHistogramIndicator<T extends IndicatorResult>
   ADXHistogramIndicator.fromIndicator(
     PositiveDIIndicator<T> super.positiveDIIndicator,
     NegativeDIIndicator<T> negativeDIIndicator,
-  )   : _differenceIndicator = DifferenceIndicator<T>(
-          positiveDIIndicator,
-          negativeDIIndicator,
-        ),
-        super.fromIndicator();
+  ) : _differenceIndicator = DifferenceIndicator<T>(
+        positiveDIIndicator,
+        negativeDIIndicator,
+      ),
+      super.fromIndicator();
 
   final DifferenceIndicator<T> _differenceIndicator;
 

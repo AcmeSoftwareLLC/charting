@@ -38,9 +38,11 @@ class ArrowPainter extends DataPainter<DataSeries<Tick>> {
       ..style = PaintingStyle.fill
       ..strokeWidth = style.thickness;
 
-    for (int i = series.visibleEntries.startIndex;
-        i < series.visibleEntries.endIndex - 1;
-        i++) {
+    for (
+      int i = series.visibleEntries.startIndex;
+      i < series.visibleEntries.endIndex - 1;
+      i++
+    ) {
       final Tick tick = series.entries![i];
       if (tick.quote.isNaN) {
         continue;

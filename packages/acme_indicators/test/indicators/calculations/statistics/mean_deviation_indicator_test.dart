@@ -27,7 +27,9 @@ void main() {
     test('MeanDevaition with period = 5', () {
       final MeanDeviationIndicator<MockResult> meanDeviation =
           MeanDeviationIndicator<MockResult>(
-              CloseValueIndicator<MockResult>(MockInput(ticks)), 5);
+            CloseValueIndicator<MockResult>(MockInput(ticks)),
+            5,
+          );
 
       expect(meanDeviation.getValue(2).quote, 2.4444444444444446);
       expect(meanDeviation.getValue(3).quote, 2.5);

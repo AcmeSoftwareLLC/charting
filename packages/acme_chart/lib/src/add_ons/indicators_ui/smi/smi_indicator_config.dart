@@ -39,10 +39,7 @@ class SMIIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? SMIIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? SMIIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory SMIIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -52,8 +49,9 @@ class SMIIndicatorConfig extends IndicatorConfig {
   static const String name = 'SMI';
 
   @override
-  Map<String, dynamic> toJson() => _$SMIIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$SMIIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period to calculate the average gain and loss.
   final int period;
@@ -84,33 +82,32 @@ class SMIIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => SMISeries(
-        indicatorInput,
-        smiOptions: SMIOptions(
-          period: period,
-          smoothingPeriod: smoothingPeriod,
-          doubleSmoothingPeriod: doubleSmoothingPeriod,
-          signalOptions: MAOptions(period: signalPeriod, type: maType),
-          lineStyle: lineStyle,
-          signalLineStyle: signalLineStyle,
-          showLastIndicator: showLastIndicator,
-          pipSize: pipSize,
-        ),
-        overboughtValue: smiOscillatorLimits.overboughtValue,
-        oversoldValue: smiOscillatorLimits.oversoldValue,
-        overboughtStyle: smiOscillatorLimits.overboughtStyle,
-        oversoldStyle: smiOscillatorLimits.oversoldStyle,
-      );
+    indicatorInput,
+    smiOptions: SMIOptions(
+      period: period,
+      smoothingPeriod: smoothingPeriod,
+      doubleSmoothingPeriod: doubleSmoothingPeriod,
+      signalOptions: MAOptions(period: signalPeriod, type: maType),
+      lineStyle: lineStyle,
+      signalLineStyle: signalLineStyle,
+      showLastIndicator: showLastIndicator,
+      pipSize: pipSize,
+    ),
+    overboughtValue: smiOscillatorLimits.overboughtValue,
+    oversoldValue: smiOscillatorLimits.oversoldValue,
+    overboughtStyle: smiOscillatorLimits.overboughtStyle,
+    oversoldStyle: smiOscillatorLimits.oversoldStyle,
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      SMIIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => SMIIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   SMIIndicatorConfig copyWith({
@@ -127,21 +124,19 @@ class SMIIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      SMIIndicatorConfig(
-        period: period ?? this.period,
-        smoothingPeriod: smoothingPeriod ?? this.smoothingPeriod,
-        doubleSmoothingPeriod:
-            doubleSmoothingPeriod ?? this.doubleSmoothingPeriod,
-        signalPeriod: signalPeriod ?? this.signalPeriod,
-        maType: maType ?? this.maType,
-        smiOscillatorLimits: smiOscillatorLimits ?? this.smiOscillatorLimits,
-        showZones: showZones ?? this.showZones,
-        lineStyle: lineStyle ?? this.lineStyle,
-        signalLineStyle: signalLineStyle ?? this.signalLineStyle,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => SMIIndicatorConfig(
+    period: period ?? this.period,
+    smoothingPeriod: smoothingPeriod ?? this.smoothingPeriod,
+    doubleSmoothingPeriod: doubleSmoothingPeriod ?? this.doubleSmoothingPeriod,
+    signalPeriod: signalPeriod ?? this.signalPeriod,
+    maType: maType ?? this.maType,
+    smiOscillatorLimits: smiOscillatorLimits ?? this.smiOscillatorLimits,
+    showZones: showZones ?? this.showZones,
+    lineStyle: lineStyle ?? this.lineStyle,
+    signalLineStyle: signalLineStyle ?? this.signalLineStyle,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

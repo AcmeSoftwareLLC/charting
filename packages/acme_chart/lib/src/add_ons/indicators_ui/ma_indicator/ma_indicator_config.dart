@@ -28,15 +28,13 @@ class MAIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  })  : period = period ?? 50,
-        movingAverageType = movingAverageType ?? MovingAverageType.simple,
-        fieldType = fieldType ?? 'close',
-        offset = offset ?? 0,
-        lineStyle =
-            lineStyle ?? const LineStyle(color: Colors.yellow, thickness: 0.6),
-        super(
-          title: title ?? MAIndicatorConfig.name,
-        );
+  }) : period = period ?? 50,
+       movingAverageType = movingAverageType ?? MovingAverageType.simple,
+       fieldType = fieldType ?? 'close',
+       offset = offset ?? 0,
+       lineStyle =
+           lineStyle ?? const LineStyle(color: Colors.yellow, thickness: 0.6),
+       super(title: title ?? MAIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory MAIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -46,8 +44,9 @@ class MAIndicatorConfig extends IndicatorConfig {
   static const String name = 'moving_average';
 
   @override
-  Map<String, dynamic> toJson() => _$MAIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$MAIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// Moving Average period
   final int period;
@@ -71,31 +70,31 @@ class MAIndicatorConfig extends IndicatorConfig {
   String get title => 'Moving Average';
 
   @override
-  String get configSummary => '$period, ${fieldType[0].toUpperCase()}, '
+  String get configSummary =>
+      '$period, ${fieldType[0].toUpperCase()}, '
       '${movingAverageType.shortTitle}, $offset';
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => MASeries.fromIndicator(
-        IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
-        MAOptions(
-          period: period,
-          type: movingAverageType,
-          showLastIndicator: showLastIndicator,
-        ),
-        offset: offset,
-        style: lineStyle,
-      );
+    IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
+    MAOptions(
+      period: period,
+      type: movingAverageType,
+      showLastIndicator: showLastIndicator,
+    ),
+    offset: offset,
+    style: lineStyle,
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      MAIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => MAIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   MAIndicatorConfig copyWith({
@@ -109,17 +108,16 @@ class MAIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      MAIndicatorConfig(
-        period: period ?? this.period,
-        movingAverageType: movingAverageType ?? this.movingAverageType,
-        fieldType: fieldType ?? this.fieldType,
-        lineStyle: lineStyle ?? this.lineStyle,
-        offset: offset ?? this.offset,
-        isOverlay: isOverlay ?? this.isOverlay,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => MAIndicatorConfig(
+    period: period ?? this.period,
+    movingAverageType: movingAverageType ?? this.movingAverageType,
+    fieldType: fieldType ?? this.fieldType,
+    lineStyle: lineStyle ?? this.lineStyle,
+    offset: offset ?? this.offset,
+    isOverlay: isOverlay ?? this.isOverlay,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

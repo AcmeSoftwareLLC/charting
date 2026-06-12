@@ -31,20 +31,21 @@ class RayLineDrawing extends Drawing {
     this.exceedStart = false,
     this.exceedEnd = false,
   }) : _lineDrawing = LineDrawing(
-          drawingPart: drawingPart,
-          startEdgePoint: startEdgePoint,
-          endEdgePoint: endEdgePoint,
-          exceedStart: exceedStart,
-          exceedEnd: exceedEnd,
-        );
+         drawingPart: drawingPart,
+         startEdgePoint: startEdgePoint,
+         endEdgePoint: endEdgePoint,
+         exceedStart: exceedStart,
+         exceedEnd: exceedEnd,
+       );
 
   /// Initializes from JSON.
   factory RayLineDrawing.fromJson(Map<String, dynamic> json) =>
       _$RayLineDrawingFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$RayLineDrawingToJson(this)
-    ..putIfAbsent(Drawing.classNameKey, () => nameKey);
+  Map<String, dynamic> toJson() =>
+      _$RayLineDrawingToJson(this)
+        ..putIfAbsent(Drawing.classNameKey, () => nameKey);
 
   /// Drawing part.
   final DrawingParts drawingPart;
@@ -73,14 +74,13 @@ class RayLineDrawing extends Drawing {
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
-  }) =>
-      _lineDrawing.needsRepaint(
-        leftEpoch,
-        rightEpoch,
-        draggableStartPoint,
-        draggableMiddlePoint: draggableMiddlePoint,
-        draggableEndPoint: draggableEndPoint,
-      );
+  }) => _lineDrawing.needsRepaint(
+    leftEpoch,
+    rightEpoch,
+    draggableStartPoint,
+    draggableMiddlePoint: draggableMiddlePoint,
+    draggableEndPoint: draggableEndPoint,
+  );
 
   /// Paint the line
   @override
@@ -96,7 +96,7 @@ class RayLineDrawing extends Drawing {
     DrawingData drawingData,
     DataSeries<Tick> series,
     Point Function(EdgePoint edgePoint, DraggableEdgePoint draggableEdgePoint)
-        updatePositionCallback,
+    updatePositionCallback,
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,

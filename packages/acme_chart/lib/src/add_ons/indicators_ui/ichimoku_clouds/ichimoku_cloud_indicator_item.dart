@@ -13,10 +13,9 @@ class IchimokuCloudIndicatorItem extends IndicatorItem {
     required super.updateIndicator,
     required super.deleteIndicator,
     super.key,
-    IchimokuCloudIndicatorConfig super.config = const IchimokuCloudIndicatorConfig(),
-  }) : super(
-          title: 'Ichimoku',
-        );
+    IchimokuCloudIndicatorConfig super.config =
+        const IchimokuCloudIndicatorConfig(),
+  }) : super(title: 'Ichimoku');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -42,121 +41,121 @@ class IchimokuCloudIndicatorItemState
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          _buildBaseLinePeriodField(),
-          _buildConversionLinePeriodField(),
-          _buildSpanBPeriodField(),
-          _buildOffsetField(),
-        ],
-      );
+    children: <Widget>[
+      _buildBaseLinePeriodField(),
+      _buildConversionLinePeriodField(),
+      _buildSpanBPeriodField(),
+      _buildOffsetField(),
+    ],
+  );
 
   Widget _buildConversionLinePeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelConversionLinePeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentConversionLinePeriod.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _conversionLinePeriod = int.tryParse(text);
-                } else {
-                  _conversionLinePeriod = 9;
-                }
-                setState(() {
-                  updateIndicator();
-                });
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelConversionLinePeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentConversionLinePeriod.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _conversionLinePeriod = int.tryParse(text);
+            } else {
+              _conversionLinePeriod = 9;
+            }
+            setState(() {
+              updateIndicator();
+            });
+          },
+        ),
+      ),
+    ],
+  );
 
   Widget _buildBaseLinePeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelBaseLinePeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentBaseLinePeriod.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _baseLinePeriod = int.tryParse(text);
-                } else {
-                  _baseLinePeriod = 26;
-                }
-                setState(() {
-                  updateIndicator();
-                });
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelBaseLinePeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentBaseLinePeriod.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _baseLinePeriod = int.tryParse(text);
+            } else {
+              _baseLinePeriod = 26;
+            }
+            setState(() {
+              updateIndicator();
+            });
+          },
+        ),
+      ),
+    ],
+  );
 
   Widget _buildSpanBPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelSpanBPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentSpanBPeriod.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _spanBPeriod = int.tryParse(text);
-                } else {
-                  _spanBPeriod = 26;
-                }
-                setState(() {
-                  updateIndicator();
-                });
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelSpanBPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentSpanBPeriod.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _spanBPeriod = int.tryParse(text);
+            } else {
+              _spanBPeriod = 26;
+            }
+            setState(() {
+              updateIndicator();
+            });
+          },
+        ),
+      ),
+    ],
+  );
 
   Widget _buildOffsetField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelLaggingSpanOffset,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Slider(
-              value: _currentLaggingSpanOffset.abs().toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  _laggingSpanOffset = value.toInt() * -1;
-                  updateIndicator();
-                });
-              },
-              divisions: 100,
-              max: 100,
-              label: '${_currentLaggingSpanOffset.abs()}',
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelLaggingSpanOffset,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Expanded(
+        child: Slider(
+          value: _currentLaggingSpanOffset.abs().toDouble(),
+          onChanged: (double value) {
+            setState(() {
+              _laggingSpanOffset = value.toInt() * -1;
+              updateIndicator();
+            });
+          },
+          divisions: 100,
+          max: 100,
+          label: '${_currentLaggingSpanOffset.abs()}',
+        ),
+      ),
+    ],
+  );
 
   // TODO(Ramin): Add generic type to avoid casting.
   int get _currentBaseLinePeriod =>

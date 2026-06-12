@@ -44,13 +44,15 @@ void main() {
 
   group('DX Indicator test.', () {
     test(
-        'DX Indicator should calculate the correct results from the given ticks',
-        () {
-      final DXIndicator<MockResult> dxIndicator =
-          DXIndicator<MockResult>(MockInput(ticks));
+      'DX Indicator should calculate the correct results from the given ticks',
+      () {
+        final DXIndicator<MockResult> dxIndicator = DXIndicator<MockResult>(
+          MockInput(ticks),
+        );
 
-      expect(roundDouble(dxIndicator.getValue(14).quote, 2), 8.99);
-      expect(roundDouble(dxIndicator.getValue(29).quote, 2), 28.13);
-    });
+        expect(roundDouble(dxIndicator.getValue(14).quote, 2), 8.99);
+        expect(roundDouble(dxIndicator.getValue(29).quote, 2), 28.13);
+      },
+    );
   });
 }

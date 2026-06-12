@@ -27,9 +27,9 @@ class SampleMultiSeries extends Series {
   /// Initializes a sample class just to examine how a custom indicator with
   /// multiple data-series can be implemented in this structure.
   SampleMultiSeries(IndicatorInput indicatorInput, {String? id})
-      : series1 = MASeries(indicatorInput, const MAOptions(period: 10)),
-        series2 = MASeries(indicatorInput, const MAOptions()),
-        super(id ?? 'SampleMultiSeries');
+    : series1 = MASeries(indicatorInput, const MAOptions(period: 10)),
+      series2 = MASeries(indicatorInput, const MAOptions()),
+      super(id ?? 'SampleMultiSeries');
 
   /// Series 1.
   final MASeries series1;
@@ -45,9 +45,9 @@ class SampleMultiSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        min(series1.minValue, series2.minValue),
-        max(series1.maxValue, series2.maxValue),
-      ];
+    min(series1.minValue, series2.minValue),
+    max(series1.maxValue, series2.maxValue),
+  ];
 
   @override
   SeriesPainter<SampleMultiSeries> createPainter() => SampleMultiPainter(this);

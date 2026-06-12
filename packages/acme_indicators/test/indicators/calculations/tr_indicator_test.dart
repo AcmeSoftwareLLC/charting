@@ -20,17 +20,19 @@ void main() {
 
   group('TR Indicator test', () {
     test(
-        'TR Indicator should calculate the currect result from the given ticks.',
-        () {
-      final TRIndicator<MockResult> trIndicator =
-          TRIndicator<MockResult>(MockInput(ticks));
+      'TR Indicator should calculate the currect result from the given ticks.',
+      () {
+        final TRIndicator<MockResult> trIndicator = TRIndicator<MockResult>(
+          MockInput(ticks),
+        );
 
-      expect(roundDouble(trIndicator.getValue(0).quote, 3), 0.011);
-      expect(roundDouble(trIndicator.getValue(1).quote, 3), 0.014);
-      expect(roundDouble(trIndicator.getValue(2).quote, 3), 0.014);
-      expect(roundDouble(trIndicator.getValue(3).quote, 3), 0.012);
-      expect(roundDouble(trIndicator.getValue(4).quote, 3), 0.014);
-      expect(roundDouble(trIndicator.getValue(5).quote, 3), 0.021);
-    });
+        expect(roundDouble(trIndicator.getValue(0).quote, 3), 0.011);
+        expect(roundDouble(trIndicator.getValue(1).quote, 3), 0.014);
+        expect(roundDouble(trIndicator.getValue(2).quote, 3), 0.014);
+        expect(roundDouble(trIndicator.getValue(3).quote, 3), 0.012);
+        expect(roundDouble(trIndicator.getValue(4).quote, 3), 0.014);
+        expect(roundDouble(trIndicator.getValue(5).quote, 3), 0.021);
+      },
+    );
   });
 }

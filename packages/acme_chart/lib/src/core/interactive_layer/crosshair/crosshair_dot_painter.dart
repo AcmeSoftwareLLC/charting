@@ -25,7 +25,6 @@ class CrosshairDotPainter extends CustomPainter {
           ..color = dotBorderColor
           ..style = PaintingStyle.fill,
       )
-
       // Draw the inner circle (fill)
       ..drawCircle(
         const Offset(0, 0),

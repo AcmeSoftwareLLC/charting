@@ -8,19 +8,15 @@ import '../adx/positive_di_indicator.dart';
 /// Directional movement line Indicator.
 class DXIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes a Directional movement line Indicator from given [input].
-  DXIndicator(
-    IndicatorDataInput input, {
-    int period = 14,
-  }) : this.fromIndicator(
-          PositiveDIIndicator<T>(input, period: period),
-          NegativeDIIndicator<T>(input, period: period),
-        );
+  DXIndicator(IndicatorDataInput input, {int period = 14})
+    : this.fromIndicator(
+        PositiveDIIndicator<T>(input, period: period),
+        NegativeDIIndicator<T>(input, period: period),
+      );
 
   /// Initializes a Directional movement line Indicator from given [PositiveDIIndicator] and [NegativeDIIndicator].
-  DXIndicator.fromIndicator(
-    this.positiveDIIndicator,
-    this.negativeDIIndicator,
-  ) : super.fromIndicator(positiveDIIndicator);
+  DXIndicator.fromIndicator(this.positiveDIIndicator, this.negativeDIIndicator)
+    : super.fromIndicator(positiveDIIndicator);
 
   /// The positive ADX DI indicator to calculate DXIndicator from
   final PositiveDIIndicator<T> positiveDIIndicator;

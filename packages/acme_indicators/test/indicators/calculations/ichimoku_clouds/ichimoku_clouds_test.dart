@@ -71,108 +71,127 @@ void main() {
         MockOHLC(57, 79.386, 79.413, 79.413, 79.385),
       ];
 
-      conversionLineIndicator =
-          IchimokuConversionLineIndicator<MockResult>(MockInput(ticks));
-      baseLineIndicator =
-          IchimokuBaseLineIndicator<MockResult>(MockInput(ticks));
+      conversionLineIndicator = IchimokuConversionLineIndicator<MockResult>(
+        MockInput(ticks),
+      );
+      baseLineIndicator = IchimokuBaseLineIndicator<MockResult>(
+        MockInput(ticks),
+      );
     });
 
     test(
-        "Ichimoku Lagging Span calculates the previous [period] of the given candle's closing value for the selected candle.",
-        () {
-      final IchimokuLaggingSpanIndicator<MockResult> laggingSpanIndicator =
-          IchimokuLaggingSpanIndicator<MockResult>(MockInput(ticks));
+      "Ichimoku Lagging Span calculates the previous [period] of the given candle's closing value for the selected candle.",
+      () {
+        final IchimokuLaggingSpanIndicator<MockResult> laggingSpanIndicator =
+            IchimokuLaggingSpanIndicator<MockResult>(MockInput(ticks));
 
-      expect(laggingSpanIndicator.getValue(3).quote, 79.529);
-      expect(laggingSpanIndicator.getValue(4).quote, 79.532);
-      expect(laggingSpanIndicator.getValue(5).quote, 79.525);
-      expect(laggingSpanIndicator.getValue(6).quote, 79.514);
-    });
-
-    test(
-        "Ichimoku Conversion Line calculates the previous [period]s(9 by default) average of the given candle's highest high and lowest low.",
-        () {
-      expect(conversionLineIndicator.getValue(26).quote, 79.5525);
-      expect(conversionLineIndicator.getValue(27).quote, 79.553);
-      expect(conversionLineIndicator.getValue(28).quote, 79.5575);
-      expect(conversionLineIndicator.getValue(29).quote, 79.561);
-      expect(
-          roundDouble(conversionLineIndicator.getValue(30).quote, 4), 79.5665);
-    });
+        expect(laggingSpanIndicator.getValue(3).quote, 79.529);
+        expect(laggingSpanIndicator.getValue(4).quote, 79.532);
+        expect(laggingSpanIndicator.getValue(5).quote, 79.525);
+        expect(laggingSpanIndicator.getValue(6).quote, 79.514);
+      },
+    );
 
     test(
-        "Ichimoku Base Line calculates the previous [period]s(26 by default) average of the given candle's highest high and lowest low.",
-        () {
-      expect(baseLineIndicator.getValue(26).quote, 79.535);
-      expect(baseLineIndicator.getValue(27).quote, 79.5355);
-      expect(roundDouble(baseLineIndicator.getValue(28).quote, 2), 79.54);
-      expect(baseLineIndicator.getValue(29).quote, 79.5435);
-      expect(baseLineIndicator.getValue(30).quote, 79.5475);
-    });
+      "Ichimoku Conversion Line calculates the previous [period]s(9 by default) average of the given candle's highest high and lowest low.",
+      () {
+        expect(conversionLineIndicator.getValue(26).quote, 79.5525);
+        expect(conversionLineIndicator.getValue(27).quote, 79.553);
+        expect(conversionLineIndicator.getValue(28).quote, 79.5575);
+        expect(conversionLineIndicator.getValue(29).quote, 79.561);
+        expect(
+          roundDouble(conversionLineIndicator.getValue(30).quote, 4),
+          79.5665,
+        );
+      },
+    );
 
     test(
-        "Ichimoku Span A calculates the average of the given candle's Conversion Line and Base Line.",
-        () {
-      final IchimokuSpanAIndicator<MockResult> spanAIndicator =
-          IchimokuSpanAIndicator<MockResult>(MockInput(ticks),
+      "Ichimoku Base Line calculates the previous [period]s(26 by default) average of the given candle's highest high and lowest low.",
+      () {
+        expect(baseLineIndicator.getValue(26).quote, 79.535);
+        expect(baseLineIndicator.getValue(27).quote, 79.5355);
+        expect(roundDouble(baseLineIndicator.getValue(28).quote, 2), 79.54);
+        expect(baseLineIndicator.getValue(29).quote, 79.5435);
+        expect(baseLineIndicator.getValue(30).quote, 79.5475);
+      },
+    );
+
+    test(
+      "Ichimoku Span A calculates the average of the given candle's Conversion Line and Base Line.",
+      () {
+        final IchimokuSpanAIndicator<MockResult> spanAIndicator =
+            IchimokuSpanAIndicator<MockResult>(
+              MockInput(ticks),
               conversionLineIndicator: conversionLineIndicator,
-              baseLineIndicator: baseLineIndicator);
-      expect(roundDouble(spanAIndicator.getValue(26).quote, 4), 79.5437);
-      expect(roundDouble(spanAIndicator.getValue(27).quote, 4), 79.5443);
-      expect(roundDouble(spanAIndicator.getValue(28).quote, 4), 79.5487);
-      expect(roundDouble(spanAIndicator.getValue(29).quote, 4), 79.5523);
-      expect(roundDouble(spanAIndicator.getValue(30).quote, 3), 79.557);
-    });
+              baseLineIndicator: baseLineIndicator,
+            );
+        expect(roundDouble(spanAIndicator.getValue(26).quote, 4), 79.5437);
+        expect(roundDouble(spanAIndicator.getValue(27).quote, 4), 79.5443);
+        expect(roundDouble(spanAIndicator.getValue(28).quote, 4), 79.5487);
+        expect(roundDouble(spanAIndicator.getValue(29).quote, 4), 79.5523);
+        expect(roundDouble(spanAIndicator.getValue(30).quote, 3), 79.557);
+      },
+    );
 
     test(
-        'Ichimoku Span A copyValuesFrom and refreshValueFor should works fine.',
-        () {
-      final IchimokuSpanAIndicator<MockResult> spanAIndicator1 =
-          IchimokuSpanAIndicator<MockResult>(MockInput(ticks),
+      'Ichimoku Span A copyValuesFrom and refreshValueFor should works fine.',
+      () {
+        final IchimokuSpanAIndicator<MockResult> spanAIndicator1 =
+            IchimokuSpanAIndicator<MockResult>(
+              MockInput(ticks),
               conversionLineIndicator: conversionLineIndicator,
-              baseLineIndicator: baseLineIndicator);
+              baseLineIndicator: baseLineIndicator,
+            );
 
-      // define a new input Changing the last data
-      final List<MockTick> ticks2 = ticks.toList()
-        ..removeLast()
-        ..add(const MockOHLC(57, 78.386, 77.3, 78.2, 78.285));
+        // define a new input Changing the last data
+        final List<MockTick> ticks2 = ticks.toList()
+          ..removeLast()
+          ..add(const MockOHLC(57, 78.386, 77.3, 78.2, 78.285));
 
-      final IchimokuConversionLineIndicator<MockResult>
-          conversionLineIndicator2 =
-          IchimokuConversionLineIndicator<MockResult>(MockInput(ticks2));
-      final IchimokuBaseLineIndicator<MockResult> baseLineIndicator2 =
-          IchimokuBaseLineIndicator<MockResult>(MockInput(ticks2));
+        final IchimokuConversionLineIndicator<MockResult>
+        conversionLineIndicator2 = IchimokuConversionLineIndicator<MockResult>(
+          MockInput(ticks2),
+        );
+        final IchimokuBaseLineIndicator<MockResult> baseLineIndicator2 =
+            IchimokuBaseLineIndicator<MockResult>(MockInput(ticks2));
 
-      // Defining 2nd indicator with the new updated data
-      // Copying values of indicator 1 into 2
-      // Refreshing last value because its candle is changed
-      final IchimokuSpanAIndicator<MockResult> spanAIndicator2 =
-          IchimokuSpanAIndicator<MockResult>(MockInput(ticks2),
-              conversionLineIndicator: conversionLineIndicator2,
-              baseLineIndicator: baseLineIndicator2)
-            ..copyValuesFrom(spanAIndicator1)
-            ..refreshValueFor(57);
+        // Defining 2nd indicator with the new updated data
+        // Copying values of indicator 1 into 2
+        // Refreshing last value because its candle is changed
+        final IchimokuSpanAIndicator<MockResult> spanAIndicator2 =
+            IchimokuSpanAIndicator<MockResult>(
+                MockInput(ticks2),
+                conversionLineIndicator: conversionLineIndicator2,
+                baseLineIndicator: baseLineIndicator2,
+              )
+              ..copyValuesFrom(spanAIndicator1)
+              ..refreshValueFor(57);
 
-      // Their result in index 56 should be the same since we've copied the result.
-      expect(spanAIndicator2.getValue(56).quote,
-          spanAIndicator1.getValue(56).quote);
+        // Their result in index 56 should be the same since we've copied the result.
+        expect(
+          spanAIndicator2.getValue(56).quote,
+          spanAIndicator1.getValue(56).quote,
+        );
 
-      // Calculated result for index 57 is different because the last data is changed.
-      expect(roundDouble(spanAIndicator2.getValue(57).quote, 3), 78.906);
-      expect(roundDouble(spanAIndicator1.getValue(57).quote, 3), 79.456);
-    });
+        // Calculated result for index 57 is different because the last data is changed.
+        expect(roundDouble(spanAIndicator2.getValue(57).quote, 3), 78.906);
+        expect(roundDouble(spanAIndicator1.getValue(57).quote, 3), 79.456);
+      },
+    );
 
     test(
-        "Ichimoku Span B calculates the previous [period]s(52 by default) average of the given candle's highest high and lowest low.",
-        () {
-      final IchimokuSpanBIndicator<MockResult> spanAIndicator =
-          IchimokuSpanBIndicator<MockResult>(MockInput(ticks));
+      "Ichimoku Span B calculates the previous [period]s(52 by default) average of the given candle's highest high and lowest low.",
+      () {
+        final IchimokuSpanBIndicator<MockResult> spanAIndicator =
+            IchimokuSpanBIndicator<MockResult>(MockInput(ticks));
 
-      expect(spanAIndicator.getValue(52).quote, 79.506);
-      expect(spanAIndicator.getValue(53).quote, 79.506);
-      expect(spanAIndicator.getValue(54).quote, 79.504);
-      expect(spanAIndicator.getValue(55).quote, 79.4985);
-      expect(spanAIndicator.getValue(56).quote, 79.4905);
-    });
+        expect(spanAIndicator.getValue(52).quote, 79.506);
+        expect(spanAIndicator.getValue(53).quote, 79.506);
+        expect(spanAIndicator.getValue(54).quote, 79.504);
+        expect(spanAIndicator.getValue(55).quote, 79.4985);
+        expect(spanAIndicator.getValue(56).quote, 79.4905);
+      },
+    );
   });
 }

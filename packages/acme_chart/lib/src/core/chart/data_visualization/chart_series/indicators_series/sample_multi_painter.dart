@@ -30,10 +30,12 @@ class SampleMultiPainter extends SeriesPainter<SampleMultiSeries> {
     required AnimationInfo animationInfo,
   }) {
     // Painting red lines in-between two lines of series showing an area.
-    for (int i = 0;
-        i < series.series1.visibleEntries.length &&
-            i < series.series2.visibleEntries.length;
-        i++) {
+    for (
+      int i = 0;
+      i < series.series1.visibleEntries.length &&
+          i < series.series2.visibleEntries.length;
+      i++
+    ) {
       final Tick s1Entry = series.series1.visibleEntries.entries[i];
       final Tick s2Entry = series.series2.visibleEntries.entries[i];
       canvas.drawLine(

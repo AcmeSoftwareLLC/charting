@@ -93,8 +93,9 @@ class MarkerGroup implements Comparable<MarkerGroup> {
   @override
   int compareTo(covariant MarkerGroup other) {
     final int epoch = markers.isNotEmpty ? markers.first.epoch : 0;
-    final int otherEpoch =
-        other.markers.isNotEmpty ? other.markers.first.epoch : 0;
+    final int otherEpoch = other.markers.isNotEmpty
+        ? other.markers.first.epoch
+        : 0;
     return epoch.compareTo(otherEpoch);
   }
 }

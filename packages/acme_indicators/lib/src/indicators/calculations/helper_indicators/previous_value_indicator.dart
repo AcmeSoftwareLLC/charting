@@ -8,11 +8,9 @@ import 'package:acme_indicators/src/models/models.dart';
 class PreviousValueIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes A [PreviousValueIndicator].
-  PreviousValueIndicator.fromIndicator(
-    this.indicator, {
-    this.period = 1,
-  })  : assert(period > 0),
-        super.fromIndicator(indicator);
+  PreviousValueIndicator.fromIndicator(this.indicator, {this.period = 1})
+    : assert(period > 0),
+      super.fromIndicator(indicator);
 
   /// The [indicator] to calculate the previous value of.
   final Indicator<T> indicator;

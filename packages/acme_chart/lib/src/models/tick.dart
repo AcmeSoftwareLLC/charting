@@ -14,10 +14,7 @@ import 'package:meta/meta.dart';
 @immutable
 class Tick with EquatableMixin implements IndicatorOHLC, IndicatorResult {
   /// Initializes
-  const Tick({
-    required this.epoch,
-    required this.quote,
-  });
+  const Tick({required this.epoch, required this.quote});
 
   /// Epoch of the tick
   final int epoch;

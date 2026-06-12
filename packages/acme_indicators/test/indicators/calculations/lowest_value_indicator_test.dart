@@ -28,9 +28,9 @@ void main() {
     test('LowestValueIndicator calculates the correct results', () {
       final LowestValueIndicator<MockResult> indicator =
           LowestValueIndicator<MockResult>(
-        CloseValueIndicator<MockResult>(MockInput(ticks)),
-        10,
-      );
+            CloseValueIndicator<MockResult>(MockInput(ticks)),
+            10,
+          );
 
       expect(indicator.getValue(9).quote, 61.37);
       expect(indicator.getValue(10).quote, 56.37);

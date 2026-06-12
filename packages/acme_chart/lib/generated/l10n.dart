@@ -18,8 +18,10 @@ class ChartLocalization {
   static ChartLocalization? _current;
 
   static ChartLocalization get current {
-    assert(_current != null,
-        'No instance of ChartLocalization was loaded. Try to initialize the ChartLocalization delegate before accessing ChartLocalization.current.');
+    assert(
+      _current != null,
+      'No instance of ChartLocalization was loaded. Try to initialize the ChartLocalization delegate before accessing ChartLocalization.current.',
+    );
     return _current!;
   }
 
@@ -41,8 +43,10 @@ class ChartLocalization {
 
   static ChartLocalization of(BuildContext context) {
     final instance = ChartLocalization.maybeOf(context);
-    assert(instance != null,
-        'No instance of ChartLocalization present in the widget tree. Did you add ChartLocalization.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of ChartLocalization present in the widget tree. Did you add ChartLocalization.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -62,12 +66,7 @@ class ChartLocalization {
 
   /// `Shading`
   String get labelShading {
-    return Intl.message(
-      'Shading',
-      name: 'labelShading',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Shading', name: 'labelShading', desc: '', args: []);
   }
 
   /// `Histogram`
@@ -82,32 +81,17 @@ class ChartLocalization {
 
   /// `Series`
   String get labelSeries {
-    return Intl.message(
-      'Series',
-      name: 'labelSeries',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Series', name: 'labelSeries', desc: '', args: []);
   }
 
   /// `Field`
   String get labelField {
-    return Intl.message(
-      'Field',
-      name: 'labelField',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Field', name: 'labelField', desc: '', args: []);
   }
 
   /// `Period`
   String get labelPeriod {
-    return Intl.message(
-      'Period',
-      name: 'labelPeriod',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Period', name: 'labelPeriod', desc: '', args: []);
   }
 
   /// `Smoothing Period`
@@ -202,12 +186,7 @@ class ChartLocalization {
 
   /// `Offset`
   String get labelOffset {
-    return Intl.message(
-      'Offset',
-      name: 'labelOffset',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Offset', name: 'labelOffset', desc: '', args: []);
   }
 
   /// `Jaw Offset`
@@ -312,32 +291,17 @@ class ChartLocalization {
 
   /// `Max AF`
   String get labelMaxAF {
-    return Intl.message(
-      'Max AF',
-      name: 'labelMaxAF',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Max AF', name: 'labelMaxAF', desc: '', args: []);
   }
 
   /// `Min AF`
   String get labelMinAF {
-    return Intl.message(
-      'Min AF',
-      name: 'labelMinAF',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Min AF', name: 'labelMinAF', desc: '', args: []);
   }
 
   /// `Shift`
   String get labelShift {
-    return Intl.message(
-      'Shift',
-      name: 'labelShift',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Shift', name: 'labelShift', desc: '', args: []);
   }
 
   /// `Show Zones`
@@ -382,12 +346,7 @@ class ChartLocalization {
 
   /// `Type`
   String get labelType {
-    return Intl.message(
-      'Type',
-      name: 'labelType',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Type', name: 'labelType', desc: '', args: []);
   }
 
   /// `Shift Type`
@@ -402,12 +361,7 @@ class ChartLocalization {
 
   /// `Distance`
   String get labelDistance {
-    return Intl.message(
-      'Distance',
-      name: 'labelDistance',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Distance', name: 'labelDistance', desc: '', args: []);
   }
 
   /// `No results for "{text}"`
@@ -452,12 +406,7 @@ class ChartLocalization {
 
   /// `Is Smooth`
   String get labelIsSmooth {
-    return Intl.message(
-      'Is Smooth',
-      name: 'labelIsSmooth',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Is Smooth', name: 'labelIsSmooth', desc: '', args: []);
   }
 
   /// `Failed to load indicators.`
@@ -492,12 +441,7 @@ class ChartLocalization {
 
   /// `Color`
   String get labelColor {
-    return Intl.message(
-      'Color',
-      name: 'labelColor',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Color', name: 'labelColor', desc: '', args: []);
   }
 
   /// `Fill Color`

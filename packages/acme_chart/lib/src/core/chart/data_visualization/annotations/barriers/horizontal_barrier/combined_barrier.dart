@@ -24,20 +24,20 @@ class CombinedBarrier extends HorizontalBarrier {
     HorizontalBarrierStyle? horizontalBarrierStyle,
     VerticalBarrierStyle? verticalBarrierStyle,
     HorizontalBarrierVisibility visibility = HorizontalBarrierVisibility.normal,
-  })  : verticalBarrier = VerticalBarrier.onTick(
-          tick,
-          title: title,
-          longLine: verticalLongLine,
-          style: verticalBarrierStyle,
-        ),
-        super(
-          tick.quote,
-          epoch: tick.epoch,
-          id: id,
-          longLine: horizontalLongLine,
-          style: horizontalBarrierStyle,
-          visibility: visibility,
-        );
+  }) : verticalBarrier = VerticalBarrier.onTick(
+         tick,
+         title: title,
+         longLine: verticalLongLine,
+         style: verticalBarrierStyle,
+       ),
+       super(
+         tick.quote,
+         epoch: tick.epoch,
+         id: id,
+         longLine: horizontalLongLine,
+         style: horizontalBarrierStyle,
+         visibility: visibility,
+       );
 
   /// For vertical barrier.
   final VerticalBarrier verticalBarrier;

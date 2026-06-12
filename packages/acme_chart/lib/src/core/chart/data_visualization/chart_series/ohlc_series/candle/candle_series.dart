@@ -21,11 +21,11 @@ class CandleSeries extends OHLCTypeSeries {
     CandleStyle? style,
     HorizontalBarrierStyle? lastTickIndicatorStyle,
   }) : super(
-          entries,
-          id ?? 'CandleSeries',
-          style: style,
-          lastTickIndicatorStyle: lastTickIndicatorStyle,
-        );
+         entries,
+         id ?? 'CandleSeries',
+         style: style,
+         lastTickIndicatorStyle: lastTickIndicatorStyle,
+       );
 
   @override
   SeriesPainter<DataSeries<Candle>> createPainter() => CandlePainter(this);

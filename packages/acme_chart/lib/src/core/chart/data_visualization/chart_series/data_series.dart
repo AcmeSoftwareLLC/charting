@@ -122,7 +122,8 @@ abstract class DataSeries<T extends Tick> extends Series {
     );
 
     // Only recalculate min/max if visible entries have changed.
-    _needsMinMaxUpdate = newVisibleEntries.isEmpty ||
+    _needsMinMaxUpdate =
+        newVisibleEntries.isEmpty ||
         _visibleEntries.isEmpty ||
         newVisibleEntries.first != _visibleEntries.first ||
         newVisibleEntries.last != _visibleEntries.last;
@@ -134,12 +135,12 @@ abstract class DataSeries<T extends Tick> extends Series {
   @protected
   VisibleEntries<T> getVisibleEntries(int startIndex, int endIndex) =>
       entries == null || startIndex == -1 || endIndex == -1
-          ? VisibleEntries<T>.empty()
-          : VisibleEntries<T>(
-              entries!.sublist(startIndex, endIndex),
-              startIndex,
-              endIndex,
-            );
+      ? VisibleEntries<T>.empty()
+      : VisibleEntries<T>(
+          entries!.sublist(startIndex, endIndex),
+          startIndex,
+          endIndex,
+        );
 
   /// Minimum value in [t].
   ///
@@ -190,8 +191,8 @@ abstract class DataSeries<T extends Tick> extends Series {
     final int index = closest <= leftEpoch
         ? closest
         : closest - 1 < 0
-            ? closest
-            : closest - 1;
+        ? closest
+        : closest - 1;
     return index - 1 < 0 ? index : index - 1;
   }
 

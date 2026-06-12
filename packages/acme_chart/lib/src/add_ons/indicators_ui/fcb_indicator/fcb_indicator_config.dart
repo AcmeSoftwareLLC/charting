@@ -27,9 +27,7 @@ class FractalChaosBandIndicatorConfig extends IndicatorConfig {
     String? title,
     super.number,
     super.pipSize,
-  }) : super(
-          title: title ?? FractalChaosBandIndicatorConfig.name,
-        );
+  }) : super(title: title ?? FractalChaosBandIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory FractalChaosBandIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -55,19 +53,19 @@ class FractalChaosBandIndicatorConfig extends IndicatorConfig {
   static const String name = 'fcb';
 
   @override
-  Map<String, dynamic> toJson() => _$FractalChaosBandIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$FractalChaosBandIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      FractalChaosBandIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => FractalChaosBandIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   FractalChaosBandIndicatorConfig copyWith({
@@ -79,15 +77,14 @@ class FractalChaosBandIndicatorConfig extends IndicatorConfig {
     String? title,
     int? number,
     int? pipSize,
-  }) =>
-      FractalChaosBandIndicatorConfig(
-        highLineStyle: highLineStyle ?? this.highLineStyle,
-        lowLineStyle: lowLineStyle ?? this.lowLineStyle,
-        fillColor: fillColor ?? this.fillColor,
-        showChannelFill: showChannelFill ?? this.showChannelFill,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-        pipSize: pipSize ?? this.pipSize,
-      );
+  }) => FractalChaosBandIndicatorConfig(
+    highLineStyle: highLineStyle ?? this.highLineStyle,
+    lowLineStyle: lowLineStyle ?? this.lowLineStyle,
+    fillColor: fillColor ?? this.fillColor,
+    showChannelFill: showChannelFill ?? this.showChannelFill,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+    pipSize: pipSize ?? this.pipSize,
+  );
 }

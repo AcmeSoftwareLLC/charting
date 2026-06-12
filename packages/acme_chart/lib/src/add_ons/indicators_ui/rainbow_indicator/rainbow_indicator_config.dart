@@ -29,11 +29,11 @@ class RainbowIndicatorConfig extends MAIndicatorConfig {
     this.rainbowLineStyles,
     super.showLastIndicator,
     super.number,
-  })  : assert(
-          rainbowLineStyles == null || rainbowLineStyles.length == bandsCount,
-          '''If you provide [rainbowLineStyles] it should have the same length as [bandsCount]. 
+  }) : assert(
+         rainbowLineStyles == null || rainbowLineStyles.length == bandsCount,
+         '''If you provide [rainbowLineStyles] it should have the same length as [bandsCount]. 
             since the bands count is $bandsCount. the same number of lineStyles should be provided.''',
-        );
+       );
 
   /// Initializes from JSON.
   factory RainbowIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -60,8 +60,9 @@ class RainbowIndicatorConfig extends MAIndicatorConfig {
   }
 
   @override
-  Map<String, dynamic> toJson() => _$RainbowIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$RainbowIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// Rainbow Moving Averages bands count
   final int bandsCount;
@@ -73,7 +74,8 @@ class RainbowIndicatorConfig extends MAIndicatorConfig {
   Series getSeries(IndicatorInput indicatorInput) =>
       RainbowSeries.fromIndicator(
         IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
-        rainbowLineStyles: rainbowLineStyles ??
+        rainbowLineStyles:
+            rainbowLineStyles ??
             _getRainbowColors(
               bandsCount,
             ).map((Color color) => LineStyle(color: color)).toList(),
@@ -89,12 +91,11 @@ class RainbowIndicatorConfig extends MAIndicatorConfig {
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      RainbowIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => RainbowIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   RainbowIndicatorConfig copyWith({
@@ -110,14 +111,13 @@ class RainbowIndicatorConfig extends MAIndicatorConfig {
     String? title,
     int? number,
     int? bandsCount,
-  }) =>
-      RainbowIndicatorConfig(
-        period: period ?? this.period,
-        movingAverageType: movingAverageType ?? this.movingAverageType,
-        fieldType: fieldType ?? this.fieldType,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        number: number ?? this.number,
-        bandsCount: bandsCount ?? this.bandsCount,
-        rainbowLineStyles: rainbowLineStyles ?? this.rainbowLineStyles,
-      );
+  }) => RainbowIndicatorConfig(
+    period: period ?? this.period,
+    movingAverageType: movingAverageType ?? this.movingAverageType,
+    fieldType: fieldType ?? this.fieldType,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    number: number ?? this.number,
+    bandsCount: bandsCount ?? this.bandsCount,
+    rainbowLineStyles: rainbowLineStyles ?? this.rainbowLineStyles,
+  );
 }

@@ -34,7 +34,7 @@ class MultipleAnimatedBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-        animation: Listenable.merge(animations),
-        builder: builder,
-      );
+    animation: Listenable.merge(animations),
+    builder: builder,
+  );
 }

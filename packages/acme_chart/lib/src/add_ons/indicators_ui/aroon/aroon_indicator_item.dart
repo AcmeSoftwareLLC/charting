@@ -15,9 +15,7 @@ class AroonIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     AroonIndicatorConfig super.config = const AroonIndicatorConfig(),
-  }) : super(
-          title: 'Aroon',
-        );
+  }) : super(title: 'Aroon');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -37,30 +35,30 @@ class AroonIndicatorItemState extends IndicatorItemState<AroonIndicatorConfig> {
       Column(children: <Widget>[_buildPeriodField()]);
 
   Widget _buildPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _currentPeriod.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _period = int.tryParse(text);
-                } else {
-                  _period = 14;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _currentPeriod.toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _period = int.tryParse(text);
+            } else {
+              _period = 14;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   int get _currentPeriod =>
       _period ?? (widget.config as AroonIndicatorConfig).period;

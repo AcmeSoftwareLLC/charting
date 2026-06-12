@@ -151,8 +151,7 @@ class AccumulatorsRecentlyClosedIndicatorPainter
       final double profit = indicator.activeContract!.profit!;
       final String profitText =
           '${profit < 0 ? '' : '+'}${profit.toStringAsFixed(indicator.activeContract!.fractionalDigits)}';
-      final String currencyText =
-          indicator.activeContract?.profitUnit ?? '';
+      final String currencyText = indicator.activeContract?.profitUnit ?? '';
       final TextPainter profitPainter = makeTextPainter(
         '$profitText $currencyText',
         style.textStyle.copyWith(

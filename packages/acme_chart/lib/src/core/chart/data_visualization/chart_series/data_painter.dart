@@ -13,8 +13,8 @@ abstract class DataPainter<S extends DataSeries<Tick>>
     extends SeriesPainter<S> {
   /// Initializes series for sub-class.
   DataPainter(DataSeries<Tick> series)
-      : _dataSeries = series,
-        super(series as S);
+    : _dataSeries = series,
+      super(series as S);
 
   final DataSeries<Tick> _dataSeries;
 

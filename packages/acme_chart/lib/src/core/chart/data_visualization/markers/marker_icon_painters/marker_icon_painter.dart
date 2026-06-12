@@ -12,8 +12,9 @@ abstract class MarkerIconPainter {
     MarkerDirection direction,
     MarkerStyle style,
   ) {
-    final Color color =
-        direction == MarkerDirection.up ? style.upColor : style.downColor;
+    final Color color = direction == MarkerDirection.up
+        ? style.upColor
+        : style.downColor;
 
     canvas
       ..drawLine(

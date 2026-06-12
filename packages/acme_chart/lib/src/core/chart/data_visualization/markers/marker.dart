@@ -23,11 +23,11 @@ class Marker extends Tick implements Comparable<Marker> {
 
   /// Creates an up marker.
   Marker.up({required super.epoch, required super.quote, this.onTap})
-      : direction = MarkerDirection.up;
+    : direction = MarkerDirection.up;
 
   /// Creates a down marker.
   Marker.down({required super.epoch, required super.quote, this.onTap})
-      : direction = MarkerDirection.down;
+    : direction = MarkerDirection.down;
 
   /// Direction in which marker is facing.
   final MarkerDirection direction;

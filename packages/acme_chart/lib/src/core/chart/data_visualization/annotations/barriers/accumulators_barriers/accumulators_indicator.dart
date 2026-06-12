@@ -53,12 +53,12 @@ class AccumulatorIndicator extends ChartAnnotation<AccumulatorObject> {
 
   @override
   AccumulatorObject createObject() => AccumulatorObject(
-        tick: tick,
-        barrierEpoch: barrierEpoch,
-        lowBarrier: lowBarrier,
-        highBarrier: highBarrier,
-        profit: activeContract?.profit,
-      );
+    tick: tick,
+    barrierEpoch: barrierEpoch,
+    lowBarrier: lowBarrier,
+    highBarrier: highBarrier,
+    profit: activeContract?.profit,
+  );
 
   @override
   int? getMaxEpoch() => barrierEpoch;

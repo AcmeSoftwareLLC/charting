@@ -35,7 +35,9 @@ import '../interactive_layer_states/interactive_adding_tool_state.dart';
 ///   * [InteractableDrawing], which this preview helps to create
 ///   * [DrawingV2], the base interface for all drawings
 abstract class DrawingAddingPreview<
-    T extends InteractableDrawing<DrawingToolConfig>> implements DrawingV2 {
+  T extends InteractableDrawing<DrawingToolConfig>
+>
+    implements DrawingV2 {
   /// Initializes the [DrawingAddingPreview].
   ///
   /// Creates a preview instance that will help visualize and manage the creation
@@ -201,6 +203,5 @@ abstract class DrawingAddingPreview<
   bool shouldRepaint(
     Set<DrawingToolState> drawingState,
     DrawingV2 oldDrawing,
-  ) =>
-      true;
+  ) => true;
 }

@@ -12,11 +12,13 @@ class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// maxValueIndicator the indicator for the max price
   /// (default is HighValueIndicator)
   AroonUpIndicator.fromIndicator(this.maxValueIndicator, {int period = 14})
-      : _period = period,
-        // + 1 needed for last possible iteration in loop
-        _highestValueIndicator =
-            HighestValueIndicator<T>(maxValueIndicator, period + 1),
-        super.fromIndicator(maxValueIndicator);
+    : _period = period,
+      // + 1 needed for last possible iteration in loop
+      _highestValueIndicator = HighestValueIndicator<T>(
+        maxValueIndicator,
+        period + 1,
+      ),
+      super.fromIndicator(maxValueIndicator);
 
   /// Indicator to calculate Aroon up on.
   final Indicator<T> maxValueIndicator;
@@ -40,7 +42,9 @@ class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       nbBars++;
     }
     return createResult(
-        index: index, quote: (_period - nbBars) / _period * 100);
+      index: index,
+      quote: (_period - nbBars) / _period * 100,
+    );
   }
 
   @override

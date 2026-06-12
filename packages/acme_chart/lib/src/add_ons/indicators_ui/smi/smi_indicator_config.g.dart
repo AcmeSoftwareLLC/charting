@@ -17,10 +17,13 @@ SMIIndicatorConfig _$SMIIndicatorConfigFromJson(Map<String, dynamic> json) =>
               oversoldValue: -40,
               overboughtValue: 40,
               overboughtStyle: LineStyle(),
-              oversoldStyle: LineStyle())
+              oversoldStyle: LineStyle(),
+            )
           : OscillatorLinesConfig.fromJson(
-              json['smiOscillatorLimits'] as Map<String, dynamic>),
-      maType: $enumDecodeNullable(_$MovingAverageTypeEnumMap, json['maType']) ??
+              json['smiOscillatorLimits'] as Map<String, dynamic>,
+            ),
+      maType:
+          $enumDecodeNullable(_$MovingAverageTypeEnumMap, json['maType']) ??
           MovingAverageType.exponential,
       showZones: json['showZones'] as bool? ?? true,
       lineStyle: json['lineStyle'] == null

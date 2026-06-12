@@ -17,9 +17,7 @@ class MAEnvIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     MAEnvIndicatorConfig super.config = const MAEnvIndicatorConfig(),
-  }) : super(
-          title: 'MA Envelope Indicator',
-        );
+  }) : super(title: 'MA Envelope Indicator');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -48,72 +46,69 @@ class MAEnvIndicatorItemState extends MAIndicatorItemState {
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          buildPeriodField(),
-          buildFieldTypeMenu(),
-          buildShiftTypeMenu(),
-          buildShiftField(),
-          buildMATypeMenu(),
-        ],
-      );
+    children: <Widget>[
+      buildPeriodField(),
+      buildFieldTypeMenu(),
+      buildShiftTypeMenu(),
+      buildShiftField(),
+      buildMATypeMenu(),
+    ],
+  );
 
   /// Builds Period TextFiled
   @protected
   Widget buildShiftField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelShift,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: getCurrentShift().toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  shift = double.tryParse(text);
-                } else {
-                  shift = 5;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelShift,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: getCurrentShift().toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              shift = double.tryParse(text);
+            } else {
+              shift = 5;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   /// Returns shift types dropdown menu
   @protected
   Widget buildShiftTypeMenu() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelShiftType,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          DropdownButton<ShiftType>(
-            value: getCurrentShiftType(),
-            items: ShiftType.values
-                .map<DropdownMenuItem<ShiftType>>(
-                  (ShiftType type) => DropdownMenuItem<ShiftType>(
-                    value: type,
-                    child: Text(
-                      type.name,
-                      style: const TextStyle(fontSize: 10),
-                    ),
-                  ),
-                )
-                .toList(),
-            onChanged: (ShiftType? newType) => setState(() {
-              shiftType = newType;
-              updateIndicator();
-            }),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelShiftType,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      DropdownButton<ShiftType>(
+        value: getCurrentShiftType(),
+        items: ShiftType.values
+            .map<DropdownMenuItem<ShiftType>>(
+              (ShiftType type) => DropdownMenuItem<ShiftType>(
+                value: type,
+                child: Text(type.name, style: const TextStyle(fontSize: 10)),
+              ),
+            )
+            .toList(),
+        onChanged: (ShiftType? newType) => setState(() {
+          shiftType = newType;
+          updateIndicator();
+        }),
+      ),
+    ],
+  );
 
   /// Gets Indicator current type.
   @protected
