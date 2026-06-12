@@ -1,0 +1,16 @@
+# Misc
+.DS_Store
+*.log
+*.tmp
+
+# Flutter related
+.dart_tool/
+*.lock
+
+
+# IDE related
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+*.iml

@@ -1,0 +1,189 @@
+import 'package:acme_chart/src/theme/painting_styles/chart_painting_style.dart';
+import 'package:flutter/material.dart';
+
+/// Barrier style.
+abstract class BarrierStyle extends ChartPaintingStyle {
+  /// Initializes a barrier style
+  const BarrierStyle({
+    this.color = const Color(0xFF00A79E),
+    this.titleBackgroundColor = const Color(0xFF0E0E0E),
+    this.isDashed = true,
+    this.textStyle = const TextStyle(
+      fontSize: 10,
+      height: 1.3,
+      fontWeight: FontWeight.normal,
+      color: Colors.white,
+      fontFeatures: <FontFeature>[FontFeature.tabularFigures()],
+    ),
+  });
+
+  /// Color of the barrier.
+  final Color color;
+
+  /// Style of the title and value.
+  final TextStyle textStyle;
+
+  /// Whether barrier's line should be dashed.
+  final bool isDashed;
+
+  /// Title label background color.
+  final Color titleBackgroundColor;
+
+  @override
+  String toString() =>
+      '${super.toString()}$color, ${textStyle.toStringShort()}, $isDashed, '
+      '$titleBackgroundColor';
+}
+
+/// Horizontal barrier style.
+class HorizontalBarrierStyle extends BarrierStyle {
+  /// Initializes a horizontal barrier style.
+  const HorizontalBarrierStyle({
+    this.labelShape = LabelShape.rectangle,
+    this.labelHeight = 24,
+    this.labelPadding = 4,
+    super.color,
+    super.titleBackgroundColor,
+    this.secondaryBackgroundColor = const Color(0xFF607D8B),
+    super.isDashed,
+    this.hasBlinkingDot = false,
+    Color? blinkingDotColor,
+    this.arrowSize = 5,
+    this.hasArrow = true,
+    this.hasLine = true,
+    this.labelShapeBackgroundColor = const Color(0xFF000000),
+    this.lineColor = const Color(0xFF000000),
+    super.textStyle,
+  })  : blinkingDotColor = blinkingDotColor ?? color;
+
+  /// Label shape.
+  final LabelShape labelShape;
+
+  /// Height of label background.
+  final double labelHeight;
+
+  /// Padding of label.
+  final double labelPadding;
+
+  /// Whether to have a blinking dot animation where barrier and chart data
+  /// are intersected.
+  final bool hasBlinkingDot;
+
+  /// The color of blinking dot.
+  final Color blinkingDotColor;
+
+  /// The size of the arrow.
+  ///
+  /// The arrow when barrier is out of Y-Axis range and its
+  /// `HorizontalBarrier.visibility`
+  /// is HorizontalBarrierVisibility.keepBarrierLabelVisible`.
+  final double arrowSize;
+
+  /// Whether to show an arrow pointing in the direction of the barrier,
+  /// when the barrier is outside the y-axis range and visibility is set to
+  /// `HorizontalBarrierVisibility.keepBarrierLabelVisible`.
+  final bool hasArrow;
+
+  /// Whether to draw a horizontal line to the current tick from the y-axis
+  /// grid to the
+  final bool hasLine;
+
+  /// Color used to paint a second background of label if needed under the
+  /// initial color.
+  final Color secondaryBackgroundColor;
+
+  /// Background color of the label shape.
+  final Color labelShapeBackgroundColor;
+
+  /// Color of the line.
+  final Color lineColor;
+
+  /// Creates a copy of this object.
+  HorizontalBarrierStyle copyWith({
+    LabelShape? labelShape,
+    double? labelHeight,
+    double? labelPadding,
+    Color? color,
+    Color? titleBackgroundColor,
+    Color? secondaryBackgroundColor,
+    bool? isDashed,
+    bool? hasBlinkingDot,
+    Color? blinkingDotColor,
+    double? arrowSize,
+    bool? hasArrow,
+    bool? hasLine,
+    Color? labelShapeBackgroundColor,
+    Color? lineColor,
+  }) =>
+      HorizontalBarrierStyle(
+        labelShape: labelShape ?? this.labelShape,
+        labelHeight: labelHeight ?? this.labelHeight,
+        labelPadding: labelPadding ?? this.labelPadding,
+        color: color ?? this.color,
+        titleBackgroundColor: titleBackgroundColor ?? this.titleBackgroundColor,
+        secondaryBackgroundColor:
+            secondaryBackgroundColor ?? this.secondaryBackgroundColor,
+        isDashed: isDashed ?? this.isDashed,
+        hasBlinkingDot: hasBlinkingDot ?? this.hasBlinkingDot,
+        blinkingDotColor: blinkingDotColor ?? this.blinkingDotColor,
+        arrowSize: arrowSize ?? this.arrowSize,
+        hasArrow: hasArrow ?? this.hasArrow,
+        hasLine: hasLine ?? this.hasLine,
+        textStyle: textStyle.copyWith(),
+        labelShapeBackgroundColor:
+            labelShapeBackgroundColor ?? this.labelShapeBackgroundColor,
+        lineColor: lineColor ?? this.lineColor,
+      );
+
+  @override
+  String toString() =>
+      '${super.toString()}, $hasBlinkingDot $labelShape $labelShapeBackgroundColor $lineColor';
+}
+
+/// Vertical barrier style.
+class VerticalBarrierStyle extends BarrierStyle {
+  /// Initializes a vertical barrier style.
+  const VerticalBarrierStyle({
+    super.color = Colors.grey,
+    super.titleBackgroundColor = Colors.transparent,
+    super.isDashed,
+    this.labelPosition = VerticalBarrierLabelPosition.auto,
+    super.textStyle,
+  });
+
+  /// Label position.
+  final VerticalBarrierLabelPosition labelPosition;
+}
+
+/// The type of arrow on top/bottom of barrier label (Horizontal barrier).
+enum BarrierArrowType {
+  /// No arrows.
+  none,
+
+  /// Upward arrows on top of the label.
+  upward,
+
+  /// Downward arrows on bottom of the label.
+  downward,
+}
+
+/// Label shape.
+enum LabelShape {
+  /// Rectangle.
+  rectangle,
+
+  /// Pentagon.
+  pentagon,
+}
+
+/// Vertical barrier label position.
+enum VerticalBarrierLabelPosition {
+  /// Right if there is no space on left, otherwise left.
+  auto,
+
+  /// Always right.
+  right,
+
+  /// Always left.
+  left,
+}

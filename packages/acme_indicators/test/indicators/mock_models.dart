@@ -1,0 +1,79 @@
+import 'package:acme_indicators/src/models/data_input.dart';
+import 'package:acme_indicators/src/models/models.dart';
+
+/// Indicator's input mock implementation.
+class MockInput implements IndicatorDataInput {
+  /// Initializes
+  MockInput(this.entries);
+
+  @override
+  final List<IndicatorOHLC> entries;
+
+  @override
+  IndicatorResult createResult(int? index, double value) => MockResult(value);
+}
+
+/// A result model class
+class MockResult implements IndicatorResult {
+  /// Initializes
+  MockResult(this.quote);
+
+  /// Quote
+  @override
+  final double quote;
+}
+
+/// A Tick input element.
+class MockTick implements IndicatorOHLC {
+  /// Initializer
+  const MockTick({
+    required this.quote,
+    this.epoch,
+  });
+
+  /// Epoch
+  final int? epoch;
+
+  /// Quote
+  final double quote;
+
+  @override
+  double get close => quote;
+
+  @override
+  double get high => quote;
+
+  @override
+  double get low => quote;
+
+  @override
+  double get open => quote;
+}
+
+/// An OHLC model class
+class MockOHLC extends MockTick {
+  /// Initializes
+  const MockOHLC(int epoch, this.open, this.close, this.high, this.low)
+      : super(epoch: epoch, quote: close);
+
+  /// Initializes with name parameters.
+  const MockOHLC.withNames({
+    required int epoch,
+    required double open,
+    required double close,
+    required double high,
+    required double low,
+  }) : this(epoch, open, close, high, low);
+
+  @override
+  final double close;
+
+  @override
+  final double high;
+
+  @override
+  final double low;
+
+  @override
+  final double open;
+}

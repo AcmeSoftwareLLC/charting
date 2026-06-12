@@ -1,0 +1,47 @@
+name: acme_chart
+description: A financial charting library for Flutter applications, offering a comprehensive suite of features for technical analysis and trading visualization.
+version: 1.0.0
+
+homepage: https://acmesoftware.com
+repository: https://github.com/AcmeSoftwareLLC/charting/tree/main/packages/acme_chart
+
+environment:
+  sdk: ">=3.12.0 <4.0.0"
+  flutter: ^3.44.0
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  collection: ^1.18.0
+  acme_indicators: ^1.0.0
+  equatable: ^2.0.5
+  intl: ^0.20.2
+  json_annotation: ^4.8.0
+  provider: ^6.0.5
+  shared_preferences: ^2.1.0
+  meta: ^1.15.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: ^2.4.6
+  flutter_lints: ^6.0.0
+  intl_utils: ^2.8.2
+  json_serializable: ^6.7.1
+
+flutter:
+  fonts:
+    - family: QuillIcons
+      fonts:
+        - asset: assets/fonts/quill_icons.ttf
+
+flutter_intl:
+  main_locale: en
+  enabled: true
+  class_name: ChartLocalization

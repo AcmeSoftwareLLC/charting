@@ -1,0 +1,100 @@
+import 'package:acme_chart/src/add_ons/indicators_ui/ma_indicator/ma_indicator_config.dart';
+import 'package:acme_chart/src/core/chart/data_visualization/chart_series/indicators_series/dpo_series.dart';
+import 'package:acme_chart/src/core/chart/data_visualization/chart_series/indicators_series/ma_series.dart';
+import 'package:acme_chart/src/core/chart/data_visualization/chart_series/indicators_series/models/dpo_options.dart';
+import 'package:acme_chart/src/core/chart/data_visualization/chart_series/series.dart';
+import 'package:acme_chart/src/models/indicator_input.dart';
+import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+import '../callbacks.dart';
+import '../indicator_config.dart';
+import '../indicator_item.dart';
+import 'dpo_indicator_item.dart';
+
+part 'dpo_indicator_config.g.dart';
+
+/// Detrended Price Oscillator Indicator Config
+@JsonSerializable()
+class DPOIndicatorConfig extends MAIndicatorConfig {
+  /// Initializes
+  const DPOIndicatorConfig({
+    int super.period = 14,
+    MovingAverageType super.movingAverageType = MovingAverageType.simple,
+    String super.fieldType = 'close',
+    this.isCentered = true,
+    super.lineStyle,
+    super.pipSize,
+    super.showLastIndicator,
+    String? title,
+    super.number,
+  }) : super(
+          isOverlay: false,
+          title: title ?? DPOIndicatorConfig.name,
+        );
+
+  /// Initializes from JSON.
+  factory DPOIndicatorConfig.fromJson(Map<String, dynamic> json) =>
+      _$DPOIndicatorConfigFromJson(json);
+
+  /// Unique name for this indicator.
+  static const String name = 'dpo';
+
+  /// Wether the indicator should be calculated `Centered` or not.
+  final bool isCentered;
+
+  @override
+  Map<String, dynamic> toJson() => _$DPOIndicatorConfigToJson(this)
+    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+
+  @override
+  Series getSeries(IndicatorInput indicatorInput) => DPOSeries.fromIndicator(
+        IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
+        dpoOptions: DPOOptions(
+          period: period,
+          movingAverageType: movingAverageType,
+          isCentered: isCentered,
+          lineStyle: lineStyle,
+          pipSize: pipSize,
+          showLastIndicator: showLastIndicator,
+        ),
+      );
+
+  @override
+  IndicatorItem getItem(
+    UpdateIndicator updateIndicator,
+    VoidCallback deleteIndicator,
+  ) =>
+      DPOIndicatorItem(
+        config: this,
+        updateIndicator: updateIndicator,
+        deleteIndicator: deleteIndicator,
+      );
+
+  @override
+  DPOIndicatorConfig copyWith({
+    int? period,
+    MovingAverageType? movingAverageType,
+    String? fieldType,
+    bool? isCentered,
+    LineStyle? lineStyle,
+    int? pipSize,
+    bool? showLastIndicator,
+    String? title,
+    int? number,
+    int? offset,
+    bool? isOverlay,
+  }) =>
+      DPOIndicatorConfig(
+        period: period ?? this.period,
+        movingAverageType: movingAverageType ?? this.movingAverageType,
+        fieldType: fieldType ?? this.fieldType,
+        isCentered: isCentered ?? this.isCentered,
+        lineStyle: lineStyle ?? this.lineStyle,
+        pipSize: pipSize ?? this.pipSize,
+        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+        title: title ?? this.title,
+        number: number ?? this.number,
+      );
+}

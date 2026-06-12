@@ -1,0 +1,53 @@
+import '../../../../../../core/chart/data_visualization/chart_data.dart';
+import '../../../../../../core/chart/data_visualization/chart_series/data_painters/scatter_painter.dart';
+import '../../../../../../core/chart/data_visualization/chart_series/indicators_series/models/parabolic_sar_options.dart';
+import '../../../../../../models/indicator_input.dart';
+import '../../../../../../models/tick.dart';
+import '../../../../../../theme/painting_styles/scatter_style.dart';
+import 'package:acme_indicators/acme_indicators.dart';
+
+import '../../series.dart';
+import '../../series_painter.dart';
+import '../abstract_single_indicator_series.dart';
+import 'custom_parabolic_sar_indicator.dart';
+
+/// Parabolic SAR series class.
+class ParabolicSARSeries extends AbstractSingleIndicatorSeries {
+  /// Initializes
+  ParabolicSARSeries(
+    this._indicatorInput,
+    ParabolicSAROptions options, {
+    ScatterStyle? style,
+    String? id,
+  })  : _options = options,
+        super(
+          CloseValueIndicator<Tick>(_indicatorInput),
+          id ?? 'ParabolicSAR',
+          options: options,
+          style: style,
+        );
+
+  final IndicatorInput _indicatorInput;
+
+  final ParabolicSAROptions _options;
+
+  @override
+  SeriesPainter<Series> createPainter() => ScatterPainter(this);
+
+  @override
+  bool shouldRepaint(ChartData? oldDelegate) {
+    if (oldDelegate == null) {
+      return true;
+    }
+
+    final ParabolicSARSeries oldSeries = oldDelegate as ParabolicSARSeries;
+    return options != oldSeries.options || style != oldSeries.style;
+  }
+
+  @override
+  CachedIndicator<Tick> initializeIndicator() => CustomParabolicSarIndicator(
+        _indicatorInput,
+        accelerationStart: _options.minAccelerationFactor,
+        maxAcceleration: _options.maxAccelerationFactor,
+      );
+}

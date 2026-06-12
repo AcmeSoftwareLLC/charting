@@ -1,0 +1,35 @@
+import 'package:acme_chart/src/add_ons/indicators_ui/awesome_oscillator/awesome_oscillator_indicator_config.dart';
+import 'package:flutter/material.dart';
+
+import '../indicator_config.dart';
+import '../indicator_item.dart';
+
+/// Awesome Oscillator Indicator item in the list of indicator which provide
+/// this indicators options menu.
+class AwesomeOscillatorIndicatorItem extends IndicatorItem {
+  /// Initializes
+  const AwesomeOscillatorIndicatorItem({
+    required super.updateIndicator,
+    required super.deleteIndicator,
+    super.key,
+    AwesomeOscillatorIndicatorConfig super.config =
+        const AwesomeOscillatorIndicatorConfig(),
+  }) : super(
+          title: 'Awesome Oscillator Indicator',
+        );
+
+  @override
+  IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
+      AwesomeOscillatorIndicatorItemState();
+}
+
+/// Awesome Oscillator IndicatorItem State class
+class AwesomeOscillatorIndicatorItemState
+    extends IndicatorItemState<AwesomeOscillatorIndicatorConfig> {
+  @override
+  AwesomeOscillatorIndicatorConfig updateIndicatorConfig() =>
+      widget.config as AwesomeOscillatorIndicatorConfig;
+
+  @override
+  Widget getIndicatorOptions() => Container();
+}

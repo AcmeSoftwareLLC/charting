@@ -1,0 +1,125 @@
+import 'package:acme_chart/src/core/chart/data_visualization/chart_series/indicators_series/ma_series.dart';
+import 'package:acme_chart/src/core/chart/data_visualization/chart_series/indicators_series/models/indicator_options.dart';
+import 'package:acme_chart/src/core/chart/data_visualization/chart_series/series.dart';
+import 'package:acme_chart/src/models/indicator_input.dart';
+import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+import '../callbacks.dart';
+import '../indicator_config.dart';
+import '../indicator_item.dart';
+import 'ma_indicator_item.dart';
+
+part 'ma_indicator_config.g.dart';
+
+/// Moving Average indicator config
+@JsonSerializable()
+class MAIndicatorConfig extends IndicatorConfig {
+  /// Initializes
+  const MAIndicatorConfig({
+    int? period,
+    MovingAverageType? movingAverageType,
+    String? fieldType,
+    LineStyle? lineStyle,
+    int? offset,
+    super.isOverlay,
+    super.pipSize,
+    super.showLastIndicator,
+    String? title,
+    super.number,
+  })  : period = period ?? 50,
+        movingAverageType = movingAverageType ?? MovingAverageType.simple,
+        fieldType = fieldType ?? 'close',
+        offset = offset ?? 0,
+        lineStyle =
+            lineStyle ?? const LineStyle(color: Colors.yellow, thickness: 0.6),
+        super(
+          title: title ?? MAIndicatorConfig.name,
+        );
+
+  /// Initializes from JSON.
+  factory MAIndicatorConfig.fromJson(Map<String, dynamic> json) =>
+      _$MAIndicatorConfigFromJson(json);
+
+  /// Unique name for this indicator.
+  static const String name = 'moving_average';
+
+  @override
+  Map<String, dynamic> toJson() => _$MAIndicatorConfigToJson(this)
+    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+
+  /// Moving Average period
+  final int period;
+
+  /// Moving Average type
+  final MovingAverageType movingAverageType;
+
+  /// Field type
+  final String fieldType;
+
+  /// MA line style
+  final LineStyle lineStyle;
+
+  /// The offset of this indicator.
+  final int offset;
+
+  @override
+  String get shortTitle => 'MA';
+
+  @override
+  String get title => 'Moving Average';
+
+  @override
+  String get configSummary => '$period, ${fieldType[0].toUpperCase()}, '
+      '${movingAverageType.shortTitle}, $offset';
+
+  @override
+  Series getSeries(IndicatorInput indicatorInput) => MASeries.fromIndicator(
+        IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
+        MAOptions(
+          period: period,
+          type: movingAverageType,
+          showLastIndicator: showLastIndicator,
+        ),
+        offset: offset,
+        style: lineStyle,
+      );
+
+  @override
+  IndicatorItem getItem(
+    UpdateIndicator updateIndicator,
+    VoidCallback deleteIndicator,
+  ) =>
+      MAIndicatorItem(
+        config: this,
+        updateIndicator: updateIndicator,
+        deleteIndicator: deleteIndicator,
+      );
+
+  @override
+  MAIndicatorConfig copyWith({
+    int? period,
+    MovingAverageType? movingAverageType,
+    String? fieldType,
+    LineStyle? lineStyle,
+    int? offset,
+    bool? isOverlay,
+    int? pipSize,
+    bool? showLastIndicator,
+    String? title,
+    int? number,
+  }) =>
+      MAIndicatorConfig(
+        period: period ?? this.period,
+        movingAverageType: movingAverageType ?? this.movingAverageType,
+        fieldType: fieldType ?? this.fieldType,
+        lineStyle: lineStyle ?? this.lineStyle,
+        offset: offset ?? this.offset,
+        isOverlay: isOverlay ?? this.isOverlay,
+        pipSize: pipSize ?? this.pipSize,
+        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+        title: title ?? this.title,
+        number: number ?? this.number,
+      );
+}

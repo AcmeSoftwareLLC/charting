@@ -1,0 +1,1130 @@
+import 'package:collection/collection.dart';
+import '../../../../../core/chart/data_visualization/chart_data.dart';
+import '../../../../../core/chart/data_visualization/markers/marker_group.dart';
+import '../../../../../core/chart/data_visualization/markers/marker_icon_painters/marker_group_icon_painter.dart';
+import '../../../../../core/chart/data_visualization/markers/marker_icon_painters/painter_props.dart';
+import '../../../../../core/chart/data_visualization/markers/chart_marker.dart';
+import '../../../../../core/chart/data_visualization/markers/marker.dart';
+import '../../../../../core/chart/data_visualization/models/animation_info.dart';
+import '../../../../../core/chart/helpers/chart.dart';
+import '../../../../../core/chart/helpers/paint_functions/paint_checkpoint_line.dart';
+import '../../../../../core/chart/helpers/paint_functions/paint_end_line.dart';
+import '../../../../../core/chart/helpers/paint_functions/paint_line.dart';
+import '../../../../../core/chart/helpers/paint_functions/paint_start_line.dart';
+import '../../../../../core/chart/helpers/paint_functions/paint_start_marker.dart';
+import '../../../../../core/chart/helpers/paint_functions/paint_text.dart';
+import '../../../../../core/chart/y_axis/y_axis_config.dart';
+import '../../../../../theme/chart_theme.dart';
+import '../../../../../theme/painting_styles/marker_style.dart';
+import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
+import 'dart:math' as math;
+
+/// A specialized painter for rendering tick-based contract markers on financial charts.
+///
+/// `TickMarkerIconPainter` extends the abstract `MarkerGroupIconPainter` class to provide
+/// specific rendering logic for tick-based contracts. Tick-based contracts are financial
+/// contracts where the outcome depends on price movements at specific time intervals (ticks).
+///
+/// This painter visualizes various aspects of tick contracts on the chart, including:
+/// - The starting point of the contract
+/// - Entry and exit points
+/// - Individual price ticks
+/// - Barrier lines connecting significant points
+///
+/// The painter uses different visual representations for different marker types:
+/// - Start markers are shown as location pins with optional labels
+/// - Entry points are shown as circles with a distinctive border
+/// - Tick points are shown as small dots
+/// - Exit and end points are shown as circles
+///
+/// This class is part of the chart's visualization pipeline and works in conjunction
+/// with `MarkerGroupPainter` to render marker groups on the chart canvas.
+class TickMarkerIconPainter extends MarkerGroupIconPainter {
+  /// Renders a group of tick contract markers on the chart canvas.
+  ///
+  /// This method is called by the chart's rendering system to paint a group of
+  /// related markers (representing a single tick contract) on the canvas. It:
+  /// 1. Converts marker positions from market data (epoch/quote) to canvas coordinates
+  /// 2. Calculates the opacity based on marker positions
+  /// 3. Draws barrier lines connecting significant points
+  /// 4. Delegates the rendering of individual markers to specialized methods
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [size] is the size of the drawing area.
+  /// The [theme] is the chart's theme, which provides colors and styles.
+  /// The [markerGroup] is the group of markers to render.
+  /// The [epochToX] is a function that converts epoch timestamps to X coordinates.
+  /// The [quoteToY] is a function that converts price quotes to Y coordinates.
+  /// The [painterProps] contains properties that affect how markers are rendered.
+  /// The [animationInfo] contains information about any ongoing animations.
+  @override
+  void paintMarkerGroup(
+    Canvas canvas,
+    Size size,
+    ChartTheme theme,
+    MarkerGroup markerGroup,
+    EpochToX epochToX,
+    QuoteToY quoteToY,
+    PainterProps painterProps,
+    AnimationInfo animationInfo,
+  ) {
+    final Map<MarkerType, Offset> points = <MarkerType, Offset>{};
+    // Ensure left padding refers to the left edge of the contract circle.
+    // Use the outer border radius drawn in _drawContractMarker: radius (12*zoom)
+    // plus 1*zoom for the stroke radius.
+    final double contractOuterRadius =
+        (12 * painterProps.zoom) + (1 * painterProps.zoom);
+
+    for (final ChartMarker marker in markerGroup.markers) {
+      final Offset center;
+
+      // Special handling for contractMarker - position with left padding
+      if (marker.markerType == MarkerType.contractMarker) {
+        center = Offset(
+          markerGroup.props.contractMarkerLeftPadding + contractOuterRadius,
+          quoteToY(marker.quote),
+        );
+      } else {
+        center = Offset(epochToX(marker.epoch), quoteToY(marker.quote));
+      }
+
+      if (marker.markerType != null && marker.markerType != MarkerType.tick) {
+        points[marker.markerType!] = center;
+      }
+    }
+
+    final Offset? startPoint = points[MarkerType.start];
+    final Offset? exitPoint = points[MarkerType.exit];
+    final Offset? endPoint = points[MarkerType.exitSpot];
+
+    double opacity = 1;
+
+    if (startPoint != null && (endPoint != null || exitPoint != null)) {
+      opacity = calculateOpacity(startPoint.dx, exitPoint?.dx);
+    }
+
+    final Paint paint = Paint()
+      ..color = markerGroup.style.backgroundColor.withValues(alpha: opacity);
+
+    _drawBarriers(
+      canvas,
+      size,
+      points,
+      markerGroup,
+      markerGroup.style,
+      theme,
+      opacity,
+      painterProps,
+      paint,
+    );
+
+    for (final ChartMarker marker in markerGroup.markers) {
+      final Offset center =
+          points[marker.markerType!] ??
+          (marker.markerType == MarkerType.contractMarker
+              ? Offset(
+                  markerGroup.props.contractMarkerLeftPadding +
+                      contractOuterRadius,
+                  quoteToY(marker.quote),
+                )
+              : Offset(epochToX(marker.epoch), quoteToY(marker.quote)));
+
+      if (marker.markerType == MarkerType.entry &&
+          points[MarkerType.entrySpot] != null) {
+        continue;
+      }
+
+      // Calculate marker-specific opacity: apply reduced opacity if specified
+      final double markerOpacity = marker.hasReducedOpacity
+          ? opacity * 0.5
+          : opacity;
+
+      final Offset markerCenter = center + marker.displayOffset;
+
+      _drawMarker(
+        canvas,
+        size,
+        theme,
+        marker,
+        markerCenter,
+        markerGroup.style,
+        1.2,
+        painterProps.granularity,
+        markerOpacity,
+        paint,
+        animationInfo,
+        markerGroup.id,
+        markerGroup,
+      );
+    }
+  }
+
+  /// Draws barrier lines connecting significant points in the contract.
+  ///
+  /// This private method renders various lines that connect important points in the
+  /// contract, such as the contract marker, entry tick, and end point.
+  /// These lines help visualize the contract's progression and price movement.
+  ///
+  /// The method draws different types of lines:
+  /// - A dashed horizontal line from the contract marker to the entry tick
+  /// - A solid line from the entry tick to the end marker
+  /// - A dashed horizontal line from the end marker to the chart's right edge
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [size] is the size of the drawing area.
+  /// The [points] is a map of marker types to their positions on the canvas.
+  /// The [markerGroup] is the group of markers to render.
+  /// The [style] is the style to apply to the barriers.
+  /// The [theme] is the chart theme providing color schemes and styling.
+  /// The [opacity] is the opacity to apply to the barriers.
+  /// The [painterProps] contains properties that affect how barriers are rendered.
+  /// The [paint] is the paint object used for rendering.
+  void _drawBarriers(
+    Canvas canvas,
+    Size size,
+    Map<MarkerType, Offset> points,
+    MarkerGroup markerGroup,
+    MarkerStyle style,
+    ChartTheme theme,
+    double opacity,
+    PainterProps painterProps,
+    Paint paint,
+  ) {
+    final Offset? contractMarkerOffset = points[MarkerType.contractMarker];
+    final Offset? startCollapsedOffset = points[MarkerType.startTimeCollapsed];
+    final Offset? exitCollapsedOffset = points[MarkerType.exitTimeCollapsed];
+    final Offset? entrySpotOffset = points[MarkerType.entrySpot];
+    final Offset? exitSpotOffset = points[MarkerType.exitSpot];
+
+    // Determine marker direction color from the marker group direction
+    final Color lineColor = markerGroup.direction == MarkerDirection.up
+        ? theme.markerStyle.upColorProminent
+        : theme.markerStyle.downColorProminent;
+
+    final Color finalLineColor = lineColor.withValues(alpha: opacity);
+
+    YAxisConfig.instance.yAxisClipping(canvas, size, () {
+      // Horizontal dashed line from contractMarker to start time
+      if (contractMarkerOffset != null && startCollapsedOffset != null) {
+        final ChartMarker? contractMarker = markerGroup.markers
+            .firstWhereOrNull((m) => m.markerType == MarkerType.contractMarker);
+        final String? contractText = contractMarker?.text;
+
+        if (contractMarker != null &&
+            contractText != null &&
+            contractText.isNotEmpty) {
+          _paintDashedLineWithText(
+            canvas,
+            contractMarkerOffset,
+            startCollapsedOffset,
+            finalLineColor,
+            contractText,
+            contractMarker.textType,
+            theme,
+            opacity,
+          );
+        } else {
+          paintHorizontalDashedLine(
+            canvas,
+            startCollapsedOffset.dx,
+            contractMarkerOffset.dx,
+            contractMarkerOffset.dy,
+            finalLineColor,
+            1,
+            dashWidth: 2,
+            dashSpace: 2,
+          );
+        }
+      }
+
+      final Paint solidLinePaint = Paint()
+        ..color = finalLineColor
+        ..strokeWidth = 1;
+
+      // Solid line logic
+      if (startCollapsedOffset != null) {
+        if (exitCollapsedOffset != null) {
+          // Solid line between collapsed start and exit time markers
+          canvas.drawLine(
+            startCollapsedOffset,
+            exitCollapsedOffset,
+            solidLinePaint,
+          );
+        } else {
+          // No exit marker: draw solid line from start to chart's right edge
+          final double rightEdgeX = size.width;
+          canvas.drawLine(
+            startCollapsedOffset,
+            Offset(rightEdgeX, startCollapsedOffset.dy),
+            solidLinePaint,
+          );
+        }
+      }
+
+      // Horizontal dashed line from exit time marker to the chart's right edge (before yAxis)
+      if (contractMarkerOffset != null && exitCollapsedOffset != null) {
+        final double rightEdgeX = size.width;
+
+        paintHorizontalDashedLine(
+          canvas,
+          exitCollapsedOffset.dx,
+          rightEdgeX,
+          exitCollapsedOffset.dy,
+          finalLineColor,
+          1,
+          dashWidth: 2,
+          dashSpace: 2,
+        );
+      }
+
+      // Vertical dashed line from entry spot to solid line
+      if (entrySpotOffset != null &&
+          startCollapsedOffset != null &&
+          startCollapsedOffset.dy != entrySpotOffset.dy) {
+        paintVerticalDashedLine(
+          canvas,
+          entrySpotOffset.dx,
+          math.min(startCollapsedOffset.dy, entrySpotOffset.dy),
+          math.max(startCollapsedOffset.dy, entrySpotOffset.dy),
+          finalLineColor,
+          1,
+          dashWidth: 2,
+          dashSpace: 2,
+        );
+      }
+
+      // Vertical dashed line from exit spot to solid line
+      if (exitSpotOffset != null &&
+          exitCollapsedOffset != null &&
+          exitCollapsedOffset.dy != exitSpotOffset.dy) {
+        paintVerticalDashedLine(
+          canvas,
+          exitSpotOffset.dx,
+          math.min(exitCollapsedOffset.dy, exitSpotOffset.dy),
+          math.max(exitCollapsedOffset.dy, exitSpotOffset.dy),
+          finalLineColor,
+          1,
+          dashWidth: 2,
+          dashSpace: 2,
+        );
+      }
+    });
+  }
+
+  /// Draws the dashed connector line with a text label split into it.
+  ///
+  /// The text is positioned near [lineEnd] (the start time collapsed marker)
+  /// with a small padding gap. The dashed line is drawn on both sides of the
+  /// text.
+  void _paintDashedLineWithText(
+    Canvas canvas,
+    Offset lineStart,
+    Offset lineEnd,
+    Color lineColor,
+    String text,
+    MarkerTextType textType,
+    ChartTheme theme,
+    double opacity,
+  ) {
+    // Distance (in pixels) from the start time marker to the right edge of the text label.
+    const double textPaddingFromStartLine = 16;
+
+    // Gap (in pixels) between the text label and adjacent dashed line segments.
+    const double textGap = 4;
+
+    final Color textColor = theme.markerStyle.markerTextColor.withValues(
+      alpha: opacity,
+    );
+
+    final TextPainter textPainter = textType == MarkerTextType.counter
+        ? makeDelimitedTextPainter(
+            text,
+            delimiter: '/',
+            primaryStyle: theme.markerStyle.markerCounterPrimaryTextStyle
+                .copyWith(color: textColor),
+            secondaryStyle: theme.markerStyle.markerCounterSecondaryTextStyle
+                .copyWith(color: textColor),
+          )
+        : makeTextPainter(
+            text,
+            theme.markerStyle.markerPlainTextStyle.copyWith(color: textColor),
+          );
+
+    final double textRight = lineEnd.dx - textPaddingFromStartLine;
+    final double textLeft = textRight - textPainter.width;
+
+    if (lineStart.dx < textLeft - textGap) {
+      // Left portion of dashed line.
+      paintHorizontalDashedLine(
+        canvas,
+        textLeft - textGap,
+        lineStart.dx,
+        lineStart.dy,
+        lineColor,
+        1,
+        dashWidth: 2,
+        dashSpace: 2,
+      );
+    }
+
+    // Right portion of dashed line (text to startTimeCollapsed).
+    if (lineStart.dx < lineEnd.dx) {
+      paintHorizontalDashedLine(
+        canvas,
+        textRight + textGap,
+        lineEnd.dx,
+        lineStart.dy,
+        lineColor,
+        1,
+        dashWidth: 2,
+        dashSpace: 2,
+      );
+    }
+
+    // Draw text centered vertically on the line.
+    paintWithTextPainter(
+      canvas,
+      painter: textPainter,
+      anchor: Offset(textLeft, lineStart.dy),
+      anchorAlignment: Alignment.centerLeft,
+    );
+  }
+
+  /// Renders an individual marker based on its type.
+  ///
+  /// This private method handles the rendering of different types of markers
+  /// (start, entry, tick, exit, end) with their specific visual representations.
+  /// It delegates to specialized methods for each marker type.
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [size] is the size of the drawing area.
+  /// The [theme] is the chart's theme, which provides colors and styles.
+  /// The [marker] is the marker to render.
+  /// The [anchor] is the position on the canvas where the marker should be rendered.
+  /// The [style] is the style to apply to the marker.
+  /// The [zoom] is the current zoom level of the chart.
+  /// The [granularity] is the time interval between data points.
+  /// The [opacity] is the opacity to apply to the marker.
+  /// The [paint] is the paint object used for rendering.
+  /// The [animationInfo] contains information about any ongoing animations.
+  /// The [markerGroupId] is the ID of the marker group for animation tracking.
+  /// The [markerGroup] is the marker group containing all related markers for this contract.
+  void _drawMarker(
+    Canvas canvas,
+    Size size,
+    ChartTheme theme,
+    ChartMarker marker,
+    Offset anchor,
+    MarkerStyle style,
+    double zoom,
+    int granularity,
+    double opacity,
+    Paint paint,
+    AnimationInfo animationInfo,
+    String? markerGroupId,
+    MarkerGroup markerGroup,
+  ) {
+    YAxisConfig.instance.yAxisClipping(canvas, size, () {
+      switch (marker.markerType) {
+        // Use a fixed zoom value of 1.2 for contract markers to provide a
+        // consistently larger size, improving tap target accessibility.
+        case MarkerType.contractMarker:
+          _drawContractMarker(
+            canvas,
+            marker,
+            anchor,
+            style,
+            1.2,
+            granularity,
+            opacity,
+            animationInfo,
+            markerGroupId,
+            markerGroup,
+          );
+          break;
+        case MarkerType.startTime:
+          paintStartLine(
+            canvas,
+            size,
+            marker,
+            anchor,
+            style,
+            theme,
+            zoom,
+            opacity,
+            markerGroup.props,
+          );
+          break;
+        case MarkerType.start:
+          _drawStartPoint(
+            canvas,
+            size,
+            theme,
+            marker,
+            anchor,
+            style,
+            zoom,
+            opacity,
+          );
+          break;
+        case MarkerType.entry:
+        case MarkerType.entrySpot:
+          _drawEntrySpot(canvas, marker, anchor, style, theme, zoom, opacity);
+          break;
+        case MarkerType.exitSpot:
+          _drawSpotMarker(canvas, marker, anchor, style, theme, zoom, opacity);
+          break;
+        case MarkerType.checkpointSpot:
+          _drawSpotMarker(canvas, marker, anchor, style, theme, zoom, opacity);
+          break;
+        case MarkerType.exit:
+          canvas.drawCircle(anchor, 3 * zoom, paint);
+          break;
+        case MarkerType.tick:
+          final Paint paint = Paint()..color = theme.base01Color;
+          _drawTickPoint(canvas, anchor, paint, zoom);
+          break;
+        case MarkerType.latestTick:
+          _drawTickPoint(canvas, anchor, paint, zoom);
+          break;
+        case MarkerType.exitTime:
+          paintEndLine(
+            canvas,
+            size,
+            marker,
+            anchor,
+            style,
+            theme,
+            zoom,
+            opacity,
+            markerGroup.props,
+          );
+          break;
+        case MarkerType.checkpointLine:
+          paintCheckpointLine(
+            canvas,
+            size,
+            marker,
+            anchor,
+            style,
+            theme,
+            zoom,
+            opacity,
+            markerGroup.props,
+          );
+          break;
+        case MarkerType.startTimeCollapsed:
+          _drawCollapsedTimeLine(
+            canvas,
+            marker,
+            anchor,
+            style,
+            theme,
+            zoom,
+            opacity,
+          );
+          break;
+        case MarkerType.exitTimeCollapsed:
+          _drawCollapsedTimeLine(
+            canvas,
+            marker,
+            anchor,
+            style,
+            theme,
+            zoom,
+            opacity,
+          );
+          break;
+        case MarkerType.checkpointLineCollapsed:
+          _drawCollapsedTimeLine(
+            canvas,
+            marker,
+            anchor,
+            style,
+            theme,
+            zoom,
+            opacity,
+          );
+          break;
+        case MarkerType.profitAndLossLabel:
+          _drawProfitAndLossLabel(
+            canvas,
+            theme,
+            markerGroup,
+            marker,
+            anchor,
+            style,
+            1,
+            opacity,
+            fixedLeftAligned: false,
+          );
+          break;
+        case MarkerType.profitAndLossLabelFixed:
+          _drawProfitAndLossLabel(
+            canvas,
+            theme,
+            markerGroup,
+            marker,
+            anchor,
+            style,
+            1,
+            opacity,
+            fixedLeftAligned: true,
+          );
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  void _drawProfitAndLossLabel(
+    Canvas canvas,
+    ChartTheme theme,
+    MarkerGroup markerGroup,
+    ChartMarker marker,
+    Offset anchor,
+    MarkerStyle style,
+    double zoom,
+    double opacity, {
+    required bool fixedLeftAligned,
+  }) {
+    final bool isProfit = markerGroup.props.isProfit;
+    final Color borderColor = isProfit
+        ? theme.closedMarkerBorderColorGreen
+        : theme.closedMarkerBorderColorRed;
+    final Color backgroundColor = isProfit
+        ? theme.closedMarkerSurfaceColorGreen
+        : theme.closedMarkerSurfaceColorRed;
+    final Color textIconColor = isProfit
+        ? theme.closedMarkerTextIconColorGreen
+        : theme.closedMarkerTextIconColorRed;
+
+    final double pillHeight = 32 * zoom;
+    final double radius = pillHeight / 2;
+    const double leftPadding = 16;
+    const double rightPadding = 16;
+
+    final TextStyle textStyle = theme
+        .textStyle(
+          textStyle: theme.profitAndLossLabelTextStyle,
+          color: textIconColor,
+        )
+        .copyWith(
+          fontSize: theme.profitAndLossLabelTextStyle.fontSize! * zoom,
+          height: 1,
+        );
+
+    final String text = markerGroup.profitAndLossText ?? '';
+    final TextPainter textPainter = makeTextPainter(text, textStyle);
+
+    final double contentWidth = leftPadding + textPainter.width + rightPadding;
+
+    Rect pillRect;
+    if (fixedLeftAligned) {
+      const double leftX = 5;
+      pillRect = Rect.fromLTWH(
+        leftX,
+        anchor.dy - pillHeight / 2,
+        contentWidth,
+        pillHeight,
+      );
+    } else {
+      pillRect = Rect.fromCenter(
+        center: Offset(anchor.dx, anchor.dy),
+        width: contentWidth,
+        height: pillHeight,
+      );
+    }
+
+    final Paint fillPaint = Paint()
+      ..color = backgroundColor.withValues(alpha: 0.88 * opacity)
+      ..style = PaintingStyle.fill;
+    final RRect rrect = RRect.fromRectAndRadius(
+      pillRect,
+      Radius.circular(radius),
+    );
+    canvas.drawRRect(rrect, fillPaint);
+
+    final Paint strokePaint = Paint()
+      ..color = borderColor.withValues(alpha: opacity)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1;
+    canvas.drawRRect(rrect, strokePaint);
+
+    paintWithTextPainter(
+      canvas,
+      painter: textPainter,
+      anchor: Offset(pillRect.left + leftPadding, anchor.dy),
+      anchorAlignment: Alignment.centerLeft,
+    );
+
+    marker.tapArea = pillRect;
+  }
+
+  /// Calculate remaining duration with smooth animation transitions.
+  ///
+  /// This method calculates the remaining duration for the contract progress arc
+  /// with smooth interpolation between updates using currentTickPercent from AnimationInfo.
+  /// It takes granularity into account for accurate timing calculations.
+  ///
+  /// The [markerGroup] is the marker group containing contract information.
+  /// The [animationInfo] contains animation information including currentTickPercent.
+  /// The [granularity] is the time interval between data points in milliseconds.
+  ///
+  /// Returns the animated remaining duration as a value between 0.0 and 1.0.
+  double _calculateAnimatedRemainingDuration(
+    MarkerGroup markerGroup,
+    AnimationInfo animationInfo,
+    int granularity,
+  ) {
+    // Default to full arc duration
+    double baseRemainingDuration = 1;
+
+    if (markerGroup.currentEpoch != null) {
+      // Find entryTick and end marker epochs
+      int? entryTickEpoch;
+      int? endEpoch;
+
+      for (final ChartMarker groupMarker in markerGroup.markers) {
+        if (groupMarker.markerType == MarkerType.entrySpot) {
+          entryTickEpoch = groupMarker.epoch;
+        } else if (groupMarker.markerType == MarkerType.exitTimeCollapsed) {
+          endEpoch = groupMarker.epoch;
+        }
+      }
+
+      // Calculate base remaining duration
+      if (entryTickEpoch != null && endEpoch != null) {
+        final int totalDuration = endEpoch - entryTickEpoch;
+        final int baseElapsed = markerGroup.currentEpoch! - entryTickEpoch;
+        final double baseProgress = baseElapsed / totalDuration;
+        baseRemainingDuration = (1.0 - baseProgress).clamp(0.0, 1.0);
+
+        // Apply smooth animation transition using currentTickPercent
+        // This creates smooth interpolation between tick updates
+        if (animationInfo.currentTickPercent < 1.0) {
+          // Calculate the progress that would occur in one granularity period
+          final double progressPerGranularity =
+              granularity / totalDuration.toDouble();
+
+          // Calculate the previous remaining duration (before current tick)
+          final double previousRemainingDuration =
+              (baseRemainingDuration + progressPerGranularity).clamp(0.0, 1.0);
+
+          // Interpolate between previous and current duration using currentTickPercent
+          baseRemainingDuration =
+              ui.lerpDouble(
+                previousRemainingDuration,
+                baseRemainingDuration,
+                animationInfo.currentTickPercent,
+              ) ??
+              baseRemainingDuration;
+        }
+      }
+    }
+
+    return baseRemainingDuration;
+  }
+
+  /// Renders a contract marker with circular duration display.
+  ///
+  /// This method draws a circular marker that shows the contract progress
+  /// with a circular progress indicator representing the remaining duration.
+  /// The marker includes a background circle, progress arc, and a directional
+  /// arrow icon in the center.
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [marker] is the marker object containing direction and progress.
+  /// The [anchor] is the position on the canvas where the marker should be rendered.
+  /// The [style] is the style to apply to the marker.
+  /// The [zoom] is the current zoom level of the chart.
+  /// The [granularity] is the time interval between data points.
+  /// The [opacity] is the opacity to apply to the marker.
+  /// The [animationInfo] contains information about any ongoing animations.
+  /// The [markerGroupId] is the ID of the marker group for animation tracking.
+  /// The [markerGroup] is the marker group containing all related markers for this contract.
+  void _drawContractMarker(
+    Canvas canvas,
+    ChartMarker marker,
+    Offset anchor,
+    MarkerStyle style,
+    double zoom,
+    int granularity,
+    double opacity,
+    AnimationInfo animationInfo,
+    String? markerGroupId,
+    MarkerGroup markerGroup,
+  ) {
+    final double radius = 12 * zoom;
+    final double borderRadius = radius + (1 * zoom); // Add 1 pixel padding
+
+    // Determine colors based on marker direction
+    final Color markerColor = marker.direction == MarkerDirection.up
+        ? style.upColor
+        : style.downColor;
+
+    // Draw background circle
+    final Paint backgroundPaint = Paint()
+      ..color = markerColor.withValues(alpha: opacity)
+      ..style = PaintingStyle.fill;
+
+    canvas.drawCircle(anchor, radius, backgroundPaint);
+
+    // Draw border circle with padding
+    final Paint borderPaint = Paint()
+      ..color = markerColor.withValues(alpha: opacity)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2 * zoom;
+
+    canvas.drawCircle(anchor, borderRadius, borderPaint);
+
+    // Update tap area to match the visual marker size (use outer border radius)
+    marker.tapArea = Rect.fromCircle(center: anchor, radius: borderRadius);
+
+    // Draw background progress circle (unfilled portion)
+    final Color progressBackgroundColor = marker.direction == MarkerDirection.up
+        ? Colors.black.withValues(alpha: 0.2 * opacity)
+        : Colors.black.withValues(alpha: 0.2 * opacity);
+
+    final Paint progressBackgroundPaint = Paint()
+      ..color = progressBackgroundColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2 * zoom;
+
+    canvas.drawCircle(anchor, radius, progressBackgroundPaint);
+
+    // Calculate animated remaining duration with smooth transitions
+    final double remainingDuration = _calculateAnimatedRemainingDuration(
+      markerGroup,
+      animationInfo,
+      granularity,
+    );
+
+    // Animate the progress arc based on remaining duration
+    final Paint progressPaint = Paint()
+      ..color = style.backgroundColor.withValues(alpha: opacity)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2 * zoom
+      ..strokeCap = StrokeCap.round;
+
+    final double sweepAngle = -2 * math.pi * remainingDuration;
+
+    canvas.drawArc(
+      Rect.fromCircle(center: anchor, radius: radius),
+      -math.pi / 2, // Start from top
+      sweepAngle,
+      false,
+      progressPaint,
+    );
+
+    if (markerGroup.props.markerLabel != null) {
+      _drawMarkerLabel(
+        canvas,
+        anchor,
+        markerGroup.props.markerLabel!,
+        opacity,
+        zoom,
+        style,
+      );
+    } else {
+      // Draw arrow icon in the center
+      _drawArrowIcon(
+        canvas,
+        anchor,
+        marker,
+        Colors.white.withValues(alpha: opacity),
+        zoom,
+      );
+    }
+  }
+
+  void _drawMarkerLabel(
+    Canvas canvas,
+    Offset anchor,
+    String label,
+    double opacity,
+    double zoom,
+    MarkerStyle style,
+  ) {
+    // Base radius used in _drawContractMarker
+    final double radius = 12 * zoom;
+    final double padding = 5 * zoom; // small padding from circle border
+    final double maxWidth = (radius - padding) * 2;
+    final double maxHeight = (radius - padding) * 2;
+
+    final TextStyle baseTextStyle = style.markerLabelTextStyle.copyWith(
+      fontSize: style.markerLabelTextStyle.fontSize! * zoom,
+      color: style.markerLabelTextStyle.color!.withValues(alpha: opacity),
+      height: 1,
+    );
+
+    final TextPainter painter = makeFittedTextPainter(
+      label,
+      baseTextStyle,
+      maxWidth: maxWidth,
+      maxHeight: maxHeight,
+    );
+
+    paintWithTextPainter(canvas, painter: painter, anchor: anchor);
+  }
+
+  /// Draws a diagonal arrow icon inside the contract marker.
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [center] is the center position of the arrow.
+  /// The [marker] is the marker object containing direction information.
+  /// The [color] is the color of the arrow.
+  /// The [zoom] is the current zoom level of the chart.
+  void _drawArrowIcon(
+    Canvas canvas,
+    Offset center,
+    ChartMarker marker,
+    Color color,
+    double zoom,
+  ) {
+    final double dir = marker.direction == MarkerDirection.up ? 1 : -1;
+    final double iconSize = 22 * zoom;
+
+    final Path path = Path();
+
+    canvas
+      ..save()
+      ..translate(center.dx - iconSize / 2, center.dy - (iconSize / 2) * dir)
+      // Scale from 24x24 original SVG size to desired icon size
+      ..scale(iconSize / 24, (iconSize / 24) * dir);
+
+    // Arrow-up path (will be flipped for down direction)
+    path
+      ..moveTo(17, 8)
+      ..lineTo(17, 15)
+      ..cubicTo(17, 15.5625, 16.5312, 16, 16, 16)
+      ..cubicTo(15.4375, 16, 15, 15.5625, 15, 15)
+      ..lineTo(15, 10.4375)
+      ..lineTo(8.6875, 16.7188)
+      ..cubicTo(8.3125, 17.125, 7.65625, 17.125, 7.28125, 16.7188)
+      ..cubicTo(6.875, 16.3438, 6.875, 15.6875, 7.28125, 15.3125)
+      ..lineTo(13.5625, 9)
+      ..lineTo(9, 9)
+      ..cubicTo(8.4375, 9, 8, 8.5625, 8, 8)
+      ..cubicTo(8, 7.46875, 8.4375, 7, 9, 7)
+      ..lineTo(16, 7)
+      ..cubicTo(16.5312, 7, 17, 7.46875, 17, 8)
+      ..close();
+
+    canvas
+      ..drawPath(path, Paint()..color = color)
+      ..restore();
+  }
+
+  /// Renders a tick point marker.
+  ///
+  /// This private method draws a small circular dot representing a price tick.
+  /// Tick points are used to visualize individual price updates in the contract.
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [anchor] is the position on the canvas where the tick point should be rendered.
+  /// The [paint] is the paint object to use for drawing.
+  /// The [zoom] is the current zoom level of the chart.
+  void _drawTickPoint(Canvas canvas, Offset anchor, Paint paint, double zoom) {
+    canvas.drawCircle(anchor, 1.5 * zoom, paint);
+  }
+
+  /// Renders an entry point marker.
+  ///
+  /// This private method draws a circular marker with a distinctive design
+  /// representing the entry point of the contract. The entry point marks
+  /// the price and time at which the contract started. It consists of an
+  /// outer circle with marker direction color and an inner white circle.
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [marker] is the marker object containing direction information.
+  /// The [anchor] is the position on the canvas where the entry point should be rendered.
+  /// The [style] is the style to apply to the marker.
+  /// The [theme] is the chart theme providing color schemes.
+  /// The [zoom] is the current zoom level of the chart.
+  /// The [opacity] is the opacity to apply to the entry point.
+  void _drawEntrySpot(
+    Canvas canvas,
+    ChartMarker marker,
+    Offset anchor,
+    MarkerStyle style,
+    ChartTheme theme,
+    double zoom,
+    double opacity,
+  ) {
+    // Draw white filled circle
+    final Paint fillPaint = Paint()
+      ..color = Colors.white.withValues(alpha: opacity)
+      ..style = PaintingStyle.fill;
+
+    canvas.drawCircle(anchor, 3 * zoom, fillPaint);
+
+    // Draw colored stroke to create outer ring effect
+    final Paint strokePaint = Paint()
+      ..color =
+          (marker.direction == MarkerDirection.up
+                  ? theme.markerStyle.upColorProminent
+                  : theme.markerStyle.downColorProminent)
+              .withValues(alpha: opacity)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.5 * zoom;
+
+    canvas.drawCircle(anchor, 3 * zoom, strokePaint);
+  }
+
+  /// Draws a spot marker as a filled circle.
+  ///
+  /// The circle color is determined by:
+  /// - The marker's explicit color if provided (marker.color)
+  /// - Or the direction-based color from the theme (green for up, red for down)
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [marker] is the chart marker containing direction and optional color.
+  /// The [anchor] is the position where the spot should be drawn.
+  /// The [style] is the marker style (unused but kept for signature consistency).
+  /// The [theme] is the chart theme providing direction-based colors.
+  /// The [zoom] is the zoom factor to scale the circle radius.
+  /// The [opacity] is the opacity to apply to the marker.
+  void _drawSpotMarker(
+    Canvas canvas,
+    ChartMarker marker,
+    Offset anchor,
+    MarkerStyle style,
+    ChartTheme theme,
+    double zoom,
+    double opacity,
+  ) {
+    // Determine color from marker.color or direction
+    final Color markerColor =
+        marker.color ??
+        (marker.direction == MarkerDirection.up
+            ? theme.markerStyle.upColorProminent
+            : theme.markerStyle.downColorProminent);
+
+    // Draw filled circle
+    final Paint fillPaint = Paint()
+      ..color = markerColor.withValues(alpha: opacity)
+      ..style = PaintingStyle.fill;
+
+    canvas.drawCircle(anchor, 3 * zoom, fillPaint);
+  }
+
+  /// Renders the starting point of a tick contract.
+  ///
+  /// This private method draws a location pin marker at the starting point of
+  /// the contract, with an optional text label. The marker's opacity is adjusted
+  /// based on its position relative to other markers.
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [size] is the size of the drawing area.
+  /// The [theme] is the chart's theme, which provides colors and styles.
+  /// The [marker] is the marker to render.
+  /// The [anchor] is the position on the canvas where the marker should be rendered.
+  /// The [style] is the style to apply to the marker.
+  /// The [zoom] is the current zoom level of the chart.
+  /// The [opacity] is the opacity to apply to the marker.
+  void _drawStartPoint(
+    Canvas canvas,
+    Size size,
+    ChartTheme theme,
+    ChartMarker marker,
+    Offset anchor,
+    MarkerStyle style,
+    double zoom,
+    double opacity,
+  ) {
+    if (marker.quote != 0) {
+      paintStartMarker(
+        canvas,
+        anchor - Offset(20 * zoom / 2, 20 * zoom),
+        style.backgroundColor.withValues(alpha: opacity),
+        20 * zoom,
+      );
+    }
+
+    if (marker.text != null) {
+      final TextStyle textStyle = TextStyle(
+        color: (marker.color ?? style.backgroundColor).withValues(
+          alpha: opacity,
+        ),
+        fontSize: style.activeMarkerText.fontSize! * zoom,
+        fontWeight: FontWeight.bold,
+        backgroundColor: theme.backgroundColor.withValues(alpha: opacity),
+      );
+
+      final TextPainter textPainter = makeTextPainter(marker.text!, textStyle);
+
+      final Offset iconShift = Offset(
+        textPainter.width / 2,
+        20 * zoom + textPainter.height,
+      );
+
+      paintWithTextPainter(
+        canvas,
+        painter: textPainter,
+        anchor: anchor - iconShift,
+        anchorAlignment: Alignment.centerLeft,
+      );
+    }
+  }
+
+  /// Renders an end point marker.
+  ///
+  /// This private method draws a circular marker representing the end point
+  /// of the contract. The color is determined by the marker direction.
+  ///
+  /// The [canvas] is the canvas on which to paint.
+  /// The [marker] is the marker object containing direction information.
+  /// The [anchor] is the position on the canvas where the end point should be rendered.
+  /// The [style] is the style to apply to the marker.
+  /// The [zoom] is the current zoom level of the chart.
+  /// The [opacity] is the opacity to apply to the end point.
+  // ignore: unused_element
+  void _drawEndPoint(
+    Canvas canvas,
+    ChartMarker marker,
+    Offset anchor,
+    MarkerStyle style,
+    double zoom,
+    double opacity,
+  ) {
+    final Paint paint = Paint()
+      ..color =
+          (marker.direction == MarkerDirection.up
+                  ? style.upColor
+                  : style.downColor)
+              .withValues(alpha: opacity);
+    canvas.drawCircle(anchor, 2 * zoom, paint);
+  }
+
+  /// Draws a short solid vertical line centered on [anchor.dy].
+  ///
+  /// Used for the collapsed time markers (start/end) that show only a
+  /// compact connector, matching the design for condensed layouts in chart view.
+  void _drawCollapsedTimeLine(
+    Canvas canvas,
+    ChartMarker marker,
+    Offset anchor,
+    MarkerStyle style,
+    ChartTheme theme,
+    double zoom,
+    double opacity,
+  ) {
+    // Length tuned to be subtle yet visible; scales with zoom.
+    final double halfLength = 4 * zoom;
+    final Color color = marker.direction == MarkerDirection.up
+        ? theme.markerStyle.upColorProminent
+        : theme.markerStyle.downColorProminent;
+    final Paint paint = Paint()
+      ..color = color.withValues(alpha: opacity)
+      ..strokeWidth = 1;
+
+    canvas.drawLine(
+      Offset(anchor.dx, anchor.dy - halfLength),
+      Offset(anchor.dx, anchor.dy + halfLength),
+      paint,
+    );
+  }
+}
