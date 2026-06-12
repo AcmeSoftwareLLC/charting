@@ -16,4 +16,16 @@ workspace:
   - packages/acme_indicators
   - packages/acme_chart/example
 
-melos: 
+melos:
+  categories:
+    examples:
+      - packages/acme_chart/example
+    publishable:
+      - packages/acme_chart
+      - packages/acme_indicators
+  scripts:
+    pana:
+      exec: dart pub global run pana .
+      description: Check publish readiness using pana for all publishable packages
+      packageFilters:
+        category: publishable
