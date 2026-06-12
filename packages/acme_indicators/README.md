@@ -1,6 +1,6 @@
 <div align="center">
 
-# acme_indicators
+# Acme Indicators
 
 [![Pub Package](https://img.shields.io/pub/v/acme_indicators.svg)](https://pub.dev/packages/acme_indicators)
 [![Pub Points](https://img.shields.io/pub/points/acme_indicators)](https://pub.dev/packages/acme_indicators/score)
