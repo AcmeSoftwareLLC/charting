@@ -247,3 +247,9 @@ Indicator<T>               — base abstract class; generic T extends IndicatorR
 ```
 
 Indicators are composable: any `Indicator<T>` can be passed where an `IndicatorDataInput` is expected, enabling indicator-on-indicator pipelines with shared caching.
+
+---
+
+## 🙏 Acknowledgements
+
+This package is forked from [deriv_technical_analysis](https://pub.dev/packages/deriv_technical_analysis). Many thanks to the Deriv team for their foundational work.

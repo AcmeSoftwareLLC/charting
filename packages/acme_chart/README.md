@@ -404,8 +404,15 @@ controller.scale(100);
 
 ---
 
+## 🙏 Acknowledgements
+
+This package is forked from [deriv_chart](https://pub.dev/packages/deriv_chart). Many thanks to the Deriv team for their foundational work.
+
+---
+
 ## 📚 Additional Documentation
 
+- [DeepWiki](https://deepwiki.com/AcmeSoftwareLLC/charting)
 - [How Chart Library Works](doc/how_chart_lib_works.md)
 - [Drawing Tools](doc/drawing_tools.md)
 - [AcmeChart Widget Usage](doc/acme_chart_widget_usage.md)

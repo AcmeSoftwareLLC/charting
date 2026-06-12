@@ -10,16 +10,17 @@
 
 <p align="center">
   <a href="https://github.com/AcmeSoftwareLLC/charting/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"/></a>
+  <a href="https://deepwiki.com/AcmeSoftwareLLC/charting"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"/></a>
 </p>
 
 ---
 
 ## 📦 Packages
 
-| Package | Description | Version |
-|---------|-------------|---------|
-| [`acme_chart`](packages/acme_chart) | Financial charting library — candlestick/line charts, indicators, drawing tools | `1.0.0` |
-| [`acme_indicators`](packages/acme_indicators) | Pure Dart technical analysis computations | `1.0.0` |
+| Package | Description | Pub |
+|---------|-------------|-----|
+| [`acme_chart`](packages/acme_chart) | Financial charting library - candlestick/line charts, indicators, drawing tools | [![Pub](https://img.shields.io/pub/v/acme_chart.svg)](https://pub.dev/packages/acme_chart) |
+| [`acme_indicators`](packages/acme_indicators) | Pure Dart technical analysis computations | [![Pub](https://img.shields.io/pub/v/acme_indicators.svg)](https://pub.dev/packages/acme_indicators) |
 
 ---
 
