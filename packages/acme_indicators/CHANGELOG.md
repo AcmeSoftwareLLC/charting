@@ -1,8 +1,3 @@
-## 1.0.1
-**June 12, 2026**
-
-- Improved pub score
-
 ## 1.0.0
 **June 12, 2026**
 
