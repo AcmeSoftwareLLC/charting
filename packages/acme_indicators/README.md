@@ -8,13 +8,13 @@
 [![Pub Points](https://img.shields.io/pub/points/acme_indicators)](https://pub.dev/packages/acme_indicators/score)
 [![Publisher](https://img.shields.io/pub/publisher/acme_indicators)](https://pub.dev/publishers/acmesoftware.com/packages)
 
-A pure Dart library for technical analysis - providing 50+ indicators (RSI, MACD, Bollinger Bands, Ichimoku, and more) with no Flutter dependency.
+A pure Dart library for technical analysis — providing 50+ indicators (RSI, MACD, Bollinger Bands, Ichimoku, and more) with no Flutter dependency.
 
 </div>
 
 ---
 
-## Installation
+## 📦 Installation
 
 Add to your `pubspec.yaml`:
 
@@ -27,7 +27,7 @@ dependencies:
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 ```dart
 // 1. Implement IndicatorOHLC with your data model
@@ -62,7 +62,7 @@ final single = rsi.getValue(5);      // MyResult
 
 ---
 
-## Core Concepts
+## 🧩 Core Concepts
 
 The package is built around three interfaces.
 
@@ -131,9 +131,9 @@ abstract class IndicatorDataInput {
 
 ---
 
-## Available Indicators
+## 📈 Available Indicators
 
-### Moving Averages
+### 📉 Moving Averages
 
 | Indicator | Class |
 |-----------|-------|
@@ -150,7 +150,7 @@ abstract class IndicatorDataInput {
 | Welles Wilder Smoothing | `WWSMAIndicator` |
 | Zero-Lag EMA | `ZELMAIndicator` |
 
-### Oscillators
+### 〰️ Oscillators
 
 | Indicator | Class |
 |-----------|-------|
@@ -164,7 +164,7 @@ abstract class IndicatorDataInput {
 | Chande Momentum Oscillator | `CMOIndicator` |
 | Gator Oscillator (Top / Bottom) | `GatorOscillatorIndicator` |
 
-### Trend Indicators
+### 📡 Trend Indicators
 
 | Indicator | Class |
 |-----------|-------|
@@ -172,7 +172,7 @@ abstract class IndicatorDataInput {
 | Parabolic SAR | `ParabolicSARIndicator` |
 | Ichimoku Cloud (all five lines) | `IchimokuIndicator` |
 
-### Volatility Indicators
+### 💥 Volatility Indicators
 
 | Indicator | Class |
 |-----------|-------|
@@ -181,14 +181,14 @@ abstract class IndicatorDataInput {
 | Standard Deviation | `StandardDeviationIndicator` |
 | Variance | `VarianceIndicator` |
 
-### Channel Indicators
+### 📏 Channel Indicators
 
 | Indicator | Class |
 |-----------|-------|
 | Donchian Channel | `DonchianChannelIndicator` |
 | Moving Average Envelope | `MAEnvelopeIndicator` |
 
-### Other Indicators
+### 🔀 Other Indicators
 
 | Indicator | Class |
 |-----------|-------|
@@ -199,15 +199,15 @@ abstract class IndicatorDataInput {
 | Fixed Channel Bands (High / Low) | `FCBIndicator` |
 | Bullish / Bearish Pattern Recognition | `PatternIndicator` |
 
-### Helper Indicators
+### 🔧 Helper Indicators
 
 Price values (OHLC), common averages (HL2, HLC3, HLCC4, OHLC4), True Range, Directional Movement, Gain/Loss, Mean, and Difference.
 
 ---
 
-## Usage
+## 💡 Usage
 
-### Chaining Indicators
+### 🔗 Chaining Indicators
 
 Any indicator can be used as input to another:
 
@@ -218,7 +218,7 @@ final macd = MACDIndicator<MyResult>(input);
 final smoothed = SMAIndicator<MyResult>(macd, 3);
 ```
 
-### Caching and Invalidation
+### ⚡ Caching and Invalidation
 
 All indicators extend `CachedIndicator`, so repeated reads are free:
 
@@ -238,7 +238,7 @@ indicator.refreshValueFor(lastIndex);
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ```
 Indicator<T>               — base abstract class; generic T extends IndicatorResult

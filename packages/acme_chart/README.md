@@ -8,7 +8,7 @@
 [![Pub Points](https://img.shields.io/pub/points/acme_chart)](https://pub.dev/packages/acme_chart/score)
 [![Publisher](https://img.shields.io/pub/publisher/acme_chart)](https://pub.dev/publishers/acmesoftware.com/packages)
 
-A financial charting library for Flutter - candlestick & line charts, 50+ technical indicators, interactive drawing tools, and customizable themes. Built for trading platforms and market data visualization.
+A financial charting library for Flutter — candlestick & line charts, 50+ technical indicators, interactive drawing tools, and customizable themes. Built for trading platforms and market data visualization.
 
 |<img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/packages/acme_chart/doc/images/intro.gif" alt="intro" width="627" height="330">|
 | --- |
@@ -25,7 +25,7 @@ A financial charting library for Flutter - candlestick & line charts, 50+ techni
 
 ---
 
-## Installation
+## 📦 Installation
 
 Add to your `pubspec.yaml`:
 
@@ -38,7 +38,7 @@ dependencies:
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 ```dart
 import 'package:acme_chart/acme_chart.dart';
@@ -59,7 +59,7 @@ Chart(
 
 ---
 
-## Chart Types
+## 📊 Chart Types
 
 Pass a different `Series` to `mainSeries` to switch chart types:
 
@@ -73,7 +73,7 @@ Chart(mainSeries: LineSeries(candles), pipSize: 3)
 
 <img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/packages/acme_chart/doc/images/line_chart_example.png" alt="line_series" width="450" height="250">
 
-### Styling Series
+### 🖌️ Styling Series
 
 ```dart
 Chart(
@@ -89,7 +89,7 @@ Chart(
 
 ---
 
-## Annotations
+## 📐 Annotations
 
 Add horizontal or vertical barriers via the `annotations` parameter:
 
@@ -106,7 +106,7 @@ Chart(
 
 <img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/packages/acme_chart/doc/images/barriers_example.png" alt="barriers" width="450" height="250">
 
-### Styling Annotations
+### 🖌️ Styling Annotations
 
 ```dart
 HorizontalBarrier(
@@ -119,9 +119,9 @@ HorizontalBarrier(
 )
 ```
 
-Custom annotations are supported - subclass `ChartAnnotation` to render anything you need.
+Custom annotations are supported — subclass `ChartAnnotation` to render anything you need.
 
-### TickIndicator
+### 🔴 TickIndicator
 
 A built-in annotation that highlights the most recent tick:
 
@@ -137,7 +137,7 @@ Chart(
 
 ---
 
-## Technical Indicators
+## 📈 Technical Indicators
 
 Use `overlayConfigs` for indicators that share the main y-axis (e.g. Bollinger Bands) and `bottomConfigs` for indicators with their own scale (e.g. RSI, MACD):
 
@@ -182,7 +182,7 @@ Chart(
 
 ### Available Indicators
 
-#### Moving Averages
+#### 📉 Moving Averages
 
 | Indicator | Config Class |
 |-----------|-------------|
@@ -199,7 +199,7 @@ Chart(
 | Welles Wilder Smoothing | `WWSMAIndicatorConfig` |
 | Zero-Lag EMA | `ZELMAIndicatorConfig` |
 
-#### Oscillators
+#### 〰️ Oscillators
 
 | Indicator | Config Class |
 |-----------|-------------|
@@ -212,7 +212,7 @@ Chart(
 | Chande Momentum Oscillator | `CMOIndicatorConfig` |
 | Gator Oscillator | `GatorOscillatorIndicatorConfig` |
 
-#### Trend Indicators
+#### 📡 Trend Indicators
 
 | Indicator | Config Class |
 |-----------|-------------|
@@ -220,7 +220,7 @@ Chart(
 | Parabolic SAR | `ParabolicSARIndicatorConfig` |
 | Ichimoku Cloud | `IchimokuIndicatorConfig` |
 
-#### Volatility Indicators
+#### 💥 Volatility Indicators
 
 | Indicator | Config Class |
 |-----------|-------------|
@@ -229,14 +229,14 @@ Chart(
 | Standard Deviation | `StandardDeviationIndicatorConfig` |
 | Variance | `VarianceIndicatorConfig` |
 
-#### Channel Indicators
+#### 📏 Channel Indicators
 
 | Indicator | Config Class |
 |-----------|-------------|
 | Donchian Channel | `DonchianChannelIndicatorConfig` |
 | Moving Average Envelope | `MAEnvelopeIndicatorConfig` |
 
-#### Other Indicators
+#### 🔀 Other Indicators
 
 | Indicator | Config Class |
 |-----------|-------------|
@@ -249,13 +249,13 @@ Chart(
 
 ---
 
-## Drawing Tools
+## ✏️ Drawing Tools
 
 Interactive drawing tools (trend lines, channels, Fibonacci retracements, and more) are supported. See the [Drawing Tools documentation](doc/drawing_tools.md) for the full list and configuration options.
 
 ---
 
-## Markers
+## 📍 Markers
 
 Supply `markerSeries` to show trade entry/exit markers:
 
@@ -295,7 +295,7 @@ MarkerSeries(
 
 ---
 
-## Callbacks
+## 🔔 Callbacks
 
 ### Visible Area Changes
 
@@ -321,7 +321,7 @@ Chart(
 
 ---
 
-## Theme
+## 🎨 Theme
 
 The chart automatically switches between its built-in dark and light themes based on `Theme.of(context).brightness`. To customise, extend `ChartDefaultDarkTheme` or `ChartDefaultLightTheme` and override only what you need:
 
@@ -348,7 +348,7 @@ See [ChartTheme](lib/src/theme/chart_theme.dart) for all overridable properties.
 
 ---
 
-## Localization
+## 🌍 Localization
 
 Add `ChartLocalization.delegate` to your `MaterialApp`:
 
@@ -369,7 +369,7 @@ ChartLocalization.load(locale);
 
 ---
 
-## AcmeChart
+## 🔋 AcmeChart
 
 `AcmeChart` is a batteries-included wrapper around `Chart` that adds a built-in UI for adding, removing, and configuring indicators and drawing tools, with automatic persistence via `shared_preferences`.
 
@@ -386,7 +386,7 @@ All `Chart` parameters are available on `AcmeChart` except `overlayConfigs` and 
 
 ---
 
-## ChartController
+## 🎮 ChartController
 
 Programmatically control scroll and zoom:
 
@@ -404,7 +404,7 @@ controller.scale(100);
 
 ---
 
-## Additional Documentation
+## 📚 Additional Documentation
 
 - [How Chart Library Works](doc/how_chart_lib_works.md)
 - [Drawing Tools](doc/drawing_tools.md)

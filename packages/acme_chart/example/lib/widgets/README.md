@@ -1,19 +1,21 @@
-# Color Picker Widgets
+# 🎨 Color Picker Widgets
 
-This directory contains reusable widgets for color selection in the Acme Chart showcase app.
+Reusable widgets for color selection in the Acme Chart showcase app.
 
-## AcmeColorPicker
+---
+
+## 🟡 AcmeColorPicker
 
 A simple, customizable color picker that displays a row of color options as circular buttons.
 
-### Features
+### ✨ Features
 
 - Displays a row of color options as circular buttons
 - Supports custom color presets or uses theme-aware defaults
 - Includes an option to open an advanced color picker dialog
 - Customizable label, size, and spacing
 
-### Usage
+### 💡 Usage
 
 ```dart
 AcmeColorPicker(
@@ -31,11 +33,13 @@ AcmeColorPicker(
 )
 ```
 
-## AcmeColorPickerDialog
+---
+
+## 🖥️ AcmeColorPickerDialog
 
 An advanced color picker dialog with RGB sliders, hex input, and color palettes.
 
-### Features
+### ✨ Features
 
 - RGB and Alpha sliders for precise color selection
 - Hex color code input
@@ -45,7 +49,7 @@ An advanced color picker dialog with RGB sliders, hex input, and color palettes.
 - Contrast ratio checking for accessibility
 - Color preview
 
-### Usage
+### 💡 Usage
 
 ```dart
 final color = await showAcmeColorPickerDialog(
@@ -55,25 +59,26 @@ final color = await showAcmeColorPickerDialog(
 );
 
 if (color != null) {
-  // Use the selected color
   setState(() {
     _textColor = color;
   });
 }
 ```
 
-## ColorUtils
+---
+
+## 🔧 ColorUtils
 
 A utility class for color-related operations.
 
-### Features
+### ✨ Features
 
 - Theme-aware color presets
 - Color contrast calculation
 - WCAG accessibility guidelines checking
 - Color name identification
 
-### Usage
+### 💡 Usage
 
 ```dart
 // Get theme-aware color presets
@@ -92,17 +97,17 @@ final isAccessible = contrastInfo['normalText']; // true if contrast ratio >= 4.
 final colorName = ColorUtils.getColorName(myColor);
 ```
 
-## Integration with Chart Themes
+---
 
-The color picker widgets are designed to work seamlessly with the chart theme system. They can be used to customize various aspects of the chart appearance, such as:
+## 🔗 Integration with Chart Themes
 
-- Bullish/bearish candle colors
-- Grid colors
-- Background colors
-- Line colors
-- Indicator colors
+These widgets integrate seamlessly with the chart theme system to customize chart appearance:
 
-Example:
+- 🟢 Bullish/bearish candle colors
+- 🔲 Grid colors
+- 🌑 Background colors
+- 〰️ Line colors
+- 📈 Indicator colors
 
 ```dart
 AcmeColorPicker(
@@ -111,7 +116,7 @@ AcmeColorPicker(
   onColorChanged: (color) {
     setState(() {
       _bullishColor = color;
-      
+
       // Update the chart theme
       _chartTheme = CustomDarkTheme(
         customBullishColor: _bullishColor,
@@ -122,3 +127,4 @@ AcmeColorPicker(
   // Use predefined bullish color presets
   presetColors: ColorUtils.getBullishColors(),
 )
+```
