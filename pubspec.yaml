@@ -1,5 +1,5 @@
 name: charting
-description: A collection of Flutter packages for financial charting and technical analysis.
+description: Flutter monorepo for financial charting - candlestick/line charts, 20+ technical indicators, drawing tools, and interactive gestures for trading UIs.
 
 homepage: https://acmesoftware.com
 repository: https://github.com/AcmeSoftwareLLC/charting
