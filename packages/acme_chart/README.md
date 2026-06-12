@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/assets/acme-chart.webp" alt="Acme Chart" width="200"/>
+<img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/assets/acme-chart.webp" alt="Acme Chart" width="150"/>
 
 # Acme Chart
 
