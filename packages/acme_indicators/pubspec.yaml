@@ -5,6 +5,12 @@ version: 1.0.0
 homepage: https://acmesoftware.com
 repository: https://github.com/AcmeSoftwareLLC/charting/tree/main/packages/acme_indicators
 
+topics:
+  - finance
+  - technical-analysis
+  - indicators
+  - trading
+
 environment:
   sdk: ">=3.12.0 <4.0.0"
 
