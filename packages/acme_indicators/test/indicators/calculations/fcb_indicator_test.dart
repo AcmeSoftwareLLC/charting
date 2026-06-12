@@ -1,7 +1,7 @@
 import 'package:acme_indicators/src/indicators/calculations/fcb/fcb_high_indicator.dart';
 import 'package:acme_indicators/src/indicators/calculations/fcb/fcb_low_indicator.dart';
 
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import '../mock_models.dart';
 
 void main() {

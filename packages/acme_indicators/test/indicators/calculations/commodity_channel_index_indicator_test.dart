@@ -1,5 +1,5 @@
 import 'package:acme_indicators/src/indicators/calculations/commodity_channel_index_indicator.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../mock_models.dart';
 

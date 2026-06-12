@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:acme_indicators/acme_indicators.dart';
 
 import '../../mock_models.dart';

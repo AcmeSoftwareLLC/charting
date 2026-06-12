@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 import '../../models/models.dart';
 import '../cached_indicator.dart';

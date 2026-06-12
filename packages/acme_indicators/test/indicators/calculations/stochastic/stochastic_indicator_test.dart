@@ -3,7 +3,7 @@ import 'package:acme_indicators/src/indicators/calculations/stochastic/fast_stoc
 import 'package:acme_indicators/src/indicators/calculations/stochastic/slow_stochastic_indicator.dart';
 import 'package:acme_indicators/src/indicators/calculations/stochastic/smoothed_fast_stochastic_indicator.dart';
 import 'package:acme_indicators/src/indicators/calculations/stochastic/smoothed_slow_stochastic_indicator.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../../mock_models.dart';
 

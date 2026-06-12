@@ -1,5 +1,5 @@
 import 'package:acme_indicators/src/indicators/calculations/helper_indicators/hl2_indicator.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../../mock_models.dart';
 
