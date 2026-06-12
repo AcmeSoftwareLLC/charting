@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/acme-logo.webp" alt="Acme Software" width="280"/>
+  <img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/assets/acme-logo.webp" alt="Acme Charting" width="200"/>
 </p>
 
 <h1 align="center">Acme Charting</h1>

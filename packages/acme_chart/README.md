@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/assets/acme-chart.webp" alt="Acme Chart" width="200"/>
+
 # Acme Chart
 
 [![Pub Package](https://img.shields.io/pub/v/acme_chart.svg)](https://pub.dev/packages/acme_chart)
