@@ -1,321 +1,247 @@
+<div align="center">
+
 # acme_indicators
 
-A comprehensive Dart package for Technical Analysis, providing over 50 technical indicators for
-financial market analysis.
+[![Pub Package](https://img.shields.io/pub/v/acme_indicators.svg)](https://pub.dev/packages/acme_indicators)
+[![Pub Points](https://img.shields.io/pub/points/acme_indicators)](https://pub.dev/packages/acme_indicators/score)
+[![Publisher](https://img.shields.io/pub/publisher/acme_indicators)](https://pub.dev/publishers/acmesoftware.com/packages)
+
+A pure Dart library for technical analysis - providing 50+ indicators (RSI, MACD, Bollinger Bands, Ichimoku, and more) with no Flutter dependency.
+
+</div>
+
+---
 
 ## Installation
 
-Add this to your package's `pubspec.yaml` file:
+Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
   acme_indicators: ^1.0.0
 ```
 
-Requirements:
+**Requires** Dart SDK `>=3.12.0 <4.0.0`.
 
-- Dart SDK: >=3.0.0 <4.0.0
-- Flutter: >=3.10.1
+---
 
-## Core Concepts
-
-The package is built around three core interfaces.
-
-### 1. IndicatorResult
-
-Represents the output of an indicator calculation:
+## Quick Start
 
 ```dart
-abstract class IndicatorResult {
-  double get quote; // The calculated indicator value
+// 1. Implement IndicatorOHLC with your data model
+class MyCandle implements IndicatorOHLC {
+  const MyCandle(this.open, this.high, this.low, this.close);
+
+  @override final double open;
+  @override final double high;
+  @override final double low;
+  @override final double close;
 }
-```
 
-### 2. IndicatorOHLC
-
-Represents price data with Open, High, Low, and Close values:
-
-```dart
-abstract class IndicatorOHLC {
-  double get open; // Opening price
-  double get high; // Highest price
-  double get low; // Lowest price
-  double get close; // Closing price
-}
-```
-
-### 3. IndicatorDataInput
-
-Manages the input data and result creation:
-
-```dart
-abstract class IndicatorDataInput {
-  List<IndicatorOHLC> get entries; // Input data points
-  IndicatorResult createResult(int index, double value); // Creates result objects
-}
-```
-
-## Available Indicators
-
-The package includes the following technical indicators:
-
-### Moving Averages
-
-- Simple Moving Average (SMA)
-- Exponential Moving Average (EMA)
-- Double Exponential Moving Average (DEMA)
-- Triple Exponential Moving Average (TEMA)
-- Triangular Moving Average (TRIMA)
-- Weighted Moving Average (WMA)
-- Modified Moving Average (MMA)
-- Least Squares Moving Average (LSMA)
-- Hull Moving Average (HMA)
-- Variable Moving Average (VMA)
-- Welles Wilder Smoothing Moving Average (WWSMA)
-- Zero-Lag Exponential Moving Average (ZELMA)
-
-### Oscillators
-
-- Relative Strength Index (RSI)
-- Stochastic
-    - Fast Stochastic
-    - Slow Stochastic
-    - Smoothed Stochastic
-    - Stochastic Momentum Index (SMI)
-- Moving Average Convergence Divergence (MACD)
-    - MACD Line
-    - Signal Line
-    - MACD Histogram
-- Awesome Oscillator
-- Williams %R
-- Rate of Change (ROC)
-- Chande Momentum Oscillator (CMO)
-- Gator Oscillator
-    - Top Oscillator
-    - Bottom Oscillator
-
-### Trend Indicators
-
-- Average Directional Index (ADX)
-    - ADX Line
-    - Positive Directional Index (+DI)
-    - Negative Directional Index (-DI)
-    - ADX Histogram
-- Parabolic SAR
-- Ichimoku Cloud
-    - Conversion Line (Tenkan-sen)
-    - Base Line (Kijun-sen)
-    - Leading Span A (Senkou Span A)
-    - Leading Span B (Senkou Span B)
-    - Lagging Span (Chikou Span)
-
-### Volatility Indicators
-
-- Bollinger Bands
-    - Upper Band
-    - Lower Band
-    - Bandwidth
-    - %B (Percent B)
-- Average True Range (ATR)
-- Standard Deviation
-- Variance
-
-### Channel Indicators
-
-- Donchian Channel
-- Moving Average Envelope
-    - Upper Envelope
-    - Lower Envelope
-
-### Other Indicators
-
-- Aroon
-    - Aroon Up
-    - Aroon Down
-    - Aroon Oscillator
-- Commodity Channel Index (CCI)
-- Detrended Price Oscillator (DPO)
-- ZigZag
-- Fixed Channel Bands (FCB)
-    - FCB High
-    - FCB Low
-- Bullish/Bearish Pattern Recognition
-
-### Helper Indicators
-
-- Price Values (Open, High, Low, Close)
-- Various Price Averages (HL2, HLC3, HLCC4, OHLC4)
-- True Range
-- Directional Movement
-- Gain/Loss
-- Mean and Difference calculations
-
-## Implementation Guide
-
-### 1. Create Your Result Class
-
-The output of indicators is a generic type, which means you can decide what kind of model class
-should be created when an indicator calculates the result of an item. This makes it easy to create a
-list of result items that fits your specific needs. You can define what type of data the list should
-contain.
-
-With IndicatorDataInput.createResult, you can choose the type of output you want. Each result from
-the indicator represents a value (like a quote) for a specific item, and your custom model class can
-include extra properties if needed.
-
-For example, if you want to process or visualize a list of items with a certain data type, you can
-set it up like below:
-
-```Dart
-class SampleResult implements IndicatorResult {
-  SampleResult(this.quote, this.anotherProperty);
-
-  @override
-  final double quote; // Required by IndicatorResult
-
-  final OterPropertyType otherProperty; // Your custom properties
-}
-```
-
-To start, create a class that implements the IndicatorResult interface:
-
-```dart
-class SampleResult implements IndicatorResult {
-  SampleResult(this.quote, this.anotherProperty);
-
-  @override
-  final double quote; // Required by IndicatorResult
-
-  final DateTime time; // Your custom properties
-}
-```
-
-### 2. Create Your Input Class
-
-Next, You can implement `IndicatorDataInput` and implemenet `createResult` method:
-
-```dart
-class SampleInput implements IndicatorDataInput {
-  SampleInput(this.entries);
+// 2. Implement IndicatorDataInput
+class MyInput implements IndicatorDataInput {
+  MyInput(this.entries);
 
   @override
   final List<IndicatorOHLC> entries;
 
   @override
   IndicatorResult createResult(int index, double value) =>
-      SampleResult(value, getDateTimeFromIndex(index));
+      MyResult(value, entries[index] as MyCandle);
+}
+
+// 3. Calculate
+final input = MyInput(candles);
+final rsi = RSIIndicator<MyResult>(input);
+
+final all = rsi.calculateValues();   // List<MyResult>
+final single = rsi.getValue(5);      // MyResult
+```
+
+---
+
+## Core Concepts
+
+The package is built around three interfaces.
+
+### `IndicatorResult`
+
+The output of an indicator calculation:
+
+```dart
+abstract class IndicatorResult {
+  double get quote;
 }
 ```
 
-If the package only gave you a list of numbers (e.g., `List<double>`), you would need to convert it
-into your own type, such as `List<SampleResult>`. By using a generic type, the package lets you
-directly define the output type, so you don’t have to do extra conversions. This way, each result is
-automatically created as the type you want.
-
-### 3. Implement OHLC Interface
-
-You can implement `IndicatorOHLC` for both single-value and OHLC data:
+Implement this with your own model to carry any extra data (timestamps, candle references, etc.) alongside the calculated value.
 
 ```dart
-// Single value implementation
-class SampleTick implements IndicatorOHLC {
-  const SampleTick(this.quote);
+class MyResult implements IndicatorResult {
+  MyResult(this.quote, this.candle);
 
+  @override
   final double quote;
 
-  @override
-  double get close => quote;
-
-  @override
-  double get high => quote;
-
-  @override
-  double get low => quote;
-
-  @override
-  double get open => quote;
-}
-
-// Full OHLC implementation
-class SampleOHLC implements IndicatorOHLC {
-  const SampleOHLC(this.open, this.close, this.high, this.low);
-
-  @override
-  final double close;
-  @override
-  final double high;
-  @override
-  final double low;
-  @override
-  final double open;
+  final MyCandle candle; // attach whatever context you need
 }
 ```
 
-## Using Indicators
+### `IndicatorOHLC`
 
-### Basic Usage
+Represents a price bar with Open, High, Low, and Close values:
 
 ```dart
-// Prepare your data
-final List<SampleOHLC> data = [
-  SampleOHLC(0, 75.1, 74.06, 75.11),
-  SampleOHLC(0, 75.9, 76.03, 74.64),
-  // ... more data points
-];
-
-// Create input
-final input = SampleInput(data);
-
-// Create and use indicator
-final rsi = RSIIndicator<SampleResult>(input);
-final allValues = rsi.calculateValues();
-final specificValue = rsi.getValue(5);
+abstract class IndicatorOHLC {
+  double get open;
+  double get high;
+  double get low;
+  double get close;
+}
 ```
+
+For single-value series (e.g. tick data), map all four fields to the same value:
+
+```dart
+class Tick implements IndicatorOHLC {
+  const Tick(this.value);
+  final double value;
+
+  @override double get open  => value;
+  @override double get high  => value;
+  @override double get low   => value;
+  @override double get close => value;
+}
+```
+
+### `IndicatorDataInput`
+
+Bridges your data and the indicator engine:
+
+```dart
+abstract class IndicatorDataInput {
+  List<IndicatorOHLC> get entries;
+  IndicatorResult createResult(int index, double value);
+}
+```
+
+`createResult` is called for each calculated value — use it to produce whatever `IndicatorResult` subclass you need, enriched with index-based context from your source list.
+
+---
+
+## Available Indicators
+
+### Moving Averages
+
+| Indicator | Class |
+|-----------|-------|
+| Simple Moving Average | `SMAIndicator` |
+| Exponential Moving Average | `EMAIndicator` |
+| Double Exponential Moving Average | `DEMAIndicator` |
+| Triple Exponential Moving Average | `TEMAIndicator` |
+| Triangular Moving Average | `TRIMAIndicator` |
+| Weighted Moving Average | `WMAIndicator` |
+| Modified Moving Average | `MMAIndicator` |
+| Least Squares Moving Average | `LSMAIndicator` |
+| Hull Moving Average | `HMAIndicator` |
+| Variable Moving Average | `VMAIndicator` |
+| Welles Wilder Smoothing | `WWSMAIndicator` |
+| Zero-Lag EMA | `ZELMAIndicator` |
+
+### Oscillators
+
+| Indicator | Class |
+|-----------|-------|
+| Relative Strength Index | `RSIIndicator` |
+| Fast / Slow / Smoothed Stochastic | `StochasticIndicator` |
+| Stochastic Momentum Index | `SMIIndicator` |
+| MACD Line / Signal / Histogram | `MACDIndicator` |
+| Awesome Oscillator | `AwesomeOscillatorIndicator` |
+| Williams %R | `WilliamsRIndicator` |
+| Rate of Change | `ROCIndicator` |
+| Chande Momentum Oscillator | `CMOIndicator` |
+| Gator Oscillator (Top / Bottom) | `GatorOscillatorIndicator` |
+
+### Trend Indicators
+
+| Indicator | Class |
+|-----------|-------|
+| ADX / +DI / -DI / Histogram | `ADXIndicator` |
+| Parabolic SAR | `ParabolicSARIndicator` |
+| Ichimoku Cloud (all five lines) | `IchimokuIndicator` |
+
+### Volatility Indicators
+
+| Indicator | Class |
+|-----------|-------|
+| Bollinger Bands (Upper / Lower / %B / BW) | `BollingerBandsIndicator` |
+| Average True Range | `ATRIndicator` |
+| Standard Deviation | `StandardDeviationIndicator` |
+| Variance | `VarianceIndicator` |
+
+### Channel Indicators
+
+| Indicator | Class |
+|-----------|-------|
+| Donchian Channel | `DonchianChannelIndicator` |
+| Moving Average Envelope | `MAEnvelopeIndicator` |
+
+### Other Indicators
+
+| Indicator | Class |
+|-----------|-------|
+| Aroon Up / Down / Oscillator | `AroonIndicator` |
+| Commodity Channel Index | `CCIIndicator` |
+| Detrended Price Oscillator | `DPOIndicator` |
+| ZigZag | `ZigZagIndicator` |
+| Fixed Channel Bands (High / Low) | `FCBIndicator` |
+| Bullish / Bearish Pattern Recognition | `PatternIndicator` |
+
+### Helper Indicators
+
+Price values (OHLC), common averages (HL2, HLC3, HLCC4, OHLC4), True Range, Directional Movement, Gain/Loss, Mean, and Difference.
+
+---
+
+## Usage
 
 ### Chaining Indicators
 
-Indicators can be used as input for other indicators:
+Any indicator can be used as input to another:
 
 ```dart
-// Create first indicator
-final macd = MACDIndicator<SampleResult>(input);
+final macd = MACDIndicator<MyResult>(input);
 
-// Use MACD as input for SMA
-final sma = SMAIndicator<SampleResult>(macd, 3);
+// Feed MACD output into a 3-period SMA
+final smoothed = SMAIndicator<MyResult>(macd, 3);
 ```
 
-### Performance Optimization
+### Caching and Invalidation
 
-Most indicators extend `CachedIndicator` which provides performance optimizations:
+All indicators extend `CachedIndicator`, so repeated reads are free:
 
 ```dart
-// Calculate all values (cached for future use)
+// Batch-calculate and cache all values
 final values = indicator.calculateValues();
 
-// Get specific value (uses cache if available)
-final value = indicator.getValue(5);
+// Read from cache (no recalculation)
+final v = indicator.getValue(5);
 
-// Invalidate cached value if needed
-indicator.invalidate(3);
+// Invalidate a single slot (e.g. after a live candle update)
+indicator.invalidate(lastIndex);
 
-// Refresh specific value
-indicator.refreshValueFor(5);
+// Recalculate one value
+indicator.refreshValueFor(lastIndex);
 ```
+
+---
 
 ## Architecture
 
-The package follows a hierarchical structure:
+```
+Indicator<T>               — base abstract class; generic T extends IndicatorResult
+  └─ CachedIndicator<T>    — adds per-index caching, invalidation, and batch helpers
+       └─ RSIIndicator<T>  — concrete implementation (same pattern for all indicators)
+```
 
-1. `Indicator<T>`: Base abstract class defining core indicator functionality
-    - Generic type T extends `IndicatorResult`
-    - Handles basic indicator operations
-
-2. `CachedIndicator<T>`: Extends `Indicator<T>` adding caching capabilities
-    - Optimizes performance through value caching
-    - Provides invalidation and refresh mechanisms
-    - Handles batch calculations efficiently
-
-3. Specific Indicators: Extend `CachedIndicator<T>` with specific calculations
-    - Implement technical analysis algorithms
-    - Can be composed with other indicators
-    - Support both single-value and OHLC inputs
+Indicators are composable: any `Indicator<T>` can be passed where an `IndicatorDataInput` is expected, enabling indicator-on-indicator pipelines with shared caching.
