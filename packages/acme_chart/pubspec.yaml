@@ -1,6 +1,6 @@
 name: acme_chart
 description: A financial charting library for Flutter applications, offering a comprehensive suite of features for technical analysis and trading visualization.
-version: 1.0.0
+version: 1.0.1
 
 homepage: https://acmesoftware.com
 repository: https://github.com/AcmeSoftwareLLC/charting/tree/main/packages/acme_chart
