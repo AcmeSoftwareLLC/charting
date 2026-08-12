@@ -3,24 +3,41 @@ import 'package:acme_indicators/src/indicators/calculations/helper_indicators/lo
 import 'package:acme_indicators/src/indicators/calculations/mma_indicator.dart';
 import 'package:acme_indicators/src/models/models.dart';
 
+import '../../math/indicator_math.dart';
+import '../../math/indicator_math_functions.dart';
 import '../cached_indicator.dart';
+import '../indicator.dart';
 
 /// Relative strength index indicator.
 class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes an [RSIIndicator] from the given [indicator] and [period].
-  RSIIndicator.fromIndicator(super.indicator, int period)
-    : _averageGainIndicator = MMAIndicator<T>(
-        GainIndicator<T>.fromIndicator(indicator),
-        period,
-      ),
-      _averageLossIndicator = MMAIndicator<T>(
-        LossIndicator<T>.fromIndicator(indicator),
-        period,
-      ),
-      super.fromIndicator();
+  ///
+  /// [relativeStrength] optionally overrides the bulk math used by
+  /// [calculateValues]; defaults to
+  /// [IndicatorMathRegistry.relativeStrength].
+  RSIIndicator.fromIndicator(
+    super.indicator,
+    int period, {
+    RelativeStrengthFn? relativeStrength,
+  }) : _sourceIndicator = indicator,
+       _period = period,
+       _averageGainIndicator = MMAIndicator<T>(
+         GainIndicator<T>.fromIndicator(indicator),
+         period,
+       ),
+       _averageLossIndicator = MMAIndicator<T>(
+         LossIndicator<T>.fromIndicator(indicator),
+         period,
+       ),
+       _relativeStrength =
+           relativeStrength ?? IndicatorMathRegistry.relativeStrength,
+       super.fromIndicator();
 
+  final Indicator<T> _sourceIndicator;
+  final int _period;
   final MMAIndicator<T> _averageGainIndicator;
   final MMAIndicator<T> _averageLossIndicator;
+  final RelativeStrengthFn _relativeStrength;
 
   @override
   T calculate(int index) {
@@ -38,6 +55,24 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       index: index,
       quote: 100 - (100 / (1 + relativeStrength)),
     );
+  }
+
+  @override
+  List<T> calculateValues() {
+    if (_sourceIndicator is CachedIndicator) {
+      (_sourceIndicator as CachedIndicator).calculateValues();
+    }
+
+    final List<double> series = <double>[
+      for (int i = 0; i < entries.length; i++) _sourceIndicator.getValue(i).quote,
+    ];
+    final List<double> result = _relativeStrength(series, _period);
+
+    for (int i = 0; i < entries.length; i++) {
+      results[i] = createResult(index: i, quote: result[i]);
+    }
+    lastResultIndex = entries.length - 1;
+    return results;
   }
 
   @override

@@ -77,5 +77,7 @@ export 'src/indicators/calculations/wwsma_indicator.dart';
 export 'src/indicators/calculations/zelma_indicator.dart';
 export 'src/indicators/calculations/zigzag_indicator.dart';
 export 'src/indicators/indicator.dart';
+export 'src/math/indicator_math.dart';
+export 'src/math/indicator_math_functions.dart';
 export 'src/models/data_input.dart' show IndicatorDataInput;
 export 'src/models/models.dart' show IndicatorOHLC, IndicatorResult;

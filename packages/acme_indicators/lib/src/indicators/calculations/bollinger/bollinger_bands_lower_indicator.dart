@@ -1,5 +1,7 @@
 import 'package:acme_indicators/src/models/models.dart';
 
+import '../../../math/indicator_math.dart';
+import '../../../math/indicator_math_functions.dart';
 import '../../cached_indicator.dart';
 
 /// Bollinger bands lower indicator
@@ -13,8 +15,17 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
   ///
   /// [indicator] the deviation above and below the middle, factored by k.
   ///             Typically a StandardDeviationIndicator is used.
-  BollingerBandsLowerIndicator(this.bbm, this.indicator, {this.k = 2})
-    : super.fromIndicator(bbm);
+  ///
+  /// [bandOffset] optionally overrides the bulk math used by
+  ///             [calculateValues]; defaults to
+  ///             [IndicatorMathRegistry.bandOffset].
+  BollingerBandsLowerIndicator(
+    this.bbm,
+    this.indicator, {
+    this.k = 2,
+    BandOffsetFn? bandOffset,
+  }) : _bandOffset = bandOffset ?? IndicatorMathRegistry.bandOffset,
+       super.fromIndicator(bbm);
 
   /// Indicator
   final CachedIndicator<T> indicator;
@@ -25,11 +36,33 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
   /// Default is 2.
   final double k;
 
+  final BandOffsetFn _bandOffset;
+
   @override
   T calculate(int index) => createResult(
     index: index,
     quote: bbm.getValue(index).quote - (indicator.getValue(index).quote * k),
   );
+
+  @override
+  List<T> calculateValues() {
+    bbm.calculateValues();
+    indicator.calculateValues();
+
+    final List<double> middle = <double>[
+      for (int i = 0; i < entries.length; i++) bbm.getValue(i).quote,
+    ];
+    final List<double> deviationValues = <double>[
+      for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
+    ];
+    final List<double> result = _bandOffset(middle, deviationValues, k, -1);
+
+    for (int i = 0; i < entries.length; i++) {
+      results[i] = createResult(index: i, quote: result[i]);
+    }
+    lastResultIndex = entries.length - 1;
+    return results;
+  }
 
   @override
   void copyValuesFrom(covariant BollingerBandsLowerIndicator<T> other) {

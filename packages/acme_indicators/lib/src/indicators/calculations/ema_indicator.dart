@@ -1,14 +1,26 @@
 import 'package:acme_indicators/src/models/models.dart';
 
+import '../../math/indicator_math.dart';
+import '../../math/indicator_math_functions.dart';
 import '../cached_indicator.dart';
 import '../indicator.dart';
 
 /// Base class for Exponential Moving Average implementations.
 abstract class AbstractEMAIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
-  /// Initializes
-  AbstractEMAIndicator(this.indicator, this.period, this.multiplier)
-    : super.fromIndicator(indicator);
+  /// Initializes.
+  ///
+  /// [exponentialSmoothing] optionally overrides the bulk math used by
+  /// [calculateValues]; defaults to
+  /// [IndicatorMathRegistry.exponentialSmoothing].
+  AbstractEMAIndicator(
+    this.indicator,
+    this.period,
+    this.multiplier, {
+    ExponentialSmoothingFn? exponentialSmoothing,
+  }) : _exponentialSmoothing =
+           exponentialSmoothing ?? IndicatorMathRegistry.exponentialSmoothing,
+       super.fromIndicator(indicator);
 
   /// Indicator to calculate EMA on.
   final Indicator<T> indicator;
@@ -19,6 +31,8 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
   /// Multiplier
   final double multiplier;
 
+  final ExponentialSmoothingFn _exponentialSmoothing;
+
   @override
   T calculate(int index) {
     if (index == 0) {
@@ -28,10 +42,26 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
     final double prevValue = getValue(index - 1).quote;
     return createResult(
       index: index,
-      quote:
-          ((indicator.getValue(index).quote - prevValue) * multiplier) +
-          prevValue,
+      quote: ((indicator.getValue(index).quote - prevValue) * multiplier) + prevValue,
     );
+  }
+
+  @override
+  List<T> calculateValues() {
+    if (indicator is CachedIndicator) {
+      (indicator as CachedIndicator).calculateValues();
+    }
+
+    final List<double> series = <double>[
+      for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
+    ];
+    final List<double> result = _exponentialSmoothing(series, period, multiplier);
+
+    for (int i = 0; i < entries.length; i++) {
+      results[i] = createResult(index: i, quote: result[i]);
+    }
+    lastResultIndex = entries.length - 1;
+    return results;
   }
 
   @override
@@ -57,6 +87,14 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
 /// EMA indicator
 class EMAIndicator<T extends IndicatorResult> extends AbstractEMAIndicator<T> {
   /// Initializes
-  EMAIndicator(Indicator<T> indicator, int period)
-    : super(indicator, period, 2.0 / (period + 1));
+  EMAIndicator(
+    Indicator<T> indicator,
+    int period, {
+    ExponentialSmoothingFn? exponentialSmoothing,
+  }) : super(
+         indicator,
+         period,
+         2.0 / (period + 1),
+         exponentialSmoothing: exponentialSmoothing,
+       );
 }

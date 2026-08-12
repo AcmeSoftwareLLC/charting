@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:acme_indicators/src/models/models.dart';
 
+import '../../../math/indicator_math.dart';
+import '../../../math/indicator_math_functions.dart';
 import '../../cached_indicator.dart';
 import '../../indicator.dart';
 import '../sma_indicator.dart';
@@ -12,9 +14,15 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   /// [indicator] the indicator
   /// [period]  the time frame
-  VarianceIndicator(this.indicator, this.period)
-    : _sma = SMAIndicator<T>(indicator, period),
-      super.fromIndicator(indicator);
+  /// [variance] optionally overrides the bulk math used by
+  /// [calculateValues]; defaults to [IndicatorMathRegistry.variance].
+  VarianceIndicator(
+    this.indicator,
+    this.period, {
+    VarianceFn? variance,
+  }) : _sma = SMAIndicator<T>(indicator, period),
+       _variance = variance ?? IndicatorMathRegistry.variance,
+       super.fromIndicator(indicator);
 
   /// Indicator
   final Indicator<T> indicator;
@@ -23,6 +31,7 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final int period;
 
   final SMAIndicator<T> _sma;
+  final VarianceFn _variance;
 
   @override
   T calculate(int index) {
@@ -40,6 +49,24 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     variance = variance / numberOfObservations;
 
     return createResult(index: index, quote: variance);
+  }
+
+  @override
+  List<T> calculateValues() {
+    if (indicator is CachedIndicator) {
+      (indicator as CachedIndicator).calculateValues();
+    }
+
+    final List<double> series = <double>[
+      for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
+    ];
+    final List<double> result = _variance(series, period);
+
+    for (int i = 0; i < entries.length; i++) {
+      results[i] = createResult(index: i, quote: result[i]);
+    }
+    lastResultIndex = entries.length - 1;
+    return results;
   }
 
   @override
