@@ -238,6 +238,66 @@ indicator.refreshValueFor(lastIndex);
 
 ---
 
+## 🔬 Customizable Math
+
+All the bulk math behind `calculateValues()` — windowed averages, exponential smoothing, RSI's relative strength, variance, true range, and Bollinger band offsets — is pluggable. This lets you swap in faster, native, or WASM implementations, or match the numerics of a different reference library. The per-bar `calculate(int index)` path is unaffected; only the batch path is customizable.
+
+Each math "shape" is a typedef in `indicator_math_functions.dart`:
+
+```dart
+typedef WindowedAverageFn = List<double> Function(List<double> values, int period);
+typedef ExponentialSmoothingFn = List<double> Function(List<double> values, int period, double multiplier);
+typedef RelativeStrengthFn = List<double> Function(List<double> values, int period);
+typedef VarianceFn = List<double> Function(List<double> values, int period);
+typedef SqrtFn = List<double> Function(List<double> values, int period, double nbDev);
+typedef TrueRangeFn = List<double> Function(List<double> high, List<double> low, List<double> close);
+typedef AverageTrueRangeFn = List<double> Function(List<double> high, List<double> low, List<double> close, int period);
+typedef BandOffsetFn = List<double> Function(List<double> middle, List<double> deviation, double k, double sign);
+```
+
+Any implementation you provide must return a list the same length as the input, with the lookback region (the first `period - 1` or `period` entries) filled with `0` rather than partial-window values.
+
+### Per-instance override
+
+Pass the matching named parameter to a specific indicator to override just that instance:
+
+```dart
+final sma = SMAIndicator<MyResult>(
+  input,
+  14,
+  windowedAverage: myFastWindowedAverage,
+);
+```
+
+### Global override
+
+Assign to a static field on `IndicatorMathRegistry` to change the default for every indicator constructed afterward, package-wide:
+
+```dart
+IndicatorMathRegistry.exponentialSmoothing = myFastEmaImpl;
+
+// Built after the override above, so it picks up myFastEmaImpl
+final ema = EMAIndicator<MyResult>(input, 14);
+
+// Restore all fields to their defaults (e.g. between tests)
+IndicatorMathRegistry.resetToDefaults();
+```
+
+`IndicatorMathRegistry` fields default to `DefaultIndicatorMath`'s implementations (`indicator_math.dart`), which you can also call directly if you want to wrap or delegate to the built-in behavior instead of fully replacing it.
+
+| Indicator | Param | Typedef |
+|-----------|-------|---------|
+| `SMAIndicator` | `windowedAverage` | `WindowedAverageFn?` |
+| `EMAIndicator` / `MMAIndicator` / `MACDIndicator` | `exponentialSmoothing` | `ExponentialSmoothingFn?` |
+| `RSIIndicator.fromIndicator` | `relativeStrength` | `RelativeStrengthFn?` |
+| `VarianceIndicator` | `variance` | `VarianceFn?` |
+| `StandardDeviationIndicator` | `sqrtOf` | `SqrtFn?` |
+| `TRIndicator` | `trueRange` | `TrueRangeFn?` |
+| `ATRIndicator` | `averageTrueRange` | `AverageTrueRangeFn?` |
+| `BollingerBandsUpperIndicator` / `BollingerBandsLowerIndicator` | `bandOffset` | `BandOffsetFn?` |
+
+---
+
 ## 🏗️ Architecture
 
 ```
