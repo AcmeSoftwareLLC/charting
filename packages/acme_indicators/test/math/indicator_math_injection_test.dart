@@ -43,6 +43,27 @@ void main() {
 
       expect(rsi.calculateValues().map((MockResult r) => r.quote), everyElement(7));
     });
+
+    test('EMAIndicator.calculateValues uses the injected exponentialSmoothing', () {
+      bool wasCalled = false;
+      List<double> fakeExponentialSmoothing(
+        List<double> values,
+        int period,
+        double multiplier,
+      ) {
+        wasCalled = true;
+        return List<double>.filled(values.length, 13);
+      }
+
+      final EMAIndicator<MockResult> ema = EMAIndicator<MockResult>(
+        CloseValueIndicator<MockResult>(MockInput(ticks)),
+        3,
+        exponentialSmoothing: fakeExponentialSmoothing,
+      );
+
+      expect(ema.calculateValues().map((MockResult r) => r.quote), everyElement(13));
+      expect(wasCalled, isTrue);
+    });
   });
 
   group('Registry-level default override', () {
