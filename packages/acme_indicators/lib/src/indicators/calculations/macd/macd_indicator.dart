@@ -17,16 +17,21 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// otherwise [IndicatorMathRegistry.macd] is used if it has been globally
   /// set. When neither is set, [calculateValues] isn't overridden and values
   /// are computed one at a time via [calculate].
+  ///
+  /// [ema] is forwarded to the two internal [EMAIndicator]s that back
+  /// [calculate]'s per-bar path; it has no effect on the bulk [macd] path.
   MACDIndicator(
     IndicatorDataInput input, {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
     MacdFn? macd,
+    EmaFn? ema,
   }) : this.fromIndicator(
          CloseValueIndicator<T>(input),
          fastMAPeriod: fastMAPeriod,
          slowMAPeriod: slowMAPeriod,
          macd: macd,
+         ema: ema,
        );
 
   /// Creates a  Moving average convergence divergence indicator from a given [indicator],
@@ -36,16 +41,20 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// otherwise [IndicatorMathRegistry.macd] is used if it has been globally
   /// set. When neither is set, [calculateValues] isn't overridden and values
   /// are computed one at a time via [calculate].
+  ///
+  /// [ema] is forwarded to the two internal [EMAIndicator]s that back
+  /// [calculate]'s per-bar path; it has no effect on the bulk [macd] path.
   MACDIndicator.fromIndicator(
     super.indicator, {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
     MacdFn? macd,
+    EmaFn? ema,
   }) : _sourceIndicator = indicator,
        _fastPeriod = fastMAPeriod,
        _slowPeriod = slowMAPeriod,
-       _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod),
-       _longTermEma = EMAIndicator<T>(indicator, slowMAPeriod),
+       _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod, ema: ema),
+       _longTermEma = EMAIndicator<T>(indicator, slowMAPeriod, ema: ema),
        _macd = macd ?? IndicatorMathRegistry.macd,
        super.fromIndicator();
 
