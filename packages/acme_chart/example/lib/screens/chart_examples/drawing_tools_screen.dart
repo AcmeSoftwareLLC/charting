@@ -277,6 +277,10 @@ class _DrawingToolsScreenState
                           value: FibfanDrawingToolConfig(),
                           child: Text('Fibonacci Fan'),
                         ),
+                        DropdownMenuItem<DrawingToolConfig>(
+                          value: NotesDrawingToolConfig(),
+                          child: Text('Notes'),
+                        ),
                       ],
                       onChanged: (DrawingToolConfig? config) {
                         setState(() {
@@ -336,6 +340,7 @@ class _DrawingToolsScreenState
               _buildToolChip('Rectangle', Icons.crop_square),
               _buildToolChip('Channel', Icons.view_stream),
               _buildToolChip('Fibonacci Fan', Icons.filter_tilt_shift),
+              _buildToolChip('Notes', Icons.sticky_note_2),
             ],
           ),
         ],

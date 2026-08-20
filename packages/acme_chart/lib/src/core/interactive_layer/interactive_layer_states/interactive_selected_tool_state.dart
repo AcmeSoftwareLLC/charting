@@ -210,7 +210,16 @@ class InteractiveSelectedToolState extends InteractiveState
   }
 
   @override
-  List<Widget> get previewWidgets => [_buildSelectedDrawingFloatingMenu()];
+  List<Widget> get previewWidgets => [
+    _buildSelectedDrawingFloatingMenu(),
+    ?_buildSelectedDrawingOverlay(),
+  ];
+
+  Widget? _buildSelectedDrawingOverlay() => selected.getSelectedOverlay(
+    epochToX: epochToX,
+    quoteToY: quoteToY,
+    onUpdate: (config) => interactiveLayer.saveDrawing(config),
+  );
 
   Widget _buildSelectedDrawingFloatingMenu() => SelectedDrawingFloatingMenu(
     drawing: selected,

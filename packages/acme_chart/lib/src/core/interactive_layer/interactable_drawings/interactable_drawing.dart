@@ -82,6 +82,32 @@ abstract class InteractableDrawing<T extends DrawingToolConfig>
   @protected
   Widget buildDrawingToolBarMenu(UpdateDrawingTool onUpdate);
 
+  /// Returns an overlay widget rendered directly on top of this drawing while
+  /// it's selected, positioned in the same pixel space as [paint].
+  ///
+  /// Override [buildSelectedOverlay] to provide one, e.g. for inline text
+  /// editing directly on the canvas. Returns `null` by default, meaning no
+  /// overlay is shown.
+  Widget? getSelectedOverlay({
+    required EpochToX epochToX,
+    required QuoteToY quoteToY,
+    required UpdateDrawingTool onUpdate,
+  }) => buildSelectedOverlay(epochToX, quoteToY, (config) {
+    _prevConfig = this.config;
+    this.config = config as T;
+
+    onUpdate(config);
+  });
+
+  /// Builds the selected-state overlay for the drawing tool. Returns `null`
+  /// by default, meaning no overlay is shown.
+  @protected
+  Widget? buildSelectedOverlay(
+    EpochToX epochToX,
+    QuoteToY quoteToY,
+    UpdateDrawingTool onUpdate,
+  ) => null;
+
   /// Returns `true` if the drawing tool is hit by the given offset.
   @override
   bool hitTest(Offset offset, EpochToX epochToX, QuoteToY quoteToY);

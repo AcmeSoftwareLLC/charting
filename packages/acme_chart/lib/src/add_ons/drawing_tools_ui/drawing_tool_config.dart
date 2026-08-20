@@ -41,6 +41,8 @@ abstract class DrawingToolConfig extends AddOnConfig {
         return LineDrawingToolConfig.fromJson(json);
       case LineDrawingToolConfigMobile.name:
         return LineDrawingToolConfigMobile.fromJson(json);
+      case NotesDrawingToolConfig.name:
+        return NotesDrawingToolConfig.fromJson(json);
       case RayDrawingToolConfig.name:
         return RayDrawingToolConfig.fromJson(json);
       case RectangleDrawingToolConfig.name:

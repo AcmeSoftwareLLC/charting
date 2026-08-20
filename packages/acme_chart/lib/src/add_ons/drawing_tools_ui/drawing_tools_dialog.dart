@@ -4,6 +4,7 @@ import 'package:acme_chart/src/add_ons/drawing_tools_ui/continuous/continuous_dr
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/horizontal/horizontal_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/fibfan/fibfan_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/line/line_drawing_tool_config.dart';
+import 'package:acme_chart/src/add_ons/drawing_tools_ui/notes/notes_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/rectangle/rectangle_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/ray/ray_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/trend/trend_drawing_tool_config.dart';
@@ -73,6 +74,10 @@ class _DrawingToolsDialogState extends State<DrawingToolsDialog> {
                   DropdownMenuItem<DrawingToolConfig>(
                     value: LineDrawingToolConfig(),
                     child: Text('Line'),
+                  ),
+                  DropdownMenuItem<DrawingToolConfig>(
+                    value: NotesDrawingToolConfig(),
+                    child: Text('Notes'),
                   ),
                   DropdownMenuItem<DrawingToolConfig>(
                     value: RayDrawingToolConfig(),
