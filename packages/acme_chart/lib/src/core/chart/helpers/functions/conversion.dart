@@ -109,7 +109,7 @@ double quoteFromCanvasY({
 
   final double yTopBound = topPadding;
 
-  if (quoteRange == 0) {
+  if (quoteRange == 0 || drawingRange == 0) {
     return topBoundQuote;
   }
 

@@ -27,6 +27,14 @@ class _DrawingToolsScreenState
   final InteractiveLayerController interactiveLayerController =
       InteractiveLayerController();
 
+  // Wraps `interactiveLayerController` so the chart's actual interactive
+  // layer is driven by the same controller this screen's "Add"
+  // button/dialog use — otherwise AcmeChart builds its own internal
+  // controller and "Add" silently talks to nothing.
+  late final InteractiveLayerBehaviour _interactiveLayerBehaviour = kIsWeb
+      ? InteractiveLayerDesktopBehaviour(controller: interactiveLayerController)
+      : InteractiveLayerMobileBehaviour(controller: interactiveLayerController);
+
   @override
   void initState() {
     super.initState();
@@ -78,6 +86,7 @@ class _DrawingToolsScreenState
           ? CrosshairVariant.largeScreen
           : CrosshairVariant.smallScreen,
       useDrawingToolsV2: _useDrawingToolsV2,
+      interactiveLayerBehaviour: _interactiveLayerBehaviour,
     );
   }
 
@@ -117,6 +126,18 @@ class _DrawingToolsScreenState
 
   @override
   Widget buildControls() {
+    // This screen's controls panel (toggles + dropdown + tool chips) is
+    // taller than other example screens'. Cap and scroll it so it can never
+    // squeeze the chart above it down toward a 0-height `Expanded`.
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.5,
+      ),
+      child: SingleChildScrollView(child: _buildControlsContent()),
+    );
+  }
+
+  Widget _buildControlsContent() {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -214,8 +235,11 @@ class _DrawingToolsScreenState
             Column(
               children: [
                 // Drawing tool selection
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 16,
+                  runSpacing: 8,
                   children: [
                     DropdownButton<DrawingToolConfig>(
                       value: _selectedDrawingTool,
@@ -260,7 +284,6 @@ class _DrawingToolsScreenState
                         });
                       },
                     ),
-                    const SizedBox(width: 16),
                     ElevatedButton(
                       onPressed:
                           _selectedDrawingTool != null ? _addDrawingTool : null,
