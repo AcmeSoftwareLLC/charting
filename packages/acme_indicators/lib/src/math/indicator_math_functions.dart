@@ -5,8 +5,7 @@ library;
 typedef WindowedAverageFn = List<double> Function(List<double> values, int period);
 
 /// Exponential-smoothing shape, shared by EMA and MMA: first `period - 1` entries are `0`; seeded at `period - 1` with the plain average of the first [period] values, then recurses with [multiplier].
-typedef ExponentialSmoothingFn =
-    List<double> Function(List<double> values, int period, double multiplier);
+typedef EmaFn = List<double> Function(List<double> values, int period, double multiplier);
 
 /// Wilder-smoothed RSI shape: ties resolve `avgLoss == 0 -> 100` before `avgGain == 0 -> 0`, rounded to 2 decimals; first `period` entries are `0`.
 typedef RelativeStrengthFn = List<double> Function(List<double> values, int period);

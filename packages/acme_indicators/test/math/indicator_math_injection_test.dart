@@ -44,9 +44,9 @@ void main() {
       expect(rsi.calculateValues().map((MockResult r) => r.quote), everyElement(7));
     });
 
-    test('EMAIndicator.calculateValues uses the injected exponentialSmoothing', () {
+    test('EMAIndicator.calculateValues uses the injected ema', () {
       bool wasCalled = false;
-      List<double> fakeExponentialSmoothing(
+      List<double> fakeEma(
         List<double> values,
         int period,
         double multiplier,
@@ -58,7 +58,7 @@ void main() {
       final EMAIndicator<MockResult> ema = EMAIndicator<MockResult>(
         CloseValueIndicator<MockResult>(MockInput(ticks)),
         3,
-        exponentialSmoothing: fakeExponentialSmoothing,
+        ema: fakeEma,
       );
 
       expect(ema.calculateValues().map((MockResult r) => r.quote), everyElement(13));
@@ -68,12 +68,11 @@ void main() {
 
   group('Registry-level default override', () {
     test(
-      'setting IndicatorMathRegistry.exponentialSmoothing affects EMA '
+      'setting IndicatorMathRegistry.ema affects EMA '
       'instances built afterwards without a per-instance override',
       () {
-        IndicatorMathRegistry.exponentialSmoothing =
-            (List<double> values, int period, double multiplier) =>
-                List<double>.filled(values.length, -1);
+        IndicatorMathRegistry.ema = (List<double> values, int period, double multiplier) =>
+            List<double>.filled(values.length, -1);
 
         final EMAIndicator<MockResult> ema = EMAIndicator<MockResult>(
           CloseValueIndicator<MockResult>(MockInput(ticks)),

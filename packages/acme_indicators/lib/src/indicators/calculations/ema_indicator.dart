@@ -10,8 +10,8 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes.
   ///
-  /// [exponentialSmoothing] optionally overrides the bulk math used by
-  /// [calculateValues]; otherwise [IndicatorMathRegistry.exponentialSmoothing]
+  /// [ema] optionally overrides the bulk math used by
+  /// [calculateValues]; otherwise [IndicatorMathRegistry.ema]
   /// is used if it has been globally set. When neither is set,
   /// [calculateValues] isn't overridden and values are computed one at a time
   /// via [calculate].
@@ -19,9 +19,8 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
     this.indicator,
     this.period,
     this.multiplier, {
-    ExponentialSmoothingFn? exponentialSmoothing,
-  }) : _exponentialSmoothing =
-           exponentialSmoothing ?? IndicatorMathRegistry.exponentialSmoothing,
+    EmaFn? ema,
+  }) : _ema = ema ?? IndicatorMathRegistry.ema,
        super.fromIndicator(indicator);
 
   /// Indicator to calculate EMA on.
@@ -33,7 +32,7 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
   /// Multiplier
   final double multiplier;
 
-  final ExponentialSmoothingFn? _exponentialSmoothing;
+  final EmaFn? _ema;
 
   @override
   T calculate(int index) {
@@ -50,8 +49,8 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
 
   @override
   List<T> calculateValues() {
-    final ExponentialSmoothingFn? exponentialSmoothing = _exponentialSmoothing;
-    if (exponentialSmoothing == null) {
+    final EmaFn? ema = _ema;
+    if (ema == null) {
       return super.calculateValues();
     }
 
@@ -62,7 +61,7 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
     final List<double> series = <double>[
       for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
     ];
-    final List<double> result = exponentialSmoothing(series, period, multiplier);
+    final List<double> result = ema(series, period, multiplier);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);
@@ -97,11 +96,6 @@ class EMAIndicator<T extends IndicatorResult> extends AbstractEMAIndicator<T> {
   EMAIndicator(
     Indicator<T> indicator,
     int period, {
-    ExponentialSmoothingFn? exponentialSmoothing,
-  }) : super(
-         indicator,
-         period,
-         2.0 / (period + 1),
-         exponentialSmoothing: exponentialSmoothing,
-       );
+    EmaFn? ema,
+  }) : super(indicator, period, 2.0 / (period + 1), ema: ema);
 }

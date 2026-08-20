@@ -259,7 +259,7 @@ final sma = SMAIndicator<MyResult>(
 Assign to a static field on `IndicatorMathRegistry` to change the default for every indicator constructed afterward, package-wide:
 
 ```dart
-IndicatorMathRegistry.exponentialSmoothing = myFastEmaImpl;
+IndicatorMathRegistry.ema = myFastEmaImpl;
 
 // Built after the override above, so it picks up myFastEmaImpl
 final ema = EMAIndicator<MyResult>(input, 14);

@@ -9,6 +9,6 @@ class MMAIndicator<T extends IndicatorResult> extends AbstractEMAIndicator<T> {
   MMAIndicator(
     Indicator<T> indicator,
     int period, {
-    ExponentialSmoothingFn? exponentialSmoothing,
-  }) : super(indicator, period, 1.0 / period, exponentialSmoothing: exponentialSmoothing);
+    EmaFn? ema,
+  }) : super(indicator, period, 1.0 / period, ema: ema);
 }

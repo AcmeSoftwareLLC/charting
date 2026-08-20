@@ -11,8 +11,8 @@ abstract final class IndicatorMathRegistry {
   /// Secondary override for [WindowedAverageFn]-shaped bulk computation (e.g. SMA's `calculateValues()`).
   static WindowedAverageFn? windowedAverage;
 
-  /// Secondary override for [ExponentialSmoothingFn]-shaped bulk computation (e.g. EMA/MMA's `calculateValues()`).
-  static ExponentialSmoothingFn? exponentialSmoothing;
+  /// Secondary override for [EmaFn]-shaped bulk computation (e.g. EMA/MMA's `calculateValues()`).
+  static EmaFn? ema;
 
   /// Secondary override for [RelativeStrengthFn]-shaped bulk computation (e.g. RSI's `calculateValues()`).
   static RelativeStrengthFn? relativeStrength;
@@ -38,7 +38,7 @@ abstract final class IndicatorMathRegistry {
   /// Clears every field back to unset; call in `tearDown` when tests mutate the registry.
   static void resetToDefaults() {
     windowedAverage = null;
-    exponentialSmoothing = null;
+    ema = null;
     relativeStrength = null;
     variance = null;
     sqrtOf = null;
