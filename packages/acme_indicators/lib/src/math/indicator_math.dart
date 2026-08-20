@@ -2,14 +2,9 @@ import 'dart:math' as math;
 
 import 'indicator_math_functions.dart';
 
-/// Built-in, pure-Dart default implementations of each bulk math shape,
-/// ported faithfully from gc-core's `pkg/indicators` Go package (and, for
-/// the pieces gc-core doesn't re-expose separately — variance, standard
-/// deviation, true range — from the go-talib functions gc-core's `BBands`
-/// and `Atr` transitively depend on). These are the functions used when
-/// neither a per-instance override nor a registry override is present.
+/// Built-in, pure-Dart default implementations of each bulk math shape, used when neither a per-instance override nor a registry override is present.
 abstract final class DefaultIndicatorMath {
-  /// Default [WindowedAverageFn]. Matches gc-core's `Sma`.
+  /// Default [WindowedAverageFn].
   static List<double> windowedAverage(List<double> values, int period) {
     final int length = values.length;
     final List<double> result = List<double>.filled(length, 0);
@@ -44,10 +39,7 @@ abstract final class DefaultIndicatorMath {
     return result;
   }
 
-  /// Default [ExponentialSmoothingFn]. Matches gc-core's `Ema` (a
-  /// pass-through to `talib.Ema`) when `multiplier` is `2 / (period + 1)`;
-  /// the same shape backs Wilder/MMA smoothing when `multiplier` is
-  /// `1 / period`.
+  /// Default [ExponentialSmoothingFn]: EMA when `multiplier` is `2 / (period + 1)`, Wilder/MMA smoothing when `multiplier` is `1 / period`.
   static List<double> exponentialSmoothing(
     List<double> values,
     int period,
@@ -86,9 +78,7 @@ abstract final class DefaultIndicatorMath {
     return result;
   }
 
-  /// Default [RelativeStrengthFn]. Matches gc-core's custom `Rsi`
-  /// exactly: ties resolve `avgLoss == 0 -> 100` before `avgGain == 0 -> 0`,
-  /// and every value is rounded to 2 decimal places.
+  /// Default [RelativeStrengthFn]: ties resolve `avgLoss == 0 -> 100` before `avgGain == 0 -> 0`, rounded to 2 decimal places.
   static List<double> relativeStrength(List<double> values, int period) {
     final int length = values.length;
     final List<double> result = List<double>.filled(length, 0);
@@ -135,8 +125,7 @@ abstract final class DefaultIndicatorMath {
     return (rsi * 100).round() / 100;
   }
 
-  /// Default [VarianceFn]. Mirrors go-talib's internal `Var`, which
-  /// gc-core's `BBands` transitively depends on.
+  /// Default [VarianceFn]: population variance over a rolling window.
   static List<double> variance(List<double> values, int period) {
     final int length = values.length;
     final List<double> result = List<double>.filled(length, 0);
@@ -181,8 +170,7 @@ abstract final class DefaultIndicatorMath {
 
   static const double _epsilon = 0.00000000000001;
 
-  /// Default [SqrtFn]. Mirrors go-talib's internal `StdDev`, which
-  /// gc-core's `BBands` transitively depends on.
+  /// Default [SqrtFn]: `sqrt(variance) * nbDev`, clamped to `0` near zero.
   static List<double> sqrtOf(List<double> values, int period, double nbDev) {
     final List<double> varianceValues = variance(values, period);
     final List<double> result = List<double>.filled(values.length, 0);
@@ -197,8 +185,7 @@ abstract final class DefaultIndicatorMath {
     return result;
   }
 
-  /// Default [TrueRangeFn]. Mirrors go-talib's internal `TRange`, which
-  /// gc-core's `Atr` transitively depends on.
+  /// Default [TrueRangeFn].
   static List<double> trueRange(List<double> high, List<double> low, List<double> close) {
     final int length = close.length;
     final List<double> result = List<double>.filled(length, 0);
@@ -221,8 +208,7 @@ abstract final class DefaultIndicatorMath {
     return result;
   }
 
-  /// Default [AverageTrueRangeFn]. Matches gc-core's `Atr` (a
-  /// pass-through to `talib.Atr`).
+  /// Default [AverageTrueRangeFn].
   static List<double> averageTrueRange(
     List<double> high,
     List<double> low,
@@ -264,61 +250,40 @@ abstract final class DefaultIndicatorMath {
   ) => List<double>.generate(middle.length, (int i) => middle[i] + (sign * deviation[i] * k));
 }
 
-/// Global registry of the *default* bulk math function used by each
-/// indicator "shape" when a specific instance does not supply its own
-/// override via constructor injection.
+/// Global registry of the *default* bulk math function used by each indicator "shape" when a specific instance does not supply its own override via constructor injection.
 ///
-/// There is deliberately no registry for per-bar scalar math: gc-core (and
-/// go-talib before it) only ever exposes batch, whole-series functions, so a
-/// native/wasm binding can only ever back the bulk path. The scalar per-bar
-/// formulas used by each indicator's `calculate()` are permanently pure
-/// Dart.
-///
-/// This is the single place a consumer (e.g. an app wiring in a go-wasm
-/// binary) flips to change bulk math package-wide without touching every
-/// indicator construction call site:
 /// ```dart
-/// IndicatorMathRegistry.windowedAverage = wasmWindowedAverage;
+/// IndicatorMathRegistry.windowedAverage = myFastWindowedAverage;
 /// ```
 ///
-/// Each indicator resolves `myOverride ?? IndicatorMathRegistry.xxx` once, at
-/// construction time. Changing a registry field only affects indicators
-/// constructed afterwards — instances already built keep using whatever was
-/// the default when they were constructed.
+/// Each indicator resolves `myOverride ?? IndicatorMathRegistry.xxx` once, at construction time, so changing a registry field only affects indicators constructed afterwards.
 abstract final class IndicatorMathRegistry {
-  /// Default math for [WindowedAverageFn]-shaped bulk computation (e.g.
-  /// SMA's `calculateValues()`).
+  /// Default math for [WindowedAverageFn]-shaped bulk computation (e.g. SMA's `calculateValues()`).
   static WindowedAverageFn windowedAverage = DefaultIndicatorMath.windowedAverage;
 
-  /// Default math for [ExponentialSmoothingFn]-shaped bulk computation
-  /// (e.g. EMA/MMA's `calculateValues()`).
+  /// Default math for [ExponentialSmoothingFn]-shaped bulk computation (e.g. EMA/MMA's `calculateValues()`).
   static ExponentialSmoothingFn exponentialSmoothing =
       DefaultIndicatorMath.exponentialSmoothing;
 
-  /// Default math for [RelativeStrengthFn]-shaped bulk computation (e.g.
-  /// RSI's `calculateValues()`).
+  /// Default math for [RelativeStrengthFn]-shaped bulk computation (e.g. RSI's `calculateValues()`).
   static RelativeStrengthFn relativeStrength = DefaultIndicatorMath.relativeStrength;
 
   /// Default math for [VarianceFn]-shaped bulk computation.
   static VarianceFn variance = DefaultIndicatorMath.variance;
 
-  /// Default math for [SqrtFn]-shaped bulk computation (e.g. Standard
-  /// Deviation's `calculateValues()`).
+  /// Default math for [SqrtFn]-shaped bulk computation (e.g. Standard Deviation's `calculateValues()`).
   static SqrtFn sqrtOf = DefaultIndicatorMath.sqrtOf;
 
   /// Default math for [TrueRangeFn]-shaped bulk computation.
   static TrueRangeFn trueRange = DefaultIndicatorMath.trueRange;
 
-  /// Default math for [AverageTrueRangeFn]-shaped bulk computation (e.g.
-  /// ATR's `calculateValues()`).
+  /// Default math for [AverageTrueRangeFn]-shaped bulk computation (e.g. ATR's `calculateValues()`).
   static AverageTrueRangeFn averageTrueRange = DefaultIndicatorMath.averageTrueRange;
 
-  /// Default math for [BandOffsetFn]-shaped bulk computation (e.g.
-  /// Bollinger Bands' `calculateValues()`).
+  /// Default math for [BandOffsetFn]-shaped bulk computation (e.g. Bollinger Bands' `calculateValues()`).
   static BandOffsetFn bandOffset = DefaultIndicatorMath.bandOffset;
 
-  /// Resets every field to its pure-Dart default. Call in `tearDown` when
-  /// tests mutate the registry, to avoid leaking state across tests.
+  /// Resets every field to its pure-Dart default; call in `tearDown` when tests mutate the registry.
   static void resetToDefaults() {
     windowedAverage = DefaultIndicatorMath.windowedAverage;
     exponentialSmoothing = DefaultIndicatorMath.exponentialSmoothing;
