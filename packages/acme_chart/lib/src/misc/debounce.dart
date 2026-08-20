@@ -6,9 +6,7 @@ class Debounce {
   /// Creates a [Debounce] instance.
   ///
   /// The [delay] parameter determines the duration of the debounce window.
-  Debounce({
-    this.delay = const Duration(milliseconds: 1000),
-  });
+  Debounce({this.delay = const Duration(milliseconds: 1000)});
 
   /// The duration of the debounce.
   /// Default debounce duration is 1000 milliseconds (1 second)
@@ -31,9 +29,6 @@ class Debounce {
     }
 
     /// Start a new timer with the specified [delay] and [action]
-    _timer = Timer(
-      delay,
-      action,
-    );
+    _timer = Timer(delay, action);
   }
 }

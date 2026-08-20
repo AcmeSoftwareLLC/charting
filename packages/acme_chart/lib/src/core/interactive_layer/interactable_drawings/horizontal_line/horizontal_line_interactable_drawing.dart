@@ -231,9 +231,8 @@ class HorizontalLineInteractableDrawing
   }
 
   @override
-  HorizontalDrawingToolConfig getUpdatedConfig() => config.copyWith(
-        edgePoints: <EdgePoint>[?startPoint],
-      );
+  HorizontalDrawingToolConfig getUpdatedConfig() =>
+      config.copyWith(edgePoints: <EdgePoint>[?startPoint]);
 
   @override
   bool isInViewPort(EpochRange epochRange, QuoteRange quoteRange) =>
@@ -247,50 +246,48 @@ class HorizontalLineInteractableDrawing
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>
-      getAddingPreviewForDesktopBehaviour(
+  getAddingPreviewForDesktopBehaviour(
     InteractiveLayerDesktopBehaviour layerBehaviour,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-          HorizontalLineAddingPreviewDesktop(
-            interactiveLayerBehaviour: layerBehaviour,
-            interactableDrawing: this,
-            onAddingStateChange: onAddingStateChange,
-          );
+  ) => HorizontalLineAddingPreviewDesktop(
+    interactiveLayerBehaviour: layerBehaviour,
+    interactableDrawing: this,
+    onAddingStateChange: onAddingStateChange,
+  );
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>
-      getAddingPreviewForMobileBehaviour(
+  getAddingPreviewForMobileBehaviour(
     InteractiveLayerMobileBehaviour layerBehaviour,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-          HorizontalLineAddingPreviewMobile(
-            interactiveLayerBehaviour: layerBehaviour,
-            interactableDrawing: this,
-            onAddingStateChange: onAddingStateChange,
-          );
+  ) => HorizontalLineAddingPreviewMobile(
+    interactiveLayerBehaviour: layerBehaviour,
+    interactableDrawing: this,
+    onAddingStateChange: onAddingStateChange,
+  );
 
   @override
   Widget buildDrawingToolBarMenu(UpdateDrawingTool onUpdate) => Row(
-        children: <Widget>[
-          _buildLineThicknessIcon(onUpdate),
-          const SizedBox(width: 4),
-          _buildColorPickerIcon(onUpdate),
-        ],
-      );
+    children: <Widget>[
+      _buildLineThicknessIcon(onUpdate),
+      const SizedBox(width: 4),
+      _buildColorPickerIcon(onUpdate),
+    ],
+  );
 
   Widget _buildColorPickerIcon(UpdateDrawingTool onUpdate) => SizedBox(
-        width: 32,
-        height: 32,
-        child: ColorPickerDropdownButton(
-          currentColor: config.lineStyle.color,
-          onColorChanged: (newColor) => onUpdate(
-            config.copyWith(
-              lineStyle: config.lineStyle.copyWith(color: newColor),
-              labelStyle: config.labelStyle.copyWith(color: newColor),
-            ),
-          ),
+    width: 32,
+    height: 32,
+    child: ColorPickerDropdownButton(
+      currentColor: config.lineStyle.color,
+      onColorChanged: (newColor) => onUpdate(
+        config.copyWith(
+          lineStyle: config.lineStyle.copyWith(color: newColor),
+          labelStyle: config.labelStyle.copyWith(color: newColor),
         ),
-      );
+      ),
+    ),
+  );
 
   Widget _buildLineThicknessIcon(UpdateDrawingTool onUpdate) =>
       LineThicknessDropdownButton(

@@ -1,7 +1,7 @@
 import 'package:acme_indicators/src/helpers/functions.dart';
 import 'package:acme_indicators/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 import 'package:acme_indicators/src/indicators/calculations/helper_indicators/gain_indicator.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../../mock_models.dart';
 
@@ -24,17 +24,18 @@ void main() {
 
   group('Gain Indicator', () {
     test(
-        'Gain Indicator should calculate the correct result from the given closed value indicator ticks',
-        () {
-      final CloseValueIndicator<MockResult> closeValueIndicator =
-          CloseValueIndicator<MockResult>(MockInput(ticks));
-      final GainIndicator<MockResult> gainIndicator =
-          GainIndicator<MockResult>.fromIndicator(closeValueIndicator);
+      'Gain Indicator should calculate the correct result from the given closed value indicator ticks',
+      () {
+        final CloseValueIndicator<MockResult> closeValueIndicator =
+            CloseValueIndicator<MockResult>(MockInput(ticks));
+        final GainIndicator<MockResult> gainIndicator =
+            GainIndicator<MockResult>.fromIndicator(closeValueIndicator);
 
-      expect(gainIndicator.getValue(0).quote, 0);
-      expect(roundDouble(gainIndicator.getValue(1).quote, 3), 0.003);
-      expect(roundDouble(gainIndicator.getValue(2).quote, 3), 0.003);
-      expect(gainIndicator.getValue(3).quote, 0);
-    });
+        expect(gainIndicator.getValue(0).quote, 0);
+        expect(roundDouble(gainIndicator.getValue(1).quote, 3), 0.003);
+        expect(roundDouble(gainIndicator.getValue(2).quote, 3), 0.003);
+        expect(gainIndicator.getValue(3).quote, 0);
+      },
+    );
   });
 }

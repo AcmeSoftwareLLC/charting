@@ -19,9 +19,7 @@ class CCIIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     CCIIndicatorConfig super.config = const CCIIndicatorConfig(),
-  }) : super(
-          title: 'Commodity Channel Index',
-        );
+  }) : super(title: 'Commodity Channel Index');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -52,73 +50,73 @@ class CCIIndicatorItemState extends IndicatorItemState<CCIIndicatorConfig> {
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          _buildPeriodField(),
-          _buildOverBoughtPriceField(),
-          _buildOverSoldPriceField(),
-          _buildShowZonesField(),
-        ],
-      );
+    children: <Widget>[
+      _buildPeriodField(),
+      _buildOverBoughtPriceField(),
+      _buildOverSoldPriceField(),
+      _buildShowZonesField(),
+    ],
+  );
 
   Widget _buildShowZonesField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelShowZones,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Switch(
-            value: _currentShowZones,
-            onChanged: (bool value) {
-              setState(() {
-                _showZones = value;
-              });
-              updateIndicator();
-            },
-            activeTrackColor: Colors.lightGreenAccent,
-            activeThumbColor: Colors.green,
-          ),
-        ],
-      );
-
-  Widget _buildPeriodField() => FieldWidget(
-        initialValue: _currentPeriod.toString(),
-        label: ChartLocalization.of(context).labelPeriod,
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _period = int.tryParse(text);
-          } else {
-            _period = 20;
-          }
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelShowZones,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Switch(
+        value: _currentShowZones,
+        onChanged: (bool value) {
+          setState(() {
+            _showZones = value;
+          });
           updateIndicator();
         },
-      );
+        activeTrackColor: Colors.lightGreenAccent,
+        activeThumbColor: Colors.green,
+      ),
+    ],
+  );
+
+  Widget _buildPeriodField() => FieldWidget(
+    initialValue: _currentPeriod.toString(),
+    label: ChartLocalization.of(context).labelPeriod,
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _period = int.tryParse(text);
+      } else {
+        _period = 20;
+      }
+      updateIndicator();
+    },
+  );
 
   // TODO(Ramin): use generic type in widget class as well for the config.
   int get _currentPeriod =>
       _period ?? (widget.config as CCIIndicatorConfig).period;
 
   Widget _buildOverBoughtPriceField() => OscillatorLimit(
-        label: ChartLocalization.of(context).labelOverBoughtPrice,
-        value: _currentOverBoughtPrice,
-        color: _currentOverboughtStyle.color,
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _overboughtValue = double.tryParse(text);
-          } else {
-            _overboughtValue = 100;
-          }
-          updateIndicator();
-        },
-        onColorChanged: (Color selectedColor) {
-          setState(() {
-            _overboughtStyle = _currentOverboughtStyle.copyWith(
-              color: selectedColor,
-            );
-          });
-          updateIndicator();
-        },
-      );
+    label: ChartLocalization.of(context).labelOverBoughtPrice,
+    value: _currentOverBoughtPrice,
+    color: _currentOverboughtStyle.color,
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _overboughtValue = double.tryParse(text);
+      } else {
+        _overboughtValue = 100;
+      }
+      updateIndicator();
+    },
+    onColorChanged: (Color selectedColor) {
+      setState(() {
+        _overboughtStyle = _currentOverboughtStyle.copyWith(
+          color: selectedColor,
+        );
+      });
+      updateIndicator();
+    },
+  );
 
   double get _currentOverBoughtPrice =>
       _overboughtValue ??
@@ -127,25 +125,24 @@ class CCIIndicatorItemState extends IndicatorItemState<CCIIndicatorConfig> {
           .overboughtValue;
 
   Widget _buildOverSoldPriceField() => OscillatorLimit(
-        label: ChartLocalization.of(context).labelOverSoldPrice,
-        value: _currentOverSoldPrice,
-        color: _currentOversoldStyle.color,
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _oversoldValue = double.tryParse(text);
-          } else {
-            _oversoldValue = -100;
-          }
-          updateIndicator();
-        },
-        onColorChanged: (Color selectedColor) {
-          setState(() {
-            _oversoldStyle =
-                _currentOversoldStyle.copyWith(color: selectedColor);
-          });
-          updateIndicator();
-        },
-      );
+    label: ChartLocalization.of(context).labelOverSoldPrice,
+    value: _currentOverSoldPrice,
+    color: _currentOversoldStyle.color,
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _oversoldValue = double.tryParse(text);
+      } else {
+        _oversoldValue = -100;
+      }
+      updateIndicator();
+    },
+    onColorChanged: (Color selectedColor) {
+      setState(() {
+        _oversoldStyle = _currentOversoldStyle.copyWith(color: selectedColor);
+      });
+      updateIndicator();
+    },
+  );
 
   double get _currentOverSoldPrice =>
       _oversoldValue ??

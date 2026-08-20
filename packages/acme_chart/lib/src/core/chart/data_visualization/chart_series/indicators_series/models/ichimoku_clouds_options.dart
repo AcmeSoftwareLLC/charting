@@ -21,6 +21,9 @@ class IchimokuCloudOptions extends IndicatorOptions {
   final int leadingSpanBPeriod;
 
   @override
-  List<Object> get props =>
-      <Object>[conversionLinePeriod, baseLinePeriod, leadingSpanBPeriod];
+  List<Object> get props => <Object>[
+    conversionLinePeriod,
+    baseLinePeriod,
+    leadingSpanBPeriod,
+  ];
 }

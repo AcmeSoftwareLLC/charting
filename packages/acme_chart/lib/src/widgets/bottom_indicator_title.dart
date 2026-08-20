@@ -12,8 +12,5 @@ class BottomIndicatorTitle extends StatelessWidget {
   final TextStyle textStyle;
 
   @override
-  Widget build(BuildContext context) => Text(
-        title,
-        style: textStyle,
-      );
+  Widget build(BuildContext context) => Text(title, style: textStyle);
 }

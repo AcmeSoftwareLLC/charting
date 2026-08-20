@@ -285,8 +285,9 @@ class _DrawingToolsScreenState
                       },
                     ),
                     ElevatedButton(
-                      onPressed:
-                          _selectedDrawingTool != null ? _addDrawingTool : null,
+                      onPressed: _selectedDrawingTool != null
+                          ? _addDrawingTool
+                          : null,
                       child: const Text('Add'),
                     ),
                   ],

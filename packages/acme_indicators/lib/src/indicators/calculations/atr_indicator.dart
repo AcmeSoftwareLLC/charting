@@ -6,11 +6,11 @@ import 'mma_indicator.dart';
 /// Average true range indicator.
 class ATRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes an average true range indicator.
-  ATRIndicator(
-    super.input, {
-    int period = 14,
-  })  : _averageTrueRangeIndicator =
-            MMAIndicator<T>(TRIndicator<T>(input), period);
+  ATRIndicator(super.input, {int period = 14})
+    : _averageTrueRangeIndicator = MMAIndicator<T>(
+        TRIndicator<T>(input),
+        period,
+      );
 
   final MMAIndicator<T> _averageTrueRangeIndicator;
 

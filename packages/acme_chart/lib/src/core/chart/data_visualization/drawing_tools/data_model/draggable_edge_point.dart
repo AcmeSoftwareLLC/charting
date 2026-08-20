@@ -72,7 +72,8 @@ class DraggableEdgePoint extends EdgePoint {
     double Function(double y) quoteToY, {
     required bool isOtherEndDragged,
   }) {
-    final Offset localPosition = Offset(
+    final Offset localPosition =
+        Offset(
           xAxis.xFromEpoch(_draggedEdgePoint.epoch),
           quoteToY(_draggedEdgePoint.quote),
         ) +
@@ -95,11 +96,10 @@ class DraggableEdgePoint extends EdgePoint {
     double? quote,
     bool? isDrawingDragged,
     bool? isDragged,
-  }) =>
-      DraggableEdgePoint(
-        epoch: epoch ?? this.epoch,
-        quote: quote ?? this.quote,
-        isDrawingDragged: isDrawingDragged ?? this.isDrawingDragged,
-        isDragged: isDragged ?? this.isDragged,
-      ).._draggedEdgePoint = _draggedEdgePoint;
+  }) => DraggableEdgePoint(
+    epoch: epoch ?? this.epoch,
+    quote: quote ?? this.quote,
+    isDrawingDragged: isDrawingDragged ?? this.isDrawingDragged,
+    isDragged: isDragged ?? this.isDragged,
+  ).._draggedEdgePoint = _draggedEdgePoint;
 }

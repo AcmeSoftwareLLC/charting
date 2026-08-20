@@ -1,7 +1,7 @@
 import 'package:acme_indicators/src/helpers/functions.dart';
 import 'package:acme_indicators/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 import 'package:acme_indicators/src/indicators/calculations/wma_indicator.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../mock_models.dart';
 
@@ -22,7 +22,9 @@ void main() {
 
     test('WMAIndicator calculates the correct results', () {
       final WMAIndicator<MockResult> wmaIndicator = WMAIndicator<MockResult>(
-          CloseValueIndicator<MockResult>(MockInput(ticks)), 3);
+        CloseValueIndicator<MockResult>(MockInput(ticks)),
+        3,
+      );
 
       expect(wmaIndicator.getValue(0).quote, 1);
       expect(roundDouble(wmaIndicator.getValue(1).quote, 4), 1.6667);

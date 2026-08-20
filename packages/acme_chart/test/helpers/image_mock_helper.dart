@@ -36,43 +36,47 @@ void setUpImageAssetMocking() {
   // The format expected is Map<String, List<Object>> where each list contains
   // variant information.
   final Map<String, List<Object>> emptyManifest = <String, List<Object>>{};
-  final ByteData manifestBytes =
-      const StandardMessageCodec().encodeMessage(emptyManifest)!;
+  final ByteData manifestBytes = const StandardMessageCodec().encodeMessage(
+    emptyManifest,
+  )!;
 
   TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
       .setMockMessageHandler('flutter/assets', (ByteData? message) async {
-    if (message == null) {
-      return null;
-    }
+        if (message == null) {
+          return null;
+        }
 
-    // Decode the asset key from the message.
-    final String assetKey = String.fromCharCodes(
-      message.buffer.asUint8List(message.offsetInBytes, message.lengthInBytes),
-    );
+        // Decode the asset key from the message.
+        final String assetKey = String.fromCharCodes(
+          message.buffer.asUint8List(
+            message.offsetInBytes,
+            message.lengthInBytes,
+          ),
+        );
 
-    // Return mock asset manifest for manifest requests.
-    if (assetKey == 'AssetManifest.bin') {
-      return manifestBytes;
-    }
+        // Return mock asset manifest for manifest requests.
+        if (assetKey == 'AssetManifest.bin') {
+          return manifestBytes;
+        }
 
-    // Return empty JSON for AssetManifest.json (fallback format).
-    if (assetKey == 'AssetManifest.json') {
-      final Uint8List jsonBytes = Uint8List.fromList('{}'.codeUnits);
-      return ByteData.view(jsonBytes.buffer);
-    }
+        // Return empty JSON for AssetManifest.json (fallback format).
+        if (assetKey == 'AssetManifest.json') {
+          final Uint8List jsonBytes = Uint8List.fromList('{}'.codeUnits);
+          return ByteData.view(jsonBytes.buffer);
+        }
 
-    // Return mock image data for any image asset requests.
-    if (assetKey.endsWith('.png') ||
-        assetKey.endsWith('.jpg') ||
-        assetKey.endsWith('.jpeg') ||
-        assetKey.endsWith('.gif') ||
-        assetKey.endsWith('.webp')) {
-      return ByteData.view(kTransparentImage.buffer);
-    }
+        // Return mock image data for any image asset requests.
+        if (assetKey.endsWith('.png') ||
+            assetKey.endsWith('.jpg') ||
+            assetKey.endsWith('.jpeg') ||
+            assetKey.endsWith('.gif') ||
+            assetKey.endsWith('.webp')) {
+          return ByteData.view(kTransparentImage.buffer);
+        }
 
-    // Return null for other assets to use default behavior.
-    return null;
-  });
+        // Return null for other assets to use default behavior.
+        return null;
+      });
 }
 
 /// Tears down the mock asset loading.

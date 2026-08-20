@@ -27,16 +27,16 @@ abstract class AbstractSingleIndicatorSeries extends DataSeries<Tick> {
     DataSeriesStyle? style,
     this.offset = 0,
     HorizontalBarrierStyle? lastTickIndicatorStyle,
-  })  : _inputFirstTick = inputIndicator.entries.isNotEmpty
-            ? inputIndicator.entries.first as Tick
-            : null,
-        _inputIndicatorData = inputIndicator.input as IndicatorInput,
-        super(
-          inputIndicator.entries as List<Tick>,
-          id: id,
-          style: style,
-          lastTickIndicatorStyle: lastTickIndicatorStyle,
-        );
+  }) : _inputFirstTick = inputIndicator.entries.isNotEmpty
+           ? inputIndicator.entries.first as Tick
+           : null,
+       _inputIndicatorData = inputIndicator.input as IndicatorInput,
+       super(
+         inputIndicator.entries as List<Tick>,
+         id: id,
+         style: style,
+         lastTickIndicatorStyle: lastTickIndicatorStyle,
+       );
 
   /// Input indicator to calculate this indicator value on.
   ///
@@ -175,11 +175,10 @@ abstract class AbstractSingleIndicatorSeries extends DataSeries<Tick> {
     int pipSize,
     ChartTheme theme,
     CrosshairVariant crosshairVariant,
-  ) =>
-      Text(
-        crossHairTick.quote.toStringAsFixed(pipSize),
-        style: const TextStyle(fontSize: 16),
-      );
+  ) => Text(
+    crossHairTick.quote.toStringAsFixed(pipSize),
+    style: const TextStyle(fontSize: 16),
+  );
 
   @override
   double maxValueOf(Tick t) => t.quote;

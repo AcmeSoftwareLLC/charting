@@ -32,8 +32,9 @@ class TrendDrawingToolConfig extends DrawingToolConfig {
   static const String name = 'dt_trend';
 
   @override
-  Map<String, dynamic> toJson() => _$TrendDrawingToolConfigToJson(this)
-    ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$TrendDrawingToolConfigToJson(this)
+        ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool fill style
   final LineStyle fillStyle;
@@ -48,12 +49,11 @@ class TrendDrawingToolConfig extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) =>
-      TrendDrawingToolItem(
-        config: this,
-        updateDrawingTool: updateDrawingTool,
-        deleteDrawingTool: deleteDrawingTool,
-      );
+  ) => TrendDrawingToolItem(
+    config: this,
+    updateDrawingTool: updateDrawingTool,
+    deleteDrawingTool: deleteDrawingTool,
+  );
 
   @override
   TrendDrawingToolConfig copyWith({
@@ -65,14 +65,13 @@ class TrendDrawingToolConfig extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) =>
-      TrendDrawingToolConfig(
-        configId: configId ?? this.configId,
-        drawingData: drawingData ?? this.drawingData,
-        fillStyle: fillStyle ?? this.fillStyle,
-        lineStyle: lineStyle ?? this.lineStyle,
-        pattern: pattern ?? this.pattern,
-        edgePoints: edgePoints ?? this.edgePoints,
-        number: number ?? this.number,
-      );
+  }) => TrendDrawingToolConfig(
+    configId: configId ?? this.configId,
+    drawingData: drawingData ?? this.drawingData,
+    fillStyle: fillStyle ?? this.fillStyle,
+    lineStyle: lineStyle ?? this.lineStyle,
+    pattern: pattern ?? this.pattern,
+    edgePoints: edgePoints ?? this.edgePoints,
+    number: number ?? this.number,
+  );
 }

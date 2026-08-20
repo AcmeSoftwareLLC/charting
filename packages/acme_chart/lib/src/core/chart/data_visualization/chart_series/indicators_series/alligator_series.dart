@@ -30,9 +30,9 @@ class AlligatorSeries extends Series {
     IndicatorInput indicatorInput, {
     required this.alligatorOptions,
     String? id,
-  })  : _fieldIndicator = HL2Indicator<Tick>(indicatorInput),
-        _indicatorInput = indicatorInput,
-        super(id ?? 'Alligator$alligatorOptions');
+  }) : _fieldIndicator = HL2Indicator<Tick>(indicatorInput),
+       _indicatorInput = indicatorInput,
+       super(id ?? 'Alligator$alligatorOptions');
 
   final Indicator<Tick> _fieldIndicator;
   final IndicatorInput _indicatorInput;
@@ -133,8 +133,7 @@ class AlligatorSeries extends Series {
     final bool jawUpdated = jawSeries?.didUpdate(series?.jawSeries) ?? false;
     final bool teethUpdated =
         teethSeries?.didUpdate(series?.teethSeries) ?? false;
-    final bool lipsUpdated =
-        lipsSeries?.didUpdate(series?.lipsSeries) ?? false;
+    final bool lipsUpdated = lipsSeries?.didUpdate(series?.lipsSeries) ?? false;
 
     final bool bearishUpdated =
         bearishSeries?.didUpdate(series?.bearishSeries) ?? false;
@@ -159,9 +158,9 @@ class AlligatorSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        <ChartData?>[jawSeries, teethSeries, lipsSeries].getMinValue(),
-        <ChartData?>[jawSeries, teethSeries, lipsSeries].getMaxValue(),
-      ];
+    <ChartData?>[jawSeries, teethSeries, lipsSeries].getMinValue(),
+    <ChartData?>[jawSeries, teethSeries, lipsSeries].getMaxValue(),
+  ];
 
   @override
   bool shouldRepaint(ChartData? previous) {

@@ -28,10 +28,10 @@ class EntryTickAnnotation extends ChartAnnotation<BarrierObject> {
 
   @override
   BarrierObject createObject() => BarrierObject(
-        leftEpoch: tick.epoch,
-        rightEpoch: tick.epoch,
-        quote: tick.quote,
-      );
+    leftEpoch: tick.epoch,
+    rightEpoch: tick.epoch,
+    quote: tick.quote,
+  );
 
   @override
   int? getMaxEpoch() => tick.epoch;

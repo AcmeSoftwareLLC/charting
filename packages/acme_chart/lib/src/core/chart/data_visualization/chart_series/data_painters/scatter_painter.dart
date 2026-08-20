@@ -31,9 +31,11 @@ class ScatterPainter extends DataPainter<DataSeries<Tick>> {
       ..color = style.color
       ..style = PaintingStyle.fill;
 
-    for (int i = series.visibleEntries.startIndex;
-        i < series.visibleEntries.endIndex;
-        i++) {
+    for (
+      int i = series.visibleEntries.startIndex;
+      i < series.visibleEntries.endIndex;
+      i++
+    ) {
       final Tick tick = series.entries![i];
 
       if (!tick.quote.isNaN) {

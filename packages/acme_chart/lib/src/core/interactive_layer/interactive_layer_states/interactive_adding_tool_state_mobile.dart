@@ -13,7 +13,10 @@ class InteractiveAddingToolStateMobile extends InteractiveAddingToolState {
   @override
   bool onTap(TapUpDetails details) {
     if (!(addingDrawingPreview?.hitTest(
-            details.localPosition, epochToX, quoteToY) ??
+          details.localPosition,
+          epochToX,
+          quoteToY,
+        ) ??
         true)) {
       // The tap was outside of the adding drawing preview. This means according
       // to the way we want to have tool addition flow we should set current

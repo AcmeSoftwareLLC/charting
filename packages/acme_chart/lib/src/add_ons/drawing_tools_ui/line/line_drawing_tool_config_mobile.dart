@@ -34,8 +34,9 @@ class LineDrawingToolConfigMobile extends DrawingToolConfig {
   static const String name = 'dt_line_mobile';
 
   @override
-  Map<String, dynamic> toJson() => _$LineDrawingToolConfigMobileToJson(this)
-    ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$LineDrawingToolConfigMobileToJson(this)
+        ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
   final LineStyle lineStyle;
@@ -52,11 +53,10 @@ class LineDrawingToolConfigMobile extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) =>
-      LineDrawingToolItemMobile(
-        updateDrawingTool: updateDrawingTool,
-        deleteDrawingTool: deleteDrawingTool,
-      );
+  ) => LineDrawingToolItemMobile(
+    updateDrawingTool: updateDrawingTool,
+    deleteDrawingTool: deleteDrawingTool,
+  );
 
   @override
   LineDrawingToolConfigMobile copyWith({
@@ -69,16 +69,15 @@ class LineDrawingToolConfigMobile extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) =>
-      LineDrawingToolConfigMobile(
-        configId: configId ?? this.configId,
-        drawingData: drawingData ?? this.drawingData,
-        lineStyle: lineStyle ?? this.lineStyle,
-        overlayStyle: overlayStyle ?? this.overlayStyle,
-        pattern: pattern ?? this.pattern,
-        edgePoints: edgePoints ?? this.edgePoints,
-        number: number ?? this.number,
-      );
+  }) => LineDrawingToolConfigMobile(
+    configId: configId ?? this.configId,
+    drawingData: drawingData ?? this.drawingData,
+    lineStyle: lineStyle ?? this.lineStyle,
+    overlayStyle: overlayStyle ?? this.overlayStyle,
+    pattern: pattern ?? this.pattern,
+    edgePoints: edgePoints ?? this.edgePoints,
+    number: number ?? this.number,
+  );
 
   @override
   LineDrawingToolLabelPainter? getLabelPainter({

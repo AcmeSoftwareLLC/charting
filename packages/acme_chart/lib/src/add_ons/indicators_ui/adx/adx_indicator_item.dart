@@ -16,9 +16,7 @@ class ADXIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     ADXIndicatorConfig super.config = const ADXIndicatorConfig(),
-  }) : super(
-          title: 'ADX',
-        );
+  }) : super(title: 'ADX');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -45,14 +43,14 @@ class ADXIndicatorItemState extends IndicatorItemState<ADXIndicatorConfig> {
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          _buildPeriodField(),
-          _buildSmoothingPeriodField(),
-          _buildShowSeriesToggle(),
-          // _buildChannelFillToggle(),
-          _buildShowHistogramToggle(),
-        ],
-      );
+    children: <Widget>[
+      _buildPeriodField(),
+      _buildSmoothingPeriodField(),
+      _buildShowSeriesToggle(),
+      // _buildChannelFillToggle(),
+      _buildShowHistogramToggle(),
+    ],
+  );
 
   // TODO(mohammadamir): Add Shading after channel Fill is done
   // Widget _buildChannelFillToggle() => Row(
@@ -75,68 +73,68 @@ class ADXIndicatorItemState extends IndicatorItemState<ADXIndicatorConfig> {
   //     );
 
   Widget _buildShowSeriesToggle() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelSeries,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Switch(
-            value: _currentShowSeries,
-            onChanged: (bool value) {
-              setState(() {
-                _showSeries = value;
-              });
-              updateIndicator();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelSeries,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Switch(
+        value: _currentShowSeries,
+        onChanged: (bool value) {
+          setState(() {
+            _showSeries = value;
+          });
+          updateIndicator();
+        },
+      ),
+    ],
+  );
 
   Widget _buildShowHistogramToggle() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelHistogram,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Switch(
-            value: _currentShowHistogram,
-            onChanged: (bool value) {
-              setState(() {
-                _showHistogram = value;
-              });
-              updateIndicator();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelHistogram,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Switch(
+        value: _currentShowHistogram,
+        onChanged: (bool value) {
+          setState(() {
+            _showHistogram = value;
+          });
+          updateIndicator();
+        },
+      ),
+    ],
+  );
 
   Widget _buildSmoothingPeriodField() => FieldWidget(
-        initialValue: _currentSmoothingPeriod.toString(),
-        label: ChartLocalization.of(context).labelSmoothingPeriod,
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _smoothingPeriod = int.tryParse(text);
-          } else {
-            _smoothingPeriod = 14;
-          }
-          updateIndicator();
-        },
-      );
+    initialValue: _currentSmoothingPeriod.toString(),
+    label: ChartLocalization.of(context).labelSmoothingPeriod,
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _smoothingPeriod = int.tryParse(text);
+      } else {
+        _smoothingPeriod = 14;
+      }
+      updateIndicator();
+    },
+  );
 
   Widget _buildPeriodField() => FieldWidget(
-        initialValue: _currentPeriod.toString(),
-        label: ChartLocalization.of(context).labelPeriod,
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _period = int.tryParse(text);
-          } else {
-            _period = 14;
-          }
-          updateIndicator();
-        },
-      );
+    initialValue: _currentPeriod.toString(),
+    label: ChartLocalization.of(context).labelPeriod,
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _period = int.tryParse(text);
+      } else {
+        _period = 14;
+      }
+      updateIndicator();
+    },
+  );
 
   int get _currentPeriod =>
       _period ?? (widget.config as ADXIndicatorConfig).period;

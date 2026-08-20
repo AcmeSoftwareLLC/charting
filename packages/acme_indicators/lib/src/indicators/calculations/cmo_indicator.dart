@@ -9,9 +9,9 @@ import 'package:acme_indicators/src/models/models.dart';
 class CMOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   CMOIndicator(super.indicator, this.period)
-      : _gainIndicator = GainIndicator<T>.fromIndicator(indicator),
-        _lossIndicator = LossIndicator<T>.fromIndicator(indicator),
-        super.fromIndicator();
+    : _gainIndicator = GainIndicator<T>.fromIndicator(indicator),
+      _lossIndicator = LossIndicator<T>.fromIndicator(indicator),
+      super.fromIndicator();
   final GainIndicator<T> _gainIndicator;
   final LossIndicator<T> _lossIndicator;
 

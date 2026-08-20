@@ -13,7 +13,7 @@ class MAEnvLowerIndicator<T extends IndicatorResult>
   ///  [shift]         the value that shows upper and lower indicator how much shifted from middle indicator
   ///  [shiftType]      type of the shift could be in percent or point
   MAEnvLowerIndicator(this.maEnvMiddleIndicator, this.shiftType, this.shift)
-      : super.fromIndicator(maEnvMiddleIndicator);
+    : super.fromIndicator(maEnvMiddleIndicator);
 
   /// The middle indicator of the Moving Average Envelope
   final CachedIndicator<T> maEnvMiddleIndicator;
@@ -26,9 +26,9 @@ class MAEnvLowerIndicator<T extends IndicatorResult>
 
   @override
   T calculate(int index) => createResult(
-        index: index,
-        quote: _getShiftedValue(maEnvMiddleIndicator.getValue(index).quote),
-      );
+    index: index,
+    quote: _getShiftedValue(maEnvMiddleIndicator.getValue(index).quote),
+  );
 
   /// Calculate shifted value based on shiftType
   double _getShiftedValue(double value) => shiftType == ShiftType.percent

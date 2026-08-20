@@ -77,9 +77,11 @@ class LinePainter extends DataPainter<DataSeries<Tick>> {
 
     // Adding visible entries line to the path except the last which might
     //be animated.
-    for (int i = series.visibleEntries.startIndex;
-        i < series.visibleEntries.endIndex - 1;
-        i++) {
+    for (
+      int i = series.visibleEntries.startIndex;
+      i < series.visibleEntries.endIndex - 1;
+      i++
+    ) {
       final Tick tick = series.entries![i];
 
       if (!tick.quote.isNaN) {

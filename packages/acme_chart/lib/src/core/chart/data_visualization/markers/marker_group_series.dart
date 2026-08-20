@@ -1,4 +1,3 @@
-
 import '../../../../core/chart/data_visualization/chart_series/series_painter.dart';
 import '../../../../core/chart/data_visualization/markers/chart_marker.dart';
 import '../../../../core/chart/data_visualization/markers/marker_group.dart';
@@ -27,9 +26,7 @@ class MarkerGroupSeries extends MarkerSeries {
     this.markerGroupList,
     this.activeMarkerGroup,
     super.activeMarker,
-  }) : super(
-          markerIconPainter: markerGroupIconPainter,
-        );
+  }) : super(markerIconPainter: markerGroupIconPainter);
 
   /// Painter that draws corresponding marker icons.
   ///
@@ -54,7 +51,6 @@ class MarkerGroupSeries extends MarkerSeries {
   List<MarkerGroup> visibleMarkerGroupList = <MarkerGroup>[];
 
   @override
-
   /// Creates a painter for rendering this marker group series on the chart.
   ///
   /// This method returns a [MarkerGroupPainter] that is responsible for
@@ -67,7 +63,6 @@ class MarkerGroupSeries extends MarkerSeries {
   }
 
   @override
-
   /// Updates the list of visible marker groups based on the current chart viewport.
   ///
   /// This method is called whenever the chart's viewport changes (e.g., due to

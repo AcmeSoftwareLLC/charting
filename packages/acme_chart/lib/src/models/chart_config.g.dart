@@ -7,9 +7,9 @@ part of 'chart_config.dart';
 // **************************************************************************
 
 ChartConfig _$ChartConfigFromJson(Map<String, dynamic> json) => ChartConfig(
-      granularity: json['granularity'] as int,
-      pipSize: json['pipSize'] as int? ?? 4,
-    );
+  granularity: json['granularity'] as int,
+  pipSize: json['pipSize'] as int? ?? 4,
+);
 
 Map<String, dynamic> _$ChartConfigToJson(ChartConfig instance) =>
     <String, dynamic>{

@@ -17,9 +17,7 @@ class WilliamsRIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     WilliamsRIndicatorConfig super.config = const WilliamsRIndicatorConfig(),
-  }) : super(
-          title: 'WilliamsR',
-        );
+  }) : super(title: 'WilliamsR');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -47,63 +45,63 @@ class WilliamsRIndicatorItemState
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          _buildPeriodField(),
-          _buildOverBoughtPriceField(),
-          _buildOverSoldPriceField(),
-          _buildShowZonesField(),
-        ],
-      );
+    children: <Widget>[
+      _buildPeriodField(),
+      _buildOverBoughtPriceField(),
+      _buildOverSoldPriceField(),
+      _buildShowZonesField(),
+    ],
+  );
 
   Widget _buildShowZonesField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelShowZones,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Switch(
-            value: _currentShowZones,
-            onChanged: (bool value) {
-              setState(() {
-                _showZones = value;
-              });
-              updateIndicator();
-            },
-            activeTrackColor: Colors.lightGreenAccent,
-            activeThumbColor: Colors.green,
-          ),
-        ],
-      );
-
-  Widget _buildPeriodField() => FieldWidget(
-        initialValue: _currentPeriod.toString(),
-        label: ChartLocalization.of(context).labelPeriod,
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _period = int.tryParse(text);
-          } else {
-            _period = 14;
-          }
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelShowZones,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Switch(
+        value: _currentShowZones,
+        onChanged: (bool value) {
+          setState(() {
+            _showZones = value;
+          });
           updateIndicator();
         },
-      );
+        activeTrackColor: Colors.lightGreenAccent,
+        activeThumbColor: Colors.green,
+      ),
+    ],
+  );
+
+  Widget _buildPeriodField() => FieldWidget(
+    initialValue: _currentPeriod.toString(),
+    label: ChartLocalization.of(context).labelPeriod,
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _period = int.tryParse(text);
+      } else {
+        _period = 14;
+      }
+      updateIndicator();
+    },
+  );
 
   int get _currentPeriod =>
       _period ?? (widget.config as WilliamsRIndicatorConfig).period;
 
   Widget _buildOverBoughtPriceField() => FieldWidget(
-        initialValue: _currentOverBoughtPrice.toString(),
-        label: ChartLocalization.of(context).labelOverBoughtPrice,
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _overBoughtPrice = double.tryParse(text);
-          } else {
-            _overBoughtPrice = -20;
-          }
-          updateIndicator();
-        },
-      );
+    initialValue: _currentOverBoughtPrice.toString(),
+    label: ChartLocalization.of(context).labelOverBoughtPrice,
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _overBoughtPrice = double.tryParse(text);
+      } else {
+        _overBoughtPrice = -20;
+      }
+      updateIndicator();
+    },
+  );
 
   double get _currentOverBoughtPrice =>
       _overBoughtPrice ??
@@ -112,17 +110,17 @@ class WilliamsRIndicatorItemState
           .overboughtValue;
 
   Widget _buildOverSoldPriceField() => FieldWidget(
-        initialValue: _currentOverSoldPrice.toString(),
-        label: ChartLocalization.of(context).labelOverSoldPrice,
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _overSoldPrice = double.tryParse(text);
-          } else {
-            _overSoldPrice = -80;
-          }
-          updateIndicator();
-        },
-      );
+    initialValue: _currentOverSoldPrice.toString(),
+    label: ChartLocalization.of(context).labelOverSoldPrice,
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _overSoldPrice = double.tryParse(text);
+      } else {
+        _overSoldPrice = -80;
+      }
+      updateIndicator();
+    },
+  );
 
   double get _currentOverSoldPrice =>
       _overSoldPrice ??

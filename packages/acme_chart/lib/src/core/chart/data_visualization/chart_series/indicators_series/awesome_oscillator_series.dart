@@ -16,21 +16,20 @@ class AwesomeOscillatorSeries extends AbstractSingleIndicatorSeries {
     BarStyle barStyle = const BarStyle(),
     String? id,
   }) : super(
-          HL2Indicator<Tick>(_indicatorInput),
-          id ?? 'AwesomeOscillatorSeries',
-          style: barStyle,
-        );
+         HL2Indicator<Tick>(_indicatorInput),
+         id ?? 'AwesomeOscillatorSeries',
+         style: barStyle,
+       );
 
   final IndicatorInput _indicatorInput;
 
   @override
   SeriesPainter<Series> createPainter() => BarPainter(
-        this,
-        checkColorCallback: (
-                {required double previousQuote,
-                required double currentQuote}) =>
+    this,
+    checkColorCallback:
+        ({required double previousQuote, required double currentQuote}) =>
             currentQuote >= previousQuote,
-      );
+  );
 
   @override
   CachedIndicator<Tick> initializeIndicator() =>

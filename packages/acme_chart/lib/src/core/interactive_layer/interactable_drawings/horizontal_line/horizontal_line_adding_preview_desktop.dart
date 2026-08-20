@@ -73,7 +73,9 @@ class HorizontalLineAddingPreviewDesktop
         Paint()
           ..color = interactableDrawing.config.lineStyle.color
           ..strokeWidth = interactableDrawing
-              .config.lineStyle.thickness // Explicitly set for consistency
+              .config
+              .lineStyle
+              .thickness // Explicitly set for consistency
           ..style = PaintingStyle.stroke,
       );
     }

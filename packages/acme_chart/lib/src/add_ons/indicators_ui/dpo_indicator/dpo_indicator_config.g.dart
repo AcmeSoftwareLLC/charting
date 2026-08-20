@@ -9,8 +9,11 @@ part of 'dpo_indicator_config.dart';
 DPOIndicatorConfig _$DPOIndicatorConfigFromJson(Map<String, dynamic> json) =>
     DPOIndicatorConfig(
       period: json['period'] as int? ?? 14,
-      movingAverageType: $enumDecodeNullable(
-              _$MovingAverageTypeEnumMap, json['movingAverageType']) ??
+      movingAverageType:
+          $enumDecodeNullable(
+            _$MovingAverageTypeEnumMap,
+            json['movingAverageType'],
+          ) ??
           MovingAverageType.simple,
       fieldType: json['fieldType'] as String? ?? 'close',
       isCentered: json['isCentered'] as bool? ?? true,
@@ -23,19 +26,19 @@ DPOIndicatorConfig _$DPOIndicatorConfigFromJson(Map<String, dynamic> json) =>
       number: json['number'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$DPOIndicatorConfigToJson(DPOIndicatorConfig instance) =>
-    <String, dynamic>{
-      'number': instance.number,
-      'title': instance.title,
-      'showLastIndicator': instance.showLastIndicator,
-      'pipSize': instance.pipSize,
-      'period': instance.period,
-      'movingAverageType':
-          _$MovingAverageTypeEnumMap[instance.movingAverageType]!,
-      'fieldType': instance.fieldType,
-      'lineStyle': instance.lineStyle,
-      'isCentered': instance.isCentered,
-    };
+Map<String, dynamic> _$DPOIndicatorConfigToJson(
+  DPOIndicatorConfig instance,
+) => <String, dynamic>{
+  'number': instance.number,
+  'title': instance.title,
+  'showLastIndicator': instance.showLastIndicator,
+  'pipSize': instance.pipSize,
+  'period': instance.period,
+  'movingAverageType': _$MovingAverageTypeEnumMap[instance.movingAverageType]!,
+  'fieldType': instance.fieldType,
+  'lineStyle': instance.lineStyle,
+  'isCentered': instance.isCentered,
+};
 
 const _$MovingAverageTypeEnumMap = {
   MovingAverageType.simple: 'simple',

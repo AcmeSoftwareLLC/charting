@@ -11,8 +11,8 @@ class MeanDeviationIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes a [MeanDeviationIndicator].
   MeanDeviationIndicator(this.indicator, this.period)
-      : _smaIndicator = SMAIndicator<T>(indicator, period),
-        super.fromIndicator(indicator);
+    : _smaIndicator = SMAIndicator<T>(indicator, period),
+      super.fromIndicator(indicator);
 
   /// Indicator to calculate Mean Deviation on.
   final Indicator<T> indicator;

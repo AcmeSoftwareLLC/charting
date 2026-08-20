@@ -17,10 +17,9 @@ class HorizontalDrawingToolItem extends DrawingToolItem {
     required super.updateDrawingTool,
     required super.deleteDrawingTool,
     super.key,
-    HorizontalDrawingToolConfig super.config = const HorizontalDrawingToolConfig(),
-  }) : super(
-          title: 'Horizontal',
-        );
+    HorizontalDrawingToolConfig super.config =
+        const HorizontalDrawingToolConfig(),
+  }) : super(title: 'Horizontal');
 
   @override
   DrawingToolItemState<DrawingToolConfig> createDrawingToolItemState() =>
@@ -47,37 +46,37 @@ class HorizontalDrawingToolItemState
       Column(children: <Widget>[_buildColorField(), _buildEnableLabel()]);
 
   Widget _buildEnableLabel() => Row(
-        children: <Widget>[
-          const Text('Enable Label', style: TextStyle(fontSize: 10)),
-          Switch(
-            value: _getEnableLanel,
-            onChanged: (bool value) {
-              setState(() {
-                _enableLabel = value;
-              });
-              updateDrawingTool();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      const Text('Enable Label', style: TextStyle(fontSize: 10)),
+      Switch(
+        value: _getEnableLanel,
+        onChanged: (bool value) {
+          setState(() {
+            _enableLabel = value;
+          });
+          updateDrawingTool();
+        },
+      ),
+    ],
+  );
 
   Widget _buildColorField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelColor,
-            style: const TextStyle(fontSize: 16),
-          ),
-          ColorSelector(
-            currentColor: _currentLineStyle.color,
-            onColorChanged: (Color selectedColor) {
-              setState(() {
-                _lineStyle = _currentLineStyle.copyWith(color: selectedColor);
-              });
-              updateDrawingTool();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelColor,
+        style: const TextStyle(fontSize: 16),
+      ),
+      ColorSelector(
+        currentColor: _currentLineStyle.color,
+        onColorChanged: (Color selectedColor) {
+          setState(() {
+            _lineStyle = _currentLineStyle.copyWith(color: selectedColor);
+          });
+          updateDrawingTool();
+        },
+      ),
+    ],
+  );
 
   LineStyle get _currentLineStyle =>
       _lineStyle ?? (widget.config as HorizontalDrawingToolConfig).lineStyle;

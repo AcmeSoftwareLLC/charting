@@ -13,35 +13,34 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     CachedIndicator<T> Function(Indicator<T> indicator) getMAIndicator, {
     int period = 14,
     bool isCentered = true,
-  }) =>
-      DPOIndicator<T>._(
-        indicator,
-        getMAIndicator(indicator),
-        timeShift: period ~/ 2 + 1,
-        isCentered: isCentered,
-      );
+  }) => DPOIndicator<T>._(
+    indicator,
+    getMAIndicator(indicator),
+    timeShift: period ~/ 2 + 1,
+    isCentered: isCentered,
+  );
 
   DPOIndicator._(
     this.indicator,
     this._maIndicator, {
     required this.timeShift,
     bool isCentered = true,
-  })  : _indicatorMinusPreviousSMAIndicator = isCentered
-            ? DifferenceIndicator<T>(
-                _maIndicator,
-                PreviousValueIndicator<T>.fromIndicator(
-                  indicator,
-                  period: timeShift,
-                ),
-              )
-            : DifferenceIndicator<T>(
-                PreviousValueIndicator<T>.fromIndicator(
-                  _maIndicator,
-                  period: timeShift,
-                ),
-                indicator,
-              ),
-        super.fromIndicator(indicator);
+  }) : _indicatorMinusPreviousSMAIndicator = isCentered
+           ? DifferenceIndicator<T>(
+               _maIndicator,
+               PreviousValueIndicator<T>.fromIndicator(
+                 indicator,
+                 period: timeShift,
+               ),
+             )
+           : DifferenceIndicator<T>(
+               PreviousValueIndicator<T>.fromIndicator(
+                 _maIndicator,
+                 period: timeShift,
+               ),
+               indicator,
+             ),
+       super.fromIndicator(indicator);
 
   /// Indicator to calculate the MA on.
   ///
@@ -63,9 +62,9 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) => createResult(
-        index: index,
-        quote: _indicatorMinusPreviousSMAIndicator.getValue(index).quote,
-      );
+    index: index,
+    quote: _indicatorMinusPreviousSMAIndicator.getValue(index).quote,
+  );
 
   @override
   void copyValuesFrom(covariant DPOIndicator<T> other) {

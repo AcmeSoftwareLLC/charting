@@ -81,12 +81,12 @@ class LightThemeColors {
   static const Color crosshairLineResponsiveUpperLineGradientStart = Color(
     0x00000000,
   ); // Hex: #000000 with 0% opacity //TODO(Jim): update this value with corresponding design token when available
-  static final Color crosshairLineResponsiveUpperLineGradientEnd =
-      LightThemeDesignTokens
-          .semanticColorMonochromeSurfaceNormalMidHigh; // Hex: #000000 with 24% opacity
-  static final Color crosshairLineResponsiveLowerLineGradientStart =
-      LightThemeDesignTokens
-          .semanticColorMonochromeSurfaceNormalMidHigh; // Hex: #000000 with 24% opacity
+  static final Color
+  crosshairLineResponsiveUpperLineGradientEnd = LightThemeDesignTokens
+      .semanticColorMonochromeSurfaceNormalMidHigh; // Hex: #000000 with 24% opacity
+  static final Color
+  crosshairLineResponsiveLowerLineGradientStart = LightThemeDesignTokens
+      .semanticColorMonochromeSurfaceNormalMidHigh; // Hex: #000000 with 24% opacity
   static const Color crosshairLineResponsiveLowerLineGradientEnd = Color(
     0x00000000,
   ); // Hex: #000000 with 0% opacity //TODO(Jim): update this value with corresponding design token when available
@@ -104,9 +104,9 @@ class LightThemeColors {
   static const Color crosshairInformationBoxContainerNormalColor =
       LightThemeDesignTokens
           .semanticColorSlateSolidSurfaceFrameMid; // Hex: #F6F7F8
-  static final Color crosshairInformationBoxContainerGlassColor =
-      LightThemeDesignTokens
-          .semanticColorMonochromeSurfaceNormalLowest; // Hex: #000000 with 4% opacity
+  static final Color
+  crosshairInformationBoxContainerGlassColor = LightThemeDesignTokens
+      .semanticColorMonochromeSurfaceNormalLowest; // Hex: #000000 with 4% opacity
 
   static final Color floatingMenuContainerGlassColor = LightThemeDesignTokens
       .semanticColorMonochromeSurfaceNormalLowest; // Hex: #000000 with 4% opacity
@@ -216,12 +216,12 @@ class DarkThemeColors {
   static const Color crosshairLineResponsiveUpperLineGradientStart = Color(
     0x00FFFFFF,
   ); // Hex: #FFFFFF with 0% opacity //TODO(Jim): update this value with corresponding design token when available
-  static final Color crosshairLineResponsiveUpperLineGradientEnd =
-      DarkThemeDesignTokens
-          .semanticColorMonochromeSurfaceNormalMidHigh; // Hex: #000000 with 24% opacity
-  static final Color crosshairLineResponsiveLowerLineGradientStart =
-      DarkThemeDesignTokens
-          .semanticColorMonochromeSurfaceNormalMidHigh; // Hex: #000000 with 24% opacity
+  static final Color
+  crosshairLineResponsiveUpperLineGradientEnd = DarkThemeDesignTokens
+      .semanticColorMonochromeSurfaceNormalMidHigh; // Hex: #000000 with 24% opacity
+  static final Color
+  crosshairLineResponsiveLowerLineGradientStart = DarkThemeDesignTokens
+      .semanticColorMonochromeSurfaceNormalMidHigh; // Hex: #000000 with 24% opacity
   static const Color crosshairLineResponsiveLowerLineGradientEnd = Color(
     0x00FFFFFF,
   ); // Hex: #FFFFFF with 0% opacity //TODO(Jim): update this value with corresponding design token when available
@@ -239,9 +239,9 @@ class DarkThemeColors {
   static const Color crosshairInformationBoxContainerNormalColor =
       DarkThemeDesignTokens
           .semanticColorSlateSolidSurfaceFrameMid; // Hex: #F6F7F8
-  static final Color crosshairInformationBoxContainerGlassColor =
-      DarkThemeDesignTokens
-          .semanticColorMonochromeSurfaceNormalLowest; // Hex: #000000 with 4% opacity
+  static final Color
+  crosshairInformationBoxContainerGlassColor = DarkThemeDesignTokens
+      .semanticColorMonochromeSurfaceNormalLowest; // Hex: #000000 with 4% opacity
 
   // Floating menu container glass background color
   static final Color floatingMenuContainerGlassColor = DarkThemeDesignTokens

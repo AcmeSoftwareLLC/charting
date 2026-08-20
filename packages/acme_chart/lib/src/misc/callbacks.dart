@@ -12,8 +12,8 @@ typedef VisibleAreaChangedCallback = Function(int leftEpoch, int rightEpoch);
 ///
 /// [topQuote] is an quote value of the chart's top edge.
 /// [bottomQuote] is an quote value of the chart's bottom edge.
-typedef VisibleQuoteAreaChangedCallback = Function(
-    double topQuote, double bottomQuote);
+typedef VisibleQuoteAreaChangedCallback =
+    Function(double topQuote, double bottomQuote);
 
 /// Called when the crosshair is moved
 ///
@@ -23,14 +23,15 @@ typedef VisibleQuoteAreaChangedCallback = Function(
 /// [quoteToY] is a function to convert value(quote) value to canvas Y.
 /// [epochFromX] is a function to convert canvas X to epoch value.
 /// [quoteFromY] is a function to convert canvas Y to value(quote).
-typedef OnCrosshairHover = void Function(
-  Offset globalPosition,
-  Offset localPosition,
-  EpochToX epochToX,
-  QuoteToY quoteToY,
-  EpochFromX epochFromX,
-  QuoteFromY quoteFromY,
-);
+typedef OnCrosshairHover =
+    void Function(
+      Offset globalPosition,
+      Offset localPosition,
+      EpochToX epochToX,
+      QuoteToY quoteToY,
+      EpochFromX epochFromX,
+      QuoteFromY quoteFromY,
+    );
 
 /// Called when the crosshair is moved
 ///
@@ -41,12 +42,13 @@ typedef OnCrosshairHover = void Function(
 /// [epochFromX] is a function to convert canvas X to epoch value.
 /// [quoteFromY] is a function to convert canvas Y to value(quote).
 /// [config] is the config of the Indicator if it the hover is in BottomChart.
-typedef OnCrosshairHoverCallback = void Function(
-  Offset globalPosition,
-  Offset localPosition,
-  EpochToX epochToX,
-  QuoteToY quoteToY,
-  EpochFromX epochFromX,
-  QuoteFromY quoteFromY,
-  AddOnConfig? config,
-);
+typedef OnCrosshairHoverCallback =
+    void Function(
+      Offset globalPosition,
+      Offset localPosition,
+      EpochToX epochToX,
+      QuoteToY quoteToY,
+      EpochFromX epochFromX,
+      QuoteFromY quoteFromY,
+      AddOnConfig? config,
+    );

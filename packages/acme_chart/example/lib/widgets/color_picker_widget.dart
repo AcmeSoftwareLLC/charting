@@ -154,7 +154,7 @@ Future<Color?> showAcmeColorPickerDialog(
 class AcmeColorPickerDialog extends StatefulWidget {
   /// Creates an AcmeColorPickerDialog.
   const AcmeColorPickerDialog({required this.initialColor, Key? key})
-      : super(key: key);
+    : super(key: key);
 
   /// The initial color to display.
   final Color initialColor;
@@ -237,8 +237,9 @@ class _AcmeColorPickerDialogState extends State<AcmeColorPickerDialog> {
             children: [
               Icon(
                 contrastInfo['normalText'] ? Icons.check_circle : Icons.warning,
-                color:
-                    contrastInfo['normalText'] ? Colors.green : Colors.orange,
+                color: contrastInfo['normalText']
+                    ? Colors.green
+                    : Colors.orange,
                 size: 16,
               ),
               const SizedBox(width: 4),
@@ -246,8 +247,9 @@ class _AcmeColorPickerDialogState extends State<AcmeColorPickerDialog> {
                 'Contrast: ${contrastInfo['ratio'].toStringAsFixed(1)}:1',
                 style: TextStyle(
                   fontSize: 12,
-                  color:
-                      contrastInfo['normalText'] ? Colors.green : Colors.orange,
+                  color: contrastInfo['normalText']
+                      ? Colors.green
+                      : Colors.orange,
                 ),
               ),
             ],
@@ -418,8 +420,10 @@ class _AcmeColorPickerDialogState extends State<AcmeColorPickerDialog> {
   }
 
   void _updateHexController() {
-    _hexController.text =
-        _selectedColor.value.toRadixString(16).padLeft(8, '0').substring(2);
+    _hexController.text = _selectedColor.value
+        .toRadixString(16)
+        .padLeft(8, '0')
+        .substring(2);
   }
 
   /// Returns either black or white depending on which provides better contrast with the given color.

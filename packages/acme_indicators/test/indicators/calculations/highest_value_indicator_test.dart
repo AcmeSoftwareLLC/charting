@@ -1,6 +1,6 @@
 import 'package:acme_indicators/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 import 'package:acme_indicators/src/indicators/calculations/highest_value_indicator.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../mock_models.dart';
 
@@ -28,9 +28,9 @@ void main() {
     test('HighestValueIndicator calculates the correct results', () {
       final HighestValueIndicator<MockResult> indicator =
           HighestValueIndicator<MockResult>(
-        CloseValueIndicator<MockResult>(MockInput(ticks)),
-        10,
-      );
+            CloseValueIndicator<MockResult>(MockInput(ticks)),
+            10,
+          );
 
       expect(indicator.getValue(9).quote, 64.75);
       expect(indicator.getValue(10).quote, 66.37);

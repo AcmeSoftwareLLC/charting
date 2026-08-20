@@ -56,16 +56,16 @@ class AlligatorOptions extends IndicatorOptions {
 
   @override
   List<Object> get props => <Object>[
-        jawPeriod,
-        teethPeriod,
-        lipsPeriod,
-        showLines,
-        showFractal,
-        jawOffset,
-        teethOffset,
-        lipsOffset,
-        jawLineStyle,
-        teethLineStyle,
-        lipsLineStyle,
-      ];
+    jawPeriod,
+    teethPeriod,
+    lipsPeriod,
+    showLines,
+    showFractal,
+    jawOffset,
+    teethOffset,
+    lipsOffset,
+    jawLineStyle,
+    teethLineStyle,
+    lipsLineStyle,
+  ];
 }

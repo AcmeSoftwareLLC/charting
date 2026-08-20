@@ -16,9 +16,7 @@ class DonchianChannelIndicatorItem extends IndicatorItem {
     super.key,
     DonchianChannelIndicatorConfig super.config =
         const DonchianChannelIndicatorConfig(),
-  }) : super(
-          title: 'Donchian Channel',
-        );
+  }) : super(title: 'Donchian Channel');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -42,91 +40,91 @@ class DonchianChannelIndicatorItemState
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          _buildHighPeriodField(),
-          _buildLowPeriodField(),
-          _buildChannelFillToggle(),
-        ],
-      );
+    children: <Widget>[
+      _buildHighPeriodField(),
+      _buildLowPeriodField(),
+      _buildChannelFillToggle(),
+    ],
+  );
 
   Widget _buildChannelFillToggle() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelChannelFill,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Switch(
-            value: _getCurrentFill(),
-            onChanged: (bool value) {
-              setState(() {
-                _channelFill = value;
-              });
-              updateIndicator();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelChannelFill,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Switch(
+        value: _getCurrentFill(),
+        onChanged: (bool value) {
+          setState(() {
+            _channelFill = value;
+          });
+          updateIndicator();
+        },
+      ),
+    ],
+  );
 
   bool _getCurrentFill() =>
       _channelFill ??
       (widget.config as DonchianChannelIndicatorConfig).showChannelFill;
 
   Widget _buildHighPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelHighPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _getCurrentHighPeriod().toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _highPeriod = int.tryParse(text);
-                } else {
-                  _highPeriod = 10;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelHighPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _getCurrentHighPeriod().toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _highPeriod = int.tryParse(text);
+            } else {
+              _highPeriod = 10;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   int _getCurrentHighPeriod() =>
       _highPeriod ??
       (widget.config as DonchianChannelIndicatorConfig).highPeriod;
 
   Widget _buildLowPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelLowPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: _getCurrentLowPeriod().toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  _lowPeriod = int.tryParse(text);
-                } else {
-                  _lowPeriod = 10;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelLowPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: _getCurrentLowPeriod().toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              _lowPeriod = int.tryParse(text);
+            } else {
+              _lowPeriod = 10;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   int _getCurrentLowPeriod() =>
       _lowPeriod ?? (widget.config as DonchianChannelIndicatorConfig).lowPeriod;

@@ -8,9 +8,9 @@ import 'wma_indicator.dart';
 class LSMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   LSMAIndicator(this.indicator, this.period)
-      : wma = WMAIndicator<T>(indicator, period),
-        sma = SMAIndicator<T>(indicator, period),
-        super.fromIndicator(indicator);
+    : wma = WMAIndicator<T>(indicator, period),
+      sma = SMAIndicator<T>(indicator, period),
+      super.fromIndicator(indicator);
 
   /// Period
   final int period;
@@ -28,10 +28,7 @@ class LSMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   T calculate(int index) {
     final double result =
         3 * wma.getValue(index).quote - 2 * sma.getValue(index).quote;
-    return createResult(
-      index: index,
-      quote: result,
-    );
+    return createResult(index: index, quote: result);
   }
 
   @override

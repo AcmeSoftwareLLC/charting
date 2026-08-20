@@ -13,10 +13,11 @@ import '../indexed_entry.dart';
 
 /// A callback function to say wether or not the color should be `Positive`
 /// or `Negative`.
-typedef CheckColorCallback = bool Function({
-  required double previousQuote,
-  required double currentQuote,
-});
+typedef CheckColorCallback =
+    bool Function({
+      required double previousQuote,
+      required double currentQuote,
+    });
 
 /// A [DataPainter] for painting Histogram Bar data.
 class BarPainter extends DataPainter<DataSeries<Tick>> {
@@ -48,9 +49,11 @@ class BarPainter extends DataPainter<DataSeries<Tick>> {
     final double barWidth = intervalWidth * 0.6;
 
     // Painting visible bars except the last one that might be animated.
-    for (int i = series.visibleEntries.startIndex;
-        i < series.visibleEntries.endIndex - 1;
-        i++) {
+    for (
+      int i = series.visibleEntries.startIndex;
+      i < series.visibleEntries.endIndex - 1;
+      i++
+    ) {
       final Tick tick = series.entries![i];
       final Tick lastTick = series.entries![i - 1 >= 0 ? i - 1 : i];
 

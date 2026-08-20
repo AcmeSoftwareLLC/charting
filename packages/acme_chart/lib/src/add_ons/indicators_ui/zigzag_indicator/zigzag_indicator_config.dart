@@ -31,8 +31,9 @@ class ZigZagIndicatorConfig extends IndicatorConfig {
   static const String name = 'zigzag';
 
   @override
-  Map<String, dynamic> toJson() => _$ZigZagIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$ZigZagIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// ZigZag distance in %
   final double distance;
@@ -48,12 +49,11 @@ class ZigZagIndicatorConfig extends IndicatorConfig {
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      ZigZagIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => ZigZagIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   ZigZagIndicatorConfig copyWith({
@@ -63,11 +63,10 @@ class ZigZagIndicatorConfig extends IndicatorConfig {
     int? number,
     bool? showLastIndicator,
     int? pipSize,
-  }) =>
-      ZigZagIndicatorConfig(
-        distance: distance ?? this.distance,
-        lineStyle: lineStyle ?? this.lineStyle,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => ZigZagIndicatorConfig(
+    distance: distance ?? this.distance,
+    lineStyle: lineStyle ?? this.lineStyle,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

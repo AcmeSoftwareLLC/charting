@@ -33,9 +33,7 @@ class BollingerBandsIndicatorConfig extends MAIndicatorConfig {
     this.showChannelFill = true,
     super.showLastIndicator,
     super.number,
-  }) : super(
-          title: BollingerBandsIndicatorConfig.name,
-        );
+  }) : super(title: BollingerBandsIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory BollingerBandsIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -45,8 +43,9 @@ class BollingerBandsIndicatorConfig extends MAIndicatorConfig {
   static const String name = 'bollinger_bands';
 
   @override
-  Map<String, dynamic> toJson() => _$BollingerBandsIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$BollingerBandsIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// Standard Deviation value
   final double standardDeviation;
@@ -70,7 +69,8 @@ class BollingerBandsIndicatorConfig extends MAIndicatorConfig {
   String get shortTitle => 'BB';
 
   @override
-  String get configSummary => '$period, ${fieldType[0].toUpperCase()}, '
+  String get configSummary =>
+      '$period, ${fieldType[0].toUpperCase()}, '
       '$standardDeviation, ${movingAverageType.shortTitle}, '
       '${showChannelFill ? 'Y' : 'N'}';
 
@@ -98,12 +98,11 @@ class BollingerBandsIndicatorConfig extends MAIndicatorConfig {
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      BollingerBandsIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => BollingerBandsIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   BollingerBandsIndicatorConfig copyWith({
@@ -123,18 +122,17 @@ class BollingerBandsIndicatorConfig extends MAIndicatorConfig {
     LineStyle? lineStyle,
     int? offset,
     String? title,
-  }) =>
-      BollingerBandsIndicatorConfig(
-        period: period ?? this.period,
-        movingAverageType: movingAverageType ?? this.movingAverageType,
-        fieldType: fieldType ?? this.fieldType,
-        standardDeviation: standardDeviation ?? this.standardDeviation,
-        upperLineStyle: upperLineStyle ?? this.upperLineStyle,
-        middleLineStyle: middleLineStyle ?? this.middleLineStyle,
-        lowerLineStyle: lowerLineStyle ?? this.lowerLineStyle,
-        fillColor: fillColor ?? this.fillColor,
-        showChannelFill: showChannelFill ?? this.showChannelFill,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        number: number ?? this.number,
-      );
+  }) => BollingerBandsIndicatorConfig(
+    period: period ?? this.period,
+    movingAverageType: movingAverageType ?? this.movingAverageType,
+    fieldType: fieldType ?? this.fieldType,
+    standardDeviation: standardDeviation ?? this.standardDeviation,
+    upperLineStyle: upperLineStyle ?? this.upperLineStyle,
+    middleLineStyle: middleLineStyle ?? this.middleLineStyle,
+    lowerLineStyle: lowerLineStyle ?? this.lowerLineStyle,
+    fillColor: fillColor ?? this.fillColor,
+    showChannelFill: showChannelFill ?? this.showChannelFill,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    number: number ?? this.number,
+  );
 }

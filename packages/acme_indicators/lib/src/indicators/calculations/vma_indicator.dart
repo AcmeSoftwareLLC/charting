@@ -7,8 +7,8 @@ import 'cmo_indicator.dart';
 class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   VMAIndicator(this.indicator, this.period)
-      : cmoIndicator = CMOIndicator<T>(indicator, 9),
-        super.fromIndicator(indicator);
+    : cmoIndicator = CMOIndicator<T>(indicator, 9),
+      super.fromIndicator(indicator);
 
   /// Indicator to calculate VMAA on
   final Indicator<T> indicator;

@@ -45,8 +45,9 @@ class MAEnvIndicatorConfig extends MAIndicatorConfig {
   static const String name = 'moving_envelope_average';
 
   @override
-  Map<String, dynamic> toJson() => _$MAEnvIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$MAEnvIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// Moving Average Envelope shift type
   final ShiftType shiftType;
@@ -71,31 +72,30 @@ class MAEnvIndicatorConfig extends MAIndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => MAEnvSeries.fromIndicator(
-        IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
-        maEnvOptions: MAEnvOptions(
-          period: period,
-          movingAverageType: movingAverageType,
-          shift: shift,
-          shiftType: shiftType,
-          upperLineStyle: upperLineStyle,
-          middleLineStyle: middleLineStyle,
-          lowerLineStyle: lowerLineStyle,
-          fillColor: fillColor,
-          showChannelFill: showChannelFill,
-          showLastIndicator: showLastIndicator,
-        ),
-      );
+    IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
+    maEnvOptions: MAEnvOptions(
+      period: period,
+      movingAverageType: movingAverageType,
+      shift: shift,
+      shiftType: shiftType,
+      upperLineStyle: upperLineStyle,
+      middleLineStyle: middleLineStyle,
+      lowerLineStyle: lowerLineStyle,
+      fillColor: fillColor,
+      showChannelFill: showChannelFill,
+      showLastIndicator: showLastIndicator,
+    ),
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      MAEnvIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => MAEnvIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   MAEnvIndicatorConfig copyWith({
@@ -116,19 +116,18 @@ class MAEnvIndicatorConfig extends MAIndicatorConfig {
     int? offset,
     LineStyle? lineStyle,
     String? title,
-  }) =>
-      MAEnvIndicatorConfig(
-        period: period ?? this.period,
-        movingAverageType: movingAverageType ?? this.movingAverageType,
-        fieldType: fieldType ?? this.fieldType,
-        shift: shift ?? this.shift,
-        shiftType: shiftType ?? this.shiftType,
-        upperLineStyle: upperLineStyle ?? this.upperLineStyle,
-        middleLineStyle: middleLineStyle ?? this.middleLineStyle,
-        lowerLineStyle: lowerLineStyle ?? this.lowerLineStyle,
-        fillColor: fillColor ?? this.fillColor,
-        showChannelFill: showChannelFill ?? this.showChannelFill,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        number: number ?? this.number,
-      );
+  }) => MAEnvIndicatorConfig(
+    period: period ?? this.period,
+    movingAverageType: movingAverageType ?? this.movingAverageType,
+    fieldType: fieldType ?? this.fieldType,
+    shift: shift ?? this.shift,
+    shiftType: shiftType ?? this.shiftType,
+    upperLineStyle: upperLineStyle ?? this.upperLineStyle,
+    middleLineStyle: middleLineStyle ?? this.middleLineStyle,
+    lowerLineStyle: lowerLineStyle ?? this.lowerLineStyle,
+    fillColor: fillColor ?? this.fillColor,
+    showChannelFill: showChannelFill ?? this.showChannelFill,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    number: number ?? this.number,
+  );
 }

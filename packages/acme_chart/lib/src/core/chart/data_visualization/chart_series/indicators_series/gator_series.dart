@@ -31,8 +31,8 @@ class GatorSeries extends Series {
     required this.gatorConfig,
     this.barStyle = const BarStyle(),
     String? id,
-  })  : _fieldIndicator = HL2Indicator<Tick>(indicatorInput),
-        super(id ?? 'Gator$AlligatorOptions');
+  }) : _fieldIndicator = HL2Indicator<Tick>(indicatorInput),
+       super(id ?? 'Gator$AlligatorOptions');
 
   final Indicator<Tick> _fieldIndicator;
 
@@ -56,10 +56,9 @@ class GatorSeries extends Series {
     gatorTopSeries = SingleIndicatorSeries(
       painterCreator: (Series series) => BarPainter(
         series as DataSeries<Tick>,
-        checkColorCallback: (
-                {required double previousQuote,
-                required double currentQuote}) =>
-            currentQuote >= previousQuote,
+        checkColorCallback:
+            ({required double previousQuote, required double currentQuote}) =>
+                currentQuote >= previousQuote,
       ),
       indicatorCreator: () => GatorOscillatorIndicatorTopBar<Tick>(
         _fieldIndicator,
@@ -77,10 +76,9 @@ class GatorSeries extends Series {
     gatorBottomSeries = SingleIndicatorSeries(
       painterCreator: (Series series) => BarPainter(
         series as DataSeries<Tick>,
-        checkColorCallback: (
-                {required double previousQuote,
-                required double currentQuote}) =>
-            currentQuote.abs() >= previousQuote.abs(),
+        checkColorCallback:
+            ({required double previousQuote, required double currentQuote}) =>
+                currentQuote.abs() >= previousQuote.abs(),
       ),
       indicatorCreator: () => GatorOscillatorIndicatorBottomBar<Tick>(
         _fieldIndicator,
@@ -119,9 +117,9 @@ class GatorSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        <ChartData?>[gatorBottomSeries, gatorTopSeries].getMinValue(),
-        <ChartData?>[gatorBottomSeries, gatorTopSeries].getMaxValue(),
-      ];
+    <ChartData?>[gatorBottomSeries, gatorTopSeries].getMinValue(),
+    <ChartData?>[gatorBottomSeries, gatorTopSeries].getMaxValue(),
+  ];
 
   @override
   void paint(

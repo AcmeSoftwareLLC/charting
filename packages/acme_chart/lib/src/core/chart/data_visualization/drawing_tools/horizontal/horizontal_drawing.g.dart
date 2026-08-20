@@ -8,14 +8,17 @@ part of 'horizontal_drawing.dart';
 
 HorizontalDrawing _$HorizontalDrawingFromJson(Map<String, dynamic> json) =>
     HorizontalDrawing(
-      drawingPart: $enumDecode(_$DrawingPartsEnumMap, json['drawingPart']),
-      chartConfig: json['chartConfig'] == null
+        drawingPart: $enumDecode(_$DrawingPartsEnumMap, json['drawingPart']),
+        chartConfig: json['chartConfig'] == null
+            ? null
+            : ChartConfig.fromJson(json['chartConfig'] as Map<String, dynamic>),
+        edgePoint: EdgePoint.fromJson(
+          json['edgePoint'] as Map<String, dynamic>,
+        ),
+      )
+      ..startPoint = json['startPoint'] == null
           ? null
-          : ChartConfig.fromJson(json['chartConfig'] as Map<String, dynamic>),
-      edgePoint: EdgePoint.fromJson(json['edgePoint'] as Map<String, dynamic>),
-    )..startPoint = json['startPoint'] == null
-        ? null
-        : Point.fromJson(json['startPoint'] as Map<String, dynamic>);
+          : Point.fromJson(json['startPoint'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$HorizontalDrawingToJson(HorizontalDrawing instance) =>
     <String, dynamic>{

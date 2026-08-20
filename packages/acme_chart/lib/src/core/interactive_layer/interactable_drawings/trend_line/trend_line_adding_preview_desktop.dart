@@ -82,9 +82,10 @@ class _DesktopAnimationController {
       ),
       TweenSequenceItem(
         tween: ConstantTween(1),
-        weight: (_AnimationConfig.pulseDurationMs -
-                _AnimationConfig.guideFadeInDurationMs)
-            .toDouble(),
+        weight:
+            (_AnimationConfig.pulseDurationMs -
+                    _AnimationConfig.guideFadeInDurationMs)
+                .toDouble(),
       ),
     ]).animate(_controller!);
 
@@ -94,9 +95,10 @@ class _DesktopAnimationController {
     _pulseIntensityAnimation = TweenSequence<double>([
       TweenSequenceItem(
         tween: ConstantTween(0),
-        weight: (_AnimationConfig.guideFadeOutDurationMs +
-                _AnimationConfig.guideDelayDurationMs)
-            .toDouble(),
+        weight:
+            (_AnimationConfig.guideFadeOutDurationMs +
+                    _AnimationConfig.guideDelayDurationMs)
+                .toDouble(),
       ),
       TweenSequenceItem(
         tween: TweenSequence<double>([
@@ -172,7 +174,8 @@ class _DesktopRenderer {
         epochToX,
         quoteToY,
       );
-      final outerRadius = _AnimationConfig.baseRadius +
+      final outerRadius =
+          _AnimationConfig.baseRadius +
           (_AnimationConfig.maxGlowRadius - _AnimationConfig.baseRadius) *
               pulseIntensity;
 

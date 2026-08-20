@@ -36,10 +36,10 @@ class CandleStyle extends DataSeriesStyle with EquatableMixin {
 
   @override
   List<Object> get props => <Object>[
-        candleBullishBodyColor,
-        candleBearishBodyColor,
-        neutralColor,
-        candleBullishWickColor,
-        candleBearishWickColor,
-      ];
+    candleBullishBodyColor,
+    candleBearishBodyColor,
+    neutralColor,
+    candleBullishWickColor,
+    candleBearishWickColor,
+  ];
 }

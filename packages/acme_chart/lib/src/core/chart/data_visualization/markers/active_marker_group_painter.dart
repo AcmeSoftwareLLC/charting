@@ -103,7 +103,9 @@ class ActiveMarkerGroupPainter extends CustomPainter {
     final TextPainter textPainter = makeTextPainter(
       activeMarkerGroup.profitAndLossText ?? '',
       style.activeMarkerText.copyWith(
-        color: Colors.white.withValues(alpha: animationProgress.clamp(0.0, 1.0)),
+        color: Colors.white.withValues(
+          alpha: animationProgress.clamp(0.0, 1.0),
+        ),
       ),
     );
 
@@ -116,7 +118,7 @@ class ActiveMarkerGroupPainter extends CustomPainter {
     // Total width = full capsule width + animated text width contribution
     final double animatedTextWidth =
         (style.textLeftPadding + textPainter.width + style.textRightPadding) *
-            animationProgress;
+        animationProgress;
     final double pillWidth = animatedTextWidth;
 
     // Build the pill path that starts with the right semicircle of the icon

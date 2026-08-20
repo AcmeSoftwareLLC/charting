@@ -29,18 +29,18 @@ class MAEnvSeries extends Series {
     String? id,
     MAEnvOptions? maEnvOptions,
   }) : this.fromIndicator(
-          CloseValueIndicator<Tick>(indicatorInput),
-          id: id,
-          maEnvOptions: maEnvOptions,
-        );
+         CloseValueIndicator<Tick>(indicatorInput),
+         id: id,
+         maEnvOptions: maEnvOptions,
+       );
 
   /// Initializes
   MAEnvSeries.fromIndicator(
     Indicator<Tick> indicator, {
     String? id,
     this.maEnvOptions,
-  })  : _fieldIndicator = indicator,
-        super(id ?? 'MAEnv$maEnvOptions');
+  }) : _fieldIndicator = indicator,
+       super(id ?? 'MAEnv$maEnvOptions');
 
   final Indicator<Tick> _fieldIndicator;
 
@@ -121,8 +121,12 @@ class MAEnvSeries extends Series {
     return ChannelFillPainter(
       upperSeries,
       lowerSeries,
-      firstUpperChannelFillColor: maEnvOptions?.fillColor.withValues(alpha: 0.2),
-      secondUpperChannelFillColor: maEnvOptions?.fillColor.withValues(alpha: 0.2),
+      firstUpperChannelFillColor: maEnvOptions?.fillColor.withValues(
+        alpha: 0.2,
+      ),
+      secondUpperChannelFillColor: maEnvOptions?.fillColor.withValues(
+        alpha: 0.2,
+      ),
     );
   }
 

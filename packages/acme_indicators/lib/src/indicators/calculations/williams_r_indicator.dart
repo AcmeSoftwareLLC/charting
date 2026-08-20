@@ -16,12 +16,12 @@ class WilliamsRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     int period, {
     double multiplier = -100,
   }) : this._(
-          CloseValueIndicator<T>(input),
-          period,
-          HighValueIndicator<T>(input),
-          LowValueIndicator<T>(input),
-          multiplier,
-        );
+         CloseValueIndicator<T>(input),
+         period,
+         HighValueIndicator<T>(input),
+         LowValueIndicator<T>(input),
+         multiplier,
+       );
 
   WilliamsRIndicator._(
     this._closeValueIndicator,
@@ -29,9 +29,9 @@ class WilliamsRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     HighValueIndicator<T> highValueIndicator,
     LowValueIndicator<T> lowValueIndicator,
     this.multiplier,
-  )   : _highestHigh = HighestValueIndicator<T>(highValueIndicator, period),
-        _lowestLow = LowestValueIndicator<T>(lowValueIndicator, period),
-        super.fromIndicator(_closeValueIndicator);
+  ) : _highestHigh = HighestValueIndicator<T>(highValueIndicator, period),
+      _lowestLow = LowestValueIndicator<T>(lowValueIndicator, period),
+      super.fromIndicator(_closeValueIndicator);
 
   /// Period.
   final int period;
@@ -50,7 +50,8 @@ class WilliamsRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
     return createResult(
       index: index,
-      quote: ((highestValue - _closeValueIndicator.getValue(index).quote) /
+      quote:
+          ((highestValue - _closeValueIndicator.getValue(index).quote) /
               (highestValue - lowestLowValue)) *
           multiplier,
     );

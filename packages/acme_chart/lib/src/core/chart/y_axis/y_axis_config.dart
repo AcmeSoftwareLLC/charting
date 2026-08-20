@@ -28,8 +28,12 @@ class YAxisConfig {
   ///Executes painting logic within a clipped area of the canvas to prevent
   ///drawing over the Y-axis labels.
   void yAxisClipping(Canvas canvas, Size size, VoidCallback paintingLogic) {
-    final Rect clipRect =
-        Rect.fromLTWH(0, 0, size.width - (cachedLabelWidth ?? 0), size.height);
+    final Rect clipRect = Rect.fromLTWH(
+      0,
+      0,
+      size.width - (cachedLabelWidth ?? 0),
+      size.height,
+    );
     canvas
       ..save()
       ..clipRect(clipRect);

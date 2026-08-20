@@ -7,12 +7,12 @@ part of 'drawing_data.dart';
 // **************************************************************************
 
 DrawingData _$DrawingDataFromJson(Map<String, dynamic> json) => DrawingData(
-      id: json['id'] as String,
-      drawingParts: (json['drawingParts'] as List<dynamic>)
-          .map((e) => Drawing.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      isDrawingFinished: json['isDrawingFinished'] as bool? ?? false,
-    );
+  id: json['id'] as String,
+  drawingParts: (json['drawingParts'] as List<dynamic>)
+      .map((e) => Drawing.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  isDrawingFinished: json['isDrawingFinished'] as bool? ?? false,
+);
 
 Map<String, dynamic> _$DrawingDataToJson(DrawingData instance) =>
     <String, dynamic>{

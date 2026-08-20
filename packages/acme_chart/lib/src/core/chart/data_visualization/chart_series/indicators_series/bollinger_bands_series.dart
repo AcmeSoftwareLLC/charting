@@ -29,18 +29,18 @@ class BollingerBandSeries extends Series {
     required BollingerBandsOptions bbOptions,
     String? id,
   }) : this.fromIndicator(
-          CloseValueIndicator<Tick>(indicatorInput),
-          bbOptions: bbOptions,
-          id: id,
-        );
+         CloseValueIndicator<Tick>(indicatorInput),
+         bbOptions: bbOptions,
+         id: id,
+       );
 
   /// Initializes
   BollingerBandSeries.fromIndicator(
     Indicator<Tick> indicator, {
     required this.bbOptions,
     String? id,
-  })  : _fieldIndicator = indicator,
-        super(id ?? 'Bollinger$bbOptions');
+  }) : _fieldIndicator = indicator,
+       super(id ?? 'Bollinger$bbOptions');
 
   /// Lower series
   late SingleIndicatorSeries lowerSeries;

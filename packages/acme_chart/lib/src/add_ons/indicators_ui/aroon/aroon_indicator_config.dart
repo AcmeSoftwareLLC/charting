@@ -25,10 +25,7 @@ class AroonIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? AroonIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? AroonIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory AroonIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -38,8 +35,9 @@ class AroonIndicatorConfig extends IndicatorConfig {
   static const String name = 'Aroon';
 
   @override
-  Map<String, dynamic> toJson() => _$AroonIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$AroonIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period
   final int period;
@@ -52,21 +50,20 @@ class AroonIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => AroonSeries(
-        indicatorInput,
-        this,
-        aroonOption: AroonOptions(period: period),
-      );
+    indicatorInput,
+    this,
+    aroonOption: AroonOptions(period: period),
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      AroonIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => AroonIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   AroonIndicatorConfig copyWith({
@@ -77,14 +74,13 @@ class AroonIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      AroonIndicatorConfig(
-        period: period ?? this.period,
-        upLineStyle: upLineStyle ?? this.upLineStyle,
-        downLineStyle: downLineStyle ?? this.downLineStyle,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => AroonIndicatorConfig(
+    period: period ?? this.period,
+    upLineStyle: upLineStyle ?? this.upLineStyle,
+    downLineStyle: downLineStyle ?? this.downLineStyle,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

@@ -30,9 +30,7 @@ class IchimokuCloudIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          title: title ?? IchimokuCloudIndicatorConfig.name,
-        );
+  }) : super(title: title ?? IchimokuCloudIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory IchimokuCloudIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -42,8 +40,9 @@ class IchimokuCloudIndicatorConfig extends IndicatorConfig {
   static const String name = 'ichimoku';
 
   @override
-  Map<String, dynamic> toJson() => _$IchimokuCloudIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$IchimokuCloudIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period to calculate the Conversion Line value.
   final int conversionLinePeriod;
@@ -74,26 +73,25 @@ class IchimokuCloudIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => IchimokuCloudSeries(
-        indicatorInput,
-        config: this,
-        ichimokuCloudOptions: IchimokuCloudOptions(
-          baseLinePeriod: baseLinePeriod,
-          conversionLinePeriod: conversionLinePeriod,
-          leadingSpanBPeriod: spanBPeriod,
-          showLastIndicator: showLastIndicator,
-        ),
-      );
+    indicatorInput,
+    config: this,
+    ichimokuCloudOptions: IchimokuCloudOptions(
+      baseLinePeriod: baseLinePeriod,
+      conversionLinePeriod: conversionLinePeriod,
+      leadingSpanBPeriod: spanBPeriod,
+      showLastIndicator: showLastIndicator,
+    ),
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      IchimokuCloudIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => IchimokuCloudIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   IchimokuCloudIndicatorConfig copyWith({
@@ -110,19 +108,18 @@ class IchimokuCloudIndicatorConfig extends IndicatorConfig {
     String? title,
     int? number,
     int? pipSize,
-  }) =>
-      IchimokuCloudIndicatorConfig(
-        baseLinePeriod: baseLinePeriod ?? this.baseLinePeriod,
-        conversionLinePeriod: conversionLinePeriod ?? this.conversionLinePeriod,
-        laggingSpanOffset: laggingSpanOffset ?? this.laggingSpanOffset,
-        spanBPeriod: spanBPeriod ?? this.spanBPeriod,
-        conversionLineStyle: conversionLineStyle ?? this.conversionLineStyle,
-        baseLineStyle: baseLineStyle ?? this.baseLineStyle,
-        spanALineStyle: spanALineStyle ?? this.spanALineStyle,
-        spanBLineStyle: spanBLineStyle ?? this.spanBLineStyle,
-        laggingLineStyle: laggingLineStyle ?? this.laggingLineStyle,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => IchimokuCloudIndicatorConfig(
+    baseLinePeriod: baseLinePeriod ?? this.baseLinePeriod,
+    conversionLinePeriod: conversionLinePeriod ?? this.conversionLinePeriod,
+    laggingSpanOffset: laggingSpanOffset ?? this.laggingSpanOffset,
+    spanBPeriod: spanBPeriod ?? this.spanBPeriod,
+    conversionLineStyle: conversionLineStyle ?? this.conversionLineStyle,
+    baseLineStyle: baseLineStyle ?? this.baseLineStyle,
+    spanALineStyle: spanALineStyle ?? this.spanALineStyle,
+    spanBLineStyle: spanBLineStyle ?? this.spanBLineStyle,
+    laggingLineStyle: laggingLineStyle ?? this.laggingLineStyle,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

@@ -93,9 +93,9 @@ class FractalChaosBandSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        <ChartData>[fcbHighSeries, fcbLowSeries].getMinValue(),
-        <ChartData>[fcbHighSeries, fcbLowSeries].getMaxValue(),
-      ];
+    <ChartData>[fcbHighSeries, fcbLowSeries].getMinValue(),
+    <ChartData>[fcbHighSeries, fcbLowSeries].getMaxValue(),
+  ];
 
   @override
   void paint(

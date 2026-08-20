@@ -17,9 +17,7 @@ class MAIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     MAIndicatorConfig super.config = const MAIndicatorConfig(),
-  }) : super(
-          title: 'Moving Average',
-        );
+  }) : super(title: 'Moving Average');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -60,142 +58,136 @@ class MAIndicatorItemState extends IndicatorItemState<MAIndicatorConfig> {
 
   @override
   Widget getIndicatorOptions() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      ColorSelector(
+        currentColor: getCurrentLineStyle().color,
+        onColorChanged: (Color selectedColor) {
+          setState(() {
+            lineStyle = getCurrentLineStyle().copyWith(color: selectedColor);
+          });
+          updateIndicator();
+        },
+      ),
+      buildMATypeMenu(),
+      Row(
         children: <Widget>[
-          ColorSelector(
-            currentColor: getCurrentLineStyle().color,
-            onColorChanged: (Color selectedColor) {
-              setState(() {
-                lineStyle =
-                    getCurrentLineStyle().copyWith(color: selectedColor);
-              });
-              updateIndicator();
-            },
-          ),
-          buildMATypeMenu(),
-          Row(
-            children: <Widget>[
-              buildPeriodField(),
-              const SizedBox(width: 10),
-              buildFieldTypeMenu(),
-            ],
-          ),
-          buildOffsetField(),
+          buildPeriodField(),
+          const SizedBox(width: 10),
+          buildFieldTypeMenu(),
         ],
-      );
+      ),
+      buildOffsetField(),
+    ],
+  );
 
   /// Builds MA Field type menu
   @protected
   Widget buildFieldTypeMenu() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelField,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          DropdownButton<String>(
-            value: getCurrentField(),
-            items: IndicatorConfig.supportedFieldTypes.keys
-                .map<DropdownMenuItem<String>>(
-                  (String fieldType) => DropdownMenuItem<String>(
-                    value: fieldType,
-                    child: Text(fieldType,
-                        style: const TextStyle(fontSize: 10)),
-                  ),
-                )
-                .toList(),
-            onChanged: (String? newField) => setState(() {
-              field = newField;
-              updateIndicator();
-            }),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelField,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      DropdownButton<String>(
+        value: getCurrentField(),
+        items: IndicatorConfig.supportedFieldTypes.keys
+            .map<DropdownMenuItem<String>>(
+              (String fieldType) => DropdownMenuItem<String>(
+                value: fieldType,
+                child: Text(fieldType, style: const TextStyle(fontSize: 10)),
+              ),
+            )
+            .toList(),
+        onChanged: (String? newField) => setState(() {
+          field = newField;
+          updateIndicator();
+        }),
+      ),
+    ],
+  );
 
   /// Builds Period TextFiled
   @protected
   Widget buildPeriodField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          SizedBox(
-            width: 20,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 10),
-              initialValue: getCurrentPeriod().toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (String text) {
-                if (text.isNotEmpty) {
-                  period = int.tryParse(text);
-                } else {
-                  period = 15;
-                }
-                updateIndicator();
-              },
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      SizedBox(
+        width: 20,
+        child: TextFormField(
+          style: const TextStyle(fontSize: 10),
+          initialValue: getCurrentPeriod().toString(),
+          keyboardType: TextInputType.number,
+          onChanged: (String text) {
+            if (text.isNotEmpty) {
+              period = int.tryParse(text);
+            } else {
+              period = 15;
+            }
+            updateIndicator();
+          },
+        ),
+      ),
+    ],
+  );
 
   /// Builds offset TextFiled
   @protected
   Widget buildOffsetField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelOffset,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Slider(
-              value: currentOffset.toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  offset = value.toInt();
-                  updateIndicator();
-                });
-              },
-              divisions: 100,
-              max: 100,
-              label: '$currentOffset',
-            ),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelOffset,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Expanded(
+        child: Slider(
+          value: currentOffset.toDouble(),
+          onChanged: (double value) {
+            setState(() {
+              offset = value.toInt();
+              updateIndicator();
+            });
+          },
+          divisions: 100,
+          max: 100,
+          label: '$currentOffset',
+        ),
+      ),
+    ],
+  );
 
   /// Returns MA types dropdown menu
   @protected
   Widget buildMATypeMenu() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelType,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          DropdownButton<MovingAverageType>(
-            value: getCurrentType(),
-            items: MovingAverageType.values
-                .map<DropdownMenuItem<MovingAverageType>>(
-                  (MovingAverageType type) =>
-                      DropdownMenuItem<MovingAverageType>(
-                    value: type,
-                    child: Text(
-                      type.title,
-                      style: const TextStyle(fontSize: 10),
-                    ),
-                  ),
-                )
-                .toList(),
-            onChanged: (MovingAverageType? newType) => setState(() {
-              type = newType;
-              updateIndicator();
-            }),
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelType,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      DropdownButton<MovingAverageType>(
+        value: getCurrentType(),
+        items: MovingAverageType.values
+            .map<DropdownMenuItem<MovingAverageType>>(
+              (MovingAverageType type) => DropdownMenuItem<MovingAverageType>(
+                value: type,
+                child: Text(type.title, style: const TextStyle(fontSize: 10)),
+              ),
+            )
+            .toList(),
+        onChanged: (MovingAverageType? newType) => setState(() {
+          type = newType;
+          updateIndicator();
+        }),
+      ),
+    ],
+  );
 
   /// Gets Indicator current type.
   @protected

@@ -10,9 +10,9 @@ import '../indicator.dart';
 class TRIMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   TRIMAIndicator(super.inputIndicator, int inputPeriod)
-      : period = (inputPeriod / 2).ceil(),
-        indicator = SMAIndicator<T>(inputIndicator, (inputPeriod / 2).ceil()),
-        super.fromIndicator();
+    : period = (inputPeriod / 2).ceil(),
+      indicator = SMAIndicator<T>(inputIndicator, (inputPeriod / 2).ceil()),
+      super.fromIndicator();
 
   /// the period
   final int period;

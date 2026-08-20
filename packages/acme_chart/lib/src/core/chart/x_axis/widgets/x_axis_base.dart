@@ -152,10 +152,13 @@ class XAxisState extends State<XAxisBase> with TickerProviderStateMixin {
       granularity: context.read<ChartConfig>().granularity,
       entries: widget.entries,
       dataFitPadding: widget.dataFitPadding,
-      maxCurrentTickOffset:
-          context.read<ChartConfig>().chartAxisConfig.maxCurrentTickOffset,
-      snapMarkersToIntervals:
-          context.read<ChartConfig>().snapMarkersToIntervals,
+      maxCurrentTickOffset: context
+          .read<ChartConfig>()
+          .chartAxisConfig
+          .maxCurrentTickOffset,
+      snapMarkersToIntervals: context
+          .read<ChartConfig>()
+          .snapMarkersToIntervals,
     );
   }
 
@@ -175,69 +178,68 @@ class XAxisState extends State<XAxisBase> with TickerProviderStateMixin {
   @override
   Widget build(
     BuildContext context,
-  ) =>
-      ChangeNotifierProvider<XAxisModel>.value(
-        value: _model,
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            final ChartTheme chartTheme = context.watch<ChartTheme>();
-            final double yAxisLabelsAreaWidth = (widget.entries.isNotEmpty
-                    ? labelWidth(
-                        widget.entries.first.quote,
-                        chartTheme.gridStyle.yLabelStyle,
-                        widget.pipSize,
-                      )
-                    : 100) +
-                chartTheme.gridStyle.labelHorizontalPadding;
-            // Update x-axis width.
-            context.watch<XAxisModel>().width = constraints.maxWidth;
-            context.watch<XAxisModel>().graphAreaWidth =
-                constraints.maxWidth - yAxisLabelsAreaWidth;
+  ) => ChangeNotifierProvider<XAxisModel>.value(
+    value: _model,
+    child: LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        final ChartTheme chartTheme = context.watch<ChartTheme>();
+        final double yAxisLabelsAreaWidth =
+            (widget.entries.isNotEmpty
+                ? labelWidth(
+                    widget.entries.first.quote,
+                    chartTheme.gridStyle.yLabelStyle,
+                    widget.pipSize,
+                  )
+                : 100) +
+            chartTheme.gridStyle.labelHorizontalPadding;
+        // Update x-axis width.
+        context.watch<XAxisModel>().width = constraints.maxWidth;
+        context.watch<XAxisModel>().graphAreaWidth =
+            constraints.maxWidth - yAxisLabelsAreaWidth;
 
-            final List<DateTime> noOverlapGridTimestamps =
-                _model.getNoOverlapGridTimestamps();
+        final List<DateTime> noOverlapGridTimestamps = _model
+            .getNoOverlapGridTimestamps();
 
-            return Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                if (context.read<ChartConfig>().chartAxisConfig.showEpochGrid)
-                  RepaintBoundary(
-                    child: CustomPaint(
-                      painter: XGridPainter(
-                        timestamps: noOverlapGridTimestamps
-                            .map<DateTime>(
-                              (DateTime time) => /*timeLabel(time)*/ time,
-                            )
-                            .toList(),
-                        xCoords: noOverlapGridTimestamps
-                            .map<double>(
-                              (DateTime time) => _model
-                                  .xFromEpoch(time.millisecondsSinceEpoch),
-                            )
-                            .toList(),
-                        style: chartTheme,
-                        msPerPx: _model.msPerPx,
-                      ),
-                    ),
-                  ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: chartTheme.gridStyle.xLabelsAreaHeight,
-                  ),
-                  child: widget.child,
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    width:
-                        widget.entries.isNotEmpty ? yAxisLabelsAreaWidth : 100,
-                    height: chartTheme.gridStyle.xLabelsAreaHeight,
-                    color: chartTheme.backgroundColor,
+        return Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            if (context.read<ChartConfig>().chartAxisConfig.showEpochGrid)
+              RepaintBoundary(
+                child: CustomPaint(
+                  painter: XGridPainter(
+                    timestamps: noOverlapGridTimestamps
+                        .map<DateTime>(
+                          (DateTime time) => /*timeLabel(time)*/ time,
+                        )
+                        .toList(),
+                    xCoords: noOverlapGridTimestamps
+                        .map<double>(
+                          (DateTime time) =>
+                              _model.xFromEpoch(time.millisecondsSinceEpoch),
+                        )
+                        .toList(),
+                    style: chartTheme,
+                    msPerPx: _model.msPerPx,
                   ),
                 ),
-              ],
-            );
-          },
-        ),
-      );
+              ),
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: chartTheme.gridStyle.xLabelsAreaHeight,
+              ),
+              child: widget.child,
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                width: widget.entries.isNotEmpty ? yAxisLabelsAreaWidth : 100,
+                height: chartTheme.gridStyle.xLabelsAreaHeight,
+                color: chartTheme.backgroundColor,
+              ),
+            ),
+          ],
+        );
+      },
+    ),
+  );
 }

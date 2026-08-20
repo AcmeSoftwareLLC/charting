@@ -39,24 +39,24 @@ class GestureManagerState extends State<GestureManager> {
 
   @override
   Widget build(BuildContext context) => CustomGestureDetector(
-        onScaleAndPanStart: (ScaleStartDetails d) =>
-            _callAll<GestureScaleStartCallback>(d),
-        onPanUpdate: (DragUpdateDetails d) =>
-            _callAll<GestureDragUpdateCallback>(d),
-        onScaleUpdate: (ScaleUpdateDetails d) =>
-            _callAll<GestureScaleUpdateCallback>(d),
-        onScaleAndPanEnd: (ScaleEndDetails d) =>
-            _callAll<GestureScaleEndCallback>(d),
-        onLongPressStart: (LongPressStartDetails d) =>
-            _callAll<GestureLongPressStartCallback>(d),
-        onLongPressMoveUpdate: (LongPressMoveUpdateDetails d) =>
-            _callAll<GestureLongPressMoveUpdateCallback>(d),
-        onLongPressEnd: (LongPressEndDetails d) =>
-            _callAll<GestureLongPressEndCallback>(d),
-        onTapUp: (TapUpDetails d) => _callAll<GestureTapUpCallback>(d),
-        child: Provider<GestureManagerState>.value(
-          value: this,
-          child: widget.child,
-        ),
-      );
+    onScaleAndPanStart: (ScaleStartDetails d) =>
+        _callAll<GestureScaleStartCallback>(d),
+    onPanUpdate: (DragUpdateDetails d) =>
+        _callAll<GestureDragUpdateCallback>(d),
+    onScaleUpdate: (ScaleUpdateDetails d) =>
+        _callAll<GestureScaleUpdateCallback>(d),
+    onScaleAndPanEnd: (ScaleEndDetails d) =>
+        _callAll<GestureScaleEndCallback>(d),
+    onLongPressStart: (LongPressStartDetails d) =>
+        _callAll<GestureLongPressStartCallback>(d),
+    onLongPressMoveUpdate: (LongPressMoveUpdateDetails d) =>
+        _callAll<GestureLongPressMoveUpdateCallback>(d),
+    onLongPressEnd: (LongPressEndDetails d) =>
+        _callAll<GestureLongPressEndCallback>(d),
+    onTapUp: (TapUpDetails d) => _callAll<GestureTapUpCallback>(d),
+    child: Provider<GestureManagerState>.value(
+      value: this,
+      child: widget.child,
+    ),
+  );
 }

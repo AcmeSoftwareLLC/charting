@@ -14,9 +14,7 @@ abstract class OHLCTypeSeries extends DataSeries<Candle> {
     String id, {
     CandleStyle? super.style,
     super.lastTickIndicatorStyle,
-  }) : super(
-          id: id,
-        );
+  }) : super(id: id);
 
   @override
   Widget getCrossHairInfo(
@@ -44,30 +42,29 @@ abstract class OHLCTypeSeries extends DataSeries<Candle> {
     double value,
     int pipSize,
     ChartTheme theme,
-  ) =>
-      Padding(
-        padding: const EdgeInsets.only(bottom: 4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              label,
-              style: theme.crosshairInformationBoxQuoteStyle.copyWith(
-                color: theme.crosshairInformationBoxTextDefault,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(width: 4),
-            Text(
-              value.toStringAsFixed(pipSize),
-              style: theme.crosshairInformationBoxQuoteStyle.copyWith(
-                color: theme.crosshairInformationBoxTextDefault,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
+  ) => Padding(
+    padding: const EdgeInsets.only(bottom: 4),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          label,
+          style: theme.crosshairInformationBoxQuoteStyle.copyWith(
+            color: theme.crosshairInformationBoxTextDefault,
+          ),
+          textAlign: TextAlign.center,
         ),
-      );
+        const SizedBox(width: 4),
+        Text(
+          value.toStringAsFixed(pipSize),
+          style: theme.crosshairInformationBoxQuoteStyle.copyWith(
+            color: theme.crosshairInformationBoxTextDefault,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    ),
+  );
 
   /// Creates a widget to display crosshair information for small screens.
   ///

@@ -35,8 +35,7 @@ void main() {
       expect(durationToString(time), '20:15');
     });
 
-    test(
-        'durationToString returns the right MM:SS format when hour is 0 and '
+    test('durationToString returns the right MM:SS format when hour is 0 and '
         'minute is not 2 digits', () {
       const Duration time = Duration(minutes: 4, seconds: 15);
 
@@ -44,8 +43,7 @@ void main() {
     });
 
     group('CalculateTextColor', () {
-      test(
-          'CalculateTextColor calculates the correct color for the given '
+      test('CalculateTextColor calculates the correct color for the given '
           'brightness', () {
         expect(calculateTextColor(Colors.black), Colors.white);
         expect(calculateTextColor(Colors.white), Colors.black);
@@ -53,8 +51,7 @@ void main() {
     });
   });
   group('Label width test', () {
-    test(
-        'label width returns the correct width from the given text, style and '
+    test('label width returns the correct width from the given text, style and '
         'pipSize', () {
       expect(labelWidth(10, const TextStyle(), 10), 182);
       expect(labelWidth(100, const TextStyle(), 10), 196);

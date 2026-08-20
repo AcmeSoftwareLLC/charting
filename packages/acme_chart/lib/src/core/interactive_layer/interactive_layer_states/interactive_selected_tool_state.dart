@@ -213,30 +213,30 @@ class InteractiveSelectedToolState extends InteractiveState
   List<Widget> get previewWidgets => [_buildSelectedDrawingFloatingMenu()];
 
   Widget _buildSelectedDrawingFloatingMenu() => SelectedDrawingFloatingMenu(
-        drawing: selected,
-        interactiveLayerBehaviour: interactiveLayerBehaviour,
-        onUpdateDrawing: (config) {
-          interactiveLayer.saveDrawing(config);
-          interactiveLayerBehaviour.updateStateTo(
-            this,
-            StateChangeAnimationDirection.forward,
-            animate: false,
-          );
-        },
-        onRemoveDrawing: (config) {
-          if (selected.id != config.configId) {
-            return;
-          }
-
-          interactiveLayerBehaviour.updateStateTo(
-            InteractiveNormalState(
-              interactiveLayerBehaviour: interactiveLayerBehaviour,
-            ),
-            StateChangeAnimationDirection.backward,
-            waitForAnimation: false,
-          );
-
-          interactiveLayer.removeDrawing(config);
-        },
+    drawing: selected,
+    interactiveLayerBehaviour: interactiveLayerBehaviour,
+    onUpdateDrawing: (config) {
+      interactiveLayer.saveDrawing(config);
+      interactiveLayerBehaviour.updateStateTo(
+        this,
+        StateChangeAnimationDirection.forward,
+        animate: false,
       );
+    },
+    onRemoveDrawing: (config) {
+      if (selected.id != config.configId) {
+        return;
+      }
+
+      interactiveLayerBehaviour.updateStateTo(
+        InteractiveNormalState(
+          interactiveLayerBehaviour: interactiveLayerBehaviour,
+        ),
+        StateChangeAnimationDirection.backward,
+        waitForAnimation: false,
+      );
+
+      interactiveLayer.removeDrawing(config);
+    },
+  );
 }

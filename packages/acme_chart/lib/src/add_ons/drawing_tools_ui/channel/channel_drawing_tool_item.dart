@@ -15,9 +15,7 @@ class ChannelDrawingToolItem extends DrawingToolItem {
     required super.deleteDrawingTool,
     super.key,
     ChannelDrawingToolConfig super.config = const ChannelDrawingToolConfig(),
-  }) : super(
-          title: 'Channel',
-        );
+  }) : super(title: 'Channel');
 
   @override
   DrawingToolItemState<DrawingToolConfig> createDrawingToolItemState() =>
@@ -41,38 +39,38 @@ class ChannelDrawingToolItemState
 
   @override
   Widget getDrawingToolOptions() => Column(
-        children: <Widget>[
-          _buildColorField(
-            ChartLocalization.of(context).labelColor,
-            _currentLineStyle,
-          ),
-          _buildColorField(
-            ChartLocalization.of(context).labelFillColor,
-            _currentFillStyle,
-          ),
-          // TODO(maryia-binary): implement _buildPatternField() to set pattern
-        ],
-      );
+    children: <Widget>[
+      _buildColorField(
+        ChartLocalization.of(context).labelColor,
+        _currentLineStyle,
+      ),
+      _buildColorField(
+        ChartLocalization.of(context).labelFillColor,
+        _currentFillStyle,
+      ),
+      // TODO(maryia-binary): implement _buildPatternField() to set pattern
+    ],
+  );
 
   Widget _buildColorField(String label, LineStyle style) => Row(
-        children: <Widget>[
-          Text(label, style: const TextStyle(fontSize: 16)),
-          ColorSelector(
-            currentColor: style.color,
-            onColorChanged: (Color selectedColor) {
-              setState(() {
-                final LineStyle newColor = style.copyWith(color: selectedColor);
-                if (label == ChartLocalization.of(context).labelColor) {
-                  _lineStyle = newColor;
-                } else {
-                  _fillStyle = newColor;
-                }
-              });
-              updateDrawingTool();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(label, style: const TextStyle(fontSize: 16)),
+      ColorSelector(
+        currentColor: style.color,
+        onColorChanged: (Color selectedColor) {
+          setState(() {
+            final LineStyle newColor = style.copyWith(color: selectedColor);
+            if (label == ChartLocalization.of(context).labelColor) {
+              _lineStyle = newColor;
+            } else {
+              _fillStyle = newColor;
+            }
+          });
+          updateDrawingTool();
+        },
+      ),
+    ],
+  );
 
   LineStyle get _currentFillStyle =>
       _fillStyle ?? (widget.config as ChannelDrawingToolConfig).fillStyle;

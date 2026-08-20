@@ -74,37 +74,40 @@ class _ChartStateWeb extends _ChartState {
                     expandedIndex = expandedIndex != index ? index : null;
                   });
                 },
-                onSwap: (int offset) => _onSwap(widget.bottomConfigs[index],
-                    widget.bottomConfigs[index + offset]),
-                onCrosshairDisappeared: widget.onCrosshairDisappeared,
-                onCrosshairHover: (
-                  Offset globalPosition,
-                  Offset localPosition,
-                  EpochToX epochToX,
-                  QuoteToY quoteToY,
-                  EpochFromX epochFromX,
-                  QuoteFromY quoteFromY,
-                ) =>
-                    widget.onCrosshairHover?.call(
-                  globalPosition,
-                  localPosition,
-                  epochToX,
-                  quoteToY,
-                  epochFromX,
-                  quoteFromY,
+                onSwap: (int offset) => _onSwap(
                   widget.bottomConfigs[index],
+                  widget.bottomConfigs[index + offset],
                 ),
+                onCrosshairDisappeared: widget.onCrosshairDisappeared,
+                onCrosshairHover:
+                    (
+                      Offset globalPosition,
+                      Offset localPosition,
+                      EpochToX epochToX,
+                      QuoteToY quoteToY,
+                      EpochFromX epochFromX,
+                      QuoteFromY quoteFromY,
+                    ) => widget.onCrosshairHover?.call(
+                      globalPosition,
+                      localPosition,
+                      epochToX,
+                      quoteToY,
+                      epochFromX,
+                      quoteFromY,
+                      widget.bottomConfigs[index],
+                    ),
                 isExpanded: isExpanded,
                 showCrosshair: widget.showCrosshair,
                 showExpandedIcon: bottomSeries.length > 1,
                 showMoveUpIcon:
                     !isExpanded && bottomSeries.length > 1 && index != 0,
-                showMoveDownIcon: !isExpanded &&
+                showMoveDownIcon:
+                    !isExpanded &&
                     bottomSeries.length > 1 &&
                     index != bottomSeries.length - 1,
               ),
             );
-          })
+          }),
       ],
     );
   }

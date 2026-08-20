@@ -43,7 +43,8 @@ class HomeScreen extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         key: Key(
-            'feature_card_${item.title.toLowerCase().replaceAll(' ', '_')}'),
+          'feature_card_${item.title.toLowerCase().replaceAll(' ', '_')}',
+        ),
         onTap: () {
           Navigator.push(
             context,

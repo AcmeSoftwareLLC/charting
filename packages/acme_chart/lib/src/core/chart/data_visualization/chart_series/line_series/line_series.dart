@@ -19,9 +19,7 @@ class LineSeries extends DataSeries<Tick> {
     String? id,
     LineStyle? super.style,
     super.lastTickIndicatorStyle,
-  }) : super(
-          id: id ?? 'LineSeries',
-        );
+  }) : super(id: id ?? 'LineSeries');
 
   @override
   SeriesPainter<DataSeries<Tick>> createPainter() => LinePainter(this);
@@ -32,13 +30,12 @@ class LineSeries extends DataSeries<Tick> {
     int pipSize,
     ChartTheme theme,
     CrosshairVariant crosshairVariant,
-  ) =>
-      Text(
-        crossHairTick.quote.toStringAsFixed(pipSize),
-        style: theme.crosshairInformationBoxQuoteStyle.copyWith(
-          color: theme.crosshairInformationBoxTextDefault,
-        ),
-      );
+  ) => Text(
+    crossHairTick.quote.toStringAsFixed(pipSize),
+    style: theme.crosshairInformationBoxQuoteStyle.copyWith(
+      color: theme.crosshairInformationBoxTextDefault,
+    ),
+  );
 
   @override
   double maxValueOf(Tick t) => t.quote;

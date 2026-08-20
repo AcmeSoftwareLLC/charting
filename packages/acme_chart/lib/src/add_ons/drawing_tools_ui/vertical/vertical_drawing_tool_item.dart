@@ -18,9 +18,7 @@ class VerticalDrawingToolItem extends DrawingToolItem {
     required super.deleteDrawingTool,
     super.key,
     VerticalDrawingToolConfig super.config = const VerticalDrawingToolConfig(),
-  }) : super(
-          title: 'Vertical',
-        );
+  }) : super(title: 'Vertical');
 
   @override
   DrawingToolItemState<DrawingToolConfig> createDrawingToolItemState() =>
@@ -47,37 +45,37 @@ class VerticalDrawingToolItemState
       Column(children: <Widget>[_buildColorField(), _buildEnableLabel()]);
 
   Widget _buildEnableLabel() => Row(
-        children: <Widget>[
-          const Text('Enable Label', style: TextStyle(fontSize: 10)),
-          Switch(
-            value: _getEnableLanel,
-            onChanged: (bool value) {
-              setState(() {
-                _enableLabel = value;
-              });
-              updateDrawingTool();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      const Text('Enable Label', style: TextStyle(fontSize: 10)),
+      Switch(
+        value: _getEnableLanel,
+        onChanged: (bool value) {
+          setState(() {
+            _enableLabel = value;
+          });
+          updateDrawingTool();
+        },
+      ),
+    ],
+  );
 
   Widget _buildColorField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelColor,
-            style: const TextStyle(fontSize: 16),
-          ),
-          ColorSelector(
-            currentColor: _currentLineStyle.color,
-            onColorChanged: (Color selectedColor) {
-              setState(() {
-                _lineStyle = _currentLineStyle.copyWith(color: selectedColor);
-              });
-              updateDrawingTool();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelColor,
+        style: const TextStyle(fontSize: 16),
+      ),
+      ColorSelector(
+        currentColor: _currentLineStyle.color,
+        onColorChanged: (Color selectedColor) {
+          setState(() {
+            _lineStyle = _currentLineStyle.copyWith(color: selectedColor);
+          });
+          updateDrawingTool();
+        },
+      ),
+    ],
+  );
 
   LineStyle get _currentLineStyle =>
       _lineStyle ?? (widget.config as VerticalDrawingToolConfig).lineStyle;

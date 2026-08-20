@@ -37,20 +37,20 @@ class MaterialColorGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GridView.count(
-        padding: const EdgeInsets.all(8),
-        crossAxisCount: colorShades.length,
-        children: <Widget>[
-          for (final MaterialColor swatch in colorSwatches)
-            for (final int shade in colorShades)
-              _ColorOptionButton(
-                color: swatch[shade]!,
-                selected: swatch[shade]!.toARGB32() == selectedColor.toARGB32(),
-                onTap: () {
-                  onChanged.call(swatch[shade]!);
-                },
-              ),
-        ],
-      );
+    padding: const EdgeInsets.all(8),
+    crossAxisCount: colorShades.length,
+    children: <Widget>[
+      for (final MaterialColor swatch in colorSwatches)
+        for (final int shade in colorShades)
+          _ColorOptionButton(
+            color: swatch[shade]!,
+            selected: swatch[shade]!.toARGB32() == selectedColor.toARGB32(),
+            onTap: () {
+              onChanged.call(swatch[shade]!);
+            },
+          ),
+    ],
+  );
 }
 
 class _ColorOptionButton extends StatelessWidget {
@@ -67,10 +67,7 @@ class _ColorOptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget colorArea = DecoratedBox(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: color,
-      ),
+      decoration: BoxDecoration(shape: BoxShape.circle, color: color),
     );
 
     return Padding(
@@ -83,11 +80,11 @@ class _ColorOptionButton extends StatelessWidget {
   }
 
   Widget _wrapWithBorder(Widget child) => Container(
-        padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(width: 4, color: color),
-        ),
-        child: child,
-      );
+    padding: const EdgeInsets.all(4),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      border: Border.all(width: 4, color: color),
+    ),
+    child: child,
+  );
 }

@@ -9,7 +9,7 @@ import '../indicator.dart';
 class ROCIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes an [ROCIndicator] from the given [indicator] and [period].
   ROCIndicator.fromIndicator(this.indicator, this.period)
-      : super.fromIndicator(indicator);
+    : super.fromIndicator(indicator);
 
   /// Calculating lowest value on the result of this indicator
   final Indicator<T> indicator;

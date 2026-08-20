@@ -3,11 +3,7 @@ import 'package:equatable/equatable.dart';
 /// Config for add-ons such as indicators and drawing tools
 abstract class AddOnConfig with EquatableMixin {
   /// Initializes [AddOnConfig].
-  const AddOnConfig({
-    this.isOverlay = true,
-    this.number = 0,
-    this.configId,
-  });
+  const AddOnConfig({this.isOverlay = true, this.number = 0, this.configId});
 
   /// Drawing tool config id.
   final String? configId;

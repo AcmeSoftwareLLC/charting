@@ -22,9 +22,6 @@ abstract class Indicator<T extends IndicatorResult> {
   /// Uses [IndicatorDataInput.createResult].
   /// An implementation of [IndicatorDataInput] should be passed to this class to create
   /// the desired [T] result.
-  T createResult({
-    required double quote,
-    required int index,
-  }) =>
+  T createResult({required double quote, required int index}) =>
       input.createResult(index, quote) as T;
 }

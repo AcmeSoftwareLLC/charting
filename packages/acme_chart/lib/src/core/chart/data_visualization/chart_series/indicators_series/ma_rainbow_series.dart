@@ -32,11 +32,11 @@ class RainbowSeries extends Series {
     List<LineStyle>? rainbowLineStyles,
     String? id,
   }) : this.fromIndicator(
-          CloseValueIndicator<Tick>(indicatorInput),
-          rainbowLineStyles: rainbowLineStyles ?? const <LineStyle>[],
-          id: id,
-          rainbowOptions: rainbowOptions,
-        );
+         CloseValueIndicator<Tick>(indicatorInput),
+         rainbowLineStyles: rainbowLineStyles ?? const <LineStyle>[],
+         id: id,
+         rainbowOptions: rainbowOptions,
+       );
 
   /// Initializes
   RainbowSeries.fromIndicator(
@@ -44,8 +44,8 @@ class RainbowSeries extends Series {
     required this.rainbowOptions,
     this.rainbowLineStyles = const <LineStyle>[],
     String? id,
-  })  : _fieldIndicator = indicator,
-        super(id ?? 'MARainbow$rainbowOptions');
+  }) : _fieldIndicator = indicator,
+       super(id ?? 'MARainbow$rainbowOptions');
 
   final Indicator<Tick> _fieldIndicator;
 
@@ -65,8 +65,9 @@ class RainbowSeries extends Series {
         rainbowLineStyles.length == rainbowOptions.bandsCount;
     final List<Indicator<Tick>> indicators = <Indicator<Tick>>[];
     for (int i = 0; i < rainbowOptions.bandsCount; i++) {
-      final LineStyle style =
-          useColors ? rainbowLineStyles[i] : const LineStyle(color: Colors.red);
+      final LineStyle style = useColors
+          ? rainbowLineStyles[i]
+          : const LineStyle(color: Colors.red);
       if (i == 0) {
         indicators.add(
           MASeries.getMAIndicator(_fieldIndicator, rainbowOptions),

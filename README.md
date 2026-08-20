@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/acme-logo.webp" alt="Acme Software" width="280"/>
+  <img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/assets/acme-logo.webp" alt="Acme Charting" width="200"/>
 </p>
 
 <h1 align="center">Acme Charting</h1>
@@ -10,41 +10,40 @@
 
 <p align="center">
   <a href="https://github.com/AcmeSoftwareLLC/charting/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"/></a>
-  <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-3.44%2B-blue?logo=flutter" alt="Flutter 3.44+"/></a>
-  <a href="https://dart.dev"><img src="https://img.shields.io/badge/Dart-3.12%2B-blue?logo=dart" alt="Dart 3.12+"/></a>
+  <a href="https://deepwiki.com/AcmeSoftwareLLC/charting"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"/></a>
 </p>
 
 ---
 
-## Packages
+## 📦 Packages
 
-| Package | Description | Version |
-|---------|-------------|---------|
-| [`acme_chart`](packages/acme_chart) | Financial charting library — candlestick/line charts, indicators, drawing tools | `1.0.0` |
-| [`acme_indicators`](packages/acme_indicators) | Pure Dart technical analysis computations | `1.0.0` |
+| Package | Description | Pub |
+|---------|-------------|-----|
+| [`acme_chart`](packages/acme_chart) | Financial charting library - candlestick/line charts, indicators, drawing tools | [![Pub](https://img.shields.io/pub/v/acme_chart.svg)](https://pub.dev/packages/acme_chart) |
+| [`acme_indicators`](packages/acme_indicators) | Pure Dart technical analysis computations | [![Pub](https://img.shields.io/pub/v/acme_indicators.svg)](https://pub.dev/packages/acme_indicators) |
 
 ---
 
-## Features
+## ✨ Features
 
 ### acme_chart
 
-- **Chart Types** — Candlestick (OHLC) and line series
-- **20+ Technical Indicators** — RSI, MACD, Bollinger Bands, Ichimoku Cloud, ADX, Alligator, Aroon, CCI, Donchian Channels, DPO, Fractals, Gator, MA/MA Rainbow/MA Envelope, Parabolic SAR, ROC, SMI, Stochastic Oscillator, Williams %R, ZigZag, and more
-- **Drawing Tools** — Trend lines, horizontal/vertical lines, rays, channels, rectangles, Fibonacci fan, and more
-- **Interactive** — Pinch-to-zoom, pan, crosshair, tap-to-select
-- **Barriers & Markers** — Entry/exit markers, price barriers, tick indicators
-- **Theming** — Built-in dark/light themes, fully customizable
-- **Persistent Storage** — Saves indicator and drawing tool configuration via `shared_preferences`
+- 📊 **Chart Types** — Candlestick (OHLC) and line series
+- 📈 **20+ Technical Indicators** — RSI, MACD, Bollinger Bands, Ichimoku Cloud, ADX, Alligator, Aroon, CCI, Donchian Channels, DPO, Fractals, Gator, MA/MA Rainbow/MA Envelope, Parabolic SAR, ROC, SMI, Stochastic Oscillator, Williams %R, ZigZag, and more
+- ✏️ **Drawing Tools** — Trend lines, horizontal/vertical lines, rays, channels, rectangles, Fibonacci fan, and more
+- 🖱️ **Interactive** — Pinch-to-zoom, pan, crosshair, tap-to-select
+- 🚧 **Barriers & Markers** — Entry/exit markers, price barriers, tick indicators
+- 🎨 **Theming** — Built-in dark/light themes, fully customizable
+- 💾 **Persistent Storage** — Saves indicator and drawing tool configuration via `shared_preferences`
 
 ### acme_indicators
 
-- Standalone Dart package — no Flutter dependency required for computations
-- Used internally by `acme_chart` for all indicator calculations
+- 🎯 Standalone Dart package — no Flutter dependency required for computations
+- 🔗 Used internally by `acme_chart` for all indicator calculations
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 Add `acme_chart` to your `pubspec.yaml`:
 
@@ -94,7 +93,7 @@ Chart(
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ```
 XAxisWrapper          ← zoom/scroll, data management
@@ -108,7 +107,7 @@ See [doc/how_chart_lib_works.md](packages/acme_chart/doc/how_chart_lib_works.md)
 
 ---
 
-## Development
+## 🛠️ Development
 
 This repository uses [Melos](https://melos.invertase.dev) to manage the monorepo.
 
@@ -138,7 +137,7 @@ flutter run
 
 ---
 
-## Theming
+## 🎨 Theming
 
 The chart ships with `ChartDefaultDarkTheme` and `ChartDefaultLightTheme`, which switch automatically based on `Theme.of(context).brightness`. Override specific tokens by extending either class:
 
@@ -151,7 +150,7 @@ class MyChartTheme extends ChartDefaultDarkTheme {
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 See [CONTRIBUTING](packages/acme_chart/doc/contribution.md) for code style, commit format, and review checklist.
 
@@ -161,6 +160,6 @@ See [CONTRIBUTING](packages/acme_chart/doc/contribution.md) for code style, comm
 
 ---
 
-## License
+## 📄 License
 
 [MIT](LICENSE) © 2026 Acme Software LLC

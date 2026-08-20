@@ -31,11 +31,13 @@ class HollowCandlePainter extends OhlcPainter {
     // Check if the current candle is bullish or bearish.
     final bool isBullishCandle = currentPainting.yOpen > currentPainting.yClose;
 
-    final Color candleColor =
-        isBullishCandle ? _candleBullishBodyColor : _candleBearishBodyColor;
+    final Color candleColor = isBullishCandle
+        ? _candleBullishBodyColor
+        : _candleBearishBodyColor;
 
-    final Color candleWickColor =
-        isBullishCandle ? _candleBullishWickColor : _candleBearishWickColor;
+    final Color candleWickColor = isBullishCandle
+        ? _candleBullishWickColor
+        : _candleBearishWickColor;
 
     _drawWick(canvas, candleWickColor, currentPainting);
 

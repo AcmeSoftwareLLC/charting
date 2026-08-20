@@ -114,9 +114,7 @@ class InteractiveAddingToolState extends InteractiveState
   DrawingAddingPreview? get addingDrawingPreview => _drawingPreview;
 
   @override
-  List<DrawingV2> get previewDrawings => [
-        ?_drawingPreview,
-      ];
+  List<DrawingV2> get previewDrawings => [?_drawingPreview];
 
   @override
   Set<DrawingToolState> getToolState(DrawingV2 drawing) {

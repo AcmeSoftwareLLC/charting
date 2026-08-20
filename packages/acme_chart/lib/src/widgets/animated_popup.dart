@@ -28,43 +28,45 @@ class _AnimatedPopupDialogState extends State<AnimatedPopupDialog>
   void initState() {
     super.initState();
 
-    controller =
-        AnimationController(vsync: this, duration: widget.animationDuration)
-          ..forward();
+    controller = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration,
+    )..forward();
   }
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-        animation: controller,
-        builder: (BuildContext context, Widget? child) => Transform.scale(
-          scale: _curve.transform(controller.value),
-          child: child,
-        ),
+    animation: controller,
+    builder: (BuildContext context, Widget? child) => Transform.scale(
+      scale: _curve.transform(controller.value),
+      child: child,
+    ),
+    child: Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: _calculateHorizontalPadding(context),
+        vertical: 40,
+      ),
+      child: Card(
+        color: Colors.transparent,
+        elevation: 4,
         child: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: _calculateHorizontalPadding(context),
-            vertical: 40,
-          ),
-          child: Card(
+          decoration: const ShapeDecoration(
             color: Colors.transparent,
-            elevation: 4,
-            child: Container(
-              decoration: const ShapeDecoration(
-                color: Colors.transparent,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-              ),
-              child: Material(
-                color: const Color(0xFF0E0E0E).withValues(alpha: 0.5),
-                child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: widget.child,
-                ),
-              ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+          ),
+          child: Material(
+            color: const Color(0xFF0E0E0E).withValues(alpha: 0.5),
+            child: Padding(
+              padding: const EdgeInsets.all(2),
+              child: widget.child,
             ),
           ),
         ),
-      );
+      ),
+    ),
+  );
 
   double _calculateHorizontalPadding(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;

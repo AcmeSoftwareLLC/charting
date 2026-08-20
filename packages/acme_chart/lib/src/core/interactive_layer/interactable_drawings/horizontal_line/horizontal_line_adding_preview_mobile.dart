@@ -123,8 +123,8 @@ class HorizontalLineAddingPreviewMobile
     if (interactableDrawing.startPoint != null) {
       // Delegate to main drawing with selected state simulation for full visual appearance
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paint(
         canvas,
@@ -156,8 +156,8 @@ class HorizontalLineAddingPreviewMobile
     if (interactableDrawing.startPoint != null) {
       // Delegate to main drawing for consistent Y-axis labeling with neon effects
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paintOverYAxis(
         canvas,

@@ -46,8 +46,9 @@ class LineDrawingToolConfig extends DrawingToolConfig {
   static const String name = 'dt_line';
 
   @override
-  Map<String, dynamic> toJson() => _$LineDrawingToolConfigToJson(this)
-    ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$LineDrawingToolConfigToJson(this)
+        ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
   final LineStyle lineStyle;
@@ -67,12 +68,11 @@ class LineDrawingToolConfig extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) =>
-      LineDrawingToolItem(
-        config: this,
-        updateDrawingTool: updateDrawingTool,
-        deleteDrawingTool: deleteDrawingTool,
-      );
+  ) => LineDrawingToolItem(
+    config: this,
+    updateDrawingTool: updateDrawingTool,
+    deleteDrawingTool: deleteDrawingTool,
+  );
 
   @override
   LineDrawingToolConfig copyWith({
@@ -86,17 +86,16 @@ class LineDrawingToolConfig extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) =>
-      LineDrawingToolConfig(
-        configId: configId ?? this.configId,
-        drawingData: drawingData ?? this.drawingData,
-        lineStyle: lineStyle ?? this.lineStyle,
-        labelStyle: labelStyle ?? this.labelStyle,
-        overlayStyle: overlayStyle ?? this.overlayStyle,
-        pattern: pattern ?? this.pattern,
-        edgePoints: edgePoints ?? this.edgePoints,
-        number: number ?? this.number,
-      );
+  }) => LineDrawingToolConfig(
+    configId: configId ?? this.configId,
+    drawingData: drawingData ?? this.drawingData,
+    lineStyle: lineStyle ?? this.lineStyle,
+    labelStyle: labelStyle ?? this.labelStyle,
+    overlayStyle: overlayStyle ?? this.overlayStyle,
+    pattern: pattern ?? this.pattern,
+    edgePoints: edgePoints ?? this.edgePoints,
+    number: number ?? this.number,
+  );
 
   @override
   LineDrawingToolLabelPainter? getLabelPainter({
@@ -118,13 +117,12 @@ class LineDrawingToolConfig extends DrawingToolConfig {
   InteractableDrawing getInteractableDrawing(
     DrawingContext drawingContext,
     GetDrawingState getDrawingState,
-  ) =>
-      TrendLineInteractableDrawing(
-        config: this,
-        // TODO(NA): improve the logic.
-        startPoint: edgePoints.isNotEmpty ? edgePoints.first : null,
-        endPoint: edgePoints.isNotEmpty ? edgePoints.last : null,
-        drawingContext: drawingContext,
-        getDrawingState: getDrawingState,
-      );
+  ) => TrendLineInteractableDrawing(
+    config: this,
+    // TODO(NA): improve the logic.
+    startPoint: edgePoints.isNotEmpty ? edgePoints.first : null,
+    endPoint: edgePoints.isNotEmpty ? edgePoints.last : null,
+    drawingContext: drawingContext,
+    getDrawingState: getDrawingState,
+  );
 }

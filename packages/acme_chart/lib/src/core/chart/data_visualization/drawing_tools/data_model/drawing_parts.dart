@@ -11,5 +11,5 @@ enum DrawingParts {
   line,
 
   /// Used to show the rectangle
-  rectangle
+  rectangle,
 }

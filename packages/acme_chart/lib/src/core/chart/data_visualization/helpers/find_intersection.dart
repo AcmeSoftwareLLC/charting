@@ -23,10 +23,10 @@ Offset? findIntersection(Offset p1, Offset p2, Offset p3, Offset p4) {
 
   final double ua =
       ((p4.dx - p3.dx) * (p1.dy - p3.dy) - (p4.dy - p3.dy) * (p1.dx - p3.dx)) /
-          denominator;
+      denominator;
   final double ub =
       ((p2.dx - p1.dx) * (p1.dy - p3.dy) - (p2.dy - p1.dy) * (p1.dx - p3.dx)) /
-          denominator;
+      denominator;
 
   if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
     return null;

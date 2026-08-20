@@ -17,10 +17,9 @@ class RectangleDrawingToolItem extends DrawingToolItem {
     required super.updateDrawingTool,
     required super.deleteDrawingTool,
     super.key,
-    RectangleDrawingToolConfig super.config = const RectangleDrawingToolConfig(),
-  }) : super(
-         title: 'Rectangle',
-       );
+    RectangleDrawingToolConfig super.config =
+        const RectangleDrawingToolConfig(),
+  }) : super(title: 'Rectangle');
 
   @override
   DrawingToolItemState<DrawingToolConfig> createDrawingToolItemState() =>

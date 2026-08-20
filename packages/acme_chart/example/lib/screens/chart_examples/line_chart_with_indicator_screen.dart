@@ -62,8 +62,9 @@ class _LineChartWithIndicatorScreenState
 
     final lastTick = ticks.last;
 
-    final theme =
-        _useDarkTheme ? ChartDefaultDarkTheme() : ChartDefaultLightTheme();
+    final theme = _useDarkTheme
+        ? ChartDefaultDarkTheme()
+        : ChartDefaultLightTheme();
 
     _tickIndicator = TickIndicator(
       lastTick,

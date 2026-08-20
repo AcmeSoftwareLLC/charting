@@ -54,7 +54,7 @@ class HorizontalBarrierStyle extends BarrierStyle {
     this.labelShapeBackgroundColor = const Color(0xFF000000),
     this.lineColor = const Color(0xFF000000),
     super.textStyle,
-  })  : blinkingDotColor = blinkingDotColor ?? color;
+  }) : blinkingDotColor = blinkingDotColor ?? color;
 
   /// Label shape.
   final LabelShape labelShape;
@@ -114,26 +114,25 @@ class HorizontalBarrierStyle extends BarrierStyle {
     bool? hasLine,
     Color? labelShapeBackgroundColor,
     Color? lineColor,
-  }) =>
-      HorizontalBarrierStyle(
-        labelShape: labelShape ?? this.labelShape,
-        labelHeight: labelHeight ?? this.labelHeight,
-        labelPadding: labelPadding ?? this.labelPadding,
-        color: color ?? this.color,
-        titleBackgroundColor: titleBackgroundColor ?? this.titleBackgroundColor,
-        secondaryBackgroundColor:
-            secondaryBackgroundColor ?? this.secondaryBackgroundColor,
-        isDashed: isDashed ?? this.isDashed,
-        hasBlinkingDot: hasBlinkingDot ?? this.hasBlinkingDot,
-        blinkingDotColor: blinkingDotColor ?? this.blinkingDotColor,
-        arrowSize: arrowSize ?? this.arrowSize,
-        hasArrow: hasArrow ?? this.hasArrow,
-        hasLine: hasLine ?? this.hasLine,
-        textStyle: textStyle.copyWith(),
-        labelShapeBackgroundColor:
-            labelShapeBackgroundColor ?? this.labelShapeBackgroundColor,
-        lineColor: lineColor ?? this.lineColor,
-      );
+  }) => HorizontalBarrierStyle(
+    labelShape: labelShape ?? this.labelShape,
+    labelHeight: labelHeight ?? this.labelHeight,
+    labelPadding: labelPadding ?? this.labelPadding,
+    color: color ?? this.color,
+    titleBackgroundColor: titleBackgroundColor ?? this.titleBackgroundColor,
+    secondaryBackgroundColor:
+        secondaryBackgroundColor ?? this.secondaryBackgroundColor,
+    isDashed: isDashed ?? this.isDashed,
+    hasBlinkingDot: hasBlinkingDot ?? this.hasBlinkingDot,
+    blinkingDotColor: blinkingDotColor ?? this.blinkingDotColor,
+    arrowSize: arrowSize ?? this.arrowSize,
+    hasArrow: hasArrow ?? this.hasArrow,
+    hasLine: hasLine ?? this.hasLine,
+    textStyle: textStyle.copyWith(),
+    labelShapeBackgroundColor:
+        labelShapeBackgroundColor ?? this.labelShapeBackgroundColor,
+    lineColor: lineColor ?? this.lineColor,
+  );
 
   @override
   String toString() =>

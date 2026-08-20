@@ -37,14 +37,8 @@ void paintText(
 /// );
 /// ```
 TextPainter makeTextPainter(String text, TextStyle style) {
-  final TextSpan span = TextSpan(
-    text: text,
-    style: style,
-  );
-  return TextPainter(
-    text: span,
-    textDirection: TextDirection.ltr,
-  )..layout();
+  final TextSpan span = TextSpan(text: text, style: style);
+  return TextPainter(text: span, textDirection: TextDirection.ltr)..layout();
 }
 
 /// Constructs a text painter that fits within the given bounds by

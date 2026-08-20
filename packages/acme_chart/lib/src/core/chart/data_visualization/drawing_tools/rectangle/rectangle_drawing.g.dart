@@ -8,14 +8,16 @@ part of 'rectangle_drawing.dart';
 
 RectangleDrawing _$RectangleDrawingFromJson(Map<String, dynamic> json) =>
     RectangleDrawing(
-      drawingPart: $enumDecode(_$DrawingPartsEnumMap, json['drawingPart']),
-      startEdgePoint: json['startEdgePoint'] == null
-          ? const EdgePoint()
-          : EdgePoint.fromJson(json['startEdgePoint'] as Map<String, dynamic>),
-      endEdgePoint: json['endEdgePoint'] == null
-          ? const EdgePoint()
-          : EdgePoint.fromJson(json['endEdgePoint'] as Map<String, dynamic>),
-    )
+        drawingPart: $enumDecode(_$DrawingPartsEnumMap, json['drawingPart']),
+        startEdgePoint: json['startEdgePoint'] == null
+            ? const EdgePoint()
+            : EdgePoint.fromJson(
+                json['startEdgePoint'] as Map<String, dynamic>,
+              ),
+        endEdgePoint: json['endEdgePoint'] == null
+            ? const EdgePoint()
+            : EdgePoint.fromJson(json['endEdgePoint'] as Map<String, dynamic>),
+      )
       ..startXCoord = (json['startXCoord'] as num).toDouble()
       ..startYCoord = (json['startYCoord'] as num).toDouble()
       ..endXCoord = (json['endXCoord'] as num).toDouble()

@@ -31,10 +31,7 @@ class WilliamsRIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? WilliamsRIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? WilliamsRIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory WilliamsRIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -44,8 +41,9 @@ class WilliamsRIndicatorConfig extends IndicatorConfig {
   static const String name = 'WilliamsR';
 
   @override
-  Map<String, dynamic> toJson() => _$WilliamsRIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$WilliamsRIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period to calculate the average gain and loss.
   final int period;
@@ -64,30 +62,29 @@ class WilliamsRIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => WilliamsRSeries(
-        indicatorInput,
-        WilliamsROptions(
-          period,
-          pipSize: pipSize,
-          showLastIndicator: showLastIndicator,
-        ),
-        overboughtValue: oscillatorLimits.overboughtValue,
-        oversoldValue: oscillatorLimits.oversoldValue,
-        overboughtLineStyle: oscillatorLimits.overboughtStyle,
-        oversoldLineStyle: oscillatorLimits.oversoldStyle,
-        showZones: showZones,
-        lineStyle: lineStyle,
-      );
+    indicatorInput,
+    WilliamsROptions(
+      period,
+      pipSize: pipSize,
+      showLastIndicator: showLastIndicator,
+    ),
+    overboughtValue: oscillatorLimits.overboughtValue,
+    oversoldValue: oscillatorLimits.oversoldValue,
+    overboughtLineStyle: oscillatorLimits.overboughtStyle,
+    oversoldLineStyle: oscillatorLimits.oversoldStyle,
+    showZones: showZones,
+    lineStyle: lineStyle,
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      WilliamsRIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => WilliamsRIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   WilliamsRIndicatorConfig copyWith({
@@ -100,17 +97,16 @@ class WilliamsRIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      WilliamsRIndicatorConfig(
-        period: period ?? this.period,
-        lineStyle: lineStyle ?? this.lineStyle,
-        zeroHorizontalLinesStyle:
-            zeroHorizontalLinesStyle ?? this.zeroHorizontalLinesStyle,
-        showZones: showZones ?? this.showZones,
-        oscillatorLimits: oscillatorLimits ?? this.oscillatorLimits,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => WilliamsRIndicatorConfig(
+    period: period ?? this.period,
+    lineStyle: lineStyle ?? this.lineStyle,
+    zeroHorizontalLinesStyle:
+        zeroHorizontalLinesStyle ?? this.zeroHorizontalLinesStyle,
+    showZones: showZones ?? this.showZones,
+    oscillatorLimits: oscillatorLimits ?? this.oscillatorLimits,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

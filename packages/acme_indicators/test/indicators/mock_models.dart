@@ -26,10 +26,7 @@ class MockResult implements IndicatorResult {
 /// A Tick input element.
 class MockTick implements IndicatorOHLC {
   /// Initializer
-  const MockTick({
-    required this.quote,
-    this.epoch,
-  });
+  const MockTick({required this.quote, this.epoch});
 
   /// Epoch
   final int? epoch;
@@ -54,7 +51,7 @@ class MockTick implements IndicatorOHLC {
 class MockOHLC extends MockTick {
   /// Initializes
   const MockOHLC(int epoch, this.open, this.close, this.high, this.low)
-      : super(epoch: epoch, quote: close);
+    : super(epoch: epoch, quote: close);
 
   /// Initializes with name parameters.
   const MockOHLC.withNames({

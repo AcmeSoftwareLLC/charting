@@ -46,34 +46,33 @@ class AssetItem extends StatelessWidget {
   }
 
   Widget _buildAssetTitle(ChartTheme theme) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Expanded(
-            child: HighLightedText(
-              asset.displayName,
-              highlightText: filterText,
-              style: theme.textStyle(
-                textStyle: theme.body1,
-                color: theme.base03Color,
-              ),
-            ),
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: <Widget>[
+      Expanded(
+        child: HighLightedText(
+          asset.displayName,
+          highlightText: filterText,
+          style: theme.textStyle(
+            textStyle: theme.body1,
+            color: theme.base03Color,
           ),
-          if (!asset.isOpen) ClosedTag(),
-        ],
-      );
+        ),
+      ),
+      if (!asset.isOpen) ClosedTag(),
+    ],
+  );
 
   IconButton _buildFavouriteIcon(ChartTheme theme) => IconButton(
-        key: ValueKey<String>('${asset.name}-fav-icon'),
-        icon: Icon(
-          asset.isFavourite ? Icons.star : Icons.star_border,
-          color: asset.isFavourite
-              ? LegacyLightThemeColors.accentYellow
-              : theme.base04Color,
-          size: 20,
-        ),
-        onPressed: () =>
-            onAssetClicked.call(asset: asset, favouriteClicked: true),
-      );
+    key: ValueKey<String>('${asset.name}-fav-icon'),
+    icon: Icon(
+      asset.isFavourite ? Icons.star : Icons.star_border,
+      color: asset.isFavourite
+          ? LegacyLightThemeColors.accentYellow
+          : theme.base04Color,
+      size: 20,
+    ),
+    onPressed: () => onAssetClicked.call(asset: asset, favouriteClicked: true),
+  );
 
   Widget _buildAssetIcon() => SymbolIcon(symbolCode: asset.name);
 }

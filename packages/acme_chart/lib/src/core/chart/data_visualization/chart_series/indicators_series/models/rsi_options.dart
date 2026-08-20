@@ -3,11 +3,7 @@ import 'indicator_options.dart';
 /// RSI indicator options.
 class RSIOptions extends IndicatorOptions {
   /// Initializes an RSI indicator options.
-  const RSIOptions({
-    this.period = 14,
-    super.showLastIndicator,
-    super.pipSize,
-  });
+  const RSIOptions({this.period = 14, super.showLastIndicator, super.pipSize});
 
   /// The period to calculate rsi Indicator on.
   final int period;

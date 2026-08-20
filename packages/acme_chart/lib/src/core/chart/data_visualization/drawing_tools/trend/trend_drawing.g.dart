@@ -6,15 +6,18 @@ part of 'trend_drawing.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TrendDrawing _$TrendDrawingFromJson(Map<String, dynamic> json) => TrendDrawing(
-      drawingPart: $enumDecode(_$DrawingPartsEnumMap, json['drawingPart']),
-      startEdgePoint: json['startEdgePoint'] == null
-          ? const EdgePoint()
-          : EdgePoint.fromJson(json['startEdgePoint'] as Map<String, dynamic>),
-      endEdgePoint: json['endEdgePoint'] == null
-          ? const EdgePoint()
-          : EdgePoint.fromJson(json['endEdgePoint'] as Map<String, dynamic>),
-    )
+TrendDrawing _$TrendDrawingFromJson(Map<String, dynamic> json) =>
+    TrendDrawing(
+        drawingPart: $enumDecode(_$DrawingPartsEnumMap, json['drawingPart']),
+        startEdgePoint: json['startEdgePoint'] == null
+            ? const EdgePoint()
+            : EdgePoint.fromJson(
+                json['startEdgePoint'] as Map<String, dynamic>,
+              ),
+        endEdgePoint: json['endEdgePoint'] == null
+            ? const EdgePoint()
+            : EdgePoint.fromJson(json['endEdgePoint'] as Map<String, dynamic>),
+      )
       ..startXCoord = (json['startXCoord'] as num).toDouble()
       ..startYCoord = (json['startYCoord'] as num).toDouble()
       ..endXCoord = (json['endXCoord'] as num).toDouble();

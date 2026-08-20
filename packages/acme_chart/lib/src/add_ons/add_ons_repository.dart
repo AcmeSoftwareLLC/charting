@@ -6,8 +6,8 @@ import 'package:acme_chart/src/add_ons/repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Called to create an AddOnConfig object from a map.
-typedef CreateAddOn<T extends AddOnConfig> = T Function(
-    Map<String, dynamic> map);
+typedef CreateAddOn<T extends AddOnConfig> =
+    T Function(Map<String, dynamic> map);
 
 /// Called when the edit icon is clicked on an add-on.
 typedef OnEditAddOn = Function(int index);

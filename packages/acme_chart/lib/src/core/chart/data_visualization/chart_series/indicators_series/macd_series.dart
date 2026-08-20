@@ -60,9 +60,9 @@ class MACDSeries extends Series {
 
     final MACDHistogramIndicator<Tick> macdHistogramIndicator =
         MACDHistogramIndicator<Tick>.fromIndicator(
-      macdIndicator,
-      signalMACDIndicator,
-    );
+          macdIndicator,
+          signalMACDIndicator,
+        );
 
     macdSeries = SingleIndicatorSeries(
       painterCreator: (Series series) => OscillatorLinePainter(
@@ -95,10 +95,9 @@ class MACDSeries extends Series {
     macdHistogramSeries = SingleIndicatorSeries(
       painterCreator: (Series series) => BarPainter(
         series as DataSeries<Tick>,
-        checkColorCallback: (
-                {required double previousQuote,
-                required double currentQuote}) =>
-            currentQuote >= previousQuote,
+        checkColorCallback:
+            ({required double previousQuote, required double currentQuote}) =>
+                currentQuote >= previousQuote,
       ),
       indicatorCreator: () => macdHistogramIndicator,
       inputIndicator: CloseValueIndicator<Tick>(indicatorInput),
@@ -135,17 +134,17 @@ class MACDSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        <ChartData>[
-          macdSeries,
-          signalMACDSeries,
-          macdHistogramSeries,
-        ].getMinValue(),
-        <ChartData>[
-          macdSeries,
-          signalMACDSeries,
-          macdHistogramSeries,
-        ].getMaxValue(),
-      ];
+    <ChartData>[
+      macdSeries,
+      signalMACDSeries,
+      macdHistogramSeries,
+    ].getMinValue(),
+    <ChartData>[
+      macdSeries,
+      signalMACDSeries,
+      macdHistogramSeries,
+    ].getMaxValue(),
+  ];
 
   @override
   void paint(
@@ -192,15 +191,15 @@ class MACDSeries extends Series {
 
   @override
   int? getMaxEpoch() => <ChartData>[
-        macdSeries,
-        signalMACDSeries,
-        macdHistogramSeries,
-      ].getMaxEpoch();
+    macdSeries,
+    signalMACDSeries,
+    macdHistogramSeries,
+  ].getMaxEpoch();
 
   @override
   int? getMinEpoch() => <ChartData>[
-        macdSeries,
-        signalMACDSeries,
-        macdHistogramSeries,
-      ].getMinEpoch();
+    macdSeries,
+    signalMACDSeries,
+    macdHistogramSeries,
+  ].getMinEpoch();
 }

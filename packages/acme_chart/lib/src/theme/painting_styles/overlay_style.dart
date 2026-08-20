@@ -30,12 +30,11 @@ class OverlayStyle extends Equatable {
     double? labelHeight,
     Color? color,
     TextStyle? textStyle,
-  }) =>
-      OverlayStyle(
-        labelHeight: labelHeight ?? this.labelHeight,
-        color: color ?? this.color,
-        textStyle: textStyle ?? this.textStyle,
-      );
+  }) => OverlayStyle(
+    labelHeight: labelHeight ?? this.labelHeight,
+    color: color ?? this.color,
+    textStyle: textStyle ?? this.textStyle,
+  );
 
   @override
   String toString() => '${super.toString()} $labelHeight, $color, $textStyle';

@@ -1,6 +1,6 @@
 import 'package:acme_indicators/src/helpers/functions.dart';
 import 'package:acme_indicators/src/indicators/calculations/parabolic_sar.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../mock_models.dart';
 

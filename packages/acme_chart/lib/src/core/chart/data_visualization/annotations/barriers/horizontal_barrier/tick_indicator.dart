@@ -21,14 +21,15 @@ class TickIndicator extends HorizontalBarrier {
     HorizontalBarrierStyle? style,
     HorizontalBarrierVisibility visibility = HorizontalBarrierVisibility.normal,
   }) : super(
-          tick.quote,
-          epoch: tick.epoch,
-          id: id,
-          style: style ??
-              const HorizontalBarrierStyle(labelShape: LabelShape.pentagon),
-          visibility: visibility,
-          longLine: false,
-        );
+         tick.quote,
+         epoch: tick.epoch,
+         id: id,
+         style:
+             style ??
+             const HorizontalBarrierStyle(labelShape: LabelShape.pentagon),
+         visibility: visibility,
+         longLine: false,
+       );
 }
 
 /// Indicator for showing the candle current value and remaining time (optional)
@@ -44,13 +45,13 @@ class CandleIndicator extends HorizontalBarrier {
     HorizontalBarrierVisibility visibility =
         HorizontalBarrierVisibility.keepBarrierLabelVisible,
   }) : super(
-          candle.quote,
-          epoch: candle.epoch,
-          id: id,
-          style: style,
-          visibility: visibility,
-          longLine: false,
-        ) {
+         candle.quote,
+         epoch: candle.epoch,
+         id: id,
+         style: style,
+         visibility: visibility,
+         longLine: false,
+       ) {
     _startTimer();
   }
 
@@ -112,10 +113,10 @@ class IconTickIndicator extends TickIndicator {
     super.id,
     super.style,
     super.visibility,
-  })  : assert(
-          icon.size != null,
-          'Icon size must be specified for icon tick indicator',
-        );
+  }) : assert(
+         icon.size != null,
+         'Icon size must be specified for icon tick indicator',
+       );
 
   /// The icon to be painted on top of the barrier's tick.
   final Icon icon;

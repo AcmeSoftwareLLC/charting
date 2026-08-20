@@ -19,13 +19,13 @@ class ParabolicSARSeries extends AbstractSingleIndicatorSeries {
     ParabolicSAROptions options, {
     ScatterStyle? style,
     String? id,
-  })  : _options = options,
-        super(
-          CloseValueIndicator<Tick>(_indicatorInput),
-          id ?? 'ParabolicSAR',
-          options: options,
-          style: style,
-        );
+  }) : _options = options,
+       super(
+         CloseValueIndicator<Tick>(_indicatorInput),
+         id ?? 'ParabolicSAR',
+         options: options,
+         style: style,
+       );
 
   final IndicatorInput _indicatorInput;
 
@@ -46,8 +46,8 @@ class ParabolicSARSeries extends AbstractSingleIndicatorSeries {
 
   @override
   CachedIndicator<Tick> initializeIndicator() => CustomParabolicSarIndicator(
-        _indicatorInput,
-        accelerationStart: _options.minAccelerationFactor,
-        maxAcceleration: _options.maxAccelerationFactor,
-      );
+    _indicatorInput,
+    accelerationStart: _options.minAccelerationFactor,
+    maxAcceleration: _options.maxAccelerationFactor,
+  );
 }

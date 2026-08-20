@@ -14,9 +14,7 @@ class FractalChaosBandIndicatorItem extends IndicatorItem {
     super.key,
     FractalChaosBandIndicatorConfig super.config =
         const FractalChaosBandIndicatorConfig(),
-  }) : super(
-          title: 'Fractal Chaos Band Indicator',
-        );
+  }) : super(title: 'Fractal Chaos Band Indicator');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -43,25 +41,25 @@ class FractalChaosBandIndicatorItemState
   /// Builds show lines option
   @protected
   Widget buildShowChannelFillField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelLipsPeriod,
-            style: const TextStyle(fontSize: 10),
-          ),
-          const SizedBox(width: 4),
-          Switch(
-            value: currentChannelFill,
-            onChanged: (bool value) {
-              setState(() {
-                _channelFill = value;
-              });
-              updateIndicator();
-            },
-            activeTrackColor: Colors.lightGreenAccent,
-            activeThumbColor: Colors.green,
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelLipsPeriod,
+        style: const TextStyle(fontSize: 10),
+      ),
+      const SizedBox(width: 4),
+      Switch(
+        value: currentChannelFill,
+        onChanged: (bool value) {
+          setState(() {
+            _channelFill = value;
+          });
+          updateIndicator();
+        },
+        activeTrackColor: Colors.lightGreenAccent,
+        activeThumbColor: Colors.green,
+      ),
+    ],
+  );
 
   /// Gets current show lines.
   @protected

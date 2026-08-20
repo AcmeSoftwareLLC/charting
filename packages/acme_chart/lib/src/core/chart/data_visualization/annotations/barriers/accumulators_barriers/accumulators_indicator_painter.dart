@@ -91,35 +91,40 @@ class AccumulatorIndicatorPainter extends SeriesPainter<AccumulatorIndicator> {
     if (indicator.previousObject != null) {
       final AccumulatorObject? previousIndicator = indicator.previousObject;
 
-      barrierX = ui.lerpDouble(
+      barrierX =
+          ui.lerpDouble(
             epochToX(previousIndicator!.barrierEpoch),
             epochToX(indicator.barrierEpoch),
             animationInfo.currentTickPercent,
           ) ??
           barrierX;
 
-      hBarrierQuote = ui.lerpDouble(
+      hBarrierQuote =
+          ui.lerpDouble(
             previousIndicator.highBarrier,
             indicator.highBarrier,
             animationInfo.currentTickPercent,
           ) ??
           hBarrierQuote;
 
-      lBarrierQuote = ui.lerpDouble(
+      lBarrierQuote =
+          ui.lerpDouble(
             previousIndicator.lowBarrier,
             indicator.lowBarrier,
             animationInfo.currentTickPercent,
           ) ??
           lBarrierQuote;
 
-      tickX = ui.lerpDouble(
+      tickX =
+          ui.lerpDouble(
             epochToX(previousIndicator.tick.epoch),
             epochToX(indicator.tick.epoch),
             animationInfo.currentTickPercent,
           ) ??
           tickX;
 
-      tickQuote = ui.lerpDouble(
+      tickQuote =
+          ui.lerpDouble(
             previousIndicator.tick.quote,
             indicator.tick.quote,
             animationInfo.currentTickPercent,
@@ -128,7 +133,8 @@ class AccumulatorIndicatorPainter extends SeriesPainter<AccumulatorIndicator> {
 
       if (indicator.activeContract?.profit != null &&
           previousIndicator.profit != null) {
-        animatedProfit = ui.lerpDouble(
+        animatedProfit =
+            ui.lerpDouble(
               previousIndicator.profit,
               indicator.activeContract?.profit!,
               animationInfo.currentTickPercent,

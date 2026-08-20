@@ -45,8 +45,9 @@ class VerticalDrawingToolConfig extends DrawingToolConfig {
   static const String name = 'dt_vertical';
 
   @override
-  Map<String, dynamic> toJson() => _$VerticalDrawingToolConfigToJson(this)
-    ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$VerticalDrawingToolConfigToJson(this)
+        ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
   final LineStyle lineStyle;
@@ -65,12 +66,11 @@ class VerticalDrawingToolConfig extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) =>
-      VerticalDrawingToolItem(
-        config: this,
-        updateDrawingTool: updateDrawingTool,
-        deleteDrawingTool: deleteDrawingTool,
-      );
+  ) => VerticalDrawingToolItem(
+    config: this,
+    updateDrawingTool: updateDrawingTool,
+    deleteDrawingTool: deleteDrawingTool,
+  );
 
   @override
   VerticalDrawingToolConfig copyWith({
@@ -83,25 +83,25 @@ class VerticalDrawingToolConfig extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) =>
-      VerticalDrawingToolConfig(
-        configId: configId ?? this.configId,
-        drawingData: drawingData ?? this.drawingData,
-        edgePoints: edgePoints ?? this.edgePoints,
-        lineStyle: lineStyle ?? this.lineStyle,
-        labelStyle: labelStyle ?? this.labelStyle,
-        pattern: pattern ?? this.pattern,
-        enableLabel: enableLabel ?? this.enableLabel,
-        number: number ?? this.number,
-      );
+  }) => VerticalDrawingToolConfig(
+    configId: configId ?? this.configId,
+    drawingData: drawingData ?? this.drawingData,
+    edgePoints: edgePoints ?? this.edgePoints,
+    lineStyle: lineStyle ?? this.lineStyle,
+    labelStyle: labelStyle ?? this.labelStyle,
+    pattern: pattern ?? this.pattern,
+    enableLabel: enableLabel ?? this.enableLabel,
+    number: number ?? this.number,
+  );
 
   @override
   VerticalLineInteractableDrawing getInteractableDrawing(
     DrawingContext drawingContext,
     GetDrawingState getDrawingState,
   ) {
-    final EdgePoint? startPoint =
-        edgePoints.isNotEmpty ? edgePoints.first : null;
+    final EdgePoint? startPoint = edgePoints.isNotEmpty
+        ? edgePoints.first
+        : null;
 
     return VerticalLineInteractableDrawing(
       config: this,

@@ -63,9 +63,9 @@ class ADXSeries extends Series {
 
     final ADXHistogramIndicator<Tick> adxHistogramIndicator =
         ADXHistogramIndicator<Tick>.fromIndicator(
-      positiveDIIndicator,
-      negativeDIIndicator,
-    );
+          positiveDIIndicator,
+          negativeDIIndicator,
+        );
 
     final ADXIndicator<Tick> adxIndicator = ADXIndicator<Tick>.fromIndicator(
       positiveDIIndicator,
@@ -102,10 +102,9 @@ class ADXSeries extends Series {
     adxHistogramSeries = SingleIndicatorSeries(
       painterCreator: (Series series) => BarPainter(
         series as DataSeries<Tick>,
-        checkColorCallback: (
-                {required double currentQuote,
-                required double previousQuote}) =>
-            !currentQuote.isNegative,
+        checkColorCallback:
+            ({required double currentQuote, required double previousQuote}) =>
+                !currentQuote.isNegative,
       ),
       indicatorCreator: () => adxHistogramIndicator,
       inputIndicator: adxHistogramIndicator,
@@ -184,9 +183,9 @@ class ADXSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        adxSeriesList.getMinValue(),
-        adxSeriesList.getMaxValue(),
-      ];
+    adxSeriesList.getMinValue(),
+    adxSeriesList.getMaxValue(),
+  ];
 
   @override
   bool shouldRepaint(ChartData? previous) {

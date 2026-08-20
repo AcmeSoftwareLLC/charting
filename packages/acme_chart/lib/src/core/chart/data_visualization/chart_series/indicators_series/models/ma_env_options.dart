@@ -19,9 +19,7 @@ class MAEnvOptions extends MAOptions {
     this.fillColor = Colors.white12,
     this.showChannelFill = true,
     super.showLastIndicator,
-  }) : super(
-          type: movingAverageType,
-        );
+  }) : super(type: movingAverageType);
 
   /// Shift value
   final double shift;

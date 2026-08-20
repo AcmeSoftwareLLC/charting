@@ -39,9 +39,9 @@ class SMIOptions extends IndicatorOptions {
 
   @override
   List<Object> get props => <Object>[
-        period,
-        smoothingPeriod,
-        doubleSmoothingPeriod,
-        signalOptions,
-      ];
+    period,
+    smoothingPeriod,
+    doubleSmoothingPeriod,
+    signalOptions,
+  ];
 }

@@ -23,15 +23,14 @@ class AwesomeOscillatorIndicatorConfig extends IndicatorConfig {
     super.number,
     super.showLastIndicator,
   }) : super(
-          isOverlay: false,
-          title: title ?? AwesomeOscillatorIndicatorConfig.name,
-        );
+         isOverlay: false,
+         title: title ?? AwesomeOscillatorIndicatorConfig.name,
+       );
 
   /// Initializes from JSON.
   factory AwesomeOscillatorIndicatorConfig.fromJson(
     Map<String, dynamic> json,
-  ) =>
-      _$AwesomeOscillatorIndicatorConfigFromJson(json);
+  ) => _$AwesomeOscillatorIndicatorConfigFromJson(json);
 
   /// Histogram bar style
   final BarStyle barStyle;
@@ -52,12 +51,11 @@ class AwesomeOscillatorIndicatorConfig extends IndicatorConfig {
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      AwesomeOscillatorIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => AwesomeOscillatorIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   AwesomeOscillatorIndicatorConfig copyWith({
@@ -66,12 +64,11 @@ class AwesomeOscillatorIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     int? pipSize,
     int? number,
-  }) =>
-      AwesomeOscillatorIndicatorConfig(
-        barStyle: barStyle ?? this.barStyle,
-        title: title ?? this.title,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        pipSize: pipSize ?? this.pipSize,
-        number: number ?? this.number,
-      );
+  }) => AwesomeOscillatorIndicatorConfig(
+    barStyle: barStyle ?? this.barStyle,
+    title: title ?? this.title,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    pipSize: pipSize ?? this.pipSize,
+    number: number ?? this.number,
+  );
 }

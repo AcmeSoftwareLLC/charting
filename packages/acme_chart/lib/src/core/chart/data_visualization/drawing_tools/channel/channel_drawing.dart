@@ -38,8 +38,9 @@ class ChannelDrawing extends Drawing with LineVectorDrawingMixin {
       _$ChannelDrawingFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$ChannelDrawingToJson(this)
-    ..putIfAbsent(Drawing.classNameKey, () => nameKey);
+  Map<String, dynamic> toJson() =>
+      _$ChannelDrawingToJson(this)
+        ..putIfAbsent(Drawing.classNameKey, () => nameKey);
 
   /// Key of drawing tool name property in JSON.
   static const String nameKey = 'ChannelDrawing';
@@ -111,7 +112,7 @@ class ChannelDrawing extends Drawing with LineVectorDrawingMixin {
     DrawingData drawingData,
     DataSeries<Tick> series,
     Point Function(EdgePoint edgePoint, DraggableEdgePoint draggableEdgePoint)
-        updatePositionCallback,
+    updatePositionCallback,
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
@@ -230,7 +231,6 @@ class ChannelDrawing extends Drawing with LineVectorDrawingMixin {
                   ? paint.glowyCirclePaintStyle(lineStyle.color)
                   : paint.transparentCirclePaintStyle(),
             )
-
             /// Draw first line again to hide the overlap of fill color and line
             ..drawLine(
               Offset(_initialVector.x0, _initialVector.y0),

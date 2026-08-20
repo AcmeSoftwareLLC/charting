@@ -46,19 +46,19 @@ class CustomDarkTheme extends ChartDefaultDarkTheme {
 
   @override
   GridStyle get gridStyle => GridStyle(
-        gridLineColor: customGridColor,
-        xLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
-        yLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
-      );
+    gridLineColor: customGridColor,
+    xLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
+    yLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
+  );
 
   @override
   CandleStyle get candleStyle => CandleStyle(
-        candleBullishBodyColor: customBullishColor,
-        candleBearishBodyColor: customBearishColor,
-        candleBullishWickColor: customBullishColor,
-        candleBearishWickColor: customBearishColor,
-        neutralColor: base04Color,
-      );
+    candleBullishBodyColor: customBullishColor,
+    candleBearishBodyColor: customBearishColor,
+    candleBullishWickColor: customBullishColor,
+    candleBearishWickColor: customBearishColor,
+    neutralColor: base04Color,
+  );
 }
 
 /// A custom theme that extends the default light theme.
@@ -103,19 +103,19 @@ class CustomLightTheme extends ChartDefaultLightTheme {
 
   @override
   GridStyle get gridStyle => GridStyle(
-        gridLineColor: customGridColor,
-        xLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
-        yLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
-      );
+    gridLineColor: customGridColor,
+    xLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
+    yLabelStyle: textStyle(textStyle: gridTextStyle, color: gridTextColor),
+  );
 
   @override
   CandleStyle get candleStyle => CandleStyle(
-        candleBullishBodyColor: customBullishColor,
-        candleBearishBodyColor: customBearishColor,
-        candleBullishWickColor: customBullishColor,
-        candleBearishWickColor: customBearishColor,
-        neutralColor: base04Color,
-      );
+    candleBullishBodyColor: customBullishColor,
+    candleBearishBodyColor: customBearishColor,
+    candleBullishWickColor: customBullishColor,
+    candleBearishWickColor: customBearishColor,
+    neutralColor: base04Color,
+  );
 }
 
 /// Screen that displays a chart with theme customization.
@@ -168,8 +168,9 @@ class _ThemeCustomizationScreenState
         );
       }
     } else {
-      theme =
-          _useDarkTheme ? ChartDefaultDarkTheme() : ChartDefaultLightTheme();
+      theme = _useDarkTheme
+          ? ChartDefaultDarkTheme()
+          : ChartDefaultLightTheme();
     }
 
     return AcmeChart(

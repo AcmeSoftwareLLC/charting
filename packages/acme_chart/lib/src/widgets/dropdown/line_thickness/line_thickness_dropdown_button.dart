@@ -55,11 +55,11 @@ class LineThicknessDropdownButton extends StatelessWidget {
             dropdownBuilder:
                 (double selectedColor, ValueChanged<double> onValueChanged) =>
                     LineThicknessDropdown(
-              selectedThickness: thickness,
-              onChanged: (double selectedColor) {
-                onValueChanged(selectedColor);
-              },
-            ),
+                      selectedThickness: thickness,
+                      onChanged: (double selectedColor) {
+                        onValueChanged(selectedColor);
+                      },
+                    ),
           );
         },
         child: Text(

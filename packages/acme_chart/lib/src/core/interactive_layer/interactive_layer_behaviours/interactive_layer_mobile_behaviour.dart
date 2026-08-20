@@ -31,6 +31,5 @@ class InteractiveLayerMobileBehaviour extends InteractiveLayerBehaviour {
   DrawingAddingPreview getAddingDrawingPreview(
     InteractableDrawing<DrawingToolConfig> drawing,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-      drawing.getAddingPreviewForMobileBehaviour(this, onAddingStateChange);
+  ) => drawing.getAddingPreviewForMobileBehaviour(this, onAddingStateChange);
 }

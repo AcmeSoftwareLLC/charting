@@ -44,7 +44,8 @@ void paintCheckpointLine(
   MarkerProps props,
 ) {
   // Determine marker color based on marker.color or marker direction
-  final Color markerColor = marker.color ??
+  final Color markerColor =
+      marker.color ??
       (marker.direction == MarkerDirection.up
           ? theme.markerStyle.upColorProminent
           : theme.markerStyle.downColorProminent);

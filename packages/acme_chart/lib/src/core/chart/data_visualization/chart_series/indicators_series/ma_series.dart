@@ -24,12 +24,12 @@ class MASeries extends AbstractSingleIndicatorSeries {
     LineStyle? style,
     int offset = 0,
   }) : this.fromIndicator(
-          CloseValueIndicator<Tick>(indicatorInput),
-          options,
-          id: id,
-          style: style,
-          offset: offset,
-        );
+         CloseValueIndicator<Tick>(indicatorInput),
+         options,
+         id: id,
+         style: style,
+         offset: offset,
+       );
 
   /// Initializes
   MASeries.fromIndicator(
@@ -39,18 +39,18 @@ class MASeries extends AbstractSingleIndicatorSeries {
     LineStyle? style,
     int offset = 0,
   }) : super(
-          indicator,
-          id ?? 'SMASeries-period${options.period}-type${options.type}',
-          options: options,
-          style: style ?? const LineStyle(thickness: 0.5),
-          offset: offset,
-          lastTickIndicatorStyle: style != null
-              ? getLastIndicatorStyle(
-                  style.color,
-                  showLastIndicator: options.showLastIndicator,
-                )
-              : null,
-        );
+         indicator,
+         id ?? 'SMASeries-period${options.period}-type${options.type}',
+         options: options,
+         style: style ?? const LineStyle(thickness: 0.5),
+         offset: offset,
+         lastTickIndicatorStyle: style != null
+             ? getLastIndicatorStyle(
+                 style.color,
+                 showLastIndicator: options.showLastIndicator,
+               )
+             : null,
+       );
 
   @override
   SeriesPainter<Series> createPainter() => LinePainter(this);
@@ -142,9 +142,9 @@ extension MATypesExtension on MovingAverageType {
   /// Exceptional titles.
   static const Map<MovingAverageType, String> exceptionalTitles =
       <MovingAverageType, String>{
-    MovingAverageType.doubleExponential: '2-Exponential',
-    MovingAverageType.tripleExponential: '3-Exponential',
-  };
+        MovingAverageType.doubleExponential: '2-Exponential',
+        MovingAverageType.tripleExponential: '3-Exponential',
+      };
 
   /// Gets the title of enum.
   String get title => exceptionalTitles[this] ?? _getCapitalizedTitle();

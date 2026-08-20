@@ -21,12 +21,12 @@ class RSISeries extends AbstractSingleIndicatorSeries {
     String? id,
     bool showZones = true,
   }) : this.fromIndicator(
-          CloseValueIndicator<Tick>(indicatorInput),
-          const RSIIndicatorConfig(),
-          rsiOptions: rsiOptions,
-          showZones: showZones,
-          id: id,
-        );
+         CloseValueIndicator<Tick>(indicatorInput),
+         const RSIIndicatorConfig(),
+         rsiOptions: rsiOptions,
+         showZones: showZones,
+         id: id,
+       );
 
   /// Initializes an RSI Indicator from the given [inputIndicator].
   RSISeries.fromIndicator(
@@ -35,17 +35,17 @@ class RSISeries extends AbstractSingleIndicatorSeries {
     required this.rsiOptions,
     this.showZones = true,
     String? id,
-  })  : _inputIndicator = inputIndicator,
-        super(
-          inputIndicator,
-          id ?? 'RSIIndicator',
-          options: rsiOptions,
-          style: config.lineStyle,
-          lastTickIndicatorStyle: getLastIndicatorStyle(
-            config.lineStyle.color,
-            showLastIndicator: rsiOptions.showLastIndicator,
-          ),
-        );
+  }) : _inputIndicator = inputIndicator,
+       super(
+         inputIndicator,
+         id ?? 'RSIIndicator',
+         options: rsiOptions,
+         style: config.lineStyle,
+         lastTickIndicatorStyle: getLastIndicatorStyle(
+           config.lineStyle.color,
+           showLastIndicator: rsiOptions.showLastIndicator,
+         ),
+       );
 
   final Indicator<Tick> _inputIndicator;
 

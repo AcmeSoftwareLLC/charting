@@ -26,14 +26,15 @@ class OscillatorLinePainter extends LinePainter {
     ),
     LineStyle? secondaryHorizontalLinesStyle,
     this._secondaryHorizontalLines = const <double>[],
-  })  : _secondaryHorizontalLinesStyle = secondaryHorizontalLinesStyle ??
-            const LineStyle(color: Colors.blueGrey),
-        _topZonesPaint = Paint()
-          ..color = topHorizontalLinesStyle.color.withValues(alpha: 0.5)
-          ..style = PaintingStyle.fill,
-        _bottomZonesPaint = Paint()
-          ..color = bottomHorizontalLinesStyle.color.withValues(alpha: 0.5)
-          ..style = PaintingStyle.fill;
+  }) : _secondaryHorizontalLinesStyle =
+           secondaryHorizontalLinesStyle ??
+           const LineStyle(color: Colors.blueGrey),
+       _topZonesPaint = Paint()
+         ..color = topHorizontalLinesStyle.color.withValues(alpha: 0.5)
+         ..style = PaintingStyle.fill,
+       _bottomZonesPaint = Paint()
+         ..color = bottomHorizontalLinesStyle.color.withValues(alpha: 0.5)
+         ..style = PaintingStyle.fill;
 
   final double? _topHorizontalLine;
   final double? _bottomHorizontalLine;

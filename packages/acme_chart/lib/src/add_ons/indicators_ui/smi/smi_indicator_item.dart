@@ -21,9 +21,7 @@ class SMIIndicatorItem extends IndicatorItem {
     required super.deleteIndicator,
     super.key,
     SMIIndicatorConfig super.config = const SMIIndicatorConfig(),
-  }) : super(
-          title: 'SMI',
-        );
+  }) : super(title: 'SMI');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>
@@ -56,68 +54,68 @@ class SMIIndicatorItemState extends IndicatorItemState<SMIIndicatorConfig> {
 
   @override
   Widget getIndicatorOptions() => Column(
-        children: <Widget>[
-          _buildPeriodField(),
-          _buildSmoothingPeriodField(),
-          _buildDoubleSmoothingPeriodField(),
-          _buildOverBoughtPriceField(),
-          _buildOverSoldPriceField(),
-          _buildMATypeField(),
-          _buildSignalPeriodField(),
-        ],
-      );
+    children: <Widget>[
+      _buildPeriodField(),
+      _buildSmoothingPeriodField(),
+      _buildDoubleSmoothingPeriodField(),
+      _buildOverBoughtPriceField(),
+      _buildOverSoldPriceField(),
+      _buildMATypeField(),
+      _buildSignalPeriodField(),
+    ],
+  );
 
   Widget _buildPeriodField() => FieldWidget(
-        label: ChartLocalization.of(context).labelPeriod,
-        initialValue: _currentPeriod.toString(),
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _period = int.tryParse(text);
-          } else {
-            _period = 10;
-          }
-          updateIndicator();
-        },
-      );
+    label: ChartLocalization.of(context).labelPeriod,
+    initialValue: _currentPeriod.toString(),
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _period = int.tryParse(text);
+      } else {
+        _period = 10;
+      }
+      updateIndicator();
+    },
+  );
 
   Widget _buildSmoothingPeriodField() => FieldWidget(
-        label: ChartLocalization.of(context).labelSmoothingPeriod,
-        initialValue: _currentSmoothingPeriod.toString(),
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _smoothingPeriod = int.tryParse(text);
-          } else {
-            _smoothingPeriod = 3;
-          }
-          updateIndicator();
-        },
-      );
+    label: ChartLocalization.of(context).labelSmoothingPeriod,
+    initialValue: _currentSmoothingPeriod.toString(),
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _smoothingPeriod = int.tryParse(text);
+      } else {
+        _smoothingPeriod = 3;
+      }
+      updateIndicator();
+    },
+  );
 
   Widget _buildDoubleSmoothingPeriodField() => FieldWidget(
-        label: ChartLocalization.of(context).labelDoubleSmoothingPeriod,
-        initialValue: _currentDoubleSmoothingPeriod.toString(),
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _doubleSmoothingPeriod = int.tryParse(text);
-          } else {
-            _doubleSmoothingPeriod = 3;
-          }
-          updateIndicator();
-        },
-      );
+    label: ChartLocalization.of(context).labelDoubleSmoothingPeriod,
+    initialValue: _currentDoubleSmoothingPeriod.toString(),
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _doubleSmoothingPeriod = int.tryParse(text);
+      } else {
+        _doubleSmoothingPeriod = 3;
+      }
+      updateIndicator();
+    },
+  );
 
   Widget _buildSignalPeriodField() => FieldWidget(
-        label: ChartLocalization.of(context).labelSignalPeriod,
-        initialValue: _currentSignalPeriod.toString(),
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _signalPeriod = int.tryParse(text);
-          } else {
-            _signalPeriod = 10;
-          }
-          updateIndicator();
-        },
-      );
+    label: ChartLocalization.of(context).labelSignalPeriod,
+    initialValue: _currentSignalPeriod.toString(),
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _signalPeriod = int.tryParse(text);
+      } else {
+        _signalPeriod = 10;
+      }
+      updateIndicator();
+    },
+  );
 
   int get _currentPeriod =>
       _period ?? (widget.config as SMIIndicatorConfig).period;
@@ -133,34 +131,34 @@ class SMIIndicatorItemState extends IndicatorItemState<SMIIndicatorConfig> {
       _signalPeriod ?? (widget.config as SMIIndicatorConfig).signalPeriod;
 
   Widget _buildOverBoughtPriceField() => FieldWidget(
-        label: ChartLocalization.of(context).labelOverBoughtPrice,
-        initialValue: _currentOverboughtValue.toString(),
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _overboughtValue = double.tryParse(text);
-          } else {
-            _overboughtValue = 80;
-          }
-          updateIndicator();
-        },
-      );
+    label: ChartLocalization.of(context).labelOverBoughtPrice,
+    initialValue: _currentOverboughtValue.toString(),
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _overboughtValue = double.tryParse(text);
+      } else {
+        _overboughtValue = 80;
+      }
+      updateIndicator();
+    },
+  );
 
   double get _currentOverboughtValue =>
       _overboughtValue ??
       (widget.config as SMIIndicatorConfig).smiOscillatorLimits.overboughtValue;
 
   Widget _buildOverSoldPriceField() => FieldWidget(
-        label: ChartLocalization.of(context).labelOverSoldPrice,
-        initialValue: _currentOversoldValue.toString(),
-        onValueChanged: (String text) {
-          if (text.isNotEmpty) {
-            _oversoldValue = double.tryParse(text);
-          } else {
-            _oversoldValue = 20;
-          }
-          updateIndicator();
-        },
-      );
+    label: ChartLocalization.of(context).labelOverSoldPrice,
+    initialValue: _currentOversoldValue.toString(),
+    onValueChanged: (String text) {
+      if (text.isNotEmpty) {
+        _oversoldValue = double.tryParse(text);
+      } else {
+        _oversoldValue = 20;
+      }
+      updateIndicator();
+    },
+  );
 
   double get _currentOversoldValue =>
       _oversoldValue ??
@@ -170,13 +168,13 @@ class SMIIndicatorItemState extends IndicatorItemState<SMIIndicatorConfig> {
       _maType ?? (widget.config as SMIIndicatorConfig).maType;
 
   Widget _buildMATypeField() => chart_dropdown.DropdownMenu<MovingAverageType>(
-        initialValue: _currentMAType,
-        items: MovingAverageType.values,
-        label: ChartLocalization.of(context).labelType,
-        labelForItem: (MovingAverageType type) => type.name,
-        onItemSelected: (MovingAverageType? newType) => setState(() {
-          _maType = newType ?? MovingAverageType.simple;
-          updateIndicator();
-        }),
-      );
+    initialValue: _currentMAType,
+    items: MovingAverageType.values,
+    label: ChartLocalization.of(context).labelType,
+    labelForItem: (MovingAverageType type) => type.name,
+    onItemSelected: (MovingAverageType? newType) => setState(() {
+      _maType = newType ?? MovingAverageType.simple;
+      updateIndicator();
+    }),
+  );
 }

@@ -14,9 +14,7 @@ class AwesomeOscillatorIndicatorItem extends IndicatorItem {
     super.key,
     AwesomeOscillatorIndicatorConfig super.config =
         const AwesomeOscillatorIndicatorConfig(),
-  }) : super(
-          title: 'Awesome Oscillator Indicator',
-        );
+  }) : super(title: 'Awesome Oscillator Indicator');
 
   @override
   IndicatorItemState<IndicatorConfig> createIndicatorItemState() =>

@@ -219,7 +219,8 @@ class TrendLineInteractableDrawing
 
     // Calculate perpendicular distance from point to line
     // Formula: |((y2-y1)x - (x2-x1)y + x2y1 - y2x1)| / sqrt((y2-y1)² + (x2-x1)²)
-    final double distance = ((endOffset.dy - startOffset.dy) * offset.dx -
+    final double distance =
+        ((endOffset.dy - startOffset.dy) * offset.dx -
                 (endOffset.dx - startOffset.dx) * offset.dy +
                 endOffset.dx * startOffset.dy -
                 endOffset.dy * startOffset.dx)
@@ -229,7 +230,7 @@ class TrendLineInteractableDrawing
     // Check if point is within the line segment (not just the infinite line)
     final double dotProduct =
         (offset.dx - startOffset.dx) * (endOffset.dx - startOffset.dx) +
-            (offset.dy - startOffset.dy) * (endOffset.dy - startOffset.dy);
+        (offset.dy - startOffset.dy) * (endOffset.dy - startOffset.dy);
 
     final bool isWithinRange =
         dotProduct >= 0 && dotProduct <= lineLength * lineLength;
@@ -313,8 +314,9 @@ class TrendLineInteractableDrawing
         if (drawingState.contains(DrawingToolState.dragging) &&
             isDraggingStartPoint != null) {
           // When dragging individual point, only show glow on the point being dragged
-          final Offset draggedPointOffset =
-              isDraggingStartPoint! ? startOffset : endOffset;
+          final Offset draggedPointOffset = isDraggingStartPoint!
+              ? startOffset
+              : endOffset;
           drawFocusedCircle(
             paintStyle,
             lineStyle,
@@ -326,8 +328,9 @@ class TrendLineInteractableDrawing
         } else if (drawingState.contains(DrawingToolState.longPressed) &&
             isLongPressingStartPoint != null) {
           // When long pressing a specific point, show glow only on that point
-          final Offset longPressedPointOffset =
-              isLongPressingStartPoint! ? startOffset : endOffset;
+          final Offset longPressedPointOffset = isLongPressingStartPoint!
+              ? startOffset
+              : endOffset;
           drawFocusedCircle(
             paintStyle,
             lineStyle,
@@ -382,8 +385,9 @@ class TrendLineInteractableDrawing
       } else if (drawingState.contains(DrawingToolState.longPressed) &&
           isLongPressingStartPoint != null) {
         // When long pressing a specific point, show alignment guides only for that point
-        final Offset longPressedPointOffset =
-            isLongPressingStartPoint! ? startOffset : endOffset;
+        final Offset longPressedPointOffset = isLongPressingStartPoint!
+            ? startOffset
+            : endOffset;
         drawPointAlignmentGuides(
           canvas,
           size,
@@ -532,8 +536,9 @@ class TrendLineInteractableDrawing
     // If we're dragging a specific point (start or end point)
     if (isDraggingStartPoint != null) {
       // Get the current point being dragged
-      final EdgePoint pointBeingDragged =
-          isDraggingStartPoint! ? startPoint! : endPoint!;
+      final EdgePoint pointBeingDragged = isDraggingStartPoint!
+          ? startPoint!
+          : endPoint!;
 
       // Get the current screen position of the point
       final Offset currentOffset = Offset(
@@ -601,12 +606,8 @@ class TrendLineInteractableDrawing
   }
 
   @override
-  LineDrawingToolConfig getUpdatedConfig() => config.copyWith(
-        edgePoints: <EdgePoint>[
-          ?startPoint,
-          ?endPoint,
-        ],
-      );
+  LineDrawingToolConfig getUpdatedConfig() =>
+      config.copyWith(edgePoints: <EdgePoint>[?startPoint, ?endPoint]);
 
   @override
   bool isInViewPort(EpochRange epochRange, QuoteRange quoteRange) =>
@@ -622,47 +623,45 @@ class TrendLineInteractableDrawing
   DrawingAddingPreview getAddingPreviewForMobileBehaviour(
     InteractiveLayerMobileBehaviour layerBehaviour,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-      TrendLineAddingPreviewMobile(
-        interactiveLayerBehaviour: layerBehaviour,
-        interactableDrawing: this,
-        onAddingStateChange: onAddingStateChange,
-      );
+  ) => TrendLineAddingPreviewMobile(
+    interactiveLayerBehaviour: layerBehaviour,
+    interactableDrawing: this,
+    onAddingStateChange: onAddingStateChange,
+  );
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>
-      getAddingPreviewForDesktopBehaviour(
+  getAddingPreviewForDesktopBehaviour(
     InteractiveLayerDesktopBehaviour layerBehaviour,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-          TrendLineAddingPreviewDesktop(
-            interactiveLayerBehaviour: layerBehaviour,
-            interactableDrawing: this,
-            onAddingStateChange: onAddingStateChange,
-          );
+  ) => TrendLineAddingPreviewDesktop(
+    interactiveLayerBehaviour: layerBehaviour,
+    interactableDrawing: this,
+    onAddingStateChange: onAddingStateChange,
+  );
 
   @override
   Widget buildDrawingToolBarMenu(UpdateDrawingTool onUpdate) => Row(
-        children: <Widget>[
-          _buildLineThicknessIcon(onUpdate),
-          const SizedBox(width: 4),
-          _buildColorPickerIcon(onUpdate),
-        ],
-      );
+    children: <Widget>[
+      _buildLineThicknessIcon(onUpdate),
+      const SizedBox(width: 4),
+      _buildColorPickerIcon(onUpdate),
+    ],
+  );
 
   Widget _buildColorPickerIcon(UpdateDrawingTool onUpdate) => SizedBox(
-        width: 32,
-        height: 32,
-        child: ColorPickerDropdownButton(
-          currentColor: config.lineStyle.color,
-          onColorChanged: (newColor) => onUpdate(
-            config.copyWith(
-              lineStyle: config.lineStyle.copyWith(color: newColor),
-              labelStyle: config.labelStyle.copyWith(color: newColor),
-            ),
-          ),
+    width: 32,
+    height: 32,
+    child: ColorPickerDropdownButton(
+      currentColor: config.lineStyle.color,
+      onColorChanged: (newColor) => onUpdate(
+        config.copyWith(
+          lineStyle: config.lineStyle.copyWith(color: newColor),
+          labelStyle: config.labelStyle.copyWith(color: newColor),
         ),
-      );
+      ),
+    ),
+  );
 
   Widget _buildLineThicknessIcon(UpdateDrawingTool onUpdate) =>
       LineThicknessDropdownButton(

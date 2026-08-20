@@ -27,18 +27,18 @@ class DPOSeries extends Series {
     required DPOOptions dpoOptions,
     String? id,
   }) : this.fromIndicator(
-          CloseValueIndicator<Tick>(indicatorInput),
-          dpoOptions: dpoOptions,
-          id: id ?? 'Ichimoku$dpoOptions',
-        );
+         CloseValueIndicator<Tick>(indicatorInput),
+         dpoOptions: dpoOptions,
+         id: id ?? 'Ichimoku$dpoOptions',
+       );
 
   /// Initializes
   DPOSeries.fromIndicator(
     Indicator<Tick> indicator, {
     required this.dpoOptions,
     String? id,
-  })  : _fieldIndicator = indicator,
-        super(id ?? 'Ichimoku$dpoOptions');
+  }) : _fieldIndicator = indicator,
+       super(id ?? 'Ichimoku$dpoOptions');
 
   /// DPO Series
   late SingleIndicatorSeries dpoSeries;
@@ -95,9 +95,9 @@ class DPOSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        dpoSeries.minValue,
-        dpoSeries.maxValue,
-      ];
+    dpoSeries.minValue,
+    dpoSeries.maxValue,
+  ];
 
   @override
   void paint(

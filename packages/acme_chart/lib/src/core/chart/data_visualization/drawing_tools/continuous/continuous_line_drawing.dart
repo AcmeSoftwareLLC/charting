@@ -30,20 +30,21 @@ class ContinuousLineDrawing extends Drawing {
     this.exceedStart = false,
     this.exceedEnd = false,
   }) : _lineDrawing = LineDrawing(
-          drawingPart: drawingPart,
-          startEdgePoint: startEdgePoint,
-          endEdgePoint: endEdgePoint,
-          exceedStart: exceedStart,
-          exceedEnd: exceedEnd,
-        );
+         drawingPart: drawingPart,
+         startEdgePoint: startEdgePoint,
+         endEdgePoint: endEdgePoint,
+         exceedStart: exceedStart,
+         exceedEnd: exceedEnd,
+       );
 
   /// Initializes from JSON.
   factory ContinuousLineDrawing.fromJson(Map<String, dynamic> json) =>
       _$ContinuousLineDrawingFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$ContinuousLineDrawingToJson(this)
-    ..putIfAbsent(Drawing.classNameKey, () => nameKey);
+  Map<String, dynamic> toJson() =>
+      _$ContinuousLineDrawingToJson(this)
+        ..putIfAbsent(Drawing.classNameKey, () => nameKey);
 
   /// Drawing part.
   final DrawingParts drawingPart;
@@ -72,13 +73,12 @@ class ContinuousLineDrawing extends Drawing {
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
-  }) =>
-      _lineDrawing.needsRepaint(
-        leftEpoch,
-        rightEpoch,
-        draggableStartPoint,
-        draggableEndPoint: draggableEndPoint,
-      );
+  }) => _lineDrawing.needsRepaint(
+    leftEpoch,
+    rightEpoch,
+    draggableStartPoint,
+    draggableEndPoint: draggableEndPoint,
+  );
 
   /// Paint the line
   @override
@@ -94,7 +94,7 @@ class ContinuousLineDrawing extends Drawing {
     DrawingData drawingData,
     DataSeries<Tick> series,
     Point Function(EdgePoint edgePoint, DraggableEdgePoint draggableEdgePoint)
-        updatePositionCallback,
+    updatePositionCallback,
     DraggableEdgePoint draggableStartPoint, {
     DraggableEdgePoint? draggableMiddlePoint,
     DraggableEdgePoint? draggableEndPoint,
@@ -139,40 +139,41 @@ class ContinuousLineDrawing extends Drawing {
       // TODO(NA): Refactor this code to avoid using indexOf
       config.edgePoints
           .where(
-        (EdgePoint element) =>
-            config.edgePoints.indexOf(element) > 1 &&
-            config.edgePoints.indexOf(element) == config.edgePoints.length - 1,
-      )
+            (EdgePoint element) =>
+                config.edgePoints.indexOf(element) > 1 &&
+                config.edgePoints.indexOf(element) ==
+                    config.edgePoints.length - 1,
+          )
           .forEach((EdgePoint edgePoint) {
-        final int index = config.edgePoints.indexOf(edgePoint);
-        _lineDrawing.onPaint(
-          canvas,
-          size,
-          theme,
-          epochFromX,
-          quoteFromY,
-          epochToX,
-          quoteToY,
-          LineDrawingToolConfig(
-            configId: config.configId,
-            drawingData: config.drawingData,
-            lineStyle: config.lineStyle,
-            pattern: config.pattern,
+            final int index = config.edgePoints.indexOf(edgePoint);
+            _lineDrawing.onPaint(
+              canvas,
+              size,
+              theme,
+              epochFromX,
+              quoteFromY,
+              epochToX,
+              quoteToY,
+              LineDrawingToolConfig(
+                configId: config.configId,
+                drawingData: config.drawingData,
+                lineStyle: config.lineStyle,
+                pattern: config.pattern,
 
-            /// Limit the edge points to only 2 points, since line drawing
-            /// needs only 2 points
-            edgePoints: <EdgePoint>[
-              config.edgePoints[index - 1],
-              edgePoint,
-            ],
-          ),
-          lineDrawingData,
-          series,
-          updatePositionCallback,
-          draggableStartPoint,
-          draggableEndPoint: draggableEndPoint,
-        );
-      });
+                /// Limit the edge points to only 2 points, since line drawing
+                /// needs only 2 points
+                edgePoints: <EdgePoint>[
+                  config.edgePoints[index - 1],
+                  edgePoint,
+                ],
+              ),
+              lineDrawingData,
+              series,
+              updatePositionCallback,
+              draggableStartPoint,
+              draggableEndPoint: draggableEndPoint,
+            );
+          });
     }
   }
 

@@ -10,10 +10,7 @@ part 'point.g.dart';
 @JsonSerializable()
 class Point {
   /// Initializes
-  const Point({
-    required this.x,
-    required this.y,
-  });
+  const Point({required this.x, required this.y});
 
   /// Initializes from JSON.
   factory Point.fromJson(Map<String, dynamic> json) => _$PointFromJson(json);

@@ -2,7 +2,6 @@
 /// The tokens.json file is generated from Figma tokens and can be found in the design tokens repository.
 library;
 
-
 import 'package:flutter/material.dart';
 
 /// Core tokens that are shared between light and dark themes
@@ -967,610 +966,978 @@ class CoreDesignTokens {
   static const coreColorSolidSlate1400 = Color(0xFF000000);
 
   /// coreColorOpacityWhite75 with value: rgba({core.color.solid.slate.50},{core.opacity.75})
-  static final coreColorOpacityWhite75 = coreColorSolidSlate50.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityWhite75 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityWhite100 with value: rgba({core.color.solid.slate.50},{core.opacity.100})
-  static final coreColorOpacityWhite100 = coreColorSolidSlate50.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityWhite100 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityWhite200 with value: rgba({core.color.solid.slate.50},{core.opacity.200})
-  static final coreColorOpacityWhite200 = coreColorSolidSlate50.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityWhite200 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityWhite300 with value: rgba({core.color.solid.slate.50},{core.opacity.300})
-  static final coreColorOpacityWhite300 = coreColorSolidSlate50.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityWhite300 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityWhite400 with value: rgba({core.color.solid.slate.50},{core.opacity.600})
-  static final coreColorOpacityWhite400 = coreColorSolidSlate50.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityWhite400 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityWhite500 with value: rgba({core.color.solid.slate.50},{core.opacity.700})
-  static final coreColorOpacityWhite500 = coreColorSolidSlate50.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityWhite500 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityWhite600 with value: rgba({core.color.solid.slate.50},{core.opacity.900})
-  static final coreColorOpacityWhite600 = coreColorSolidSlate50.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityWhite600 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityWhite700 with value: rgba({core.color.solid.slate.50},{core.opacity.1000})
-  static final coreColorOpacityWhite700 = coreColorSolidSlate50.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityWhite700 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityWhite800 with value: rgba({core.color.solid.slate.50},{core.opacity.1100})
-  static final coreColorOpacityWhite800 = coreColorSolidSlate50.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityWhite800 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityBlack75 with value: rgba({core.color.solid.slate.1400},{core.opacity.75})
-  static final coreColorOpacityBlack75 = coreColorSolidSlate1400.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityBlack75 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityBlack100 with value: rgba({core.color.solid.slate.1400},{core.opacity.100})
-  static final coreColorOpacityBlack100 = coreColorSolidSlate1400.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityBlack100 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityBlack200 with value: rgba({core.color.solid.slate.1400},{core.opacity.200})
-  static final coreColorOpacityBlack200 = coreColorSolidSlate1400.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityBlack200 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityBlack300 with value: rgba({core.color.solid.slate.1400},{core.opacity.300})
-  static final coreColorOpacityBlack300 = coreColorSolidSlate1400.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityBlack300 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityBlack400 with value: rgba({core.color.solid.slate.1400},{core.opacity.600})
-  static final coreColorOpacityBlack400 = coreColorSolidSlate1400.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityBlack400 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityBlack500 with value: rgba({core.color.solid.slate.1400},{core.opacity.700})
-  static final coreColorOpacityBlack500 = coreColorSolidSlate1400.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityBlack500 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityBlack600 with value: rgba({core.color.solid.slate.1400},{core.opacity.900})
-  static final coreColorOpacityBlack600 = coreColorSolidSlate1400.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityBlack600 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityBlack700 with value: rgba({core.color.solid.slate.1400},{core.opacity.1000})
-  static final coreColorOpacityBlack700 = coreColorSolidSlate1400.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityBlack700 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityBlack800 with value: rgba({core.color.solid.slate.1400},{core.opacity.1100})
-  static final coreColorOpacityBlack800 = coreColorSolidSlate1400.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityBlack800 = coreColorSolidSlate1400.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityRed75 with value: rgba({core.color.solid.red.700},{core.opacity.75})
-  static final coreColorOpacityRed75 = coreColorSolidRed700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityRed75 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityRed100 with value: rgba({core.color.solid.red.700},{core.opacity.100})
-  static final coreColorOpacityRed100 = coreColorSolidRed700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityRed100 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityRed200 with value: rgba({core.color.solid.red.700},{core.opacity.200})
-  static final coreColorOpacityRed200 = coreColorSolidRed700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityRed200 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityRed300 with value: rgba({core.color.solid.red.700},{core.opacity.300})
-  static final coreColorOpacityRed300 = coreColorSolidRed700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityRed300 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityRed400 with value: rgba({core.color.solid.red.700},{core.opacity.600})
-  static final coreColorOpacityRed400 = coreColorSolidRed700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityRed400 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityRed500 with value: rgba({core.color.solid.red.700},{core.opacity.700})
-  static final coreColorOpacityRed500 = coreColorSolidRed700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityRed500 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityRed600 with value: rgba({core.color.solid.red.700},{core.opacity.900})
-  static final coreColorOpacityRed600 = coreColorSolidRed700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityRed600 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityRed700 with value: rgba({core.color.solid.red.700},{core.opacity.1000})
-  static final coreColorOpacityRed700 = coreColorSolidRed700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityRed700 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityRed800 with value: rgba({core.color.solid.red.700},{core.opacity.1100})
-  static final coreColorOpacityRed800 = coreColorSolidRed700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityRed800 = coreColorSolidRed700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityOrange75 with value: rgba({core.color.solid.orange.700},{core.opacity.75})
-  static final coreColorOpacityOrange75 = coreColorSolidOrange700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityOrange75 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityOrange100 with value: rgba({core.color.solid.orange.700},{core.opacity.100})
-  static final coreColorOpacityOrange100 = coreColorSolidOrange700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityOrange100 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityOrange200 with value: rgba({core.color.solid.orange.700},{core.opacity.200})
-  static final coreColorOpacityOrange200 = coreColorSolidOrange700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityOrange200 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityOrange300 with value: rgba({core.color.solid.orange.700},{core.opacity.300})
-  static final coreColorOpacityOrange300 = coreColorSolidOrange700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityOrange300 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityOrange400 with value: rgba({core.color.solid.orange.700},{core.opacity.600})
-  static final coreColorOpacityOrange400 = coreColorSolidOrange700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityOrange400 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityOrange500 with value: rgba({core.color.solid.orange.700},{core.opacity.700})
-  static final coreColorOpacityOrange500 = coreColorSolidOrange700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityOrange500 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityOrange600 with value: rgba({core.color.solid.orange.700},{core.opacity.900})
-  static final coreColorOpacityOrange600 = coreColorSolidOrange700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityOrange600 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityOrange700 with value: rgba({core.color.solid.orange.700},{core.opacity.1000})
-  static final coreColorOpacityOrange700 = coreColorSolidOrange700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityOrange700 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// 88% of base color (Value: rgba({core.color.solid.orange.700},{core.opacity.1100}))
-  static final coreColorOpacityOrange800 = coreColorSolidOrange700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityOrange800 = coreColorSolidOrange700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityYellow75 with value: rgba({core.color.solid.yellow.700},{core.opacity.75})
-  static final coreColorOpacityYellow75 = coreColorSolidYellow700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityYellow75 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityYellow100 with value: rgba({core.color.solid.yellow.700},{core.opacity.100})
-  static final coreColorOpacityYellow100 = coreColorSolidYellow700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityYellow100 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityYellow200 with value: rgba({core.color.solid.yellow.700},{core.opacity.200})
-  static final coreColorOpacityYellow200 = coreColorSolidYellow700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityYellow200 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityYellow300 with value: rgba({core.color.solid.yellow.700},{core.opacity.300})
-  static final coreColorOpacityYellow300 = coreColorSolidYellow700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityYellow300 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityYellow400 with value: rgba({core.color.solid.yellow.700},{core.opacity.600})
-  static final coreColorOpacityYellow400 = coreColorSolidYellow700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityYellow400 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityYellow500 with value: rgba({core.color.solid.yellow.700},{core.opacity.700})
-  static final coreColorOpacityYellow500 = coreColorSolidYellow700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityYellow500 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityYellow600 with value: rgba({core.color.solid.yellow.700},{core.opacity.900})
-  static final coreColorOpacityYellow600 = coreColorSolidYellow700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityYellow600 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityYellow700 with value: rgba({core.color.solid.yellow.700},{core.opacity.1000})
-  static final coreColorOpacityYellow700 = coreColorSolidYellow700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityYellow700 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityYellow800 with value: rgba({core.color.solid.yellow.700},{core.opacity.1100})
-  static final coreColorOpacityYellow800 = coreColorSolidYellow700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityYellow800 = coreColorSolidYellow700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityMustard75 with value: rgba({core.color.solid.mustard.700},{core.opacity.75})
-  static final coreColorOpacityMustard75 = coreColorSolidMustard700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityMustard75 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityMustard100 with value: rgba({core.color.solid.mustard.700},{core.opacity.100})
-  static final coreColorOpacityMustard100 = coreColorSolidMustard700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityMustard100 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityMustard200 with value: rgba({core.color.solid.mustard.700},{core.opacity.200})
-  static final coreColorOpacityMustard200 = coreColorSolidMustard700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityMustard200 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityMustard300 with value: rgba({core.color.solid.mustard.700},{core.opacity.300})
-  static final coreColorOpacityMustard300 = coreColorSolidMustard700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityMustard300 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityMustard400 with value: rgba({core.color.solid.mustard.700},{core.opacity.600})
-  static final coreColorOpacityMustard400 = coreColorSolidMustard700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityMustard400 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityMustard500 with value: rgba({core.color.solid.mustard.700},{core.opacity.700})
-  static final coreColorOpacityMustard500 = coreColorSolidMustard700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityMustard500 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityMustard600 with value: rgba({core.color.solid.mustard.700},{core.opacity.900})
-  static final coreColorOpacityMustard600 = coreColorSolidMustard700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityMustard600 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityMustard700 with value: rgba({core.color.solid.mustard.700},{core.opacity.1000})
-  static final coreColorOpacityMustard700 = coreColorSolidMustard700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityMustard700 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityMustard800 with value: rgba({core.color.solid.mustard.700},{core.opacity.1100})
-  static final coreColorOpacityMustard800 = coreColorSolidMustard700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityMustard800 = coreColorSolidMustard700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityOlive75 with value: rgba({core.color.solid.olive.700},{core.opacity.75})
-  static final coreColorOpacityOlive75 = coreColorSolidOlive700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityOlive75 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityOlive100 with value: rgba({core.color.solid.olive.700},{core.opacity.100})
-  static final coreColorOpacityOlive100 = coreColorSolidOlive700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityOlive100 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityOlive200 with value: rgba({core.color.solid.olive.700},{core.opacity.200})
-  static final coreColorOpacityOlive200 = coreColorSolidOlive700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityOlive200 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityOlive300 with value: rgba({core.color.solid.olive.700},{core.opacity.300})
-  static final coreColorOpacityOlive300 = coreColorSolidOlive700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityOlive300 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityOlive400 with value: rgba({core.color.solid.olive.700},{core.opacity.600})
-  static final coreColorOpacityOlive400 = coreColorSolidOlive700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityOlive400 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityOlive500 with value: rgba({core.color.solid.olive.700},{core.opacity.700})
-  static final coreColorOpacityOlive500 = coreColorSolidOlive700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityOlive500 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityOlive600 with value: rgba({core.color.solid.olive.700},{core.opacity.900})
-  static final coreColorOpacityOlive600 = coreColorSolidOlive700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityOlive600 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityOlive700 with value: rgba({core.color.solid.olive.700},{core.opacity.1000})
-  static final coreColorOpacityOlive700 = coreColorSolidOlive700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityOlive700 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityOlive800 with value: rgba({core.color.solid.olive.700},{core.opacity.1100})
-  static final coreColorOpacityOlive800 = coreColorSolidOlive700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityOlive800 = coreColorSolidOlive700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityGreen75 with value: rgba({core.color.solid.green.700},{core.opacity.75})
-  static final coreColorOpacityGreen75 = coreColorSolidGreen700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityGreen75 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityGreen100 with value: rgba({core.color.solid.green.700},{core.opacity.100})
-  static final coreColorOpacityGreen100 = coreColorSolidGreen700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityGreen100 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityGreen200 with value: rgba({core.color.solid.green.700},{core.opacity.200})
-  static final coreColorOpacityGreen200 = coreColorSolidGreen700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityGreen200 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityGreen300 with value: rgba({core.color.solid.green.700},{core.opacity.300})
-  static final coreColorOpacityGreen300 = coreColorSolidGreen700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityGreen300 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityGreen400 with value: rgba({core.color.solid.green.700},{core.opacity.600})
-  static final coreColorOpacityGreen400 = coreColorSolidGreen700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityGreen400 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityGreen500 with value: rgba({core.color.solid.green.700},{core.opacity.700})
-  static final coreColorOpacityGreen500 = coreColorSolidGreen700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityGreen500 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityGreen600 with value: rgba({core.color.solid.green.700},{core.opacity.900})
-  static final coreColorOpacityGreen600 = coreColorSolidGreen700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityGreen600 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityGreen700 with value: rgba({core.color.solid.green.700},{core.opacity.1000})
-  static final coreColorOpacityGreen700 = coreColorSolidGreen700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityGreen700 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityGreen800 with value: rgba({core.color.solid.green.700},{core.opacity.1100})
-  static final coreColorOpacityGreen800 = coreColorSolidGreen700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityGreen800 = coreColorSolidGreen700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityEmerald75 with value: rgba({core.color.solid.emerald.700},{core.opacity.75})
-  static final coreColorOpacityEmerald75 = coreColorSolidEmerald700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityEmerald75 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityEmerald100 with value: rgba({core.color.solid.emerald.700},{core.opacity.100})
-  static final coreColorOpacityEmerald100 = coreColorSolidEmerald700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityEmerald100 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityEmerald200 with value: rgba({core.color.solid.emerald.700},{core.opacity.200})
-  static final coreColorOpacityEmerald200 = coreColorSolidEmerald700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityEmerald200 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityEmerald300 with value: rgba({core.color.solid.emerald.700},{core.opacity.300})
-  static final coreColorOpacityEmerald300 = coreColorSolidEmerald700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityEmerald300 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityEmerald400 with value: rgba({core.color.solid.emerald.700},{core.opacity.600})
-  static final coreColorOpacityEmerald400 = coreColorSolidEmerald700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityEmerald400 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityEmerald500 with value: rgba({core.color.solid.emerald.700},{core.opacity.700})
-  static final coreColorOpacityEmerald500 = coreColorSolidEmerald700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityEmerald500 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityEmerald600 with value: rgba({core.color.solid.emerald.700},{core.opacity.900})
-  static final coreColorOpacityEmerald600 = coreColorSolidEmerald700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityEmerald600 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityEmerald700 with value: rgba({core.color.solid.emerald.700},{core.opacity.1000})
-  static final coreColorOpacityEmerald700 = coreColorSolidEmerald700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityEmerald700 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityEmerald800 with value: rgba({core.color.solid.emerald.700},{core.opacity.1100})
-  static final coreColorOpacityEmerald800 = coreColorSolidEmerald700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityEmerald800 = coreColorSolidEmerald700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityTiffany75 with value: rgba({core.color.solid.tiffany.700},{core.opacity.75})
-  static final coreColorOpacityTiffany75 = coreColorSolidTiffany700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityTiffany75 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityTiffany100 with value: rgba({core.color.solid.tiffany.700},{core.opacity.100})
-  static final coreColorOpacityTiffany100 = coreColorSolidTiffany700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityTiffany100 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityTiffany200 with value: rgba({core.color.solid.tiffany.700},{core.opacity.200})
-  static final coreColorOpacityTiffany200 = coreColorSolidTiffany700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityTiffany200 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityTiffany300 with value: rgba({core.color.solid.tiffany.700},{core.opacity.300})
-  static final coreColorOpacityTiffany300 = coreColorSolidTiffany700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityTiffany300 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityTiffany400 with value: rgba({core.color.solid.tiffany.700},{core.opacity.600})
-  static final coreColorOpacityTiffany400 = coreColorSolidTiffany700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityTiffany400 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityTiffany500 with value: rgba({core.color.solid.tiffany.700},{core.opacity.700})
-  static final coreColorOpacityTiffany500 = coreColorSolidTiffany700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityTiffany500 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityTiffany600 with value: rgba({core.color.solid.tiffany.700},{core.opacity.900})
-  static final coreColorOpacityTiffany600 = coreColorSolidTiffany700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityTiffany600 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityTiffany700 with value: rgba({core.color.solid.tiffany.700},{core.opacity.1000})
-  static final coreColorOpacityTiffany700 = coreColorSolidTiffany700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityTiffany700 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityTiffany800 with value: rgba({core.color.solid.tiffany.700},{core.opacity.1100})
-  static final coreColorOpacityTiffany800 = coreColorSolidTiffany700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityTiffany800 = coreColorSolidTiffany700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityTeal75 with value: rgba({core.color.solid.teal.700},{core.opacity.75})
-  static final coreColorOpacityTeal75 = coreColorSolidTeal700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityTeal75 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityTeal100 with value: rgba({core.color.solid.teal.700},{core.opacity.100})
-  static final coreColorOpacityTeal100 = coreColorSolidTeal700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityTeal100 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityTeal200 with value: rgba({core.color.solid.teal.700},{core.opacity.200})
-  static final coreColorOpacityTeal200 = coreColorSolidTeal700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityTeal200 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityTeal300 with value: rgba({core.color.solid.teal.700},{core.opacity.300})
-  static final coreColorOpacityTeal300 = coreColorSolidTeal700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityTeal300 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityTeal400 with value: rgba({core.color.solid.teal.700},{core.opacity.600})
-  static final coreColorOpacityTeal400 = coreColorSolidTeal700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityTeal400 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityTeal500 with value: rgba({core.color.solid.teal.700},{core.opacity.700})
-  static final coreColorOpacityTeal500 = coreColorSolidTeal700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityTeal500 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityTeal600 with value: rgba({core.color.solid.teal.700},{core.opacity.900})
-  static final coreColorOpacityTeal600 = coreColorSolidTeal700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityTeal600 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityTeal700 with value: rgba({core.color.solid.teal.700},{core.opacity.1000})
-  static final coreColorOpacityTeal700 = coreColorSolidTeal700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityTeal700 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityTeal800 with value: rgba({core.color.solid.teal.700},{core.opacity.1100})
-  static final coreColorOpacityTeal800 = coreColorSolidTeal700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityTeal800 = coreColorSolidTeal700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacitySeawater75 with value: rgba({core.color.solid.seawater.700},{core.opacity.75})
-  static final coreColorOpacitySeawater75 = coreColorSolidSeawater700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacitySeawater75 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity75);
 
   /// coreColorOpacitySeawater100 with value: rgba({core.color.solid.seawater.700},{core.opacity.100})
-  static final coreColorOpacitySeawater100 = coreColorSolidSeawater700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacitySeawater100 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity100);
 
   /// coreColorOpacitySeawater200 with value: rgba({core.color.solid.seawater.700},{core.opacity.200})
-  static final coreColorOpacitySeawater200 = coreColorSolidSeawater700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacitySeawater200 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity200);
 
   /// coreColorOpacitySeawater300 with value: rgba({core.color.solid.seawater.700},{core.opacity.300})
-  static final coreColorOpacitySeawater300 = coreColorSolidSeawater700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacitySeawater300 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity300);
 
   /// coreColorOpacitySeawater400 with value: rgba({core.color.solid.seawater.700},{core.opacity.600})
-  static final coreColorOpacitySeawater400 = coreColorSolidSeawater700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacitySeawater400 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity600);
 
   /// coreColorOpacitySeawater500 with value: rgba({core.color.solid.seawater.700},{core.opacity.700})
-  static final coreColorOpacitySeawater500 = coreColorSolidSeawater700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacitySeawater500 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity700);
 
   /// coreColorOpacitySeawater600 with value: rgba({core.color.solid.seawater.700},{core.opacity.900})
-  static final coreColorOpacitySeawater600 = coreColorSolidSeawater700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacitySeawater600 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity900);
 
   /// coreColorOpacitySeawater700 with value: rgba({core.color.solid.seawater.700},{core.opacity.1000})
-  static final coreColorOpacitySeawater700 = coreColorSolidSeawater700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacitySeawater700 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity1000);
 
   /// coreColorOpacitySeawater800 with value: rgba({core.color.solid.seawater.700},{core.opacity.1100})
-  static final coreColorOpacitySeawater800 = coreColorSolidSeawater700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacitySeawater800 = coreColorSolidSeawater700
+      .withValues(alpha: coreOpacity1100);
 
   /// coreColorOpacityGlacier75 with value: rgba({core.color.solid.glacier.700},{core.opacity.75})
-  static final coreColorOpacityGlacier75 = coreColorSolidGlacier700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityGlacier75 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityGlacier100 with value: rgba({core.color.solid.glacier.700},{core.opacity.100})
-  static final coreColorOpacityGlacier100 = coreColorSolidGlacier700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityGlacier100 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityGlacier200 with value: rgba({core.color.solid.glacier.700},{core.opacity.200})
-  static final coreColorOpacityGlacier200 = coreColorSolidGlacier700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityGlacier200 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityGlacier300 with value: rgba({core.color.solid.glacier.700},{core.opacity.300})
-  static final coreColorOpacityGlacier300 = coreColorSolidGlacier700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityGlacier300 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityGlacier400 with value: rgba({core.color.solid.glacier.700},{core.opacity.600})
-  static final coreColorOpacityGlacier400 = coreColorSolidGlacier700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityGlacier400 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityGlacier500 with value: rgba({core.color.solid.glacier.700},{core.opacity.700})
-  static final coreColorOpacityGlacier500 = coreColorSolidGlacier700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityGlacier500 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityGlacier600 with value: rgba({core.color.solid.glacier.700},{core.opacity.900})
-  static final coreColorOpacityGlacier600 = coreColorSolidGlacier700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityGlacier600 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityGlacier700 with value: rgba({core.color.solid.glacier.700},{core.opacity.1000})
-  static final coreColorOpacityGlacier700 = coreColorSolidGlacier700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityGlacier700 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityGlacier800 with value: rgba({core.color.solid.glacier.700},{core.opacity.1100})
-  static final coreColorOpacityGlacier800 = coreColorSolidGlacier700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityGlacier800 = coreColorSolidGlacier700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityBlue75 with value: rgba({core.color.solid.blue.700},{core.opacity.75})
-  static final coreColorOpacityBlue75 = coreColorSolidBlue700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityBlue75 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityBlue100 with value: rgba({core.color.solid.blue.700},{core.opacity.100})
-  static final coreColorOpacityBlue100 = coreColorSolidBlue700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityBlue100 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityBlue200 with value: rgba({core.color.solid.blue.700},{core.opacity.200})
-  static final coreColorOpacityBlue200 = coreColorSolidBlue700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityBlue200 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityBlue300 with value: rgba({core.color.solid.blue.700},{core.opacity.300})
-  static final coreColorOpacityBlue300 = coreColorSolidBlue700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityBlue300 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityBlue400 with value: rgba({core.color.solid.blue.700},{core.opacity.600})
-  static final coreColorOpacityBlue400 = coreColorSolidBlue700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityBlue400 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityBlue500 with value: rgba({core.color.solid.blue.700},{core.opacity.700})
-  static final coreColorOpacityBlue500 = coreColorSolidBlue700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityBlue500 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityBlue600 with value: rgba({core.color.solid.blue.700},{core.opacity.900})
-  static final coreColorOpacityBlue600 = coreColorSolidBlue700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityBlue600 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityBlue700 with value: rgba({core.color.solid.blue.700},{core.opacity.1000})
-  static final coreColorOpacityBlue700 = coreColorSolidBlue700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityBlue700 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityBlue800 with value: rgba({core.color.solid.blue.700},{core.opacity.1100})
-  static final coreColorOpacityBlue800 = coreColorSolidBlue700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityBlue800 = coreColorSolidBlue700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityMidnight75 with value: rgba({core.color.solid.midnight.700},{core.opacity.75})
-  static final coreColorOpacityMidnight75 = coreColorSolidMidnight700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityMidnight75 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity75);
 
   /// coreColorOpacityMidnight100 with value: rgba({core.color.solid.midnight.700},{core.opacity.100})
-  static final coreColorOpacityMidnight100 = coreColorSolidMidnight700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityMidnight100 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity100);
 
   /// coreColorOpacityMidnight200 with value: rgba({core.color.solid.midnight.700},{core.opacity.200})
-  static final coreColorOpacityMidnight200 = coreColorSolidMidnight700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityMidnight200 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity200);
 
   /// coreColorOpacityMidnight300 with value: rgba({core.color.solid.midnight.700},{core.opacity.300})
-  static final coreColorOpacityMidnight300 = coreColorSolidMidnight700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityMidnight300 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity300);
 
   /// coreColorOpacityMidnight400 with value: rgba({core.color.solid.midnight.700},{core.opacity.600})
-  static final coreColorOpacityMidnight400 = coreColorSolidMidnight700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityMidnight400 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity600);
 
   /// coreColorOpacityMidnight500 with value: rgba({core.color.solid.midnight.700},{core.opacity.700})
-  static final coreColorOpacityMidnight500 = coreColorSolidMidnight700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityMidnight500 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity700);
 
   /// coreColorOpacityMidnight600 with value: rgba({core.color.solid.midnight.700},{core.opacity.900})
-  static final coreColorOpacityMidnight600 = coreColorSolidMidnight700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityMidnight600 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity900);
 
   /// coreColorOpacityMidnight700 with value: rgba({core.color.solid.midnight.700},{core.opacity.1000})
-  static final coreColorOpacityMidnight700 = coreColorSolidMidnight700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityMidnight700 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity1000);
 
   /// coreColorOpacityMidnight800 with value: rgba({core.color.solid.midnight.700},{core.opacity.1100})
-  static final coreColorOpacityMidnight800 = coreColorSolidMidnight700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityMidnight800 = coreColorSolidMidnight700
+      .withValues(alpha: coreOpacity1100);
 
   /// coreColorOpacitySapphire75 with value: rgba({core.color.solid.sapphire.700},{core.opacity.75})
-  static final coreColorOpacitySapphire75 = coreColorSolidSapphire700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacitySapphire75 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity75);
 
   /// coreColorOpacitySapphire100 with value: rgba({core.color.solid.sapphire.700},{core.opacity.100})
-  static final coreColorOpacitySapphire100 = coreColorSolidSapphire700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacitySapphire100 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity100);
 
   /// coreColorOpacitySapphire200 with value: rgba({core.color.solid.sapphire.700},{core.opacity.200})
-  static final coreColorOpacitySapphire200 = coreColorSolidSapphire700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacitySapphire200 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity200);
 
   /// coreColorOpacitySapphire300 with value: rgba({core.color.solid.sapphire.700},{core.opacity.300})
-  static final coreColorOpacitySapphire300 = coreColorSolidSapphire700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacitySapphire300 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity300);
 
   /// coreColorOpacitySapphire400 with value: rgba({core.color.solid.sapphire.700},{core.opacity.600})
-  static final coreColorOpacitySapphire400 = coreColorSolidSapphire700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacitySapphire400 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity600);
 
   /// coreColorOpacitySapphire500 with value: rgba({core.color.solid.sapphire.700},{core.opacity.700})
-  static final coreColorOpacitySapphire500 = coreColorSolidSapphire700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacitySapphire500 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity700);
 
   /// coreColorOpacitySapphire600 with value: rgba({core.color.solid.sapphire.700},{core.opacity.900})
-  static final coreColorOpacitySapphire600 = coreColorSolidSapphire700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacitySapphire600 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity900);
 
   /// coreColorOpacitySapphire700 with value: rgba({core.color.solid.sapphire.700},{core.opacity.1000})
-  static final coreColorOpacitySapphire700 = coreColorSolidSapphire700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacitySapphire700 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity1000);
 
   /// coreColorOpacitySapphire800 with value: rgba({core.color.solid.sapphire.700},{core.opacity.1100})
-  static final coreColorOpacitySapphire800 = coreColorSolidSapphire700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacitySapphire800 = coreColorSolidSapphire700
+      .withValues(alpha: coreOpacity1100);
 
   /// coreColorOpacityBlueberry75 with value: rgba({core.color.solid.blueberry.700},{core.opacity.75})
-  static final coreColorOpacityBlueberry75 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityBlueberry75 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity75);
 
   /// coreColorOpacityBlueberry100 with value: rgba({core.color.solid.blueberry.700},{core.opacity.100})
-  static final coreColorOpacityBlueberry100 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityBlueberry100 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity100);
 
   /// coreColorOpacityBlueberry200 with value: rgba({core.color.solid.blueberry.700},{core.opacity.200})
-  static final coreColorOpacityBlueberry200 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityBlueberry200 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity200);
 
   /// coreColorOpacityBlueberry300 with value: rgba({core.color.solid.blueberry.700},{core.opacity.300})
-  static final coreColorOpacityBlueberry300 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityBlueberry300 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity300);
 
   /// coreColorOpacityBlueberry400 with value: rgba({core.color.solid.blueberry.700},{core.opacity.600})
-  static final coreColorOpacityBlueberry400 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityBlueberry400 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity600);
 
   /// coreColorOpacityBlueberry500 with value: rgba({core.color.solid.blueberry.700},{core.opacity.700})
-  static final coreColorOpacityBlueberry500 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityBlueberry500 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity700);
 
   /// coreColorOpacityBlueberry600 with value: rgba({core.color.solid.blueberry.700},{core.opacity.900})
-  static final coreColorOpacityBlueberry600 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityBlueberry600 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity900);
 
   /// coreColorOpacityBlueberry700 with value: rgba({core.color.solid.blueberry.700},{core.opacity.1000})
-  static final coreColorOpacityBlueberry700 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityBlueberry700 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity1000);
 
   /// coreColorOpacityBlueberry800 with value: rgba({core.color.solid.blueberry.700},{core.opacity.1100})
-  static final coreColorOpacityBlueberry800 = coreColorSolidBlueberry700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityBlueberry800 = coreColorSolidBlueberry700
+      .withValues(alpha: coreOpacity1100);
 
   /// coreColorOpacityGrape75 with value: rgba({core.color.solid.grape.700},{core.opacity.75})
-  static final coreColorOpacityGrape75 = coreColorSolidGrape700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityGrape75 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityGrape100 with value: rgba({core.color.solid.grape.700},{core.opacity.100})
-  static final coreColorOpacityGrape100 = coreColorSolidGrape700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityGrape100 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityGrape200 with value: rgba({core.color.solid.grape.700},{core.opacity.200})
-  static final coreColorOpacityGrape200 = coreColorSolidGrape700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityGrape200 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityGrape300 with value: rgba({core.color.solid.grape.700},{core.opacity.300})
-  static final coreColorOpacityGrape300 = coreColorSolidGrape700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityGrape300 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityGrape400 with value: rgba({core.color.solid.grape.700},{core.opacity.600})
-  static final coreColorOpacityGrape400 = coreColorSolidGrape700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityGrape400 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityGrape500 with value: rgba({core.color.solid.grape.700},{core.opacity.700})
-  static final coreColorOpacityGrape500 = coreColorSolidGrape700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityGrape500 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityGrape600 with value: rgba({core.color.solid.grape.700},{core.opacity.900})
-  static final coreColorOpacityGrape600 = coreColorSolidGrape700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityGrape600 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityGrape700 with value: rgba({core.color.solid.grape.700},{core.opacity.1000})
-  static final coreColorOpacityGrape700 = coreColorSolidGrape700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityGrape700 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityGrape800 with value: rgba({core.color.solid.grape.700},{core.opacity.1100})
-  static final coreColorOpacityGrape800 = coreColorSolidGrape700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityGrape800 = coreColorSolidGrape700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityMagenta75 with value: rgba({core.color.solid.magenta.700},{core.opacity.75})
-  static final coreColorOpacityMagenta75 = coreColorSolidMagenta700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityMagenta75 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityMagenta100 with value: rgba({core.color.solid.magenta.700},{core.opacity.100})
-  static final coreColorOpacityMagenta100 = coreColorSolidMagenta700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityMagenta100 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityMagenta200 with value: rgba({core.color.solid.magenta.700},{core.opacity.200})
-  static final coreColorOpacityMagenta200 = coreColorSolidMagenta700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityMagenta200 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityMagenta300 with value: rgba({core.color.solid.magenta.700},{core.opacity.300})
-  static final coreColorOpacityMagenta300 = coreColorSolidMagenta700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityMagenta300 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityMagenta400 with value: rgba({core.color.solid.magenta.700},{core.opacity.600})
-  static final coreColorOpacityMagenta400 = coreColorSolidMagenta700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityMagenta400 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityMagenta500 with value: rgba({core.color.solid.magenta.700},{core.opacity.700})
-  static final coreColorOpacityMagenta500 = coreColorSolidMagenta700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityMagenta500 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityMagenta600 with value: rgba({core.color.solid.magenta.700},{core.opacity.900})
-  static final coreColorOpacityMagenta600 = coreColorSolidMagenta700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityMagenta600 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityMagenta700 with value: rgba({core.color.solid.magenta.700},{core.opacity.1000})
-  static final coreColorOpacityMagenta700 = coreColorSolidMagenta700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityMagenta700 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityMagenta800 with value: rgba({core.color.solid.magenta.700},{core.opacity.1100})
-  static final coreColorOpacityMagenta800 = coreColorSolidMagenta700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityMagenta800 = coreColorSolidMagenta700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityCherry75 with value: rgba({core.color.solid.cherry.700},{core.opacity.75})
-  static final coreColorOpacityCherry75 = coreColorSolidCherry700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityCherry75 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityCherry100 with value: rgba({core.color.solid.cherry.700},{core.opacity.100})
-  static final coreColorOpacityCherry100 = coreColorSolidCherry700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityCherry100 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityCherry200 with value: rgba({core.color.solid.cherry.700},{core.opacity.200})
-  static final coreColorOpacityCherry200 = coreColorSolidCherry700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityCherry200 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityCherry300 with value: rgba({core.color.solid.cherry.700},{core.opacity.300})
-  static final coreColorOpacityCherry300 = coreColorSolidCherry700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityCherry300 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityCherry400 with value: rgba({core.color.solid.cherry.700},{core.opacity.600})
-  static final coreColorOpacityCherry400 = coreColorSolidCherry700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityCherry400 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityCherry500 with value: rgba({core.color.solid.cherry.700},{core.opacity.700})
-  static final coreColorOpacityCherry500 = coreColorSolidCherry700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityCherry500 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityCherry600 with value: rgba({core.color.solid.cherry.700},{core.opacity.900})
-  static final coreColorOpacityCherry600 = coreColorSolidCherry700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityCherry600 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityCherry700 with value: rgba({core.color.solid.cherry.700},{core.opacity.1000})
-  static final coreColorOpacityCherry700 = coreColorSolidCherry700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityCherry700 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityCherry800 with value: rgba({core.color.solid.cherry.700},{core.opacity.1100})
-  static final coreColorOpacityCherry800 = coreColorSolidCherry700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityCherry800 = coreColorSolidCherry700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityCoral75 with value: rgba({core.color.solid.coral.700}, {core.opacity.75})
-  static final coreColorOpacityCoral75 = coreColorSolidCoral700.withValues(alpha: coreOpacity75);
+  static final coreColorOpacityCoral75 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacityCoral100 with value: rgba({core.color.solid.coral.700}, {core.opacity.100})
-  static final coreColorOpacityCoral100 = coreColorSolidCoral700.withValues(alpha: coreOpacity100);
+  static final coreColorOpacityCoral100 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacityCoral200 with value: rgba({core.color.solid.coral.700}, {core.opacity.200})
-  static final coreColorOpacityCoral200 = coreColorSolidCoral700.withValues(alpha: coreOpacity200);
+  static final coreColorOpacityCoral200 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacityCoral300 with value: rgba({core.color.solid.coral.700}, {core.opacity.300})
-  static final coreColorOpacityCoral300 = coreColorSolidCoral700.withValues(alpha: coreOpacity300);
+  static final coreColorOpacityCoral300 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacityCoral400 with value: rgba({core.color.solid.coral.700}, {core.opacity.600})
-  static final coreColorOpacityCoral400 = coreColorSolidCoral700.withValues(alpha: coreOpacity600);
+  static final coreColorOpacityCoral400 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacityCoral500 with value: rgba({core.color.solid.coral.700}, {core.opacity.700})
-  static final coreColorOpacityCoral500 = coreColorSolidCoral700.withValues(alpha: coreOpacity700);
+  static final coreColorOpacityCoral500 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacityCoral600 with value: rgba({core.color.solid.coral.700}, {core.opacity.900})
-  static final coreColorOpacityCoral600 = coreColorSolidCoral700.withValues(alpha: coreOpacity900);
+  static final coreColorOpacityCoral600 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacityCoral700 with value: rgba({core.color.solid.coral.700}, {core.opacity.1000})
-  static final coreColorOpacityCoral700 = coreColorSolidCoral700.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacityCoral700 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacityCoral800 with value: rgba({core.color.solid.coral.700}, {core.opacity.1100})
-  static final coreColorOpacityCoral800 = coreColorSolidCoral700.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacityCoral800 = coreColorSolidCoral700.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacitySlate75 with value: rgba({core.color.solid.slate.1200},{core.opacity.75})
-  static final coreColorOpacitySlate75 = coreColorSolidSlate1200.withValues(alpha: coreOpacity75);
+  static final coreColorOpacitySlate75 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity75,
+  );
 
   /// coreColorOpacitySlate100 with value: rgba({core.color.solid.slate.1200},{core.opacity.100})
-  static final coreColorOpacitySlate100 = coreColorSolidSlate1200.withValues(alpha: coreOpacity100);
+  static final coreColorOpacitySlate100 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity100,
+  );
 
   /// coreColorOpacitySlate200 with value: rgba({core.color.solid.slate.1200},{core.opacity.200})
-  static final coreColorOpacitySlate200 = coreColorSolidSlate1200.withValues(alpha: coreOpacity200);
+  static final coreColorOpacitySlate200 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity200,
+  );
 
   /// coreColorOpacitySlate300 with value: rgba({core.color.solid.slate.1200},{core.opacity.300})
-  static final coreColorOpacitySlate300 = coreColorSolidSlate1200.withValues(alpha: coreOpacity300);
+  static final coreColorOpacitySlate300 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity300,
+  );
 
   /// coreColorOpacitySlate400 with value: rgba({core.color.solid.slate.1200},{core.opacity.600})
-  static final coreColorOpacitySlate400 = coreColorSolidSlate1200.withValues(alpha: coreOpacity600);
+  static final coreColorOpacitySlate400 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity600,
+  );
 
   /// coreColorOpacitySlate500 with value: rgba({core.color.solid.slate.1200},{core.opacity.700})
-  static final coreColorOpacitySlate500 = coreColorSolidSlate1200.withValues(alpha: coreOpacity700);
+  static final coreColorOpacitySlate500 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity700,
+  );
 
   /// coreColorOpacitySlate600 with value: rgba({core.color.solid.slate.1200},{core.opacity.900})
-  static final coreColorOpacitySlate600 = coreColorSolidSlate1200.withValues(alpha: coreOpacity900);
+  static final coreColorOpacitySlate600 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity900,
+  );
 
   /// coreColorOpacitySlate700 with value: rgba({core.color.solid.slate.1200},{core.opacity.1000})
-  static final coreColorOpacitySlate700 = coreColorSolidSlate1200.withValues(alpha: coreOpacity1000);
+  static final coreColorOpacitySlate700 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity1000,
+  );
 
   /// coreColorOpacitySlate800 with value: rgba({core.color.solid.slate.1200},{core.opacity.1100})
-  static final coreColorOpacitySlate800 = coreColorSolidSlate1200.withValues(alpha: coreOpacity1100);
+  static final coreColorOpacitySlate800 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity1100,
+  );
 
   /// coreColorOpacityOverflow100 with value: rgba( {core.color.solid.slate.50},{core.opacity.50})
-  static final coreColorOpacityOverflow100 = coreColorSolidSlate50.withValues(alpha: coreOpacity50);
+  static final coreColorOpacityOverflow100 = coreColorSolidSlate50.withValues(
+    alpha: coreOpacity50,
+  );
 
   /// coreColorOpacityOverflow200 with value: rgba( {core.color.solid.slate.75},{core.opacity.50})
-  static final coreColorOpacityOverflow200 = coreColorSolidSlate75.withValues(alpha: coreOpacity50);
+  static final coreColorOpacityOverflow200 = coreColorSolidSlate75.withValues(
+    alpha: coreOpacity50,
+  );
 
   /// coreColorOpacityOverflow300 with value: rgba( {core.color.solid.slate.1200} ,{core.opacity.50})
-  static final coreColorOpacityOverflow300 = coreColorSolidSlate1200.withValues(alpha: coreOpacity50);
+  static final coreColorOpacityOverflow300 = coreColorSolidSlate1200.withValues(
+    alpha: coreOpacity50,
+  );
 
   /// coreColorOpacityOverflow400 with value: rgba( {core.color.solid.slate.1300} ,{core.opacity.50})
-  static final coreColorOpacityOverflow400 = coreColorSolidSlate1300.withValues(alpha: coreOpacity50);
+  static final coreColorOpacityOverflow400 = coreColorSolidSlate1300.withValues(
+    alpha: coreOpacity50,
+  );
 
   /// coreColorGradientSlate110 with value: linear-gradient(1.93deg, {core.color.opacity.overflow.100} 1.56%, {core.color.solid.slate.50} 49.91%)
   static final coreColorGradientSlate110 = LinearGradient(
@@ -1690,377 +2057,433 @@ class CoreDesignTokens {
   /// coreElevationShadow110 with value: [{x: 0, y: -1, blur: 2, spread: 0, color: rgba(0, 0, 0, 6%), type: dropShadow}, {x: 0, y: -1, blur: 2, spread: 0, color: rgba(0, 0, 0, 3%), type: dropShadow}]
   static final coreElevationShadow110 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.06),
-        offset: Offset(0, -1),
-        blurRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+      offset: Offset(0, -1),
+      blurRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(0, -1),
-        blurRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(0, -1),
+      blurRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow120 with value: [{x: 1, y: 0, blur: 2, spread: 0, color: rgba(0, 0, 0, 6%), type: dropShadow}, {x: 1, y: 0, blur: 2, spread: 0, color: rgba(0, 0, 0, 3%), type: dropShadow}]
   static final coreElevationShadow120 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.06),
-        offset: Offset(1, 0),
-        blurRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+      offset: Offset(1, 0),
+      blurRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(1, 0),
-        blurRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(1, 0),
+      blurRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow130 with value: [{x: 0, y: 1, blur: 2, spread: 0, color: rgba(0, 0, 0, 6%), type: dropShadow}, {x: 0, y: 1, blur: 2, spread: 0, color: rgba(0, 0, 0, 3%), type: dropShadow}]
   static final coreElevationShadow130 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.06),
-        offset: Offset(0, 1),
-        blurRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+      offset: Offset(0, 1),
+      blurRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(0, 1),
-        blurRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(0, 1),
+      blurRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow140 with value: [{x: -1, y: 0, blur: 2, spread: 0, color: rgba(0, 0, 0, 6%), type: dropShadow}, {x: -1, y: 0, blur: 2, spread: 0, color: rgba(0, 0, 0, 3%), type: dropShadow}]
   static final coreElevationShadow140 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.06),
-        offset: Offset(-1, 0),
-        blurRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+      offset: Offset(-1, 0),
+      blurRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(-1, 0),
-        blurRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(-1, 0),
+      blurRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow210 with value: [{x: 0, y: -1, blur: 4, spread: 0, color: rgba(0, 0, 0, 8%), type: dropShadow}, {x: 0, y: -1, blur: 4, spread: 0, color: rgba(0, 0, 0, 4%), type: dropShadow}]
   static final coreElevationShadow210 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.08),
-        offset: Offset(0, -1),
-        blurRadius: 4),
+      color: Color.fromRGBO(0, 0, 0, 0.08),
+      offset: Offset(0, -1),
+      blurRadius: 4,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(0, -1),
-        blurRadius: 4)
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(0, -1),
+      blurRadius: 4,
+    ),
   ];
 
   /// coreElevationShadow220 with value: [{x: 1, y: 0, blur: 4, spread: 0, color: rgba(0, 0, 0, 8%), type: dropShadow}, {x: 1, y: 0, blur: 4, spread: 0, color: rgba(0, 0, 0, 4%), type: dropShadow}]
   static final coreElevationShadow220 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.08),
-        offset: Offset(1, 0),
-        blurRadius: 4),
+      color: Color.fromRGBO(0, 0, 0, 0.08),
+      offset: Offset(1, 0),
+      blurRadius: 4,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(1, 0),
-        blurRadius: 4)
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(1, 0),
+      blurRadius: 4,
+    ),
   ];
 
   /// coreElevationShadow230 with value: [{x: 0, y: 1, blur: 4, spread: 0, color: rgba(0, 0, 0, 8%), type: dropShadow}, {x: 0, y: 1, blur: 4, spread: 0, color: rgba(0, 0, 0, 4%), type: dropShadow}]
   static final coreElevationShadow230 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.08),
-        offset: Offset(0, 1),
-        blurRadius: 4),
+      color: Color.fromRGBO(0, 0, 0, 0.08),
+      offset: Offset(0, 1),
+      blurRadius: 4,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(0, 1),
-        blurRadius: 4)
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(0, 1),
+      blurRadius: 4,
+    ),
   ];
 
   /// coreElevationShadow240 with value: [{x: -1, y: 0, blur: 4, spread: 0, color: rgba(0, 0, 0, 8%), type: dropShadow}, {x: -1, y: 0, blur: 4, spread: 0, color: rgba(0, 0, 0, 4%), type: dropShadow}]
   static final coreElevationShadow240 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.08),
-        offset: Offset(-1, 0),
-        blurRadius: 4),
+      color: Color.fromRGBO(0, 0, 0, 0.08),
+      offset: Offset(-1, 0),
+      blurRadius: 4,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(-1, 0),
-        blurRadius: 4)
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(-1, 0),
+      blurRadius: 4,
+    ),
   ];
 
   /// coreElevationShadow310 with value: [{x: 0, y: -4, blur: 8, spread: 2, color: rgba(0, 0, 0, 3%), type: dropShadow}, {x: 0, y: -4, blur: 8, spread: 2, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow310 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(0, -4),
-        blurRadius: 8,
-        spreadRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(0, -4),
+      blurRadius: 8,
+      spreadRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(0, -4),
-        blurRadius: 8,
-        spreadRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(0, -4),
+      blurRadius: 8,
+      spreadRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow320 with value: [{x: 4, y: 0, blur: 8, spread: 2, color: rgba(0, 0, 0, 3%), type: dropShadow}, {x: 4, y: 0, blur: 8, spread: 2, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow320 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(4, 0),
-        blurRadius: 8,
-        spreadRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(4, 0),
+      blurRadius: 8,
+      spreadRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(4, 0),
-        blurRadius: 8,
-        spreadRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(4, 0),
+      blurRadius: 8,
+      spreadRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow330 with value: [{x: 0, y: 4, blur: 8, spread: 2, color: rgba(0, 0, 0, 3%), type: dropShadow}, {x: 0, y: 4, blur: 8, spread: 2, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow330 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(0, 4),
-        blurRadius: 8,
-        spreadRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(0, 4),
+      blurRadius: 8,
+      spreadRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(0, 4),
-        blurRadius: 8,
-        spreadRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(0, 4),
+      blurRadius: 8,
+      spreadRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow340 with value: [{x: -4, y: 0, blur: 8, spread: 2, color: rgba(0, 0, 0, 3%), type: dropShadow}, {x: -4, y: 0, blur: 8, spread: 2, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow340 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(-4, 0),
-        blurRadius: 8,
-        spreadRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(-4, 0),
+      blurRadius: 8,
+      spreadRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(-4, 0),
-        blurRadius: 8,
-        spreadRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(-4, 0),
+      blurRadius: 8,
+      spreadRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow410 with value: [{x: 0, y: -8, blur: 16, spread: 2, color: rgba(0, 0, 0, 4%), type: dropShadow}, {x: 0, y: -8, blur: 16, spread: 2, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow410 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(0, -8),
-        blurRadius: 16,
-        spreadRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(0, -8),
+      blurRadius: 16,
+      spreadRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(0, -8),
-        blurRadius: 16,
-        spreadRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(0, -8),
+      blurRadius: 16,
+      spreadRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow420 with value: [{x: 8, y: 0, blur: 16, spread: 2, color: rgba(0, 0, 0, 4%), type: dropShadow}, {x: 8, y: 0, blur: 16, spread: 2, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow420 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(8, 0),
-        blurRadius: 16,
-        spreadRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(8, 0),
+      blurRadius: 16,
+      spreadRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(8, 0),
-        blurRadius: 16,
-        spreadRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(8, 0),
+      blurRadius: 16,
+      spreadRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow430 with value: [{x: 0, y: 8, blur: 16, spread: 2, color: rgba(0, 0, 0, 4%), type: dropShadow}, {x: 0, y: 8, blur: 16, spread: 2, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow430 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(0, 8),
-        blurRadius: 16,
-        spreadRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(0, 8),
+      blurRadius: 16,
+      spreadRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(0, 8),
-        blurRadius: 16,
-        spreadRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(0, 8),
+      blurRadius: 16,
+      spreadRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow440 with value: [{x: -8, y: 0, blur: 16, spread: 2, color: rgba(0, 0, 0, 4%), type: dropShadow}, {x: -8, y: 0, blur: 16, spread: 2, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow440 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(-8, 0),
-        blurRadius: 16,
-        spreadRadius: 2),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(-8, 0),
+      blurRadius: 16,
+      spreadRadius: 2,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(-8, 0),
-        blurRadius: 16,
-        spreadRadius: 2)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(-8, 0),
+      blurRadius: 16,
+      spreadRadius: 2,
+    ),
   ];
 
   /// coreElevationShadow510 with value: [{x: 0, y: -16, blur: 24, spread: 4, color: rgba(0, 0, 0, 4%), type: dropShadow}, {x: 0, y: -16, blur: 24, spread: 4, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow510 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(0, -16),
-        blurRadius: 24,
-        spreadRadius: 4),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(0, -16),
+      blurRadius: 24,
+      spreadRadius: 4,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(0, -16),
-        blurRadius: 24,
-        spreadRadius: 4)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(0, -16),
+      blurRadius: 24,
+      spreadRadius: 4,
+    ),
   ];
 
   /// coreElevationShadow520 with value: [{x: 16, y: 0, blur: 24, spread: 4, color: rgba(0, 0, 0, 4%), type: dropShadow}, {x: 16, y: 0, blur: 24, spread: 4, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow520 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(16, 0),
-        blurRadius: 24,
-        spreadRadius: 4),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(16, 0),
+      blurRadius: 24,
+      spreadRadius: 4,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(16, 0),
-        blurRadius: 24,
-        spreadRadius: 4)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(16, 0),
+      blurRadius: 24,
+      spreadRadius: 4,
+    ),
   ];
 
   /// coreElevationShadow530 with value: [{x: 0, y: 16, blur: 24, spread: 4, color: rgba(0, 0, 0, 4%), type: dropShadow}, {x: 0, y: 16, blur: 24, spread: 4, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow530 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(0, 16),
-        blurRadius: 24,
-        spreadRadius: 4),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(0, 16),
+      blurRadius: 24,
+      spreadRadius: 4,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(0, 16),
-        blurRadius: 24,
-        spreadRadius: 4)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(0, 16),
+      blurRadius: 24,
+      spreadRadius: 4,
+    ),
   ];
 
   /// coreElevationShadow540 with value: [{x: -16, y: 0, blur: 24, spread: 4, color: rgba(0, 0, 0, 4%), type: dropShadow}, {x: -16, y: 0, blur: 24, spread: 4, color: rgba(0, 0, 0, 2%), type: dropShadow}]
   static final coreElevationShadow540 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(-16, 0),
-        blurRadius: 24,
-        spreadRadius: 4),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(-16, 0),
+      blurRadius: 24,
+      spreadRadius: 4,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.02),
-        offset: Offset(-16, 0),
-        blurRadius: 24,
-        spreadRadius: 4)
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+      offset: Offset(-16, 0),
+      blurRadius: 24,
+      spreadRadius: 4,
+    ),
   ];
 
   /// coreElevationShadow610 with value: [{x: 0, y: -24, blur: 48, spread: 8, color: rgba(0, 0, 0, 6%), type: dropShadow}, {x: 0, y: -24, blur: 48, spread: 8, color: rgba(0, 0, 0, 3%), type: dropShadow}]
   static final coreElevationShadow610 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.06),
-        offset: Offset(0, -24),
-        blurRadius: 48,
-        spreadRadius: 8),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+      offset: Offset(0, -24),
+      blurRadius: 48,
+      spreadRadius: 8,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(0, -24),
-        blurRadius: 48,
-        spreadRadius: 8)
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(0, -24),
+      blurRadius: 48,
+      spreadRadius: 8,
+    ),
   ];
 
   /// coreElevationShadow620 with value: [{x: 24, y: 0, blur: 48, spread: 8, color: rgba(0, 0, 0, 6%), type: dropShadow}, {x: 24, y: 0, blur: 48, spread: 8, color: rgba(0, 0, 0, 3%), type: dropShadow}]
   static final coreElevationShadow620 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.06),
-        offset: Offset(24, 0),
-        blurRadius: 48,
-        spreadRadius: 8),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+      offset: Offset(24, 0),
+      blurRadius: 48,
+      spreadRadius: 8,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(24, 0),
-        blurRadius: 48,
-        spreadRadius: 8)
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(24, 0),
+      blurRadius: 48,
+      spreadRadius: 8,
+    ),
   ];
 
   /// coreElevationShadow630 with value: [{x: 0, y: 24, blur: 48, spread: 8, color: rgba(0, 0, 0, 6%), type: dropShadow}, {x: 0, y: 24, blur: 48, spread: 8, color: rgba(0, 0, 0, 3%), type: dropShadow}]
   static final coreElevationShadow630 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.06),
-        offset: Offset(0, 24),
-        blurRadius: 48,
-        spreadRadius: 8),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+      offset: Offset(0, 24),
+      blurRadius: 48,
+      spreadRadius: 8,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(0, 24),
-        blurRadius: 48,
-        spreadRadius: 8)
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(0, 24),
+      blurRadius: 48,
+      spreadRadius: 8,
+    ),
   ];
 
   /// coreElevationShadow640 with value: [{x: -24, y: 0, blur: 48, spread: 8, color: rgba(0, 0, 0, 6%), type: dropShadow}, {x: -24, y: 0, blur: 48, spread: 8, color: rgba(0, 0, 0, 3%), type: dropShadow}]
   static final coreElevationShadow640 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.06),
-        offset: Offset(-24, 0),
-        blurRadius: 48,
-        spreadRadius: 8),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+      offset: Offset(-24, 0),
+      blurRadius: 48,
+      spreadRadius: 8,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.03),
-        offset: Offset(-24, 0),
-        blurRadius: 48,
-        spreadRadius: 8)
+      color: Color.fromRGBO(0, 0, 0, 0.03),
+      offset: Offset(-24, 0),
+      blurRadius: 48,
+      spreadRadius: 8,
+    ),
   ];
 
   /// coreElevationShadow710 with value: [{x: 0, y: -32, blur: 64, spread: 12, color: rgba(0, 0, 0, 8%), type: dropShadow}, {x: 0, y: -32, blur: 64, spread: 12, color: rgba(0, 0, 0, 4%), type: dropShadow}]
   static final coreElevationShadow710 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.08),
-        offset: Offset(0, -32),
-        blurRadius: 64,
-        spreadRadius: 12),
+      color: Color.fromRGBO(0, 0, 0, 0.08),
+      offset: Offset(0, -32),
+      blurRadius: 64,
+      spreadRadius: 12,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(0, -32),
-        blurRadius: 64,
-        spreadRadius: 12)
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(0, -32),
+      blurRadius: 64,
+      spreadRadius: 12,
+    ),
   ];
 
   /// coreElevationShadow720 with value: [{x: 32, y: 0, blur: 64, spread: 12, color: rgba(0, 0, 0, 8%), type: dropShadow}, {x: 32, y: 0, blur: 64, spread: 12, color: rgba(0, 0, 0, 4%), type: dropShadow}]
   static final coreElevationShadow720 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.08),
-        offset: Offset(32, 0),
-        blurRadius: 64,
-        spreadRadius: 12),
+      color: Color.fromRGBO(0, 0, 0, 0.08),
+      offset: Offset(32, 0),
+      blurRadius: 64,
+      spreadRadius: 12,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(32, 0),
-        blurRadius: 64,
-        spreadRadius: 12)
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(32, 0),
+      blurRadius: 64,
+      spreadRadius: 12,
+    ),
   ];
 
   /// coreElevationShadow730 with value: [{x: 0, y: 32, blur: 64, spread: 12, color: rgba(0, 0, 0, 8%), type: dropShadow}, {x: 0, y: 32, blur: 64, spread: 12, color: rgba(0, 0, 0, 4%), type: dropShadow}]
   static final coreElevationShadow730 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.08),
-        offset: Offset(0, 32),
-        blurRadius: 64,
-        spreadRadius: 12),
+      color: Color.fromRGBO(0, 0, 0, 0.08),
+      offset: Offset(0, 32),
+      blurRadius: 64,
+      spreadRadius: 12,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(0, 32),
-        blurRadius: 64,
-        spreadRadius: 12)
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(0, 32),
+      blurRadius: 64,
+      spreadRadius: 12,
+    ),
   ];
 
   /// coreElevationShadow740 with value: [{x: -32, y: 0, blur: 64, spread: 12, color: rgba(0, 0, 0, 8%), type: dropShadow}, {x: -32, y: 0, blur: 64, spread: 12, color: rgba(0, 0, 0, 4%), type: dropShadow}]
   static final coreElevationShadow740 = [
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.08),
-        offset: Offset(-32, 0),
-        blurRadius: 64,
-        spreadRadius: 12),
+      color: Color.fromRGBO(0, 0, 0, 0.08),
+      offset: Offset(-32, 0),
+      blurRadius: 64,
+      spreadRadius: 12,
+    ),
     const BoxShadow(
-        color: Color.fromRGBO(0, 0, 0, 0.04),
-        offset: Offset(-32, 0),
-        blurRadius: 64,
-        spreadRadius: 12)
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+      offset: Offset(-32, 0),
+      blurRadius: 64,
+      spreadRadius: 12,
+    ),
   ];
 
   /// coreOpacity50 with value: 0%

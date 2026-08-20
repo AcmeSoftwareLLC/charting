@@ -31,17 +31,17 @@ class WilliamsRSeries extends AbstractSingleIndicatorSeries {
     LineStyle? lineStyle,
     String? id,
   }) : super(
-          CloseValueIndicator<Tick>(_indicatorDataInput),
-          id ?? 'WilliamsR',
-          options: _options,
-          style: lineStyle,
-          lastTickIndicatorStyle: lineStyle != null
-              ? getLastIndicatorStyle(
-                  lineStyle.color,
-                  showLastIndicator: _options.showLastIndicator,
-                )
-              : null,
-        );
+         CloseValueIndicator<Tick>(_indicatorDataInput),
+         id ?? 'WilliamsR',
+         options: _options,
+         style: lineStyle,
+         lastTickIndicatorStyle: lineStyle != null
+             ? getLastIndicatorStyle(
+                 lineStyle.color,
+                 showLastIndicator: _options.showLastIndicator,
+               )
+             : null,
+       );
 
   final IndicatorDataInput _indicatorDataInput;
 

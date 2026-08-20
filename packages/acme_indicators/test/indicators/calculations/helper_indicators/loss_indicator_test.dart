@@ -1,7 +1,7 @@
 import 'package:acme_indicators/src/helpers/functions.dart';
 import 'package:acme_indicators/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 import 'package:acme_indicators/src/indicators/calculations/helper_indicators/loss_indicator.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../../mock_models.dart';
 
@@ -23,18 +23,19 @@ void main() {
   });
   group('Loss Indicator test', () {
     test(
-        'Loss Indicator should calculate the correct value from the given closed value indicator ticks.',
-        () {
-      final CloseValueIndicator<MockResult> closeValueIndicator =
-          CloseValueIndicator<MockResult>(MockInput(ticks));
+      'Loss Indicator should calculate the correct value from the given closed value indicator ticks.',
+      () {
+        final CloseValueIndicator<MockResult> closeValueIndicator =
+            CloseValueIndicator<MockResult>(MockInput(ticks));
 
-      final LossIndicator<MockResult> lossIndicator =
-          LossIndicator<MockResult>.fromIndicator(closeValueIndicator);
+        final LossIndicator<MockResult> lossIndicator =
+            LossIndicator<MockResult>.fromIndicator(closeValueIndicator);
 
-      expect(lossIndicator.getValue(0).quote, 0);
-      expect(lossIndicator.getValue(1).quote, 0);
-      expect(lossIndicator.getValue(2).quote, 0);
-      expect(roundDouble(lossIndicator.getValue(3).quote, 3), 0.007);
-    });
+        expect(lossIndicator.getValue(0).quote, 0);
+        expect(lossIndicator.getValue(1).quote, 0);
+        expect(lossIndicator.getValue(2).quote, 0);
+        expect(roundDouble(lossIndicator.getValue(3).quote, 3), 0.007);
+      },
+    );
   });
 }

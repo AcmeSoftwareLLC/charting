@@ -2,7 +2,6 @@
 /// The tokens.json file is generated from Figma tokens and can be found in the design tokens repository.
 library;
 
-
 import 'package:acme_chart/src/theme/design_tokens/core_design_tokens.dart';
 import 'package:acme_chart/src/theme/design_tokens/light_theme_design_tokens.dart';
 import 'package:acme_chart/src/theme/design_tokens/dark_theme_design_tokens.dart';

@@ -33,8 +33,9 @@ class ParabolicSARConfig extends IndicatorConfig {
   static const String name = 'ParabolicSAR';
 
   @override
-  Map<String, dynamic> toJson() => _$ParabolicSARConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$ParabolicSARConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// Min minAccelerationFactor.
   final double minAccelerationFactor;
@@ -47,21 +48,20 @@ class ParabolicSARConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => ParabolicSARSeries(
-        indicatorInput,
-        ParabolicSAROptions(minAccelerationFactor, maxAccelerationFactor),
-        style: scatterStyle,
-      );
+    indicatorInput,
+    ParabolicSAROptions(minAccelerationFactor, maxAccelerationFactor),
+    style: scatterStyle,
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      ParabolicSARIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => ParabolicSARIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   ParabolicSARConfig copyWith({
@@ -72,14 +72,11 @@ class ParabolicSARConfig extends IndicatorConfig {
     int? number,
     bool? showLastIndicator,
     int? pipSize,
-  }) =>
-      ParabolicSARConfig(
-        minAccelerationFactor:
-            minAccelerationFactor ?? this.minAccelerationFactor,
-        maxAccelerationFactor:
-            maxAccelerationFactor ?? this.maxAccelerationFactor,
-        scatterStyle: scatterStyle ?? this.scatterStyle,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => ParabolicSARConfig(
+    minAccelerationFactor: minAccelerationFactor ?? this.minAccelerationFactor,
+    maxAccelerationFactor: maxAccelerationFactor ?? this.maxAccelerationFactor,
+    scatterStyle: scatterStyle ?? this.scatterStyle,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

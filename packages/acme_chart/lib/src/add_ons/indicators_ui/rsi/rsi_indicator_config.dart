@@ -32,10 +32,7 @@ class RSIIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? RSIIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? RSIIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory RSIIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -45,8 +42,9 @@ class RSIIndicatorConfig extends IndicatorConfig {
   static const String name = 'RSI';
 
   @override
-  Map<String, dynamic> toJson() => _$RSIIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$RSIIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period to calculate the average gain and loss.
   final int period;
@@ -69,7 +67,8 @@ class RSIIndicatorConfig extends IndicatorConfig {
 
   /// Indicator config summary
   @override
-  String get configSummary => '$period, ${fieldType[0].toUpperCase()}, '
+  String get configSummary =>
+      '$period, ${fieldType[0].toUpperCase()}, '
       '${showZones ? 'Y' : 'N'}';
 
   @override
@@ -80,26 +79,25 @@ class RSIIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => RSISeries.fromIndicator(
-        IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
-        this,
-        rsiOptions: RSIOptions(
-          period: period,
-          pipSize: pipSize,
-          showLastIndicator: showLastIndicator,
-        ),
-        showZones: showZones,
-      );
+    IndicatorConfig.supportedFieldTypes[fieldType]!(indicatorInput),
+    this,
+    rsiOptions: RSIOptions(
+      period: period,
+      pipSize: pipSize,
+      showLastIndicator: showLastIndicator,
+    ),
+    showZones: showZones,
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      RSIIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => RSIIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   RSIIndicatorConfig copyWith({
@@ -113,18 +111,16 @@ class RSIIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      RSIIndicatorConfig(
-        period: period ?? this.period,
-        fieldType: fieldType ?? this.fieldType,
-        lineStyle: lineStyle ?? this.lineStyle,
-        pinLabels: pinLabels ?? this.pinLabels,
-        oscillatorLinesConfig:
-            oscillatorLinesConfig ?? this.oscillatorLinesConfig,
-        showZones: showZones ?? this.showZones,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => RSIIndicatorConfig(
+    period: period ?? this.period,
+    fieldType: fieldType ?? this.fieldType,
+    lineStyle: lineStyle ?? this.lineStyle,
+    pinLabels: pinLabels ?? this.pinLabels,
+    oscillatorLinesConfig: oscillatorLinesConfig ?? this.oscillatorLinesConfig,
+    showZones: showZones ?? this.showZones,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

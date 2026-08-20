@@ -1,6 +1,6 @@
 import 'package:acme_indicators/acme_indicators.dart';
 import 'package:acme_indicators/src/indicators/calculations/helper_indicators/mean_indicator.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../../mock_models.dart';
 

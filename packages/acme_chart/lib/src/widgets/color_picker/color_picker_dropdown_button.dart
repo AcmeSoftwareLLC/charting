@@ -27,8 +27,9 @@ class ColorPickerDropdownButton extends StatelessWidget {
         final buttonSize = renderBox.size;
 
         // Calculate position at the center of the button
-        final position = renderBox
-            .localToGlobal(Offset(buttonSize.width / 2, buttonSize.height / 2));
+        final position = renderBox.localToGlobal(
+          Offset(buttonSize.width / 2, buttonSize.height / 2),
+        );
 
         // Show the dropdown at this position
         showDropdown<Color>(
@@ -37,25 +38,21 @@ class ColorPickerDropdownButton extends StatelessWidget {
           originWidgetSize: buttonSize,
           initialValue: currentColor,
           onValueSelected: onColorChanged,
-          dropdownBuilder: (
-            Color selectedColor,
-            ValueChanged<Color> onColorSelected,
-          ) =>
-              ColorGridDropdown(
-            selectedColor: selectedColor,
-            onChanged: (Color selectedColor) {
-              onColorSelected(selectedColor);
-            },
-          ),
+          dropdownBuilder:
+              (Color selectedColor, ValueChanged<Color> onColorSelected) =>
+                  ColorGridDropdown(
+                    selectedColor: selectedColor,
+                    onChanged: (Color selectedColor) {
+                      onColorSelected(selectedColor);
+                    },
+                  ),
         );
       },
       style: TextButton.styleFrom(
         foregroundColor: Colors.white38,
         padding: const EdgeInsets.all(0),
         alignment: Alignment.center,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       ),
       child: ColorPickerIcon(color: currentColor),
     );
@@ -65,27 +62,24 @@ class ColorPickerDropdownButton extends StatelessWidget {
 /// A color picker icon widget.
 class ColorPickerIcon extends StatelessWidget {
   /// Creates a color picker icon.
-  const ColorPickerIcon({
-    required this.color,
-    super.key,
-  });
+  const ColorPickerIcon({required this.color, super.key});
 
   /// The color to display.
   final Color color;
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        width: 32,
-        height: 32,
-        child: Center(
-          child: Container(
-            width: 14,
-            height: 14,
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
+    width: 32,
+    height: 32,
+    child: Center(
+      child: Container(
+        width: 14,
+        height: 14,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(2),
         ),
-      );
+      ),
+    ),
+  );
 }

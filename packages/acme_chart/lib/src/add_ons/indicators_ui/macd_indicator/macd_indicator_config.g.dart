@@ -27,16 +27,16 @@ MACDIndicatorConfig _$MACDIndicatorConfigFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$MACDIndicatorConfigToJson(
-        MACDIndicatorConfig instance) =>
-    <String, dynamic>{
-      'number': instance.number,
-      'title': instance.title,
-      'showLastIndicator': instance.showLastIndicator,
-      'pipSize': instance.pipSize,
-      'fastMAPeriod': instance.fastMAPeriod,
-      'slowMAPeriod': instance.slowMAPeriod,
-      'signalPeriod': instance.signalPeriod,
-      'barStyle': instance.barStyle,
-      'lineStyle': instance.lineStyle,
-      'signalLineStyle': instance.signalLineStyle,
-    };
+  MACDIndicatorConfig instance,
+) => <String, dynamic>{
+  'number': instance.number,
+  'title': instance.title,
+  'showLastIndicator': instance.showLastIndicator,
+  'pipSize': instance.pipSize,
+  'fastMAPeriod': instance.fastMAPeriod,
+  'slowMAPeriod': instance.slowMAPeriod,
+  'signalPeriod': instance.signalPeriod,
+  'barStyle': instance.barStyle,
+  'lineStyle': instance.lineStyle,
+  'signalLineStyle': instance.signalLineStyle,
+};

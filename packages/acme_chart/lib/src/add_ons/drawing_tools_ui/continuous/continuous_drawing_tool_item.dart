@@ -14,10 +14,9 @@ class ContinuousDrawingToolItem extends DrawingToolItem {
     required super.updateDrawingTool,
     required super.deleteDrawingTool,
     super.key,
-    ContinuousDrawingToolConfig super.config = const ContinuousDrawingToolConfig(),
-  }) : super(
-          title: 'Continuous',
-        );
+    ContinuousDrawingToolConfig super.config =
+        const ContinuousDrawingToolConfig(),
+  }) : super(title: 'Continuous');
 
   @override
   DrawingToolItemState<DrawingToolConfig> createDrawingToolItemState() =>
@@ -39,29 +38,29 @@ class ContinuousDrawingToolItemState
 
   @override
   Widget getDrawingToolOptions() => Column(
-        children: <Widget>[
-          _buildColorField(),
-          // TODO(maryia-binary): implement _buildPatternField() to set pattern
-        ],
-      );
+    children: <Widget>[
+      _buildColorField(),
+      // TODO(maryia-binary): implement _buildPatternField() to set pattern
+    ],
+  );
 
   Widget _buildColorField() => Row(
-        children: <Widget>[
-          Text(
-            ChartLocalization.of(context).labelColor,
-            style: const TextStyle(fontSize: 16),
-          ),
-          ColorSelector(
-            currentColor: _currentLineStyle.color,
-            onColorChanged: (Color selectedColor) {
-              setState(() {
-                _lineStyle = _currentLineStyle.copyWith(color: selectedColor);
-              });
-              updateDrawingTool();
-            },
-          ),
-        ],
-      );
+    children: <Widget>[
+      Text(
+        ChartLocalization.of(context).labelColor,
+        style: const TextStyle(fontSize: 16),
+      ),
+      ColorSelector(
+        currentColor: _currentLineStyle.color,
+        onColorChanged: (Color selectedColor) {
+          setState(() {
+            _lineStyle = _currentLineStyle.copyWith(color: selectedColor);
+          });
+          updateDrawingTool();
+        },
+      ),
+    ],
+  );
 
   LineStyle get _currentLineStyle =>
       _lineStyle ?? (widget.config as ContinuousDrawingToolConfig).lineStyle;

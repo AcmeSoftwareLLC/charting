@@ -7,9 +7,9 @@ import '../cached_indicator.dart';
 class ZigZagIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   ZigZagIndicator(this.inputs, double distance)
-      : _distancePercent = distance / 100,
-        _firstSwingIndex = _calculateFirstSwing(inputs.entries),
-        super(inputs);
+    : _distancePercent = distance / 100,
+      _firstSwingIndex = _calculateFirstSwing(inputs.entries),
+      super(inputs);
 
   /// Calculating values that changes enough
   final IndicatorDataInput inputs;
@@ -87,7 +87,6 @@ class ZigZagIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
             return createResult(index: index, quote: double.nan);
           }
         }
-
         // if this point and last point has different swings
         else if (isSwingDown(index) && isSwingUp(i)) {
           final double distanceInPercent = previousTick.high * _distancePercent;
@@ -98,7 +97,6 @@ class ZigZagIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
             return createResult(index: index, quote: double.nan);
           }
         }
-
         // if this point and last point has similar swings down
         else if (isSwingDown(index) && isSwingDown(i)) {
           if (i != _firstSwingIndex && thisTick.low < previousTick.low) {
@@ -117,7 +115,6 @@ class ZigZagIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
             return createResult(index: index, quote: double.nan);
           }
         }
-
         // if this point and last point has similar swings up
         else if (isSwingUp(index) && isSwingUp(i)) {
           if (i != _firstSwingIndex && thisTick.high > previousTick.high) {
@@ -136,7 +133,6 @@ class ZigZagIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
             return createResult(index: index, quote: double.nan);
           }
         }
-
         // if none of the conditions was true
         else {
           return createResult(index: index, quote: double.nan);

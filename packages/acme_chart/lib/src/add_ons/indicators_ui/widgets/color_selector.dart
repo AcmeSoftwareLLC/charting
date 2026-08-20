@@ -19,16 +19,16 @@ class ColorSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ColorButton(
-        color: currentColor,
-        onTap: () {
-          showModalBottomSheet<void>(
-            backgroundColor: Colors.transparent,
-            context: context,
-            builder: (BuildContext context) => ColorPickerSheet(
-              selectedColor: currentColor,
-              onChanged: onColorChanged,
-            ),
-          );
-        },
+    color: currentColor,
+    onTap: () {
+      showModalBottomSheet<void>(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (BuildContext context) => ColorPickerSheet(
+          selectedColor: currentColor,
+          onChanged: onColorChanged,
+        ),
       );
+    },
+  );
 }

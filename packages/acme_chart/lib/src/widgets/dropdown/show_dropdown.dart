@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 
 /// A builder function type for creating a drop-down picker widget to get the
 /// value for type [T].
-typedef DropdownBuilder<T> = Widget Function(
-    T selectedValue, ValueChanged<T> onValueSelected);
+typedef DropdownBuilder<T> =
+    Widget Function(T selectedValue, ValueChanged<T> onValueSelected);
 
 /// Shows a dropdown at the specified position.
 ///
@@ -65,15 +65,16 @@ void showDropdown<T>({
                 // Calculate the correct position based on measured dimensions
                 final double newTopPosition = isBottomHalf
                     ? originWidgetPosition.dy -
-                        size.height -
-                        originWidgetHalfHeight -
-                        gapWithOriginWidget
+                          size.height -
+                          originWidgetHalfHeight -
+                          gapWithOriginWidget
                     : originWidgetPosition.dy +
-                        originWidgetHalfHeight +
-                        gapWithOriginWidget;
+                          originWidgetHalfHeight +
+                          gapWithOriginWidget;
 
                 // Keep the original left position based on the origin widget
-                double newLeftPosition = originWidgetPosition.dx -
+                double newLeftPosition =
+                    originWidgetPosition.dx -
                     (originWidgetSize.width / 2); // Center the dropdown
 
                 // Check if the dropdown would go off screen edges
@@ -138,26 +139,25 @@ Widget _buildDropdownContent<T>(
   ValueChanged<T> onValueSelected,
   DropdownBuilder<T> builder,
   OverlayEntry overlayEntry,
-) =>
-    AnimatedOpacity(
-      opacity: hasMeasuredSize ? 1 : 0,
-      duration: const Duration(milliseconds: 240),
-      child: Material(
-        key: dropdownKey,
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.transparent,
-        child: GlassyBlurEffectWidget(
-          child: builder(initialValue, (T selectedValue) {
-            onValueSelected(selectedValue);
-            overlayEntry.remove();
-          }),
-        ),
-      ),
-    );
+) => AnimatedOpacity(
+  opacity: hasMeasuredSize ? 1 : 0,
+  duration: const Duration(milliseconds: 240),
+  child: Material(
+    key: dropdownKey,
+    borderRadius: BorderRadius.circular(8),
+    color: Colors.transparent,
+    child: GlassyBlurEffectWidget(
+      child: builder(initialValue, (T selectedValue) {
+        onValueSelected(selectedValue);
+        overlayEntry.remove();
+      }),
+    ),
+  ),
+);
 
 Widget _buildOutsideArea(OverlayEntry overlayEntry) => Positioned.fill(
-      child: Listener(
-        behavior: HitTestBehavior.translucent,
-        onPointerDown: (_) => overlayEntry.remove(),
-      ),
-    );
+  child: Listener(
+    behavior: HitTestBehavior.translucent,
+    onPointerDown: (_) => overlayEntry.remove(),
+  ),
+);

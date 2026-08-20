@@ -3,11 +3,8 @@ import 'chart_object.dart';
 /// A [ChartObject] for defining position of a horizontal barrier.
 class BarrierObject extends ChartObject {
   /// Initializes a [ChartObject] for defining position of a horizontal barrier.
-  const BarrierObject({
-    int? leftEpoch,
-    int? rightEpoch,
-    this.quote,
-  }) : super(leftEpoch, rightEpoch, quote, quote);
+  const BarrierObject({int? leftEpoch, int? rightEpoch, this.quote})
+    : super(leftEpoch, rightEpoch, quote, quote);
 
   /// Barrier's value.
   final double? quote;
@@ -16,10 +13,8 @@ class BarrierObject extends ChartObject {
 /// Vertical barrier object.
 class VerticalBarrierObject extends BarrierObject {
   /// Initializes a vertical barrier object.
-  const VerticalBarrierObject(
-    this.epoch, {
-    super.quote,
-  }) : super(leftEpoch: epoch, rightEpoch: epoch);
+  const VerticalBarrierObject(this.epoch, {super.quote})
+    : super(leftEpoch: epoch, rightEpoch: epoch);
 
   /// Epoch of the vertical barrier.
   final int epoch;

@@ -42,17 +42,17 @@ class CCISeries extends AbstractSingleIndicatorSeries {
     this.showZones = true,
     this.showLastIndicator = false,
     String? id,
-  })  : _options = options,
-        super(
-          CloseValueIndicator<Tick>(_indicatorInput),
-          id ?? 'CCISeries',
-          options: options,
-          style: cciLineStyle,
-          lastTickIndicatorStyle: getLastIndicatorStyle(
-            cciLineStyle.color,
-            showLastIndicator: showLastIndicator,
-          ),
-        );
+  }) : _options = options,
+       super(
+         CloseValueIndicator<Tick>(_indicatorInput),
+         id ?? 'CCISeries',
+         options: options,
+         style: cciLineStyle,
+         lastTickIndicatorStyle: getLastIndicatorStyle(
+           cciLineStyle.color,
+           showLastIndicator: showLastIndicator,
+         ),
+       );
 
   final IndicatorInput _indicatorInput;
 

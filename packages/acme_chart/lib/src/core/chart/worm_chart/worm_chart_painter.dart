@@ -23,16 +23,16 @@ class WormChartPainter extends CustomPainter {
     required this.minMax,
     this.applyTickIndicatorsPadding = false,
     this.lastTickStyle,
-  })  : _linePaint = Paint()
-          ..color = lineStyle.color
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = lineStyle.thickness,
-        _highestCirclePaint = Paint()
-          ..color = highestTickStyle.color
-          ..style = PaintingStyle.fill,
-        _lowestCirclePaint = Paint()
-          ..color = lowestTickStyle.color
-          ..style = PaintingStyle.fill;
+  }) : _linePaint = Paint()
+         ..color = lineStyle.color
+         ..style = PaintingStyle.stroke
+         ..strokeWidth = lineStyle.thickness,
+       _highestCirclePaint = Paint()
+         ..color = highestTickStyle.color
+         ..style = PaintingStyle.fill,
+       _lowestCirclePaint = Paint()
+         ..color = lowestTickStyle.color
+         ..style = PaintingStyle.fill;
 
   /// Input ticks.
   ///
@@ -191,7 +191,10 @@ class WormChartPainter extends CustomPainter {
       ..shader = ui.Gradient.linear(
         const Offset(0, 0),
         Offset(0, size.height),
-        <Color>[style.color.withValues(alpha: 0.2), style.color.withValues(alpha: 0.001)],
+        <Color>[
+          style.color.withValues(alpha: 0.2),
+          style.color.withValues(alpha: 0.001),
+        ],
       );
 
     canvas.drawPath(linePath, areaPaint);

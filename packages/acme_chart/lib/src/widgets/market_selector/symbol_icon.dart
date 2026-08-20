@@ -77,7 +77,8 @@ class SymbolIcon extends FadeInImage {
   ///   [kDefaultPlaceholderPath]
   /// - [package]: Package name where assets are located. If null, assets are
   ///   expected in the consuming app's assets folder
-  SymbolIcon({super.key, 
+  SymbolIcon({
+    super.key,
     required String symbolCode,
     double width = 32,
     double height = 32,
@@ -86,31 +87,27 @@ class SymbolIcon extends FadeInImage {
     String? placeholderPath,
     String? package,
   }) : super(
-          width: width,
-          height: height,
-          placeholder: AssetImage(
-            placeholderPath ?? kDefaultPlaceholderPath,
-            package: package,
-          ),
-          image: AssetImage(
-            assetPathBuilder?.call(symbolCode) ??
-                getSymbolAssetPath(symbolCode),
-            package: package,
-          ),
-          imageErrorBuilder: (
-            BuildContext context,
-            Object error,
-            StackTrace? stackTrace,
-          ) =>
-              // TODO(NA): Replace with a placeholder which somehow indicates
-              //  loading icon has failed
-              Image.asset(
-            placeholderPath ?? kDefaultPlaceholderPath,
-            package: package,
-            width: width,
-            height: height,
-          ),
-          fadeInDuration: fadeDuration,
-          fadeOutDuration: fadeDuration,
-        );
+         width: width,
+         height: height,
+         placeholder: AssetImage(
+           placeholderPath ?? kDefaultPlaceholderPath,
+           package: package,
+         ),
+         image: AssetImage(
+           assetPathBuilder?.call(symbolCode) ?? getSymbolAssetPath(symbolCode),
+           package: package,
+         ),
+         imageErrorBuilder:
+             (BuildContext context, Object error, StackTrace? stackTrace) =>
+                 // TODO(NA): Replace with a placeholder which somehow indicates
+                 //  loading icon has failed
+                 Image.asset(
+                   placeholderPath ?? kDefaultPlaceholderPath,
+                   package: package,
+                   width: width,
+                   height: height,
+                 ),
+         fadeInDuration: fadeDuration,
+         fadeOutDuration: fadeDuration,
+       );
 }

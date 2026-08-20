@@ -33,13 +33,13 @@ class OscillatorLimit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        children: <Widget>[
-          FieldWidget(
-            initialValue: value.toString(),
-            label: label,
-            onValueChanged: onValueChanged,
-          ),
-          ColorSelector(currentColor: color, onColorChanged: onColorChanged),
-        ],
-      );
+    children: <Widget>[
+      FieldWidget(
+        initialValue: value.toString(),
+        label: label,
+        onValueChanged: onValueChanged,
+      ),
+      ColorSelector(currentColor: color, onColorChanged: onColorChanged),
+    ],
+  );
 }

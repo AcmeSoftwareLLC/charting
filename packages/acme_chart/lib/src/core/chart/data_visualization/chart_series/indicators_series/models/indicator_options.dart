@@ -12,10 +12,7 @@ abstract class IndicatorOptions extends Equatable {
   /// Initializes
   ///
   /// Provides const constructor for sub-classes
-  const IndicatorOptions({
-    this.showLastIndicator = false,
-    this.pipSize = 4,
-  });
+  const IndicatorOptions({this.showLastIndicator = false, this.pipSize = 4});
 
   /// Whether to show last indicator or not.
   final bool showLastIndicator;

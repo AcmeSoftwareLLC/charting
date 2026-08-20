@@ -163,8 +163,9 @@ class _InteractiveLayerState extends State<InteractiveLayer> {
       return;
     }
 
-    final configListIds =
-        widget.drawingToolsRepo.items.map((c) => c.configId).toSet();
+    final configListIds = widget.drawingToolsRepo.items
+        .map((c) => c.configId)
+        .toSet();
 
     for (final config in widget.drawingToolsRepo.items) {
       if (!_interactableDrawings.containsKey(config.configId)) {
@@ -212,8 +213,8 @@ class _InteractiveLayerState extends State<InteractiveLayer> {
       return;
     }
 
-    final Repository<DrawingToolConfig> repo =
-        context.read<Repository<DrawingToolConfig>>();
+    final Repository<DrawingToolConfig> repo = context
+        .read<Repository<DrawingToolConfig>>();
 
     // Find the index of the config in the repository
     final int index = repo.items.indexWhere(
@@ -511,33 +512,34 @@ class _InteractiveLayerGestureHandlerState
               // Configure tap recognizer
               TapGestureRecognizer:
                   GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
-                () => TapGestureRecognizer(),
-                (TapGestureRecognizer instance) {
-                  instance.onTapUp = _handleTapUp;
-                },
-              ),
+                    () => TapGestureRecognizer(),
+                    (TapGestureRecognizer instance) {
+                      instance.onTapUp = _handleTapUp;
+                    },
+                  ),
 
               // Configure our custom drawing tool gesture recognizer
               DrawingToolGestureRecognizer:
                   GestureRecognizerFactoryWithHandlers<
-                          DrawingToolGestureRecognizer>(
-                      () => _drawingToolGestureRecognizer, (
-                DrawingToolGestureRecognizer instance,
-              ) {
-                // Configuration is done in the reset method
-              }),
+                    DrawingToolGestureRecognizer
+                  >(() => _drawingToolGestureRecognizer, (
+                    DrawingToolGestureRecognizer instance,
+                  ) {
+                    // Configuration is done in the reset method
+                  }),
 
               // Configure long press recognizer
-              LongPressGestureRecognizer: GestureRecognizerFactoryWithHandlers<
-                      LongPressGestureRecognizer>(
-                  () => LongPressGestureRecognizer(), (
-                LongPressGestureRecognizer instance,
-              ) {
-                instance
-                  ..onLongPressStart = _handleLongPressStart
-                  ..onLongPressMoveUpdate = _handleLongPressMoveUpdate
-                  ..onLongPressEnd = _handleLongPressEnd;
-              }),
+              LongPressGestureRecognizer:
+                  GestureRecognizerFactoryWithHandlers<
+                    LongPressGestureRecognizer
+                  >(() => LongPressGestureRecognizer(), (
+                    LongPressGestureRecognizer instance,
+                  ) {
+                    instance
+                      ..onLongPressStart = _handleLongPressStart
+                      ..onLongPressMoveUpdate = _handleLongPressMoveUpdate
+                      ..onLongPressEnd = _handleLongPressEnd;
+                  }),
             },
             behavior: HitTestBehavior.opaque,
             child: Stack(children: [_buildDrawingsLayer(context, xAxis)]),
@@ -550,111 +552,98 @@ class _InteractiveLayerGestureHandlerState
   Widget _buildDrawingsLayer(
     BuildContext context,
     XAxisModel xAxis,
-  ) =>
-      RepaintBoundary(
-        child: MultipleAnimatedBuilder(
-          animations: [
-            _stateChangeController,
-            _interactionNotifier,
-            widget.interactiveLayerBehaviour.controller,
-          ],
-          builder: (_, _) {
-            final double animationValue = _stateChangeCurve.transform(
-              _stateChangeController.value,
-            );
+  ) => RepaintBoundary(
+    child: MultipleAnimatedBuilder(
+      animations: [
+        _stateChangeController,
+        _interactionNotifier,
+        widget.interactiveLayerBehaviour.controller,
+      ],
+      builder: (_, _) {
+        final double animationValue = _stateChangeCurve.transform(
+          _stateChangeController.value,
+        );
 
-            return Stack(
-              fit: StackFit.expand,
-              children: widget.series.input.isEmpty
-                  ? []
-                  : [
-                      ...widget.drawings
-                          .where(
-                            (e) =>
-                                widget.interactiveLayerBehaviour
-                                    .getToolZOrder(e) ==
-                                DrawingZOrder.bottom,
-                          )
-                          .map(
-                            (DrawingV2 drawing) => _buildDrawing(
-                              drawing,
-                              context,
-                              xAxis,
-                              animationValue,
-                            ),
-                          )
-                          ,
-                      ...widget.drawings
-                          .where(
-                            (e) =>
-                                widget.interactiveLayerBehaviour
-                                    .getToolZOrder(e) ==
-                                DrawingZOrder.top,
-                          )
-                          .map(
-                            (DrawingV2 drawing) => _buildDrawing(
-                              drawing,
-                              context,
-                              xAxis,
-                              animationValue,
-                            ),
-                          )
-                          ,
-                      ...widget.interactiveLayerBehaviour.previewDrawings
-                          .map(
-                            (DrawingV2 drawing) => _buildDrawing(
-                              drawing,
-                              context,
-                              xAxis,
-                              animationValue,
-                            ),
-                          )
-                          ,
-                      CrosshairWidget(
-                        mainSeries: widget.series,
-                        quoteToCanvasY: widget.quoteToY,
-                        quoteFromCanvasY: widget.quoteFromY,
-                        pipSize: widget.pipSize,
-                        crosshairController: widget.crosshairController,
-                        crosshairZoomOutAnimation:
-                            widget.crosshairZoomOutAnimation,
-                        crosshairVariant: widget.crosshairVariant,
-                        showCrosshair: widget.showCrosshair,
+        return Stack(
+          fit: StackFit.expand,
+          children: widget.series.input.isEmpty
+              ? []
+              : [
+                  ...widget.drawings
+                      .where(
+                        (e) =>
+                            widget.interactiveLayerBehaviour.getToolZOrder(e) ==
+                            DrawingZOrder.bottom,
+                      )
+                      .map(
+                        (DrawingV2 drawing) => _buildDrawing(
+                          drawing,
+                          context,
+                          xAxis,
+                          animationValue,
+                        ),
                       ),
-                      ...widget.interactiveLayerBehaviour.previewWidgets,
-                    ],
-            );
-          },
-        ),
-      );
+                  ...widget.drawings
+                      .where(
+                        (e) =>
+                            widget.interactiveLayerBehaviour.getToolZOrder(e) ==
+                            DrawingZOrder.top,
+                      )
+                      .map(
+                        (DrawingV2 drawing) => _buildDrawing(
+                          drawing,
+                          context,
+                          xAxis,
+                          animationValue,
+                        ),
+                      ),
+                  ...widget.interactiveLayerBehaviour.previewDrawings.map(
+                    (DrawingV2 drawing) =>
+                        _buildDrawing(drawing, context, xAxis, animationValue),
+                  ),
+                  CrosshairWidget(
+                    mainSeries: widget.series,
+                    quoteToCanvasY: widget.quoteToY,
+                    quoteFromCanvasY: widget.quoteFromY,
+                    pipSize: widget.pipSize,
+                    crosshairController: widget.crosshairController,
+                    crosshairZoomOutAnimation: widget.crosshairZoomOutAnimation,
+                    crosshairVariant: widget.crosshairVariant,
+                    showCrosshair: widget.showCrosshair,
+                  ),
+                  ...widget.interactiveLayerBehaviour.previewWidgets,
+                ],
+        );
+      },
+    ),
+  );
 
   CustomPaint _buildDrawing(
     DrawingV2 e,
     BuildContext context,
     XAxisModel xAxis,
     double animationValue,
-  ) =>
-      CustomPaint(
-        key: ValueKey<String>(e.id),
-        foregroundPainter: InteractableDrawingCustomPainter(
-          drawing: e,
-          currentDrawingState: widget.interactiveLayerBehaviour.getToolState(e),
-          drawingState: widget.interactiveLayerBehaviour.getToolState,
-          series: widget.series,
-          theme: context.watch<ChartTheme>(),
-          chartConfig: widget.chartConfig,
-          epochFromX: xAxis.epochFromX,
-          epochToX: xAxis.xFromEpoch,
-          quoteToY: widget.quoteToY,
-          quoteFromY: widget.quoteFromY,
-          epochRange: EpochRange(
-            rightEpoch: xAxis.rightBoundEpoch,
-            leftEpoch: xAxis.leftBoundEpoch,
-          ),
-          quoteRange: widget.quoteRange,
-          animationInfo: AnimationInfo(stateChangePercent: animationValue),
-        ),
-      );
+  ) => CustomPaint(
+    key: ValueKey<String>(e.id),
+    foregroundPainter: InteractableDrawingCustomPainter(
+      drawing: e,
+      currentDrawingState: widget.interactiveLayerBehaviour.getToolState(e),
+      drawingState: widget.interactiveLayerBehaviour.getToolState,
+      series: widget.series,
+      theme: context.watch<ChartTheme>(),
+      chartConfig: widget.chartConfig,
+      epochFromX: xAxis.epochFromX,
+      epochToX: xAxis.xFromEpoch,
+      quoteToY: widget.quoteToY,
+      quoteFromY: widget.quoteFromY,
+      epochRange: EpochRange(
+        rightEpoch: xAxis.rightBoundEpoch,
+        leftEpoch: xAxis.leftBoundEpoch,
+      ),
+      quoteRange: widget.quoteRange,
+      animationInfo: AnimationInfo(stateChangePercent: animationValue),
+    ),
+  );
 
   @override
   List<InteractableDrawing<DrawingToolConfig>> get drawings => widget.drawings;

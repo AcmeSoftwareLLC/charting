@@ -17,9 +17,7 @@ class VerticalBarrier extends Barrier {
     super.title,
     super.style,
     super.longLine,
-  }) : super(
-          epoch: epoch,
-        );
+  }) : super(epoch: epoch);
 
   /// A vertical barrier on [Tick]'s epoch.
   factory VerticalBarrier.onTick(
@@ -28,15 +26,14 @@ class VerticalBarrier extends Barrier {
     String? title,
     BarrierStyle? style,
     bool longLine = true,
-  }) =>
-      VerticalBarrier(
-        tick.epoch,
-        quote: tick.quote,
-        id: id,
-        title: title,
-        style: style,
-        longLine: longLine,
-      );
+  }) => VerticalBarrier(
+    tick.epoch,
+    quote: tick.quote,
+    id: id,
+    title: title,
+    style: style,
+    longLine: longLine,
+  );
 
   @override
   SeriesPainter<Series> createPainter() => VerticalBarrierPainter(this);

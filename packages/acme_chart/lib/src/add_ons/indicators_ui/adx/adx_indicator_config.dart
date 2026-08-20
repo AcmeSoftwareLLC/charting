@@ -33,10 +33,7 @@ class ADXIndicatorConfig extends IndicatorConfig {
     super.showLastIndicator,
     String? title,
     super.number,
-  }) : super(
-          isOverlay: false,
-          title: title ?? ADXIndicatorConfig.name,
-        );
+  }) : super(isOverlay: false, title: title ?? ADXIndicatorConfig.name);
 
   /// Initializes from JSON.
   factory ADXIndicatorConfig.fromJson(Map<String, dynamic> json) =>
@@ -46,8 +43,9 @@ class ADXIndicatorConfig extends IndicatorConfig {
   static const String name = 'adx';
 
   @override
-  Map<String, dynamic> toJson() => _$ADXIndicatorConfigToJson(this)
-    ..putIfAbsent(IndicatorConfig.nameKey, () => name);
+  Map<String, dynamic> toJson() =>
+      _$ADXIndicatorConfigToJson(this)
+        ..putIfAbsent(IndicatorConfig.nameKey, () => name);
 
   /// The period value for the ADX series.
   final int period;
@@ -82,22 +80,20 @@ class ADXIndicatorConfig extends IndicatorConfig {
 
   @override
   Series getSeries(IndicatorInput indicatorInput) => ADXSeries(
-        indicatorInput,
-        config: this,
-        adxOptions:
-            ADXOptions(smoothingPeriod: smoothingPeriod, period: period),
-      );
+    indicatorInput,
+    config: this,
+    adxOptions: ADXOptions(smoothingPeriod: smoothingPeriod, period: period),
+  );
 
   @override
   IndicatorItem getItem(
     UpdateIndicator updateIndicator,
     VoidCallback deleteIndicator,
-  ) =>
-      ADXIndicatorItem(
-        config: this,
-        updateIndicator: updateIndicator,
-        deleteIndicator: deleteIndicator,
-      );
+  ) => ADXIndicatorItem(
+    config: this,
+    updateIndicator: updateIndicator,
+    deleteIndicator: deleteIndicator,
+  );
 
   @override
   ADXIndicatorConfig copyWith({
@@ -115,21 +111,20 @@ class ADXIndicatorConfig extends IndicatorConfig {
     bool? showLastIndicator,
     String? title,
     int? number,
-  }) =>
-      ADXIndicatorConfig(
-        period: period ?? this.period,
-        smoothingPeriod: smoothingPeriod ?? this.smoothingPeriod,
-        showChannelFill: showChannelFill ?? this.showChannelFill,
-        showHistogram: showHistogram ?? this.showHistogram,
-        showShading: showShading ?? this.showShading,
-        showSeries: showSeries ?? this.showSeries,
-        lineStyle: lineStyle ?? this.lineStyle,
-        positiveLineStyle: positiveLineStyle ?? this.positiveLineStyle,
-        negativeLineStyle: negativeLineStyle ?? this.negativeLineStyle,
-        barStyle: barStyle ?? this.barStyle,
-        pipSize: pipSize ?? this.pipSize,
-        showLastIndicator: showLastIndicator ?? this.showLastIndicator,
-        title: title ?? this.title,
-        number: number ?? this.number,
-      );
+  }) => ADXIndicatorConfig(
+    period: period ?? this.period,
+    smoothingPeriod: smoothingPeriod ?? this.smoothingPeriod,
+    showChannelFill: showChannelFill ?? this.showChannelFill,
+    showHistogram: showHistogram ?? this.showHistogram,
+    showShading: showShading ?? this.showShading,
+    showSeries: showSeries ?? this.showSeries,
+    lineStyle: lineStyle ?? this.lineStyle,
+    positiveLineStyle: positiveLineStyle ?? this.positiveLineStyle,
+    negativeLineStyle: negativeLineStyle ?? this.negativeLineStyle,
+    barStyle: barStyle ?? this.barStyle,
+    pipSize: pipSize ?? this.pipSize,
+    showLastIndicator: showLastIndicator ?? this.showLastIndicator,
+    title: title ?? this.title,
+    number: number ?? this.number,
+  );
 }

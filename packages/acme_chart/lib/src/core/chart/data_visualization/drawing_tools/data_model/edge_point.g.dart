@@ -7,11 +7,11 @@ part of 'edge_point.dart';
 // **************************************************************************
 
 EdgePoint _$EdgePointFromJson(Map<String, dynamic> json) => EdgePoint(
-      epoch: json['epoch'] as int? ?? 0,
-      quote: (json['quote'] as num?)?.toDouble() ?? 0,
-    );
+  epoch: json['epoch'] as int? ?? 0,
+  quote: (json['quote'] as num?)?.toDouble() ?? 0,
+);
 
 Map<String, dynamic> _$EdgePointToJson(EdgePoint instance) => <String, dynamic>{
-      'epoch': instance.epoch,
-      'quote': instance.quote,
-    };
+  'epoch': instance.epoch,
+  'quote': instance.quote,
+};

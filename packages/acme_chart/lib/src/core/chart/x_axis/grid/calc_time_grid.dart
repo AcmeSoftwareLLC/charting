@@ -9,8 +9,10 @@ List<DateTime> gridTimestamps({
   required int rightBoundEpoch,
 }) {
   final List<DateTime> timestamps = <DateTime>[];
-  final DateTime rightBoundTime =
-      DateTime.fromMillisecondsSinceEpoch(rightBoundEpoch, isUtc: true);
+  final DateTime rightBoundTime = DateTime.fromMillisecondsSinceEpoch(
+    rightBoundEpoch,
+    isUtc: true,
+  );
 
   DateTime t = _gridEpochStart(timeGridInterval, leftBoundEpoch);
 
@@ -39,15 +41,20 @@ DateTime _gridEpochStart(Duration timeGridInterval, int leftBoundEpoch) {
 
 DateTime _closestFutureDayStart(int epoch) {
   final DateTime time = DateTime.fromMillisecondsSinceEpoch(epoch, isUtc: true);
-  final DateTime dayStart =
-      DateTime.utc(time.year, time.month, time.day); // time 00:00:00
+  final DateTime dayStart = DateTime.utc(
+    time.year,
+    time.month,
+    time.day,
+  ); // time 00:00:00
   return dayStart.isBefore(time) ? dayStart.add(_day) : dayStart;
 }
 
 DateTime _closestFutureMonthStart(int epoch) {
   final DateTime time = DateTime.fromMillisecondsSinceEpoch(epoch, isUtc: true);
-  final DateTime monthStart =
-      DateTime.utc(time.year, time.month); // day 1, time 00:00:00
+  final DateTime monthStart = DateTime.utc(
+    time.year,
+    time.month,
+  ); // day 1, time 00:00:00
   return monthStart.isBefore(time) ? _addMonth(monthStart) : monthStart;
 }
 

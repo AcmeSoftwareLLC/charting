@@ -22,9 +22,9 @@ class ChannelFillPainter extends DataPainter<DataSeries<Tick>> {
     this.secondSeries, {
     this.firstUpperChannelFillColor,
     this.secondUpperChannelFillColor,
-  })  : _firstLinePainter = LinePainter(firstSeries),
-        _secondLinePainter = LinePainter(secondSeries),
-        super(firstSeries);
+  }) : _firstLinePainter = LinePainter(firstSeries),
+       _secondLinePainter = LinePainter(secondSeries),
+       super(firstSeries);
 
   /// The first line series to be painting.
   final DataSeries<Tick> firstSeries;
@@ -61,7 +61,8 @@ class ChannelFillPainter extends DataPainter<DataSeries<Tick>> {
 
     final Paint firstChannelFillPaint = Paint()
       ..color =
-          firstUpperChannelFillColor ?? firstLineStyle.color.withValues(alpha: 0.2)
+          firstUpperChannelFillColor ??
+          firstLineStyle.color.withValues(alpha: 0.2)
       ..style = PaintingStyle.fill
       ..strokeWidth = 0;
 
@@ -72,7 +73,8 @@ class ChannelFillPainter extends DataPainter<DataSeries<Tick>> {
 
     final Paint secondChannelFillPaint = Paint()
       ..color =
-          secondUpperChannelFillColor ?? secondLineStyle.color.withValues(alpha: 0.2)
+          secondUpperChannelFillColor ??
+          secondLineStyle.color.withValues(alpha: 0.2)
       ..style = PaintingStyle.fill
       ..strokeWidth = 0;
 
@@ -189,9 +191,11 @@ class ChannelFillPainter extends DataPainter<DataSeries<Tick>> {
       path.lineTo(lastVisibleTickX, quoteToY(lastLowerVisibleTick.quote));
     }
 
-    for (int i = series.visibleEntries.endIndex - 1;
-        i >= series.visibleEntries.startIndex;
-        i--) {
+    for (
+      int i = series.visibleEntries.endIndex - 1;
+      i >= series.visibleEntries.startIndex;
+      i--
+    ) {
       final Tick tick = series.entries![i];
       path.lineTo(epochToX(series.getEpochOf(tick, i)), quoteToY(tick.quote));
     }

@@ -22,7 +22,12 @@
 /// @param newMax The maximum value of the target range.
 /// @return The converted and inverted value in the new range.
 double convertRange(
-    double value, double oldMin, double oldMax, double newMin, double newMax) {
+  double value,
+  double oldMin,
+  double oldMax,
+  double newMin,
+  double newMax,
+) {
   // Ensure the value is within the old range
   final double clampedValue = value.clamp(oldMin, oldMax);
 

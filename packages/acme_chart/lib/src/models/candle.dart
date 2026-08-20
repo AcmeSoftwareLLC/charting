@@ -13,8 +13,8 @@ class Candle extends Tick with EquatableMixin {
     required this.open,
     required this.close,
     int? currentEpoch,
-  })  : currentEpoch = currentEpoch ?? epoch,
-        super(quote: close);
+  }) : currentEpoch = currentEpoch ?? epoch,
+       super(quote: close);
 
   /// Initializes a candle class with only the given parameters or non given.
   const Candle.noParam(
@@ -25,13 +25,13 @@ class Candle extends Tick with EquatableMixin {
     double low, {
     int? currentEpoch,
   }) : this(
-          epoch: epoch,
-          open: open,
-          close: close,
-          high: high,
-          low: low,
-          currentEpoch: currentEpoch,
-        );
+         epoch: epoch,
+         open: open,
+         close: close,
+         high: high,
+         low: low,
+         currentEpoch: currentEpoch,
+       );
 
   /// High value
   @override
@@ -61,15 +61,14 @@ class Candle extends Tick with EquatableMixin {
     double? open,
     double? close,
     int? currentEpoch,
-  }) =>
-      Candle(
-        epoch: epoch ?? this.epoch,
-        high: high ?? this.high,
-        low: low ?? this.low,
-        open: open ?? this.open,
-        close: close ?? this.close,
-        currentEpoch: currentEpoch ?? this.currentEpoch,
-      );
+  }) => Candle(
+    epoch: epoch ?? this.epoch,
+    high: high ?? this.high,
+    low: low ?? this.low,
+    open: open ?? this.open,
+    close: close ?? this.close,
+    currentEpoch: currentEpoch ?? this.currentEpoch,
+  );
 
   @override
   String toString() =>

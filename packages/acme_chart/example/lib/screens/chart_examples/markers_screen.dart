@@ -35,8 +35,9 @@ class _MarkersScreenState extends BaseChartScreenState<MarkersScreen> {
 
     // Add some up and down markers at strategic points
     for (int i = 10; i < ticks.length; i += 20) {
-      final direction =
-          i % 40 == 10 ? MarkerDirection.up : MarkerDirection.down;
+      final direction = i % 40 == 10
+          ? MarkerDirection.up
+          : MarkerDirection.down;
       _markers.add(
         Marker(
           direction: direction,

@@ -8,17 +8,24 @@ import 'sma_indicator.dart';
 class AwesomeOscillatorIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes
-  factory AwesomeOscillatorIndicator(IndicatorDataInput input,
-      {int smaPeriodOne = 5, int smaPeriodTwo = 34}) {
+  factory AwesomeOscillatorIndicator(
+    IndicatorDataInput input, {
+    int smaPeriodOne = 5,
+    int smaPeriodTwo = 34,
+  }) {
     final HL2Indicator<T> hl2indicator = HL2Indicator<T>(input);
     return AwesomeOscillatorIndicator<T>._(
-        input,
-        SMAIndicator<T>(hl2indicator, smaPeriodOne),
-        SMAIndicator<T>(hl2indicator, smaPeriodTwo));
+      input,
+      SMAIndicator<T>(hl2indicator, smaPeriodOne),
+      SMAIndicator<T>(hl2indicator, smaPeriodTwo),
+    );
   }
 
   AwesomeOscillatorIndicator._(
-      super.input, this._smaIndicatorOne, this._smaIndicatorTwo);
+    super.input,
+    this._smaIndicatorOne,
+    this._smaIndicatorTwo,
+  );
 
   ///34-period simple moving average
   final SMAIndicator<T> _smaIndicatorOne;

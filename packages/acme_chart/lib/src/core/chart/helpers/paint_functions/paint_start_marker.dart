@@ -20,7 +20,11 @@ import 'package:flutter/material.dart';
 /// @param color The color to use for the marker.
 /// @param iconSize The size of the icon in logical pixels.
 void paintStartMarker(
-    Canvas canvas, Offset offset, Color color, double iconSize) {
+  Canvas canvas,
+  Offset offset,
+  Color color,
+  double iconSize,
+) {
   // Use the location_on icon from Material Icons as the pin marker
   const IconData icon = Icons.location_on;
 
@@ -41,8 +45,5 @@ void paintStartMarker(
     // Calculate the layout of the icon
     ..layout()
     // Paint the icon at the specified offset
-    ..paint(
-      canvas,
-      offset,
-    );
+    ..paint(canvas, offset);
 }

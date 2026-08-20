@@ -9,25 +9,22 @@ import 'positive_di_indicator.dart';
 /// Average Directional Movement. Part of the Directional Movement System.
 class ADXIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes an Average Directional Movement from the given [input]s. Part of the Directional Movement System.
-  ADXIndicator(
-    super.input, {
-    int diPeriod = 14,
-    int adxPeriod = 14,
-  })  : _averageDXIndicator =
-            MMAIndicator<T>(DXIndicator<T>(input, period: diPeriod), adxPeriod);
+  ADXIndicator(super.input, {int diPeriod = 14, int adxPeriod = 14})
+    : _averageDXIndicator = MMAIndicator<T>(
+        DXIndicator<T>(input, period: diPeriod),
+        adxPeriod,
+      );
 
   /// Initializes an Average Directional Movement from the given [Indicator]s. Part of the Directional Movement System.
   ADXIndicator.fromIndicator(
     PositiveDIIndicator<T> super.positiveDIIndicator,
     NegativeDIIndicator<T> negativeDIIndicator, {
     int adxPeriod = 14,
-  })  : _averageDXIndicator = MMAIndicator<T>(
-            DXIndicator<T>.fromIndicator(
-              positiveDIIndicator,
-              negativeDIIndicator,
-            ),
-            adxPeriod),
-        super.fromIndicator();
+  }) : _averageDXIndicator = MMAIndicator<T>(
+         DXIndicator<T>.fromIndicator(positiveDIIndicator, negativeDIIndicator),
+         adxPeriod,
+       ),
+       super.fromIndicator();
 
   final MMAIndicator<T> _averageDXIndicator;
 

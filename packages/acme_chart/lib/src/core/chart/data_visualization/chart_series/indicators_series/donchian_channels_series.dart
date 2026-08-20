@@ -20,12 +20,12 @@ import 'package:flutter/material.dart';
 class DonchianChannelsSeries extends Series {
   /// Initializes
   DonchianChannelsSeries(IndicatorInput indicatorInput, {String? id})
-      : this.fromIndicator(
-          HighValueIndicator<Tick>(indicatorInput),
-          LowValueIndicator<Tick>(indicatorInput),
-          const DonchianChannelIndicatorConfig(),
-          id: id,
-        );
+    : this.fromIndicator(
+        HighValueIndicator<Tick>(indicatorInput),
+        LowValueIndicator<Tick>(indicatorInput),
+        const DonchianChannelIndicatorConfig(),
+        id: id,
+      );
 
   /// Initializes
   DonchianChannelsSeries.fromIndicator(
@@ -33,10 +33,10 @@ class DonchianChannelsSeries extends Series {
     LowValueIndicator<Tick> lowIndicator,
     this.config, {
     String? id,
-  })  : _highIndicator = highIndicator,
-        _lowIndicator = lowIndicator,
-        // TODO(Ramin): define DonchianChannelOptions class
-        super(id ?? 'Donchian$config');
+  }) : _highIndicator = highIndicator,
+       _lowIndicator = lowIndicator,
+       // TODO(Ramin): define DonchianChannelOptions class
+       super(id ?? 'Donchian$config');
 
   /// Upper channel series.
   late SingleIndicatorSeries upperChannelSeries;
@@ -63,9 +63,9 @@ class DonchianChannelsSeries extends Series {
 
     final DonchianMiddleChannelIndicator<Tick> middleChannelIndicator =
         DonchianMiddleChannelIndicator<Tick>(
-      upperChannelIndicator,
-      lowerChannelIndicator,
-    );
+          upperChannelIndicator,
+          lowerChannelIndicator,
+        );
 
     upperChannelSeries = SingleIndicatorSeries(
       painterCreator: (Series series) =>
@@ -152,9 +152,9 @@ class DonchianChannelsSeries extends Series {
 
   @override
   List<double> recalculateMinMax() => <double>[
-        lowerChannelSeries.minValue,
-        upperChannelSeries.maxValue,
-      ];
+    lowerChannelSeries.minValue,
+    upperChannelSeries.maxValue,
+  ];
 
   @override
   void paint(

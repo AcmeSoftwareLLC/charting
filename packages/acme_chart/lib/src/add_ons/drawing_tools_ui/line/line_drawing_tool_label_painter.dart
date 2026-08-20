@@ -31,10 +31,12 @@ class MobileLineDrawingToolLabelPainter extends LineDrawingToolLabelPainter {
     required super.startPoint,
     required super.endPoint,
   }) {
-    _style = lineDrawingToolConfig.overlayStyle ??
+    _style =
+        lineDrawingToolConfig.overlayStyle ??
         OverlayStyle(
           color: lineDrawingToolConfig.lineStyle.color,
-          textStyle: lineDrawingToolConfig.overlayStyle?.textStyle.copyWith(
+          textStyle:
+              lineDrawingToolConfig.overlayStyle?.textStyle.copyWith(
                 color: lineDrawingToolConfig.lineStyle.color,
               ) ??
               TextStyles.caption2,
