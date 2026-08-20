@@ -84,7 +84,7 @@ void main() {
       },
     );
 
-    test('resetToDefaults restores pure-Dart math', () {
+    test('resetToDefaults clears the override, falling back to per-index calculate', () {
       IndicatorMathRegistry.windowedAverage = (List<double> values, int period) =>
           List<double>.filled(values.length, -999);
       IndicatorMathRegistry.resetToDefaults();
@@ -94,7 +94,7 @@ void main() {
         3,
       );
 
-      expect(sma.calculateValues()[2].quote, 2); // back to real SMA math
+      expect(sma.calculateValues()[2].quote, 2); // real SMA math via calculate()
     });
   });
 }

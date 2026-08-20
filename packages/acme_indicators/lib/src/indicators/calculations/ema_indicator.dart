@@ -11,8 +11,10 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
   /// Initializes.
   ///
   /// [exponentialSmoothing] optionally overrides the bulk math used by
-  /// [calculateValues]; defaults to
-  /// [IndicatorMathRegistry.exponentialSmoothing].
+  /// [calculateValues]; otherwise [IndicatorMathRegistry.exponentialSmoothing]
+  /// is used if it has been globally set. When neither is set,
+  /// [calculateValues] isn't overridden and values are computed one at a time
+  /// via [calculate].
   AbstractEMAIndicator(
     this.indicator,
     this.period,
@@ -31,7 +33,7 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
   /// Multiplier
   final double multiplier;
 
-  final ExponentialSmoothingFn _exponentialSmoothing;
+  final ExponentialSmoothingFn? _exponentialSmoothing;
 
   @override
   T calculate(int index) {
@@ -48,6 +50,11 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
 
   @override
   List<T> calculateValues() {
+    final ExponentialSmoothingFn? exponentialSmoothing = _exponentialSmoothing;
+    if (exponentialSmoothing == null) {
+      return super.calculateValues();
+    }
+
     if (indicator is CachedIndicator) {
       (indicator as CachedIndicator).calculateValues();
     }
@@ -55,7 +62,7 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
     final List<double> series = <double>[
       for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
     ];
-    final List<double> result = _exponentialSmoothing(series, period, multiplier);
+    final List<double> result = exponentialSmoothing(series, period, multiplier);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);

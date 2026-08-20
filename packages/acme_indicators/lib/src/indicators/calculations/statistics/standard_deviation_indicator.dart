@@ -15,8 +15,10 @@ class StandardDeviationIndicator<T extends IndicatorResult>
   ///
   /// [indicator] the indicator to calculates SD on.
   /// [period]  the time frame
-  /// [sqrtOf] optionally overrides the bulk math used by
-  /// [calculateValues]; defaults to [IndicatorMathRegistry.sqrtOf].
+  /// [sqrtOf] optionally overrides the bulk math used by [calculateValues];
+  /// otherwise [IndicatorMathRegistry.sqrtOf] is used if it has been globally
+  /// set. When neither is set, [calculateValues] isn't overridden and values
+  /// are computed one at a time via [calculate].
   StandardDeviationIndicator(
     super.indicator,
     int period, {
@@ -30,7 +32,7 @@ class StandardDeviationIndicator<T extends IndicatorResult>
   final Indicator<T> _sourceIndicator;
   final int _period;
   final VarianceIndicator<T> _variance;
-  final SqrtFn _sqrtOf;
+  final SqrtFn? _sqrtOf;
 
   @override
   T calculate(int index) =>
@@ -38,6 +40,11 @@ class StandardDeviationIndicator<T extends IndicatorResult>
 
   @override
   List<T> calculateValues() {
+    final SqrtFn? sqrtOf = _sqrtOf;
+    if (sqrtOf == null) {
+      return super.calculateValues();
+    }
+
     if (_sourceIndicator is CachedIndicator) {
       (_sourceIndicator as CachedIndicator).calculateValues();
     }
@@ -45,7 +52,7 @@ class StandardDeviationIndicator<T extends IndicatorResult>
     final List<double> series = <double>[
       for (int i = 0; i < entries.length; i++) _sourceIndicator.getValue(i).quote,
     ];
-    final List<double> result = _sqrtOf(series, _period, 1.0);
+    final List<double> result = sqrtOf(series, _period, 1.0);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);

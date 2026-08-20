@@ -28,3 +28,25 @@ typedef AverageTrueRangeFn =
 /// Bollinger's band-offset shape, applied elementwise: `middle[i] + (sign * deviation[i] * k)`, where [sign] is `1` for the upper band and `-1` for the lower band.
 typedef BandOffsetFn =
     List<double> Function(List<double> middle, List<double> deviation, double k, double sign);
+
+/// Result of a [MacdFn] computation: both lines are full-length, zero-filled
+/// before their own warm-up, matching the convention every other bulk math
+/// shape in this file uses.
+class MacdResult {
+  /// Creates a [MacdResult].
+  const MacdResult({required this.macdVals, required this.signalVals});
+
+  /// The MACD line: `fastEma - slowEma`. Entries before `slowPeriod - 1` are `0`.
+  final List<double> macdVals;
+
+  /// The signal line: an EMA of [macdVals] taken over its valid (non-zero)
+  /// range only, not the zero-padded prefix. Entries before the signal EMA
+  /// has warmed up are `0`.
+  final List<double> signalVals;
+}
+
+/// MACD shape: fast/slow EMA diff plus its signal line, computed together so
+/// the signal line's own warm-up starts from the MACD line's valid range
+/// rather than being biased by its zero-padded prefix.
+typedef MacdFn =
+    MacdResult Function(List<double> values, int fastPeriod, int slowPeriod, int signalPeriod);

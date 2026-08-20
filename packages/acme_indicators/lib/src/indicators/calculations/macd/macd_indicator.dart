@@ -13,39 +13,40 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Creates a  Moving average convergence divergence indicator from the given [input]],
   /// with short term ema set to `12` periods([fastMAPeriod]) and long term ema set to `26` periods([slowMAPeriod]) as default.
   ///
-  /// [exponentialSmoothing] optionally overrides the EMA math used
-  /// by [calculateValues]; defaults to
-  /// [IndicatorMathRegistry.exponentialSmoothing].
+  /// [macd] optionally overrides the bulk math used by [calculateValues];
+  /// otherwise [IndicatorMathRegistry.macd] is used if it has been globally
+  /// set. When neither is set, [calculateValues] isn't overridden and values
+  /// are computed one at a time via [calculate].
   MACDIndicator(
     IndicatorDataInput input, {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
-    ExponentialSmoothingFn? exponentialSmoothing,
+    MacdFn? macd,
   }) : this.fromIndicator(
          CloseValueIndicator<T>(input),
          fastMAPeriod: fastMAPeriod,
          slowMAPeriod: slowMAPeriod,
-         exponentialSmoothing: exponentialSmoothing,
+         macd: macd,
        );
 
   /// Creates a  Moving average convergence divergence indicator from a given [indicator],
   /// with short term ema set to `12` periods([fastMAPeriod]) and long term ema set to `26` periods([slowMAPeriod]) as default.
   ///
-  /// [exponentialSmoothing] optionally overrides the EMA math used
-  /// by [calculateValues]; defaults to
-  /// [IndicatorMathRegistry.exponentialSmoothing].
+  /// [macd] optionally overrides the bulk math used by [calculateValues];
+  /// otherwise [IndicatorMathRegistry.macd] is used if it has been globally
+  /// set. When neither is set, [calculateValues] isn't overridden and values
+  /// are computed one at a time via [calculate].
   MACDIndicator.fromIndicator(
     super.indicator, {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
-    ExponentialSmoothingFn? exponentialSmoothing,
+    MacdFn? macd,
   }) : _sourceIndicator = indicator,
        _fastPeriod = fastMAPeriod,
        _slowPeriod = slowMAPeriod,
        _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod),
        _longTermEma = EMAIndicator<T>(indicator, slowMAPeriod),
-       _exponentialSmoothing =
-           exponentialSmoothing ?? IndicatorMathRegistry.exponentialSmoothing,
+       _macd = macd ?? IndicatorMathRegistry.macd,
        super.fromIndicator();
 
   final Indicator<T> _sourceIndicator;
@@ -53,7 +54,20 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final int _slowPeriod;
   final EMAIndicator<T> _shortTermEma;
   final EMAIndicator<T> _longTermEma;
-  final ExponentialSmoothingFn _exponentialSmoothing;
+  final MacdFn? _macd;
+
+  /// `signalPeriod` doesn't affect [MacdResult.macdVals]; any positive value
+  /// works when calling [_macd] for the line-only computation below.
+  static const int _unusedSignalPeriod = 1;
+
+  /// The underlying indicator this MACD line is computed from (e.g. a close-price indicator).
+  Indicator<T> get sourceIndicator => _sourceIndicator;
+
+  /// The fast (short-term) EMA period.
+  int get fastPeriod => _fastPeriod;
+
+  /// The slow (long-term) EMA period; the MACD line is valid from index `slowPeriod - 1` onward.
+  int get slowPeriod => _slowPeriod;
 
   @override
   T calculate(int index) => createResult(
@@ -65,32 +79,23 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   List<T> calculateValues() {
+    final MacdFn? macd = _macd;
+    if (macd == null) {
+      return super.calculateValues();
+    }
+
     if (_sourceIndicator is CachedIndicator) {
       (_sourceIndicator as CachedIndicator).calculateValues();
     }
 
     final List<double> series = <double>[
-      for (int i = 0; i < entries.length; i++) _sourceIndicator.getValue(i).quote,
+      for (int i = 0; i < entries.length; i++)
+        _sourceIndicator.getValue(i).quote,
     ];
-    final List<double> fastEma = _exponentialSmoothing(
-      series,
-      _fastPeriod,
-      2.0 / (_fastPeriod + 1),
-    );
-    final List<double> slowEma = _exponentialSmoothing(
-      series,
-      _slowPeriod,
-      2.0 / (_slowPeriod + 1),
-    );
+    final result = macd(series, _fastPeriod, _slowPeriod, _unusedSignalPeriod);
 
-    // Both EMAs are only valid from index (_slowPeriod - 1) onward; before
-    // that, the slow EMA's own array is still zero-filled, so a naive
-    // elementwise subtraction would produce meaningless values rather than
-    // the lookback-region zero every other bulk-computed indicator uses.
-    final int validFrom = _slowPeriod - 1;
     for (int i = 0; i < entries.length; i++) {
-      final double quote = i < validFrom ? 0 : fastEma[i] - slowEma[i];
-      results[i] = createResult(index: i, quote: quote);
+      results[i] = createResult(index: i, quote: result.macdVals[i]);
     }
     lastResultIndex = entries.length - 1;
     return results;

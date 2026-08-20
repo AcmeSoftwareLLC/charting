@@ -11,11 +11,13 @@ class TRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes a true range indicator.
   ///
   /// [trueRange] optionally overrides the bulk math used by
-  /// [calculateValues]; defaults to [IndicatorMathRegistry.trueRange].
+  /// [calculateValues]; otherwise [IndicatorMathRegistry.trueRange] is used
+  /// if it has been globally set. When neither is set, [calculateValues]
+  /// isn't overridden and values are computed one at a time via [calculate].
   TRIndicator(super.input, {TrueRangeFn? trueRange})
     : _trueRange = trueRange ?? IndicatorMathRegistry.trueRange;
 
-  final TrueRangeFn _trueRange;
+  final TrueRangeFn? _trueRange;
 
   @override
   T calculate(int index) {
@@ -39,10 +41,15 @@ class TRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   List<T> calculateValues() {
+    final TrueRangeFn? trueRange = _trueRange;
+    if (trueRange == null) {
+      return super.calculateValues();
+    }
+
     final List<double> high = <double>[for (final IndicatorOHLC e in entries) e.high];
     final List<double> low = <double>[for (final IndicatorOHLC e in entries) e.low];
     final List<double> close = <double>[for (final IndicatorOHLC e in entries) e.close];
-    final List<double> result = _trueRange(high, low, close);
+    final List<double> result = trueRange(high, low, close);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);

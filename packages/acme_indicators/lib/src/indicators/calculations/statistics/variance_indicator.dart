@@ -15,7 +15,9 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// [indicator] the indicator
   /// [period]  the time frame
   /// [variance] optionally overrides the bulk math used by
-  /// [calculateValues]; defaults to [IndicatorMathRegistry.variance].
+  /// [calculateValues]; otherwise [IndicatorMathRegistry.variance] is used if
+  /// it has been globally set. When neither is set, [calculateValues] isn't
+  /// overridden and values are computed one at a time via [calculate].
   VarianceIndicator(
     this.indicator,
     this.period, {
@@ -31,7 +33,7 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final int period;
 
   final SMAIndicator<T> _sma;
-  final VarianceFn _variance;
+  final VarianceFn? _variance;
 
   @override
   T calculate(int index) {
@@ -53,6 +55,11 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   List<T> calculateValues() {
+    final VarianceFn? variance = _variance;
+    if (variance == null) {
+      return super.calculateValues();
+    }
+
     if (indicator is CachedIndicator) {
       (indicator as CachedIndicator).calculateValues();
     }
@@ -60,7 +67,7 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     final List<double> series = <double>[
       for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
     ];
-    final List<double> result = _variance(series, period);
+    final List<double> result = variance(series, period);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);

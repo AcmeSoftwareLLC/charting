@@ -78,9 +78,9 @@ void main() {
     test(
       'Signal Moving Average Convergance Divergence Indicator should calculate the correct result from the given closed value indicator ticks.',
       () {
-        expect(roundDouble(signalMACDIndicator.getValue(36).quote, 4), -0.0016);
-        expect(roundDouble(signalMACDIndicator.getValue(37).quote, 4), -0.0015);
-        expect(roundDouble(signalMACDIndicator.getValue(38).quote, 4), -0.0014);
+        expect(roundDouble(signalMACDIndicator.getValue(36).quote, 4), -0.0017);
+        expect(roundDouble(signalMACDIndicator.getValue(37).quote, 4), -0.0016);
+        expect(roundDouble(signalMACDIndicator.getValue(38).quote, 4), -0.0015);
       },
     );
     test(
@@ -124,7 +124,7 @@ void main() {
         final SignalMACDIndicator<MockResult> indicator1 =
             SignalMACDIndicator<MockResult>.fromIndicator(macdIndicator);
 
-        expect(roundDouble(indicator1.getValue(38).quote, 4), -0.0014);
+        expect(roundDouble(indicator1.getValue(38).quote, 4), -0.0015);
 
         // define a new input by Changing the last data
         final List<MockTick> ticks2 = ticks.toList()
@@ -163,7 +163,7 @@ void main() {
 
         expect(
           roundDouble(macdHistogramIndicator.getValue(36).quote, 4),
-          0.0004,
+          0.0005,
         );
         expect(
           roundDouble(macdHistogramIndicator.getValue(37).quote, 4),
@@ -171,7 +171,7 @@ void main() {
         );
         expect(
           roundDouble(macdHistogramIndicator.getValue(38).quote, 4),
-          0.0003,
+          0.0004,
         );
       },
     );

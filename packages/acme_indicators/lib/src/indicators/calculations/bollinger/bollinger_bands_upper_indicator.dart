@@ -15,8 +15,11 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
   ///                  Typically a StandardDeviationIndicator is used.
   ///  [k]         the scaling factor to multiply the deviation by. Typically 2
   ///  [bandOffset] optionally overrides the bulk math used by
-  ///                  [calculateValues]; defaults to
-  ///                  [IndicatorMathRegistry.bandOffset].
+  ///                  [calculateValues]; otherwise
+  ///                  [IndicatorMathRegistry.bandOffset] is used if it has
+  ///                  been globally set. When neither is set,
+  ///                  [calculateValues] isn't overridden and values are
+  ///                  computed one at a time via [calculate].
   BollingerBandsUpperIndicator(
     this.bbm,
     this.deviation, {
@@ -34,7 +37,7 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
   /// Default is 2.
   final double k;
 
-  final BandOffsetFn _bandOffset;
+  final BandOffsetFn? _bandOffset;
 
   @override
   T calculate(int index) => createResult(
@@ -44,6 +47,11 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
 
   @override
   List<T> calculateValues() {
+    final BandOffsetFn? bandOffset = _bandOffset;
+    if (bandOffset == null) {
+      return super.calculateValues();
+    }
+
     bbm.calculateValues();
     deviation.calculateValues();
 
@@ -53,7 +61,7 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
     final List<double> deviationValues = <double>[
       for (int i = 0; i < entries.length; i++) deviation.getValue(i).quote,
     ];
-    final List<double> result = _bandOffset(middle, deviationValues, k, 1);
+    final List<double> result = bandOffset(middle, deviationValues, k, 1);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);

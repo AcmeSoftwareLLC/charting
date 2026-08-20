@@ -13,8 +13,9 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes an [RSIIndicator] from the given [indicator] and [period].
   ///
   /// [relativeStrength] optionally overrides the bulk math used by
-  /// [calculateValues]; defaults to
-  /// [IndicatorMathRegistry.relativeStrength].
+  /// [calculateValues]; otherwise [IndicatorMathRegistry.relativeStrength] is
+  /// used if it has been globally set. When neither is set, [calculateValues]
+  /// isn't overridden and values are computed one at a time via [calculate].
   RSIIndicator.fromIndicator(
     super.indicator,
     int period, {
@@ -37,7 +38,7 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final int _period;
   final MMAIndicator<T> _averageGainIndicator;
   final MMAIndicator<T> _averageLossIndicator;
-  final RelativeStrengthFn _relativeStrength;
+  final RelativeStrengthFn? _relativeStrength;
 
   @override
   T calculate(int index) {
@@ -59,6 +60,11 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   List<T> calculateValues() {
+    final RelativeStrengthFn? relativeStrength = _relativeStrength;
+    if (relativeStrength == null) {
+      return super.calculateValues();
+    }
+
     if (_sourceIndicator is CachedIndicator) {
       (_sourceIndicator as CachedIndicator).calculateValues();
     }
@@ -66,7 +72,7 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     final List<double> series = <double>[
       for (int i = 0; i < entries.length; i++) _sourceIndicator.getValue(i).quote,
     ];
-    final List<double> result = _relativeStrength(series, _period);
+    final List<double> result = relativeStrength(series, _period);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);
