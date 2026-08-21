@@ -55,7 +55,9 @@ class _NoteTextFieldState extends State<NoteTextField> {
   @override
   void dispose() {
     if (_saveDebounce != null && _controller.text != widget.text) {
-      widget.onChanged(_controller.text);
+      final String pendingText = _controller.text;
+      final ValueChanged<String> onChanged = widget.onChanged;
+      scheduleMicrotask(() => onChanged(pendingText));
     }
     _saveDebounce?.cancel();
     _controller.dispose();

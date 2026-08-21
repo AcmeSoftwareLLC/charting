@@ -61,6 +61,10 @@ class InteractiveAddingToolState extends InteractiveState
   }
 
   void _onAddingStateChange(AddingStateInfo addingStateInfo) {
+    if (_drawingPreview == null) {
+      return;
+    }
+
     _addingStateInfo = addingStateInfo;
     interactiveLayerBehaviour.updateStateTo(
       this,

@@ -185,14 +185,18 @@ class NotesInteractableDrawing
         return;
       }
 
-      width = (rect.width + details.delta.dx).clamp(
-        notesBoxMinWidth,
-        notesBoxMaxResizableWidth,
-      );
-      height = (rect.height + details.delta.dy).clamp(
-        notesBoxMinHeight,
-        notesBoxMaxResizableHeight,
-      );
+      if (details.delta.dx != 0) {
+        width = (rect.width + details.delta.dx).clamp(
+          notesBoxMinWidth,
+          notesBoxMaxResizableWidth,
+        );
+      }
+      if (details.delta.dy != 0) {
+        height = (rect.height + details.delta.dy).clamp(
+          notesBoxMinHeight,
+          notesBoxMaxResizableHeight,
+        );
+      }
       return;
     }
 
@@ -381,6 +385,7 @@ class NotesInteractableDrawing
       child: Padding(
         padding: const EdgeInsets.all(notesBoxPadding),
         child: NoteTextField(
+          key: ValueKey(config.configId),
           text: config.text,
           style: config.textStyle,
           onChanged: (String value) => onUpdate(config.copyWith(text: value)),

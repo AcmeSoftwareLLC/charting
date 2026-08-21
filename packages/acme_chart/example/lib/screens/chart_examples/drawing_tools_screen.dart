@@ -121,6 +121,12 @@ class _DrawingToolsScreenState
       return;
     }
 
+    // Release focus from the "Add" button before switching to adding mode.
+    // Otherwise the very next tap on the chart can be partially absorbed by
+    // the button's own focus/blur handling instead of reaching the canvas,
+    // making the first tap on the chart appear to do nothing.
+    FocusScope.of(context).unfocus();
+
     interactiveLayerController.startAddingNewTool(_selectedDrawingTool!);
   }
 
@@ -170,8 +176,11 @@ class _DrawingToolsScreenState
           const SizedBox(height: 16),
 
           // Crosshair controls
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 16,
+            runSpacing: 8,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -188,7 +197,6 @@ class _DrawingToolsScreenState
                   ),
                 ],
               ),
-              const SizedBox(width: 16),
               ElevatedButton(
                 onPressed: () {
                   setState(() {
@@ -274,6 +282,10 @@ class _DrawingToolsScreenState
                           child: Text('Channel'),
                         ),
                         DropdownMenuItem<DrawingToolConfig>(
+                          value: EllipseDrawingToolConfig(),
+                          child: Text('Ellipse'),
+                        ),
+                        DropdownMenuItem<DrawingToolConfig>(
                           value: FibfanDrawingToolConfig(),
                           child: Text('Fibonacci Fan'),
                         ),
@@ -339,6 +351,7 @@ class _DrawingToolsScreenState
               _buildToolChip('Trend', Icons.timeline),
               _buildToolChip('Rectangle', Icons.crop_square),
               _buildToolChip('Channel', Icons.view_stream),
+              _buildToolChip('Ellipse', Icons.circle_outlined),
               _buildToolChip('Fibonacci Fan', Icons.filter_tilt_shift),
               _buildToolChip('Notes', Icons.sticky_note_2),
             ],

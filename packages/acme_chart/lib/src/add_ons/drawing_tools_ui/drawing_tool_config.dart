@@ -33,6 +33,8 @@ abstract class DrawingToolConfig extends AddOnConfig {
         return ChannelDrawingToolConfig.fromJson(json);
       case ContinuousDrawingToolConfig.name:
         return ContinuousDrawingToolConfig.fromJson(json);
+      case EllipseDrawingToolConfig.name:
+        return EllipseDrawingToolConfig.fromJson(json);
       case FibfanDrawingToolConfig.name:
         return FibfanDrawingToolConfig.fromJson(json);
       case HorizontalDrawingToolConfig.name:
