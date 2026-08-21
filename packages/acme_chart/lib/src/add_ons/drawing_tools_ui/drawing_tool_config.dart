@@ -49,6 +49,8 @@ abstract class DrawingToolConfig extends AddOnConfig {
         return RayDrawingToolConfig.fromJson(json);
       case RectangleDrawingToolConfig.name:
         return RectangleDrawingToolConfig.fromJson(json);
+      case TradeRatioDrawingToolConfig.name:
+        return TradeRatioDrawingToolConfig.fromJson(json);
       case TrendDrawingToolConfig.name:
         return TrendDrawingToolConfig.fromJson(json);
       case VerticalDrawingToolConfig.name:

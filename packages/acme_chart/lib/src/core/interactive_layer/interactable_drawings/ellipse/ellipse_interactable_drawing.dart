@@ -351,6 +351,7 @@ class EllipseInteractableDrawing
     QuoteToY quoteToY,
   ) {
     isDraggingStartPoint = null;
+    config = getUpdatedConfig();
   }
 
   @override

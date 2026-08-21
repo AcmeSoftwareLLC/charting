@@ -8,6 +8,7 @@ import 'package:acme_chart/src/add_ons/drawing_tools_ui/line/line_drawing_tool_c
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/notes/notes_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/rectangle/rectangle_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/ray/ray_drawing_tool_config.dart';
+import 'package:acme_chart/src/add_ons/drawing_tools_ui/trade_ratio/trade_ratio_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/trend/trend_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/vertical/vertical_drawing_tool_config.dart';
 import 'package:acme_chart/src/core/drawing_tool_chart/drawing_tools.dart';
@@ -91,6 +92,10 @@ class _DrawingToolsDialogState extends State<DrawingToolsDialog> {
                   DropdownMenuItem<DrawingToolConfig>(
                     value: RectangleDrawingToolConfig(),
                     child: Text('Rectangle'),
+                  ),
+                  DropdownMenuItem<DrawingToolConfig>(
+                    value: TradeRatioDrawingToolConfig(),
+                    child: Text('Trade Ratio'),
                   ),
                   DropdownMenuItem<DrawingToolConfig>(
                     value: TrendDrawingToolConfig(),

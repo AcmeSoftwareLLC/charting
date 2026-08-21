@@ -15,6 +15,7 @@ export 'src/add_ons/drawing_tools_ui/line/line_drawing_tool_config_mobile.dart';
 export 'src/add_ons/drawing_tools_ui/notes/notes_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/ray/ray_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/rectangle/rectangle_drawing_tool_config.dart';
+export 'src/add_ons/drawing_tools_ui/trade_ratio/trade_ratio_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/trend/trend_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/vertical/vertical_drawing_tool_config.dart';
 export 'src/add_ons/extensions.dart';

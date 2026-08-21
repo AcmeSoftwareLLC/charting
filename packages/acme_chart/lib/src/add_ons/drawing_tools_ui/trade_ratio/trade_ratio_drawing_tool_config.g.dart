@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'rectangle_drawing_tool_config.dart';
+part of 'trade_ratio_drawing_tool_config.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RectangleDrawingToolConfig _$RectangleDrawingToolConfigFromJson(
+TradeRatioDrawingToolConfig _$TradeRatioDrawingToolConfigFromJson(
   Map<String, dynamic> json,
-) => RectangleDrawingToolConfig(
+) => TradeRatioDrawingToolConfig(
   configId: json['configId'] as String?,
   drawingData: json['drawingData'] == null
       ? null
@@ -27,11 +27,26 @@ RectangleDrawingToolConfig _$RectangleDrawingToolConfigFromJson(
   pattern:
       $enumDecodeNullable(_$DrawingPatternsEnumMap, json['pattern']) ??
       DrawingPatterns.solid,
+  levels:
+      (json['levels'] as List<dynamic>?)
+          ?.map((e) => (e as num).toDouble())
+          .toList() ??
+      defaultTradeRatioLevels,
+  levelColors: json['levelColors'] == null
+      ? defaultTradeRatioLevelColors
+      : const ColorListConverter().fromJson(json['levelColors'] as List),
+  labelStyle: json['labelStyle'] == null
+      ? const TextStyle(fontSize: 11)
+      : const TextStyleJsonConverter().fromJson(
+          json['labelStyle'] as Map<String, dynamic>,
+        ),
+  extendLeft: json['extendLeft'] as bool? ?? false,
+  farXEpochOffset: (json['farXEpochOffset'] as num?)?.toInt(),
   number: (json['number'] as num?)?.toInt() ?? 0,
 );
 
-Map<String, dynamic> _$RectangleDrawingToolConfigToJson(
-  RectangleDrawingToolConfig instance,
+Map<String, dynamic> _$TradeRatioDrawingToolConfigToJson(
+  TradeRatioDrawingToolConfig instance,
 ) => <String, dynamic>{
   'configId': instance.configId,
   'number': instance.number,
@@ -40,6 +55,11 @@ Map<String, dynamic> _$RectangleDrawingToolConfigToJson(
   'lineStyle': instance.lineStyle,
   'fillStyle': instance.fillStyle,
   'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,
+  'levels': instance.levels,
+  'levelColors': const ColorListConverter().toJson(instance.levelColors),
+  'labelStyle': const TextStyleJsonConverter().toJson(instance.labelStyle),
+  'extendLeft': instance.extendLeft,
+  'farXEpochOffset': instance.farXEpochOffset,
 };
 
 const _$DrawingPatternsEnumMap = {

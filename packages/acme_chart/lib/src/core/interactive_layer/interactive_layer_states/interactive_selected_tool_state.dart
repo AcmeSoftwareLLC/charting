@@ -211,8 +211,8 @@ class InteractiveSelectedToolState extends InteractiveState
 
   @override
   List<Widget> get previewWidgets => [
-    _buildSelectedDrawingFloatingMenu(),
     ?_buildSelectedDrawingOverlay(),
+    _buildSelectedDrawingFloatingMenu(),
   ];
 
   Widget? _buildSelectedDrawingOverlay() => selected.getSelectedOverlay(

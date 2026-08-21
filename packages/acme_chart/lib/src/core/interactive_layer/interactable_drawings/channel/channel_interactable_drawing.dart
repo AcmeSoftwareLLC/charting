@@ -108,10 +108,12 @@ class ChannelInteractableDrawing
     final bool startIsLeft = geometry.start.dx <= geometry.middle.dx;
     final Offset bottomLeft = startIsLeft ? geometry.start : geometry.middle;
     final Offset bottomRight = startIsLeft ? geometry.middle : geometry.start;
-    final Offset topLeft =
-        startIsLeft ? geometry.secondLineStart : geometry.end;
-    final Offset topRight =
-        startIsLeft ? geometry.end : geometry.secondLineStart;
+    final Offset topLeft = startIsLeft
+        ? geometry.secondLineStart
+        : geometry.end;
+    final Offset topRight = startIsLeft
+        ? geometry.end
+        : geometry.secondLineStart;
 
     return Path()
       ..moveTo(bottomLeft.dx, bottomLeft.dy)
@@ -269,12 +271,12 @@ class ChannelInteractableDrawing
           !drawingState.contains(DrawingToolState.dragging)) {
         final double outerRadius =
             drawingState.contains(DrawingToolState.selected)
-                ? 10 * animationInfo.stateChangePercent
-                : 10;
+            ? 10 * animationInfo.stateChangePercent
+            : 10;
         final double innerRadius =
             drawingState.contains(DrawingToolState.selected)
-                ? 3 * animationInfo.stateChangePercent
-                : 3;
+            ? 3 * animationInfo.stateChangePercent
+            : 3;
 
         drawFocusedCircle(
           paintStyle,
@@ -358,20 +360,16 @@ class ChannelInteractableDrawing
 
     switch (draggedPointIndex) {
       case 0:
-        final Offset newOffset = Offset(
-              epochToX(startPoint!.epoch),
-              quoteToY(startPoint!.quote),
-            ) +
+        final Offset newOffset =
+            Offset(epochToX(startPoint!.epoch), quoteToY(startPoint!.quote)) +
             delta;
         startPoint = EdgePoint(
           epoch: epochFromX(newOffset.dx),
           quote: quoteFromY(newOffset.dy),
         );
       case 1:
-        final Offset newOffset = Offset(
-              epochToX(middlePoint!.epoch),
-              quoteToY(middlePoint!.quote),
-            ) +
+        final Offset newOffset =
+            Offset(epochToX(middlePoint!.epoch), quoteToY(middlePoint!.quote)) +
             delta;
         middlePoint = EdgePoint(
           epoch: epochFromX(newOffset.dx),
@@ -388,15 +386,11 @@ class ChannelInteractableDrawing
         );
       default:
         // Translate the whole channel.
-        final Offset newStartOffset = Offset(
-              epochToX(startPoint!.epoch),
-              quoteToY(startPoint!.quote),
-            ) +
+        final Offset newStartOffset =
+            Offset(epochToX(startPoint!.epoch), quoteToY(startPoint!.quote)) +
             delta;
-        final Offset newMiddleOffset = Offset(
-              epochToX(middlePoint!.epoch),
-              quoteToY(middlePoint!.quote),
-            ) +
+        final Offset newMiddleOffset =
+            Offset(epochToX(middlePoint!.epoch), quoteToY(middlePoint!.quote)) +
             delta;
         final double newEndY = quoteToY(endPoint!.quote) + delta.dy;
 
@@ -411,7 +405,10 @@ class ChannelInteractableDrawing
 
         startPoint = newStart;
         middlePoint = newMiddle;
-        endPoint = EdgePoint(epoch: newMiddle.epoch, quote: quoteFromY(newEndY));
+        endPoint = EdgePoint(
+          epoch: newMiddle.epoch,
+          quote: quoteFromY(newEndY),
+        );
     }
   }
 
@@ -424,12 +421,19 @@ class ChannelInteractableDrawing
     QuoteToY quoteToY,
   ) {
     draggedPointIndex = null;
+
+    // Fold the dragged points into `config` immediately. Nothing else ever
+    // refreshes this instance's `config` from what gets persisted, so
+    // without this, the next toolbar color/thickness change would build its
+    // `config.copyWith(...)` off the pre-drag `config` (whose `edgePoints`
+    // are stale) and silently revert this move/resize on next reload.
+    config = getUpdatedConfig();
   }
 
   @override
   ChannelDrawingToolConfig getUpdatedConfig() => config.copyWith(
-        edgePoints: <EdgePoint>[?startPoint, ?middlePoint, ?endPoint],
-      );
+    edgePoints: <EdgePoint>[?startPoint, ?middlePoint, ?endPoint],
+  );
 
   @override
   bool isInViewPort(EpochRange epochRange, QuoteRange quoteRange) =>
@@ -448,64 +452,58 @@ class ChannelInteractableDrawing
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>
-      getAddingPreviewForDesktopBehaviour(
+  getAddingPreviewForDesktopBehaviour(
     InteractiveLayerDesktopBehaviour layerBehaviour,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-          ChannelAddingPreviewDesktop(
-            interactiveLayerBehaviour: layerBehaviour,
-            interactableDrawing: this,
-            onAddingStateChange: onAddingStateChange,
-          );
+  ) => ChannelAddingPreviewDesktop(
+    interactiveLayerBehaviour: layerBehaviour,
+    interactableDrawing: this,
+    onAddingStateChange: onAddingStateChange,
+  );
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>
-      getAddingPreviewForMobileBehaviour(
+  getAddingPreviewForMobileBehaviour(
     InteractiveLayerMobileBehaviour layerBehaviour,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-          ChannelAddingPreviewMobile(
-            interactiveLayerBehaviour: layerBehaviour,
-            interactableDrawing: this,
-            onAddingStateChange: onAddingStateChange,
-          );
+  ) => ChannelAddingPreviewMobile(
+    interactiveLayerBehaviour: layerBehaviour,
+    interactableDrawing: this,
+    onAddingStateChange: onAddingStateChange,
+  );
 
   @override
   Widget buildDrawingToolBarMenu(UpdateDrawingTool onUpdate) => Row(
-        children: <Widget>[
-          _buildLineThicknessIcon(onUpdate),
-          const SizedBox(width: 4),
-          _buildLineColorPickerIcon(onUpdate),
-          const SizedBox(width: 4),
-          _buildFillColorPickerIcon(onUpdate),
-        ],
-      );
+    children: <Widget>[
+      _buildLineThicknessIcon(onUpdate),
+      const SizedBox(width: 4),
+      _buildLineColorPickerIcon(onUpdate),
+      const SizedBox(width: 4),
+      _buildFillColorPickerIcon(onUpdate),
+    ],
+  );
 
   Widget _buildLineColorPickerIcon(UpdateDrawingTool onUpdate) => SizedBox(
-        width: 32,
-        height: 32,
-        child: ColorPickerDropdownButton(
-          currentColor: config.lineStyle.color,
-          onColorChanged: (newColor) => onUpdate(
-            config.copyWith(
-              lineStyle: config.lineStyle.copyWith(color: newColor),
-            ),
-          ),
-        ),
-      );
+    width: 32,
+    height: 32,
+    child: ColorPickerDropdownButton(
+      currentColor: config.lineStyle.color,
+      onColorChanged: (newColor) => onUpdate(
+        config.copyWith(lineStyle: config.lineStyle.copyWith(color: newColor)),
+      ),
+    ),
+  );
 
   Widget _buildFillColorPickerIcon(UpdateDrawingTool onUpdate) => SizedBox(
-        width: 32,
-        height: 32,
-        child: ColorPickerDropdownButton(
-          currentColor: config.fillStyle.color,
-          onColorChanged: (newColor) => onUpdate(
-            config.copyWith(
-              fillStyle: config.fillStyle.copyWith(color: newColor),
-            ),
-          ),
-        ),
-      );
+    width: 32,
+    height: 32,
+    child: ColorPickerDropdownButton(
+      currentColor: config.fillStyle.color,
+      onColorChanged: (newColor) => onUpdate(
+        config.copyWith(fillStyle: config.fillStyle.copyWith(color: newColor)),
+      ),
+    ),
+  );
 
   Widget _buildLineThicknessIcon(UpdateDrawingTool onUpdate) =>
       LineThicknessDropdownButton(

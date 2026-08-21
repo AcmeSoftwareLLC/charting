@@ -31,4 +31,10 @@ class Debounce {
     /// Start a new timer with the specified [delay] and [action]
     _timer = Timer(delay, action);
   }
+
+  /// Cancels a pending debounced call, if any, without scheduling a new one.
+  void cancel() {
+    _timer?.cancel();
+    _timer = null;
+  }
 }

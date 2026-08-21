@@ -80,8 +80,7 @@ class RectangleInteractableDrawing
       quoteToY(endPoint!.quote),
     );
 
-    final double startDistance =
-        (details.localPosition - startOffset).distance;
+    final double startDistance = (details.localPosition - startOffset).distance;
     final double endDistance = (details.localPosition - endOffset).distance;
 
     if (startDistance <= hitTestMargin) {
@@ -89,7 +88,6 @@ class RectangleInteractableDrawing
     } else if (endDistance <= hitTestMargin) {
       isDraggingStartPoint = false;
     } else {
-      // The drag is on the rectangle body, not on a specific corner.
       isDraggingStartPoint = null;
     }
   }
@@ -232,8 +230,9 @@ class RectangleInteractableDrawing
 
       if (drawingState.contains(DrawingToolState.dragging) &&
           isDraggingStartPoint != null) {
-        final Offset draggedOffset =
-            isDraggingStartPoint! ? startOffset : endOffset;
+        final Offset draggedOffset = isDraggingStartPoint!
+            ? startOffset
+            : endOffset;
         drawFocusedCircle(
           paintStyle,
           lineStyle,
@@ -302,8 +301,9 @@ class RectangleInteractableDrawing
     final Offset delta = details.delta;
 
     if (isDraggingStartPoint != null) {
-      final EdgePoint pointBeingDragged =
-          isDraggingStartPoint! ? startPoint! : endPoint!;
+      final EdgePoint pointBeingDragged = isDraggingStartPoint!
+          ? startPoint!
+          : endPoint!;
 
       final Offset currentOffset = Offset(
         epochToX(pointBeingDragged.epoch),
@@ -354,12 +354,12 @@ class RectangleInteractableDrawing
     QuoteToY quoteToY,
   ) {
     isDraggingStartPoint = null;
+    config = getUpdatedConfig();
   }
 
   @override
-  RectangleDrawingToolConfig getUpdatedConfig() => config.copyWith(
-        edgePoints: <EdgePoint>[?startPoint, ?endPoint],
-      );
+  RectangleDrawingToolConfig getUpdatedConfig() =>
+      config.copyWith(edgePoints: <EdgePoint>[?startPoint, ?endPoint]);
 
   @override
   bool isInViewPort(EpochRange epochRange, QuoteRange quoteRange) =>
@@ -373,64 +373,58 @@ class RectangleInteractableDrawing
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>
-      getAddingPreviewForDesktopBehaviour(
+  getAddingPreviewForDesktopBehaviour(
     InteractiveLayerDesktopBehaviour layerBehaviour,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-          RectangleAddingPreviewDesktop(
-            interactiveLayerBehaviour: layerBehaviour,
-            interactableDrawing: this,
-            onAddingStateChange: onAddingStateChange,
-          );
+  ) => RectangleAddingPreviewDesktop(
+    interactiveLayerBehaviour: layerBehaviour,
+    interactableDrawing: this,
+    onAddingStateChange: onAddingStateChange,
+  );
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>
-      getAddingPreviewForMobileBehaviour(
+  getAddingPreviewForMobileBehaviour(
     InteractiveLayerMobileBehaviour layerBehaviour,
     Function(AddingStateInfo) onAddingStateChange,
-  ) =>
-          RectangleAddingPreviewMobile(
-            interactiveLayerBehaviour: layerBehaviour,
-            interactableDrawing: this,
-            onAddingStateChange: onAddingStateChange,
-          );
+  ) => RectangleAddingPreviewMobile(
+    interactiveLayerBehaviour: layerBehaviour,
+    interactableDrawing: this,
+    onAddingStateChange: onAddingStateChange,
+  );
 
   @override
   Widget buildDrawingToolBarMenu(UpdateDrawingTool onUpdate) => Row(
-        children: <Widget>[
-          _buildLineThicknessIcon(onUpdate),
-          const SizedBox(width: 4),
-          _buildLineColorPickerIcon(onUpdate),
-          const SizedBox(width: 4),
-          _buildFillColorPickerIcon(onUpdate),
-        ],
-      );
+    children: <Widget>[
+      _buildLineThicknessIcon(onUpdate),
+      const SizedBox(width: 4),
+      _buildLineColorPickerIcon(onUpdate),
+      const SizedBox(width: 4),
+      _buildFillColorPickerIcon(onUpdate),
+    ],
+  );
 
   Widget _buildLineColorPickerIcon(UpdateDrawingTool onUpdate) => SizedBox(
-        width: 32,
-        height: 32,
-        child: ColorPickerDropdownButton(
-          currentColor: config.lineStyle.color,
-          onColorChanged: (newColor) => onUpdate(
-            config.copyWith(
-              lineStyle: config.lineStyle.copyWith(color: newColor),
-            ),
-          ),
-        ),
-      );
+    width: 32,
+    height: 32,
+    child: ColorPickerDropdownButton(
+      currentColor: config.lineStyle.color,
+      onColorChanged: (newColor) => onUpdate(
+        config.copyWith(lineStyle: config.lineStyle.copyWith(color: newColor)),
+      ),
+    ),
+  );
 
   Widget _buildFillColorPickerIcon(UpdateDrawingTool onUpdate) => SizedBox(
-        width: 32,
-        height: 32,
-        child: ColorPickerDropdownButton(
-          currentColor: config.fillStyle.color,
-          onColorChanged: (newColor) => onUpdate(
-            config.copyWith(
-              fillStyle: config.fillStyle.copyWith(color: newColor),
-            ),
-          ),
-        ),
-      );
+    width: 32,
+    height: 32,
+    child: ColorPickerDropdownButton(
+      currentColor: config.fillStyle.color,
+      onColorChanged: (newColor) => onUpdate(
+        config.copyWith(fillStyle: config.fillStyle.copyWith(color: newColor)),
+      ),
+    ),
+  );
 
   Widget _buildLineThicknessIcon(UpdateDrawingTool onUpdate) =>
       LineThicknessDropdownButton(

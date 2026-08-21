@@ -60,8 +60,21 @@ class InteractiveAddingToolState extends InteractiveState
     );
   }
 
+  /// Whether this adding session has already completed.
+  ///
+  /// A mobile preview's post-frame callback and a fast follow-up tap can
+  /// each independently signal "finished" for the same shape; this guards
+  /// the second call. It's a dedicated flag rather than checking
+  /// `_drawingPreview == null`, because that field is also `null` for a
+  /// brief moment *before* completion too: desktop previews call
+  /// [_onAddingStateChange] with the initial `AddingStateInfo(0, N)`
+  /// synchronously from their own constructor, i.e. while still on the
+  /// right-hand side of the `_drawingPreview ??= ...` assignment below —
+  /// checking the field itself would have silently dropped that first call.
+  bool _isFinished = false;
+
   void _onAddingStateChange(AddingStateInfo addingStateInfo) {
-    if (_drawingPreview == null) {
+    if (_isFinished) {
       return;
     }
 
@@ -73,6 +86,8 @@ class InteractiveAddingToolState extends InteractiveState
     );
 
     if (addingStateInfo.isFinished) {
+      _isFinished = true;
+
       interactiveLayer
         ..clearAddingDrawing()
         ..addDrawing(_drawingPreview!.interactableDrawing.getUpdatedConfig());

@@ -24,7 +24,7 @@ class RectangleDrawingToolConfig extends DrawingToolConfig {
     super.drawingData,
     super.edgePoints = const <EdgePoint>[],
     this.fillStyle = const LineStyle(thickness: 0.9, color: Colors.blue),
-    this.lineStyle = const LineStyle(thickness: 0.9, color: Colors.white),
+    this.lineStyle = const LineStyle(thickness: 0.9, color: Colors.blue),
     this.pattern = DrawingPatterns.solid,
     super.number,
   });

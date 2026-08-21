@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../misc/debounce.dart';
+
 /// Placeholder shown inside an empty note box.
 const String notesEmptyPlaceholder = 'Add note...';
 
@@ -41,7 +43,7 @@ class _NoteTextFieldState extends State<NoteTextField> {
     text: widget.text,
   );
 
-  Timer? _saveDebounce;
+  final Debounce _saveDebounce = Debounce(delay: notesTextSaveDebounce);
 
   @override
   void didUpdateWidget(NoteTextField oldWidget) {
@@ -54,19 +56,25 @@ class _NoteTextFieldState extends State<NoteTextField> {
 
   @override
   void dispose() {
-    if (_saveDebounce != null && _controller.text != widget.text) {
+    // Flush a pending edit rather than losing it, but defer the callback via
+    // a microtask instead of calling it synchronously here: `dispose()` runs
+    // mid-teardown as part of the current widget-tree rebuild, and
+    // `onChanged` ultimately triggers `setState` on an unrelated ancestor
+    // (the interactive layer syncing with the drawings repository) — calling
+    // it synchronously risks Flutter's "setState() called during build"
+    // hazard. A microtask runs after the current build/dispose pass finishes.
+    if (_controller.text != widget.text) {
       final String pendingText = _controller.text;
       final ValueChanged<String> onChanged = widget.onChanged;
       scheduleMicrotask(() => onChanged(pendingText));
     }
-    _saveDebounce?.cancel();
+    _saveDebounce.cancel();
     _controller.dispose();
     super.dispose();
   }
 
   void _onChanged(String value) {
-    _saveDebounce?.cancel();
-    _saveDebounce = Timer(notesTextSaveDebounce, () => widget.onChanged(value));
+    _saveDebounce.run(() => widget.onChanged(value));
   }
 
   @override

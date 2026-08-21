@@ -293,6 +293,10 @@ class _DrawingToolsScreenState
                           value: NotesDrawingToolConfig(),
                           child: Text('Notes'),
                         ),
+                        DropdownMenuItem<DrawingToolConfig>(
+                          value: TradeRatioDrawingToolConfig(),
+                          child: Text('Trade Ratio'),
+                        ),
                       ],
                       onChanged: (DrawingToolConfig? config) {
                         setState(() {
@@ -354,6 +358,7 @@ class _DrawingToolsScreenState
               _buildToolChip('Ellipse', Icons.circle_outlined),
               _buildToolChip('Fibonacci Fan', Icons.filter_tilt_shift),
               _buildToolChip('Notes', Icons.sticky_note_2),
+              _buildToolChip('Trade Ratio', Icons.percent),
             ],
           ),
         ],

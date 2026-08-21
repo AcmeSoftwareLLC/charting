@@ -164,7 +164,8 @@ class NotesInteractableDrawing
     final double resizeDistance =
         (details.localPosition - rect.bottomRight).distance;
 
-    _isResizeHandleDragged = resizeDistance < moveDistance;
+    _isResizeHandleDragged =
+        resizeDistance <= hitTestMargin && resizeDistance < moveDistance;
   }
 
   @override
