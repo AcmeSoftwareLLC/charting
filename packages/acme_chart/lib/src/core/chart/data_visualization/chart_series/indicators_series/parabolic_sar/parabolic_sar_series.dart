@@ -41,7 +41,9 @@ class ParabolicSARSeries extends AbstractSingleIndicatorSeries {
     }
 
     final ParabolicSARSeries oldSeries = oldDelegate as ParabolicSARSeries;
-    return options != oldSeries.options || style != oldSeries.style;
+    return options != oldSeries.options ||
+        style != oldSeries.style ||
+        super.shouldRepaint(oldDelegate);
   }
 
   @override

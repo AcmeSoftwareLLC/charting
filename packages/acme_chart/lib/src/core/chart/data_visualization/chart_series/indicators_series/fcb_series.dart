@@ -74,7 +74,8 @@ class FractalChaosBandSeries extends Series {
     }
 
     final FractalChaosBandSeries oldSeries = previous as FractalChaosBandSeries;
-    return config.toJson().toString() != oldSeries.config.toJson().toString();
+    return config.toJson().toString() != oldSeries.config.toJson().toString() ||
+        super.shouldRepaint(previous);
   }
 
   @override

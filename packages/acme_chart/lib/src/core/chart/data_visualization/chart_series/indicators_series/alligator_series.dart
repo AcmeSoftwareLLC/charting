@@ -168,7 +168,8 @@ class AlligatorSeries extends Series {
       return true;
     }
 
-    return alligatorOptions != (previous as AlligatorSeries).alligatorOptions;
+    return alligatorOptions != (previous as AlligatorSeries).alligatorOptions ||
+        super.shouldRepaint(previous);
   }
 
   @override

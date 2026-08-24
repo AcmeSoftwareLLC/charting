@@ -36,7 +36,8 @@ class ZigZagSeries extends LineSeries {
       return true;
     }
 
-    return style != (oldDelegate as ZigZagSeries).style;
+    return style != (oldDelegate as ZigZagSeries).style ||
+        super.shouldRepaint(oldDelegate);
   }
 
   @override

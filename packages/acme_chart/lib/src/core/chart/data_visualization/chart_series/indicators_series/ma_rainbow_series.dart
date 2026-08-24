@@ -165,7 +165,8 @@ class RainbowSeries extends Series {
 
     final RainbowSeries oldSeries = previous as RainbowSeries;
     return rainbowOptions != oldSeries.rainbowOptions ||
-        rainbowLineStyles != oldSeries.rainbowLineStyles;
+        rainbowLineStyles != oldSeries.rainbowLineStyles ||
+        super.shouldRepaint(previous);
   }
 
   @override

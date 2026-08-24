@@ -167,7 +167,8 @@ class BollingerBandSeries extends Series {
       return true;
     }
 
-    return bbOptions != (previous as BollingerBandSeries).bbOptions;
+    return bbOptions != (previous as BollingerBandSeries).bbOptions ||
+        super.shouldRepaint(previous);
   }
 
   @override

@@ -62,7 +62,9 @@ class MASeries extends AbstractSingleIndicatorSeries {
     }
 
     final MASeries oldSeries = oldDelegate as MASeries;
-    return options != oldSeries.options || style != oldSeries.style;
+    return options != oldSeries.options ||
+        style != oldSeries.style ||
+        super.shouldRepaint(oldDelegate);
   }
 
   @override
