@@ -31,9 +31,12 @@ const List<Color> defaultTradeRatioLevelColors = <Color>[
 /// Trade ratio drawing tool config.
 ///
 /// Anchors two points defining a base price span, then projects a set of
-/// percentage levels of that span as horizontal lines across the chart —
-/// e.g. a 100% level sits one full span above the start point, a -100% level
-/// one full span below it.
+/// percentage levels of that span as horizontal lines across the chart,
+/// matching ChartIQ's `retracement` tool: 0% sits at the start anchor (the
+/// entry), positive percentages extend past the start anchor away from the
+/// end anchor (e.g. 100% is one full span beyond the start, on the opposite
+/// side from the end anchor), and negative percentages extend past the end
+/// anchor instead, continuing in the same direction as the start->end move.
 @JsonSerializable()
 class TradeRatioDrawingToolConfig extends DrawingToolConfig {
   /// Initializes
@@ -76,7 +79,8 @@ class TradeRatioDrawingToolConfig extends DrawingToolConfig {
   final DrawingPatterns pattern;
 
   /// The percentage levels of the anchor span to project as horizontal
-  /// lines, e.g. `100` projects a line one full span above the start point.
+  /// lines, e.g. `100` projects a line one full span past the start point,
+  /// on the opposite side from the end point.
   final List<double> levels;
 
   /// The color for each entry in [levels], matched by index. If shorter than

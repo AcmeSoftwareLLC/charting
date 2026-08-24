@@ -3,6 +3,8 @@ import 'package:acme_chart/src/add_ons/drawing_tools_ui/drawing_tool_item.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/trend/trend_drawing_tool_item.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_model/drawing_pattern.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
+import 'package:acme_chart/src/core/interactive_layer/drawing_context.dart';
+import 'package:acme_chart/src/core/interactive_layer/helpers/types.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -11,6 +13,12 @@ import '../callbacks.dart';
 part 'trend_drawing_tool_config.g.dart';
 
 /// Trend drawing tool configurations.
+///
+/// Placed exactly like [LineDrawingToolConfig] — a straight line bounded
+/// strictly between its two points, not extended beyond them.
+/// [getInteractableDrawing] hands the drawing off to a [LineDrawingToolConfig]
+/// built from this config's own [lineStyle]/[pattern], so the finished result
+/// renders and behaves as a real [TrendLineInteractableDrawing].
 @JsonSerializable()
 class TrendDrawingToolConfig extends DrawingToolConfig {
   /// Initializes
@@ -74,4 +82,24 @@ class TrendDrawingToolConfig extends DrawingToolConfig {
     edgePoints: edgePoints ?? this.edgePoints,
     number: number ?? this.number,
   );
+
+  @override
+  TrendLineInteractableDrawing getInteractableDrawing(
+    DrawingContext drawingContext,
+    GetDrawingState getDrawingState,
+  ) {
+    final LineDrawingToolConfig lineConfig = LineDrawingToolConfig(
+      lineStyle: lineStyle,
+      pattern: pattern,
+      edgePoints: edgePoints,
+    );
+
+    return TrendLineInteractableDrawing(
+      config: lineConfig,
+      startPoint: edgePoints.isNotEmpty ? edgePoints.first : null,
+      endPoint: edgePoints.isNotEmpty ? edgePoints.last : null,
+      drawingContext: drawingContext,
+      getDrawingState: getDrawingState,
+    );
+  }
 }

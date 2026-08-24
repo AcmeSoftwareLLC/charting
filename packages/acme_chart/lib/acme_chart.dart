@@ -10,6 +10,7 @@ export 'src/add_ons/drawing_tools_ui/doodle/doodle_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/ellipse/ellipse_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/fibfan/fibfan_drawing_tool_config.dart';
+export 'src/add_ons/drawing_tools_ui/fib_retracement/fib_retracement_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/horizontal/horizontal_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/line/line_drawing_tool_config.dart';
 export 'src/add_ons/drawing_tools_ui/line/line_drawing_tool_config_mobile.dart';

@@ -3,7 +3,6 @@ import '../../../../add_ons/drawing_tools_ui/channel/channel_drawing_tool_config
 import '../../../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
 import '../../../../core/chart/data_visualization/chart_data.dart';
 import '../../../../core/chart/data_visualization/drawing_tools/data_model/drawing_paint_style.dart';
-import '../../../../core/chart/data_visualization/drawing_tools/data_model/drawing_pattern.dart';
 import '../../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import '../../../../core/chart/data_visualization/extensions/extensions.dart';
 import '../../../../core/chart/data_visualization/models/animation_info.dart';
@@ -189,34 +188,32 @@ class ChannelInteractableDrawing
     final drawingState = getDrawingState(this);
     final _ChannelGeometry geometry = _computeGeometry(epochToX, quoteToY);
 
-    if (config.pattern == DrawingPatterns.solid) {
-      canvas
-        ..drawPath(
-          _parallelogramPath(geometry),
-          paintStyle.fillPaintStyle(fillStyle.color, lineStyle.thickness),
-        )
-        ..drawLine(
-          geometry.start,
-          geometry.middle,
-          paintStyle.linePaintStyle(lineStyle.color, lineStyle.thickness),
-        )
-        ..drawLine(
-          geometry.end,
-          geometry.secondLineStart,
-          paintStyle.linePaintStyle(lineStyle.color, lineStyle.thickness),
-        );
+    canvas
+      ..drawPath(
+        _parallelogramPath(geometry),
+        paintStyle.fillPaintStyle(fillStyle.color, lineStyle.thickness),
+      )
+      ..drawLine(
+        geometry.start,
+        geometry.middle,
+        paintStyle.linePaintStyle(lineStyle.color, lineStyle.thickness),
+      )
+      ..drawLine(
+        geometry.end,
+        geometry.secondLineStart,
+        paintStyle.linePaintStyle(lineStyle.color, lineStyle.thickness),
+      );
 
-      if (drawingState.contains(DrawingToolState.selected)) {
-        final Paint neonPaint = Paint()
-          ..color = lineStyle.color.withValues(alpha: 0.4)
-          ..strokeWidth = 8 * animationInfo.stateChangePercent
-          ..strokeCap = StrokeCap.round
-          ..style = PaintingStyle.stroke
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
-        canvas
-          ..drawLine(geometry.start, geometry.middle, neonPaint)
-          ..drawLine(geometry.end, geometry.secondLineStart, neonPaint);
-      }
+    if (drawingState.contains(DrawingToolState.selected)) {
+      final Paint neonPaint = Paint()
+        ..color = lineStyle.color.withValues(alpha: 0.4)
+        ..strokeWidth = 8 * animationInfo.stateChangePercent
+        ..strokeCap = StrokeCap.round
+        ..style = PaintingStyle.stroke
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
+      canvas
+        ..drawLine(geometry.start, geometry.middle, neonPaint)
+        ..drawLine(geometry.end, geometry.secondLineStart, neonPaint);
     }
 
     // Only draw corner markers when there's an active interaction.

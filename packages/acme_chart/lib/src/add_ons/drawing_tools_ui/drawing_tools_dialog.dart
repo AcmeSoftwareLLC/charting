@@ -5,6 +5,7 @@ import 'package:acme_chart/src/add_ons/drawing_tools_ui/doodle/doodle_drawing_to
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/ellipse/ellipse_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/horizontal/horizontal_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/fibfan/fibfan_drawing_tool_config.dart';
+import 'package:acme_chart/src/add_ons/drawing_tools_ui/fib_retracement/fib_retracement_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/line/line_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/measure/measure_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/notes/notes_drawing_tool_config.dart';
@@ -79,6 +80,10 @@ class _DrawingToolsDialogState extends State<DrawingToolsDialog> {
                   DropdownMenuItem<DrawingToolConfig>(
                     value: FibfanDrawingToolConfig(),
                     child: Text('Fib Fan'),
+                  ),
+                  DropdownMenuItem<DrawingToolConfig>(
+                    value: FibRetracementDrawingToolConfig(),
+                    child: Text('Fib Retracement'),
                   ),
                   DropdownMenuItem<DrawingToolConfig>(
                     value: HorizontalDrawingToolConfig(),

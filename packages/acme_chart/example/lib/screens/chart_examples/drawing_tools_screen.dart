@@ -298,6 +298,10 @@ class _DrawingToolsScreenState
                           child: Text('Fibonacci Fan'),
                         ),
                         DropdownMenuItem<DrawingToolConfig>(
+                          value: FibRetracementDrawingToolConfig(),
+                          child: Text('Fibonacci Retracement'),
+                        ),
+                        DropdownMenuItem<DrawingToolConfig>(
                           value: NotesDrawingToolConfig(),
                           child: Text('Notes'),
                         ),

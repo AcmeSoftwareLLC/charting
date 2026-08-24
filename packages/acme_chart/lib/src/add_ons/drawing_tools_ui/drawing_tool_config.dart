@@ -39,6 +39,8 @@ abstract class DrawingToolConfig extends AddOnConfig {
         return EllipseDrawingToolConfig.fromJson(json);
       case FibfanDrawingToolConfig.name:
         return FibfanDrawingToolConfig.fromJson(json);
+      case FibRetracementDrawingToolConfig.name:
+        return FibRetracementDrawingToolConfig.fromJson(json);
       case HorizontalDrawingToolConfig.name:
         return HorizontalDrawingToolConfig.fromJson(json);
       case LineDrawingToolConfig.name:

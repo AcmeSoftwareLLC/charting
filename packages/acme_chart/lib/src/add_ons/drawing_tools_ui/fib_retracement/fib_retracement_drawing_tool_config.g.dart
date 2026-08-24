@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'fibfan_drawing_tool_config.dart';
+part of 'fib_retracement_drawing_tool_config.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-FibfanDrawingToolConfig _$FibfanDrawingToolConfigFromJson(
+FibRetracementDrawingToolConfig _$FibRetracementDrawingToolConfigFromJson(
   Map<String, dynamic> json,
-) => FibfanDrawingToolConfig(
+) => FibRetracementDrawingToolConfig(
   configId: json['configId'] as String?,
   drawingData: json['drawingData'] == null
       ? null
@@ -32,8 +32,8 @@ FibfanDrawingToolConfig _$FibfanDrawingToolConfigFromJson(
   number: (json['number'] as num?)?.toInt() ?? 0,
 );
 
-Map<String, dynamic> _$FibfanDrawingToolConfigToJson(
-  FibfanDrawingToolConfig instance,
+Map<String, dynamic> _$FibRetracementDrawingToolConfigToJson(
+  FibRetracementDrawingToolConfig instance,
 ) => <String, dynamic>{
   'configId': instance.configId,
   'number': instance.number,

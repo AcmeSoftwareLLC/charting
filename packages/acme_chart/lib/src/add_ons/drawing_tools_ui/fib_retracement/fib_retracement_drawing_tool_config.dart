@@ -7,38 +7,39 @@ import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/drawi
 import 'package:acme_chart/src/core/chart/helpers/text_style_json_converter.dart';
 import 'package:acme_chart/src/core/interactive_layer/drawing_context.dart';
 import 'package:acme_chart/src/core/interactive_layer/helpers/types.dart';
-import 'package:acme_chart/src/core/interactive_layer/interactable_drawings/fibfan/fibfan_interactable_drawing.dart';
+import 'package:acme_chart/src/core/interactive_layer/interactable_drawings/fib_retracement/fib_retracement_interactable_drawing.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'fibfan_drawing_tool_item.dart';
+import 'fib_retracement_drawing_tool_item.dart';
 
-part 'fibfan_drawing_tool_config.g.dart';
+part 'fib_retracement_drawing_tool_config.g.dart';
 
-/// Fibfan drawing tool config
+/// Fibonacci retracement drawing tool config.
 @JsonSerializable()
-class FibfanDrawingToolConfig extends DrawingToolConfig {
+class FibRetracementDrawingToolConfig extends DrawingToolConfig {
   /// Initializes
-  const FibfanDrawingToolConfig({
+  const FibRetracementDrawingToolConfig({
     super.configId,
     super.drawingData,
     super.edgePoints = const <EdgePoint>[],
     this.fillStyle = const LineStyle(thickness: 0.9, color: Colors.blue),
     this.lineStyle = const LineStyle(thickness: 0.9, color: Colors.white),
-    this.labelStyle = const TextStyle(fontSize: 11, color: Colors.white),
+    this.labelStyle = const TextStyle(fontSize: 11, color: Colors.blue),
     super.number,
   });
 
   /// Initializes from JSON.
-  factory FibfanDrawingToolConfig.fromJson(Map<String, dynamic> json) =>
-      _$FibfanDrawingToolConfigFromJson(json);
+  factory FibRetracementDrawingToolConfig.fromJson(
+    Map<String, dynamic> json,
+  ) => _$FibRetracementDrawingToolConfigFromJson(json);
 
   /// Drawing tool name
-  static const String name = 'dt_fibfan';
+  static const String name = 'dt_fib_retracement';
 
   @override
   Map<String, dynamic> toJson() =>
-      _$FibfanDrawingToolConfigToJson(this)
+      _$FibRetracementDrawingToolConfigToJson(this)
         ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
@@ -47,7 +48,7 @@ class FibfanDrawingToolConfig extends DrawingToolConfig {
   /// Drawing tool fill style
   final LineStyle fillStyle;
 
-  /// Text style for each ray's percentage label.
+  /// Text style for each level's percentage label.
   @TextStyleJsonConverter()
   final TextStyle labelStyle;
 
@@ -55,14 +56,14 @@ class FibfanDrawingToolConfig extends DrawingToolConfig {
   DrawingToolItem getItem(
     UpdateDrawingTool updateDrawingTool,
     VoidCallback deleteDrawingTool,
-  ) => FibfanDrawingToolItem(
+  ) => FibRetracementDrawingToolItem(
     config: this,
     updateDrawingTool: updateDrawingTool,
     deleteDrawingTool: deleteDrawingTool,
   );
 
   @override
-  FibfanDrawingToolConfig copyWith({
+  FibRetracementDrawingToolConfig copyWith({
     String? configId,
     DrawingData? drawingData,
     LineStyle? lineStyle,
@@ -72,7 +73,7 @@ class FibfanDrawingToolConfig extends DrawingToolConfig {
     List<EdgePoint>? edgePoints,
     bool? enableLabel,
     int? number,
-  }) => FibfanDrawingToolConfig(
+  }) => FibRetracementDrawingToolConfig(
     configId: configId ?? this.configId,
     drawingData: drawingData ?? this.drawingData,
     lineStyle: lineStyle ?? this.lineStyle,
@@ -83,10 +84,10 @@ class FibfanDrawingToolConfig extends DrawingToolConfig {
   );
 
   @override
-  FibfanInteractableDrawing getInteractableDrawing(
+  FibRetracementInteractableDrawing getInteractableDrawing(
     DrawingContext drawingContext,
     GetDrawingState getDrawingState,
-  ) => FibfanInteractableDrawing(
+  ) => FibRetracementInteractableDrawing(
     config: this,
     startPoint: edgePoints.isNotEmpty ? edgePoints[0] : null,
     endPoint: edgePoints.length > 1 ? edgePoints[1] : null,

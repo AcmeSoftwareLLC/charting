@@ -175,7 +175,8 @@ class HorizontalLineInteractableDrawing
     ChartTheme chartTheme,
     GetDrawingState getDrawingState,
   ) {
-    if (getDrawingState(this).contains(DrawingToolState.selected)) {
+    if (config.enableLabel &&
+        getDrawingState(this).contains(DrawingToolState.selected)) {
       drawValueLabel(
         canvas: canvas,
         quoteToY: quoteToY,
