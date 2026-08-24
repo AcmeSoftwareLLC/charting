@@ -217,6 +217,16 @@ abstract class InteractiveLayerBehaviour {
       return false;
     }
 
+    // A tool that's drawn by dragging from an empty canvas (e.g. a freehand
+    // doodle) has nothing to positionally hit yet — treat any position as a
+    // hit so the drawing-tool gesture recognizer claims the pointer instead
+    // of rejecting it and handing the gesture to chart panning/scrolling.
+    final InteractiveState state = currentState;
+    if (state is InteractiveAddingToolState &&
+        (state.addingDrawingPreview?.canStartDragFromEmpty ?? false)) {
+      return true;
+    }
+
     // Check regular and preview drawings
     for (final drawing in [...interactiveLayer.drawings, ...previewDrawings]) {
       if (drawing.hitTest(

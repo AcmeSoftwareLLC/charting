@@ -10,22 +10,20 @@ import 'package:flutter/widgets.dart';
 import '../../enums/drawing_tool_state.dart';
 import '../../helpers/types.dart';
 import '../../interactive_layer_states/interactive_adding_tool_state.dart';
-import '../drawing_adding_preview.dart';
-import 'trade_ratio_interactable_drawing.dart';
+import 'segment_adding_preview.dart';
 
 /// A class to show a preview and handle adding a
-/// [TradeRatioInteractableDrawing] to the chart. It's for when we're on
+/// [SegmentInteractableDrawing] to the chart. It's for when we're on
 /// [InteractiveLayerMobileBehaviour].
 ///
 /// This mobile preview provides immediate focus mode by:
-/// - Automatically placing a default span in the center of the chart
+/// - Automatically placing a default segment in the center of the chart
 /// - Immediately completing the adding process for instant focus mode
 /// - Delegating visual rendering to the main drawing for consistency
-/// - Providing full functionality (drag corners, drag body, neon effects)
-class TradeRatioAddingPreviewMobile
-    extends DrawingAddingPreview<TradeRatioInteractableDrawing> {
-  /// Initializes [TradeRatioAddingPreviewMobile].
-  TradeRatioAddingPreviewMobile({
+/// - Providing full functionality (drag points, drag whole segment)
+class SegmentAddingPreviewMobile extends SegmentAddingPreview {
+  /// Initializes [SegmentAddingPreviewMobile].
+  SegmentAddingPreviewMobile({
     required super.interactiveLayerBehaviour,
     required super.interactableDrawing,
     required super.onAddingStateChange,
@@ -34,9 +32,6 @@ class TradeRatioAddingPreviewMobile
       final interactiveLayer = interactiveLayerBehaviour.interactiveLayer;
       final Size size = interactiveLayer.drawingContext.fullSize;
 
-      // Position the span to cross the chart area with better spacing
-      // from the Y-axis, matching the default box used by other tools'
-      // mobile previews.
       final startCenter = Offset(size.width * 0.20, size.height * 0.8);
       final endCenter = Offset(size.width * 0.70, size.height * 0.25);
 
@@ -74,13 +69,14 @@ class TradeRatioAddingPreviewMobile
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) => interactableDrawing.onDragStart(
-    details,
-    epochFromX,
-    quoteFromY,
-    epochToX,
-    quoteToY,
-  );
+  ) =>
+      interactableDrawing.onDragStart(
+        details,
+        epochFromX,
+        quoteFromY,
+        epochToX,
+        quoteToY,
+      );
 
   @override
   void onDragUpdate(
@@ -89,13 +85,14 @@ class TradeRatioAddingPreviewMobile
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) => interactableDrawing.onDragUpdate(
-    details,
-    epochFromX,
-    quoteFromY,
-    epochToX,
-    quoteToY,
-  );
+  ) =>
+      interactableDrawing.onDragUpdate(
+        details,
+        epochFromX,
+        quoteFromY,
+        epochToX,
+        quoteToY,
+      );
 
   @override
   void onDragEnd(
@@ -104,13 +101,14 @@ class TradeRatioAddingPreviewMobile
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) => interactableDrawing.onDragEnd(
-    details,
-    epochFromX,
-    quoteFromY,
-    epochToX,
-    quoteToY,
-  );
+  ) =>
+      interactableDrawing.onDragEnd(
+        details,
+        epochFromX,
+        quoteFromY,
+        epochToX,
+        quoteToY,
+      );
 
   @override
   void paint(
@@ -126,8 +124,8 @@ class TradeRatioAddingPreviewMobile
     if (interactableDrawing.startPoint != null &&
         interactableDrawing.endPoint != null) {
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-        DrawingToolState.selected,
-      };
+            DrawingToolState.selected,
+          };
 
       interactableDrawing.paint(
         canvas,
@@ -150,6 +148,11 @@ class TradeRatioAddingPreviewMobile
     EpochToX epochToX,
     QuoteToY quoteToY,
   ) {
+    // Since we immediately complete the adding process in the constructor,
+    // this method is primarily for consistency with the interface.
+    //
+    // If for some reason the points are not set, set them to default
+    // positions.
     if (interactableDrawing.startPoint == null ||
         interactableDrawing.endPoint == null) {
       final interactiveLayer = interactiveLayerBehaviour.interactiveLayer;
@@ -173,5 +176,12 @@ class TradeRatioAddingPreviewMobile
   }
 
   @override
-  String get id => 'trade-ratio-adding-preview-mobile';
+  bool shouldRepaint(
+    Set<DrawingToolState> drawingState,
+    DrawingV2 oldDrawing,
+  ) =>
+      true;
+
+  @override
+  String get id => 'segment-adding-preview-mobile';
 }

@@ -70,14 +70,7 @@ class TradeRatioAddingPreviewDesktop
       quoteToY(startPoint.quote),
     );
 
-    drawPointOffset(
-      startOffset,
-      epochToX,
-      quoteToY,
-      canvas,
-      paintStyle,
-      lineStyle,
-    );
+    drawFocusedCircle(paintStyle, lineStyle, canvas, startOffset, 10, 3);
 
     if (_hoverPosition != null) {
       canvas.drawPath(

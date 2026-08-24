@@ -10,24 +10,25 @@ import '../../helpers/paint_helpers.dart';
 import '../../helpers/types.dart';
 import '../../interactive_layer_behaviours/interactive_layer_desktop_behaviour.dart';
 import '../../interactive_layer_states/interactive_adding_tool_state.dart';
-import 'channel_adding_preview.dart';
+import 'segment_adding_preview.dart';
 
-/// A class to show a preview and handle adding a [ChannelInteractableDrawing]
-/// to the chart. It's for when we're on [InteractiveLayerDesktopBehaviour].
-class ChannelAddingPreviewDesktop extends ChannelAddingPreview {
-  /// Initializes [ChannelAddingPreviewDesktop].
-  ChannelAddingPreviewDesktop({
+/// A class to show a preview and handle adding a
+/// [SegmentInteractableDrawing] to the chart. It's for when we're on
+/// [InteractiveLayerDesktopBehaviour].
+class SegmentAddingPreviewDesktop extends SegmentAddingPreview {
+  /// Initializes [SegmentAddingPreviewDesktop].
+  SegmentAddingPreviewDesktop({
     required super.interactiveLayerBehaviour,
     required super.interactableDrawing,
     required super.onAddingStateChange,
   }) {
-    onAddingStateChange(AddingStateInfo(0, 3));
+    onAddingStateChange(AddingStateInfo(0, 2));
   }
 
   Offset? _hoverPosition;
 
   @override
-  String get id => 'channel-adding-preview-desktop';
+  String get id => 'segment-adding-preview-desktop';
 
   @override
   bool hitTest(Offset offset, EpochToX epochToX, QuoteToY quoteToY) => false;
@@ -69,51 +70,8 @@ class ChannelAddingPreviewDesktop extends ChannelAddingPreview {
 
     drawFocusedCircle(paintStyle, lineStyle, canvas, startOffset, 10, 3);
 
-    final middlePoint = interactableDrawing.middlePoint;
-    if (middlePoint == null) {
-      if (_hoverPosition != null) {
-        drawPreviewLine(canvas, startOffset, _hoverPosition!, lineStyle);
-        drawPointAlignmentGuides(
-          canvas,
-          size,
-          _hoverPosition!,
-          lineColor: lineStyle.color,
-        );
-      }
-      return;
-    }
-
-    final Offset middleOffset = edgePointToOffset(
-      middlePoint,
-      epochToX,
-      quoteToY,
-    );
-
-    canvas.drawLine(
-      startOffset,
-      middleOffset,
-      paintStyle.linePaintStyle(lineStyle.color, lineStyle.thickness),
-    );
-    drawFocusedCircle(paintStyle, lineStyle, canvas, middleOffset, 10, 3);
-
     if (_hoverPosition != null) {
-      final double height = middleOffset.dy - _hoverPosition!.dy;
-      final Offset endOffset = Offset(middleOffset.dx, _hoverPosition!.dy);
-      final Offset secondLineStart = Offset(
-        startOffset.dx,
-        startOffset.dy - height,
-      );
-
-      // Walk the perimeter as bottom-left -> bottom-right -> top-right ->
-      // top-left so the preview stays a proper (non-self-intersecting)
-      // parallelogram regardless of draw direction.
-      final bool startIsLeft = startOffset.dx <= middleOffset.dx;
-      drawPreviewParallelogram(canvas, <Offset>[
-        startIsLeft ? startOffset : middleOffset,
-        startIsLeft ? middleOffset : startOffset,
-        startIsLeft ? endOffset : secondLineStart,
-        startIsLeft ? secondLineStart : endOffset,
-      ], lineStyle);
+      drawPreviewLine(canvas, startOffset, _hoverPosition!, lineStyle);
       drawPointAlignmentGuides(
         canvas,
         size,

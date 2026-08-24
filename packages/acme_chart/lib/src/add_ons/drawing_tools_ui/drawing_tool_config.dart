@@ -33,6 +33,8 @@ abstract class DrawingToolConfig extends AddOnConfig {
         return ChannelDrawingToolConfig.fromJson(json);
       case ContinuousDrawingToolConfig.name:
         return ContinuousDrawingToolConfig.fromJson(json);
+      case DoodleDrawingToolConfig.name:
+        return DoodleDrawingToolConfig.fromJson(json);
       case EllipseDrawingToolConfig.name:
         return EllipseDrawingToolConfig.fromJson(json);
       case FibfanDrawingToolConfig.name:
@@ -43,12 +45,16 @@ abstract class DrawingToolConfig extends AddOnConfig {
         return LineDrawingToolConfig.fromJson(json);
       case LineDrawingToolConfigMobile.name:
         return LineDrawingToolConfigMobile.fromJson(json);
+      case MeasureDrawingToolConfig.name:
+        return MeasureDrawingToolConfig.fromJson(json);
       case NotesDrawingToolConfig.name:
         return NotesDrawingToolConfig.fromJson(json);
       case RayDrawingToolConfig.name:
         return RayDrawingToolConfig.fromJson(json);
       case RectangleDrawingToolConfig.name:
         return RectangleDrawingToolConfig.fromJson(json);
+      case SegmentDrawingToolConfig.name:
+        return SegmentDrawingToolConfig.fromJson(json);
       case TradeRatioDrawingToolConfig.name:
         return TradeRatioDrawingToolConfig.fromJson(json);
       case TrendDrawingToolConfig.name:

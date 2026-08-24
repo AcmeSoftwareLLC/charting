@@ -75,6 +75,17 @@ abstract class DrawingAddingPreview<
   /// the interactive layer as a permanent drawing.
   final T interactableDrawing;
 
+  /// Whether this preview can start a drag gesture even when nothing has
+  /// been placed yet, i.e. before [hitTest] has anything to return `true`
+  /// for.
+  ///
+  /// Defaults to `false`, preserving the normal tap-to-place flow where a
+  /// drag during adding is only used to adjust a point that was already
+  /// placed. Override to `true` for tools that are drawn by dragging from
+  /// an empty canvas rather than by tapping fixed points, e.g. a freehand
+  /// doodle tool.
+  bool get canStartDragFromEmpty => false;
+
   /// Handles tap events during the drawing creation process.
   ///
   /// This method is called when the user taps on the chart while in the drawing

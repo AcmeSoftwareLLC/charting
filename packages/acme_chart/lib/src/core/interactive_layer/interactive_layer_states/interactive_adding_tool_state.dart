@@ -123,6 +123,21 @@ class InteractiveAddingToolState extends InteractiveState
 
   bool _isAddingToolBeingDragged = false;
 
+  /// Whether [onPanStart] actually called [DrawingAddingPreview.onDragStart]
+  /// for the pointer currently being tracked.
+  ///
+  /// Distinct from [_isAddingToolBeingDragged] (which only becomes true once
+  /// real movement is observed in [onPanUpdate], and drives the *visual*
+  /// [DrawingToolState.dragging] state): a stationary press-and-release never
+  /// triggers [onPanUpdate], so gating [onPanEnd] on [_isAddingToolBeingDragged]
+  /// would silently skip [DrawingAddingPreview.onDragEnd] for a tap-only
+  /// gesture. That's harmless for tap-to-place tools (they don't rely on
+  /// onDragEnd to finish), but fatal for a tool that can only be completed via
+  /// onDragEnd, like a canStartDragFromEmpty freehand tool — it would leave
+  /// that tool stuck mid-stroke. This flag ensures onDragEnd always pairs
+  /// with a preceding onDragStart, regardless of whether movement occurred.
+  bool _dragStarted = false;
+
   /// The drawing that is currently being created.
   ///
   /// This is initialized when the user first taps on the chart and is used
@@ -155,7 +170,7 @@ class InteractiveAddingToolState extends InteractiveState
 
   @override
   bool onPanEnd(DragEndDetails details) {
-    if (_isAddingToolBeingDragged) {
+    if (_dragStarted) {
       _drawingPreview?.onDragEnd(
         details,
         epochFromX,
@@ -165,6 +180,7 @@ class InteractiveAddingToolState extends InteractiveState
       );
 
       _isAddingToolBeingDragged = false;
+      _dragStarted = false;
       return true; // Ended dragging the tool being added. Jim - Verify this
     }
 
@@ -179,8 +195,13 @@ class InteractiveAddingToolState extends InteractiveState
 
   @override
   bool onPanStart(DragStartDetails details) {
-    if (_drawingPreview?.hitTest(details.localPosition, epochToX, quoteToY) ??
-        false) {
+    final bool hitExistingPoint =
+        _drawingPreview?.hitTest(details.localPosition, epochToX, quoteToY) ??
+        false;
+    final bool canStartFresh =
+        _drawingPreview?.canStartDragFromEmpty ?? false;
+
+    if (hitExistingPoint || canStartFresh) {
       // To trigger the animation of the interactive layer, so the adding
       // preview can perform its forward dragging effect animation.
       interactiveLayerBehaviour.updateStateTo(
@@ -195,6 +216,7 @@ class InteractiveAddingToolState extends InteractiveState
         epochToX,
         quoteToY,
       );
+      _dragStarted = true;
       return true; // Started dragging the tool being added. Jim - Verify this
     } else {
       return false; // Not dragging the tool being added. Jim - Verify this

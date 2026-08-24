@@ -278,8 +278,16 @@ class _DrawingToolsScreenState
                           child: Text('Rectangle'),
                         ),
                         DropdownMenuItem<DrawingToolConfig>(
+                          value: SegmentDrawingToolConfig(),
+                          child: Text('Segment'),
+                        ),
+                        DropdownMenuItem<DrawingToolConfig>(
                           value: ChannelDrawingToolConfig(),
                           child: Text('Channel'),
+                        ),
+                        DropdownMenuItem<DrawingToolConfig>(
+                          value: DoodleDrawingToolConfig(),
+                          child: Text('Doodle'),
                         ),
                         DropdownMenuItem<DrawingToolConfig>(
                           value: EllipseDrawingToolConfig(),
@@ -296,6 +304,10 @@ class _DrawingToolsScreenState
                         DropdownMenuItem<DrawingToolConfig>(
                           value: TradeRatioDrawingToolConfig(),
                           child: Text('Trade Ratio'),
+                        ),
+                        DropdownMenuItem<DrawingToolConfig>(
+                          value: MeasureDrawingToolConfig(),
+                          child: Text('Measure'),
                         ),
                       ],
                       onChanged: (DrawingToolConfig? config) {
@@ -354,11 +366,14 @@ class _DrawingToolsScreenState
               _buildToolChip('Ray', Icons.trending_up),
               _buildToolChip('Trend', Icons.timeline),
               _buildToolChip('Rectangle', Icons.crop_square),
+              _buildToolChip('Segment', Icons.linear_scale),
               _buildToolChip('Channel', Icons.view_stream),
+              _buildToolChip('Doodle', Icons.gesture),
               _buildToolChip('Ellipse', Icons.circle_outlined),
               _buildToolChip('Fibonacci Fan', Icons.filter_tilt_shift),
               _buildToolChip('Notes', Icons.sticky_note_2),
               _buildToolChip('Trade Ratio', Icons.percent),
+              _buildToolChip('Measure', Icons.straighten),
             ],
           ),
         ],

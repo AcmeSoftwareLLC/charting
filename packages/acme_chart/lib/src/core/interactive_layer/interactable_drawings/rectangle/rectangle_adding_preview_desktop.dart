@@ -68,14 +68,7 @@ class RectangleAddingPreviewDesktop extends RectangleAddingPreview {
       quoteToY,
     );
 
-    drawPointOffset(
-      startOffset,
-      epochToX,
-      quoteToY,
-      canvas,
-      paintStyle,
-      lineStyle,
-    );
+    drawFocusedCircle(paintStyle, lineStyle, canvas, startOffset, 10, 3);
 
     if (_hoverPosition != null) {
       drawPreviewRect(canvas, startOffset, _hoverPosition!, lineStyle);

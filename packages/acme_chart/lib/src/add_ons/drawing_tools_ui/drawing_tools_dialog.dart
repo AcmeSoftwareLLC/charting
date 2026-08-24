@@ -1,13 +1,16 @@
 import 'package:acme_chart/generated/l10n.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/channel/channel_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/continuous/continuous_drawing_tool_config.dart';
+import 'package:acme_chart/src/add_ons/drawing_tools_ui/doodle/doodle_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/ellipse/ellipse_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/horizontal/horizontal_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/fibfan/fibfan_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/line/line_drawing_tool_config.dart';
+import 'package:acme_chart/src/add_ons/drawing_tools_ui/measure/measure_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/notes/notes_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/rectangle/rectangle_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/ray/ray_drawing_tool_config.dart';
+import 'package:acme_chart/src/add_ons/drawing_tools_ui/segment/segment_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/trade_ratio/trade_ratio_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/trend/trend_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/vertical/vertical_drawing_tool_config.dart';
@@ -66,6 +69,10 @@ class _DrawingToolsDialogState extends State<DrawingToolsDialog> {
                     child: Text('Continuous'),
                   ),
                   DropdownMenuItem<DrawingToolConfig>(
+                    value: DoodleDrawingToolConfig(),
+                    child: Text('Doodle'),
+                  ),
+                  DropdownMenuItem<DrawingToolConfig>(
                     value: EllipseDrawingToolConfig(),
                     child: Text('Ellipse'),
                   ),
@@ -82,6 +89,10 @@ class _DrawingToolsDialogState extends State<DrawingToolsDialog> {
                     child: Text('Line'),
                   ),
                   DropdownMenuItem<DrawingToolConfig>(
+                    value: MeasureDrawingToolConfig(),
+                    child: Text('Measure'),
+                  ),
+                  DropdownMenuItem<DrawingToolConfig>(
                     value: NotesDrawingToolConfig(),
                     child: Text('Notes'),
                   ),
@@ -92,6 +103,10 @@ class _DrawingToolsDialogState extends State<DrawingToolsDialog> {
                   DropdownMenuItem<DrawingToolConfig>(
                     value: RectangleDrawingToolConfig(),
                     child: Text('Rectangle'),
+                  ),
+                  DropdownMenuItem<DrawingToolConfig>(
+                    value: SegmentDrawingToolConfig(),
+                    child: Text('Segment'),
                   ),
                   DropdownMenuItem<DrawingToolConfig>(
                     value: TradeRatioDrawingToolConfig(),

@@ -587,14 +587,40 @@ class TradeRatioInteractableDrawing
   );
 
   @override
-  bool isInViewPort(EpochRange epochRange, QuoteRange quoteRange) =>
-      (startPoint?.isInEpochRange(
-            epochRange.leftEpoch,
-            epochRange.rightEpoch,
-          ) ??
-          true) ||
-      (endPoint?.isInEpochRange(epochRange.leftEpoch, epochRange.rightEpoch) ??
-          true);
+  bool isInViewPort(EpochRange epochRange, QuoteRange quoteRange) {
+    if (startPoint == null || endPoint == null) {
+      return true;
+    }
+
+    if (startPoint!.isInEpochRange(
+          epochRange.leftEpoch,
+          epochRange.rightEpoch,
+        ) ||
+        endPoint!.isInEpochRange(epochRange.leftEpoch, epochRange.rightEpoch)) {
+      return true;
+    }
+
+    // Neither anchor is in range, but the level lines can extend well past
+    // them — all the way to the chart's left edge when `extendLeft` is set,
+    // or out to wherever the far-edge handle was dragged — so a drawing
+    // whose anchors have both scrolled off-screen can still be partially
+    // visible. Only cull it once the rendered extent is confirmed to not
+    // overlap the visible range.
+    if (config.extendLeft) {
+      return true;
+    }
+
+    final int? offset = farXEpochOffset;
+    if (offset == null) {
+      return false;
+    }
+
+    final int farEpoch = startPoint!.epoch + offset;
+    final int lowEpoch = min(startPoint!.epoch, farEpoch);
+    final int highEpoch = max(startPoint!.epoch, farEpoch);
+    return highEpoch >= epochRange.leftEpoch &&
+        lowEpoch <= epochRange.rightEpoch;
+  }
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>
