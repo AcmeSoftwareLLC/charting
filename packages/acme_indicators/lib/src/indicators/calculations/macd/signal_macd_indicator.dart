@@ -65,23 +65,14 @@ class SignalMACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> 
       return super.calculateValues();
     }
 
-    _macdIndicator.calculateValues();
-
-    final List<double> series = <double>[
-      for (int i = 0; i < entries.length; i++) _macdIndicator.sourceIndicator.getValue(i).quote,
-    ];
-    final MacdResult result = macd(
-      series,
-      _macdIndicator.fastPeriod,
-      _macdIndicator.slowPeriod,
-      _period,
+    return applyBulkValues(
+      macd(
+        seriesFrom(_macdIndicator.sourceIndicator),
+        _macdIndicator.fastPeriod,
+        _macdIndicator.slowPeriod,
+        _period,
+      ).signalVals,
     );
-
-    for (int i = 0; i < entries.length; i++) {
-      results[i] = createResult(index: i, quote: result.signalVals[i]);
-    }
-    lastResultIndex = entries.length - 1;
-    return results;
   }
 
   @override

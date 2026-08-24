@@ -1,6 +1,21 @@
 /// Typedefs for each pluggable bulk math shape used by `calculateValues()`; the per-bar `calculate()` path stays pure Dart and is not customizable.
 library;
 
+import '../models/models.dart';
+
+/// Convenience accessors for pulling raw OHLC series out of a bar list, for
+/// bulk math shapes (like [AtrFn] and [TrueRangeFn]) that take them directly.
+extension IndicatorOHLCSeriesX on List<IndicatorOHLC> {
+  /// The `high` field of every bar, in order.
+  List<double> get highs => <double>[for (final IndicatorOHLC e in this) e.high];
+
+  /// The `low` field of every bar, in order.
+  List<double> get lows => <double>[for (final IndicatorOHLC e in this) e.low];
+
+  /// The `close` field of every bar, in order.
+  List<double> get closes => <double>[for (final IndicatorOHLC e in this) e.close];
+}
+
 /// Windowed average shape, used by SMA: the first `period - 1` entries are `0` (lookback region), not a partial-window average.
 typedef SmaFn = List<double> Function(List<double> values, int period);
 

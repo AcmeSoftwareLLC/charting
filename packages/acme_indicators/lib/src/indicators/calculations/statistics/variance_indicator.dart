@@ -60,20 +60,7 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       return super.calculateValues();
     }
 
-    if (indicator is CachedIndicator) {
-      (indicator as CachedIndicator).calculateValues();
-    }
-
-    final List<double> series = <double>[
-      for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
-    ];
-    final List<double> result = variance(series, period);
-
-    for (int i = 0; i < entries.length; i++) {
-      results[i] = createResult(index: i, quote: result[i]);
-    }
-    lastResultIndex = entries.length - 1;
-    return results;
+    return applyBulkValues(variance(seriesFrom(indicator), period));
   }
 
   @override

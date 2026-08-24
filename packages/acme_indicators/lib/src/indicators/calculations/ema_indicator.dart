@@ -43,7 +43,9 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
     final double prevValue = getValue(index - 1).quote;
     return createResult(
       index: index,
-      quote: ((indicator.getValue(index).quote - prevValue) * multiplier) + prevValue,
+      quote:
+          ((indicator.getValue(index).quote - prevValue) * multiplier) +
+          prevValue,
     );
   }
 
@@ -54,20 +56,7 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
       return super.calculateValues();
     }
 
-    if (indicator is CachedIndicator) {
-      (indicator as CachedIndicator).calculateValues();
-    }
-
-    final List<double> series = <double>[
-      for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
-    ];
-    final List<double> result = ema(series, period, multiplier);
-
-    for (int i = 0; i < entries.length; i++) {
-      results[i] = createResult(index: i, quote: result[i]);
-    }
-    lastResultIndex = entries.length - 1;
-    return results;
+    return applyBulkValues(ema(seriesFrom(indicator), period, multiplier));
   }
 
   @override
@@ -93,9 +82,6 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
 /// EMA indicator
 class EMAIndicator<T extends IndicatorResult> extends AbstractEMAIndicator<T> {
   /// Initializes
-  EMAIndicator(
-    Indicator<T> indicator,
-    int period, {
-    EmaFn? ema,
-  }) : super(indicator, period, 2.0 / (period + 1), ema: ema);
+  EMAIndicator(Indicator<T> indicator, int period, {super.ema})
+    : super(indicator, period, 2.0 / (period + 1));
 }

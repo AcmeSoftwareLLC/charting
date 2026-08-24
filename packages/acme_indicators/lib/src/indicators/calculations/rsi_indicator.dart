@@ -64,20 +64,7 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       return super.calculateValues();
     }
 
-    if (_sourceIndicator is CachedIndicator) {
-      (_sourceIndicator as CachedIndicator).calculateValues();
-    }
-
-    final List<double> series = <double>[
-      for (int i = 0; i < entries.length; i++) _sourceIndicator.getValue(i).quote,
-    ];
-    final List<double> result = rsi(series, _period);
-
-    for (int i = 0; i < entries.length; i++) {
-      results[i] = createResult(index: i, quote: result[i]);
-    }
-    lastResultIndex = entries.length - 1;
-    return results;
+    return applyBulkValues(rsi(seriesFrom(_sourceIndicator), _period));
   }
 
   @override

@@ -45,20 +45,7 @@ class StandardDeviationIndicator<T extends IndicatorResult>
       return super.calculateValues();
     }
 
-    if (_sourceIndicator is CachedIndicator) {
-      (_sourceIndicator as CachedIndicator).calculateValues();
-    }
-
-    final List<double> series = <double>[
-      for (int i = 0; i < entries.length; i++) _sourceIndicator.getValue(i).quote,
-    ];
-    final List<double> result = sqrtOf(series, _period, 1.0);
-
-    for (int i = 0; i < entries.length; i++) {
-      results[i] = createResult(index: i, quote: result[i]);
-    }
-    lastResultIndex = entries.length - 1;
-    return results;
+    return applyBulkValues(sqrtOf(seriesFrom(_sourceIndicator), _period, 1.0));
   }
 
   @override

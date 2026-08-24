@@ -53,22 +53,7 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
       return super.calculateValues();
     }
 
-    bbm.calculateValues();
-    indicator.calculateValues();
-
-    final List<double> middle = <double>[
-      for (int i = 0; i < entries.length; i++) bbm.getValue(i).quote,
-    ];
-    final List<double> deviationValues = <double>[
-      for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
-    ];
-    final List<double> result = bandOffset(middle, deviationValues, k, -1);
-
-    for (int i = 0; i < entries.length; i++) {
-      results[i] = createResult(index: i, quote: result[i]);
-    }
-    lastResultIndex = entries.length - 1;
-    return results;
+    return applyBulkValues(bandOffset(seriesFrom(bbm), seriesFrom(indicator), k, -1));
   }
 
   @override

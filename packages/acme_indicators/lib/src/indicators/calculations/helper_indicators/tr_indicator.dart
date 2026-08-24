@@ -46,15 +46,6 @@ class TRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       return super.calculateValues();
     }
 
-    final List<double> high = <double>[for (final IndicatorOHLC e in entries) e.high];
-    final List<double> low = <double>[for (final IndicatorOHLC e in entries) e.low];
-    final List<double> close = <double>[for (final IndicatorOHLC e in entries) e.close];
-    final List<double> result = trueRange(high, low, close);
-
-    for (int i = 0; i < entries.length; i++) {
-      results[i] = createResult(index: i, quote: result[i]);
-    }
-    lastResultIndex = entries.length - 1;
-    return results;
+    return applyBulkValues(trueRange(entries.highs, entries.lows, entries.closes));
   }
 }
