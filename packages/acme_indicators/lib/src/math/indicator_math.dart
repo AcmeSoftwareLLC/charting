@@ -35,6 +35,17 @@ abstract final class IndicatorMathRegistry {
   /// Secondary override for [MacdFn]-shaped bulk computation (e.g. MACD's signal line).
   static MacdFn? macd;
 
+  /// Secondary override for [PivotPointsFn]-shaped bulk computation, shared
+  /// by `PivotPointIndicator` and the six R1–R3/S1–S3 level indicators —
+  /// each just extracts its own field from the one computed [PivotPointsResult].
+  static PivotPointsFn? pivotPoints;
+
+  /// Secondary override for [PeakValleyFn]-shaped bulk computation, shared
+  /// by `PeakIndicator`, `ValleyIndicator`, `PreviousPeakIndicator` and
+  /// `PreviousValleyIndicator` — each just extracts its own field from the
+  /// one computed [PeakValleyResult].
+  static PeakValleyFn? peakValley;
+
   /// Clears every field back to unset; call in `tearDown` when tests mutate the registry.
   static void resetToDefaults() {
     sma = null;
@@ -46,5 +57,7 @@ abstract final class IndicatorMathRegistry {
     atr = null;
     bandOffset = null;
     macd = null;
+    pivotPoints = null;
+    peakValley = null;
   }
 }

@@ -64,3 +64,76 @@ class MacdResult {
 /// rather than being biased by its zero-padded prefix.
 typedef MacdFn =
     MacdResult Function(List<double> values, int fastPeriod, int slowPeriod, int signalPeriod);
+
+/// Result of a [PivotPointsFn] computation: every level is full-length,
+/// computed together in one pass over the same high/low/close series.
+class PivotPointsResult {
+  /// Creates a [PivotPointsResult].
+  const PivotPointsResult({
+    required this.pivot,
+    required this.r1,
+    required this.r2,
+    required this.r3,
+    required this.s1,
+    required this.s2,
+    required this.s3,
+  });
+
+  /// The classic pivot line: `(high + low + close) / 3`.
+  final List<double> pivot;
+
+  /// First resistance level: `(2 * pivot) - low`.
+  final List<double> r1;
+
+  /// Second resistance level: `pivot + (high - low)`.
+  final List<double> r2;
+
+  /// Third resistance level: `high + 2 * (pivot - low)`.
+  final List<double> r3;
+
+  /// First support level: `(2 * pivot) - high`.
+  final List<double> s1;
+
+  /// Second support level: `pivot - (high - low)`.
+  final List<double> s2;
+
+  /// Third support level: `low - 2 * (high - pivot)`.
+  final List<double> s3;
+}
+
+/// Pivot-points shape: the classic pivot line plus all six R1–R3/S1–S3
+/// support/resistance levels, computed together from the same (typically
+/// previous-period) high/low/close series.
+typedef PivotPointsFn =
+    PivotPointsResult Function(List<double> highs, List<double> lows, List<double> closes);
+
+/// Result of a [PeakValleyFn] computation: every series is full-length,
+/// computed together in one pass.
+class PeakValleyResult {
+  /// Creates a [PeakValleyResult].
+  const PeakValleyResult({
+    required this.isPeak,
+    required this.isValley,
+    required this.previousPeak,
+    required this.previousValley,
+  });
+
+  /// `1` where the bar is a confirmed fractal swing high, `0` otherwise.
+  final List<double> isPeak;
+
+  /// `1` where the bar is a confirmed fractal swing low, `0` otherwise.
+  final List<double> isValley;
+
+  /// The most recent confirmed peak value, carried forward until a newer
+  /// one is found.
+  final List<double> previousPeak;
+
+  /// The most recent confirmed valley value, carried forward until a newer
+  /// one is found.
+  final List<double> previousValley;
+}
+
+/// Fractal swing-point shape: peak/valley flags on highs/lows plus their
+/// carried-forward previous values, computed together.
+typedef PeakValleyFn =
+    PeakValleyResult Function(List<double> highs, List<double> lows, int strength);
