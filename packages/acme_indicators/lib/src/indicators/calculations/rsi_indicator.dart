@@ -12,14 +12,14 @@ import '../indicator.dart';
 class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes an [RSIIndicator] from the given [indicator] and [period].
   ///
-  /// [relativeStrength] optionally overrides the bulk math used by
-  /// [calculateValues]; otherwise [IndicatorMathRegistry.relativeStrength] is
+  /// [rsi] optionally overrides the bulk math used by
+  /// [calculateValues]; otherwise [IndicatorMathRegistry.rsi] is
   /// used if it has been globally set. When neither is set, [calculateValues]
   /// isn't overridden and values are computed one at a time via [calculate].
   RSIIndicator.fromIndicator(
     super.indicator,
     int period, {
-    RelativeStrengthFn? relativeStrength,
+    RsiFn? rsi,
   }) : _sourceIndicator = indicator,
        _period = period,
        _averageGainIndicator = MMAIndicator<T>(
@@ -30,15 +30,14 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
          LossIndicator<T>.fromIndicator(indicator),
          period,
        ),
-       _relativeStrength =
-           relativeStrength ?? IndicatorMathRegistry.relativeStrength,
+       _rsi = rsi ?? IndicatorMathRegistry.rsi,
        super.fromIndicator();
 
   final Indicator<T> _sourceIndicator;
   final int _period;
   final MMAIndicator<T> _averageGainIndicator;
   final MMAIndicator<T> _averageLossIndicator;
-  final RelativeStrengthFn? _relativeStrength;
+  final RsiFn? _rsi;
 
   @override
   T calculate(int index) {
@@ -60,8 +59,8 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   List<T> calculateValues() {
-    final RelativeStrengthFn? relativeStrength = _relativeStrength;
-    if (relativeStrength == null) {
+    final RsiFn? rsi = _rsi;
+    if (rsi == null) {
       return super.calculateValues();
     }
 
@@ -72,7 +71,7 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     final List<double> series = <double>[
       for (int i = 0; i < entries.length; i++) _sourceIndicator.getValue(i).quote,
     ];
-    final List<double> result = relativeStrength(series, _period);
+    final List<double> result = rsi(series, _period);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);

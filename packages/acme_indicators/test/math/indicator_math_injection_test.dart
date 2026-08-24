@@ -16,9 +16,9 @@ void main() {
   tearDown(IndicatorMathRegistry.resetToDefaults);
 
   group('Per-instance math override', () {
-    test('SMAIndicator.calculateValues uses the injected windowedAverage', () {
+    test('SMAIndicator.calculateValues uses the injected sma', () {
       bool wasCalled = false;
-      List<double> fakeWindowedAverage(List<double> values, int period) {
+      List<double> fakeSma(List<double> values, int period) {
         wasCalled = true;
         return List<double>.filled(values.length, 42);
       }
@@ -26,18 +26,18 @@ void main() {
       final SMAIndicator<MockResult> sma = SMAIndicator<MockResult>(
         CloseValueIndicator<MockResult>(MockInput(ticks)),
         3,
-        windowedAverage: fakeWindowedAverage,
+        sma: fakeSma,
       );
 
       expect(sma.calculateValues().map((MockResult r) => r.quote), everyElement(42));
       expect(wasCalled, isTrue);
     });
 
-    test('RSIIndicator.calculateValues uses the injected relativeStrength', () {
+    test('RSIIndicator.calculateValues uses the injected rsi', () {
       final RSIIndicator<MockResult> rsi = RSIIndicator<MockResult>.fromIndicator(
         CloseValueIndicator<MockResult>(MockInput(ticks)),
         3,
-        relativeStrength: (List<double> values, int period) =>
+        rsi: (List<double> values, int period) =>
             List<double>.filled(values.length, 7),
       );
 
@@ -84,7 +84,7 @@ void main() {
     );
 
     test('resetToDefaults clears the override, falling back to per-index calculate', () {
-      IndicatorMathRegistry.windowedAverage = (List<double> values, int period) =>
+      IndicatorMathRegistry.sma = (List<double> values, int period) =>
           List<double>.filled(values.length, -999);
       IndicatorMathRegistry.resetToDefaults();
 

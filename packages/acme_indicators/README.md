@@ -250,7 +250,7 @@ Pass the matching named parameter to override just that instance:
 final sma = SMAIndicator<MyResult>(
   input,
   14,
-  windowedAverage: myFastWindowedAverage,
+  sma: myFastSma,
 );
 ```
 

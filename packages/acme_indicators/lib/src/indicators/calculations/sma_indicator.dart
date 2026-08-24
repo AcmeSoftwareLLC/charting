@@ -9,12 +9,12 @@ import '../indicator.dart';
 class SMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes.
   ///
-  /// [windowedAverage] optionally overrides the bulk math used by
-  /// [calculateValues]; otherwise [IndicatorMathRegistry.windowedAverage] is
+  /// [sma] optionally overrides the bulk math used by
+  /// [calculateValues]; otherwise [IndicatorMathRegistry.sma] is
   /// used if it has been globally set. When neither is set, [calculateValues]
   /// isn't overridden and values are computed one at a time via [calculate].
-  SMAIndicator(this.indicator, this.period, {WindowedAverageFn? windowedAverage})
-    : _windowedAverage = windowedAverage ?? IndicatorMathRegistry.windowedAverage,
+  SMAIndicator(this.indicator, this.period, {SmaFn? sma})
+    : _sma = sma ?? IndicatorMathRegistry.sma,
       super.fromIndicator(indicator);
 
   /// Indicator to calculate SMA on
@@ -23,7 +23,7 @@ class SMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Bar count
   final int period;
 
-  final WindowedAverageFn? _windowedAverage;
+  final SmaFn? _sma;
 
   @override
   T calculate(int index) {
@@ -39,8 +39,8 @@ class SMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   List<T> calculateValues() {
-    final WindowedAverageFn? windowedAverage = _windowedAverage;
-    if (windowedAverage == null) {
+    final SmaFn? sma = _sma;
+    if (sma == null) {
       return super.calculateValues();
     }
 
@@ -51,7 +51,7 @@ class SMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     final List<double> series = <double>[
       for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
     ];
-    final List<double> result = windowedAverage(series, period);
+    final List<double> result = sma(series, period);
 
     for (int i = 0; i < entries.length; i++) {
       results[i] = createResult(index: i, quote: result[i]);
