@@ -1,7 +1,5 @@
 import 'package:acme_indicators/src/models/models.dart';
 
-import '../../math/indicator_math.dart';
-import '../../math/indicator_math_functions.dart';
 import '../cached_indicator.dart';
 import '../indicator.dart';
 
@@ -9,19 +7,8 @@ import '../indicator.dart';
 abstract class AbstractEMAIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes.
-  ///
-  /// [ema] optionally overrides the bulk math used by
-  /// [calculateValues]; otherwise [IndicatorMathRegistry.ema]
-  /// is used if it has been globally set. When neither is set,
-  /// [calculateValues] isn't overridden and values are computed one at a time
-  /// via [calculate].
-  AbstractEMAIndicator(
-    this.indicator,
-    this.period,
-    this.multiplier, {
-    EmaFn? ema,
-  }) : _ema = ema ?? IndicatorMathRegistry.ema,
-       super.fromIndicator(indicator);
+  AbstractEMAIndicator(this.indicator, this.period, this.multiplier)
+    : super.fromIndicator(indicator);
 
   /// Indicator to calculate EMA on.
   final Indicator<T> indicator;
@@ -31,8 +18,6 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
 
   /// Multiplier
   final double multiplier;
-
-  final EmaFn? _ema;
 
   @override
   T calculate(int index) {
@@ -48,12 +33,6 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
           prevValue,
     );
   }
-
-  @override
-  List<T> calculateValues() => calculateValuesWith(
-    _ema,
-    (ema) => ema(seriesFrom(indicator), period, multiplier),
-  );
 
   @override
   void copyValuesFrom(covariant AbstractEMAIndicator<T> other) {
@@ -78,6 +57,6 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
 /// EMA indicator
 class EMAIndicator<T extends IndicatorResult> extends AbstractEMAIndicator<T> {
   /// Initializes
-  EMAIndicator(Indicator<T> indicator, int period, {super.ema})
+  EMAIndicator(Indicator<T> indicator, int period)
     : super(indicator, period, 2.0 / (period + 1));
 }

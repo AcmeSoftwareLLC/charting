@@ -2,10 +2,7 @@ import 'dart:math';
 
 import 'package:acme_indicators/src/models/models.dart';
 
-import '../../../math/indicator_math.dart';
-import '../../../math/indicator_math_functions.dart';
 import '../../cached_indicator.dart';
-import '../../indicator.dart';
 import 'variance_indicator.dart';
 
 /// Standard deviation indicator.
@@ -15,34 +12,15 @@ class StandardDeviationIndicator<T extends IndicatorResult>
   ///
   /// [indicator] the indicator to calculates SD on.
   /// [period]  the time frame
-  /// [sqrtOf] optionally overrides the bulk math used by [calculateValues];
-  /// otherwise [IndicatorMathRegistry.sqrtOf] is used if it has been globally
-  /// set. When neither is set, [calculateValues] isn't overridden and values
-  /// are computed one at a time via [calculate].
-  StandardDeviationIndicator(
-    super.indicator,
-    int period, {
-    SqrtFn? sqrtOf,
-  }) : _sourceIndicator = indicator,
-       _period = period,
-       _variance = VarianceIndicator<T>(indicator, period),
-       _sqrtOf = sqrtOf ?? IndicatorMathRegistry.sqrtOf,
-       super.fromIndicator();
+  StandardDeviationIndicator(super.indicator, int period)
+    : _variance = VarianceIndicator<T>(indicator, period),
+      super.fromIndicator();
 
-  final Indicator<T> _sourceIndicator;
-  final int _period;
   final VarianceIndicator<T> _variance;
-  final SqrtFn? _sqrtOf;
 
   @override
   T calculate(int index) =>
       createResult(index: index, quote: sqrt(_variance.getValue(index).quote));
-
-  @override
-  List<T> calculateValues() => calculateValuesWith(
-    _sqrtOf,
-    (sqrtOf) => sqrtOf(seriesFrom(_sourceIndicator), _period, 1.0),
-  );
 
   @override
   void copyValuesFrom(covariant StandardDeviationIndicator<T> other) {

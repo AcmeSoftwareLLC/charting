@@ -76,23 +76,6 @@ export 'src/indicators/calculations/wma_indicator.dart';
 export 'src/indicators/calculations/wwsma_indicator.dart';
 export 'src/indicators/calculations/zelma_indicator.dart';
 export 'src/indicators/calculations/zigzag_indicator.dart';
-// Math not yet implemented in Dart — the calculation must be provided
-// externally before these indicators can be used.
-export 'src/indicators/external/keltner/keltner_channel_lower_indicator.dart';
-export 'src/indicators/external/keltner/keltner_channel_upper_indicator.dart';
-export 'src/indicators/external/peak_valley/peak_indicator.dart';
-export 'src/indicators/external/peak_valley/previous_peak_indicator.dart';
-export 'src/indicators/external/peak_valley/previous_valley_indicator.dart';
-export 'src/indicators/external/peak_valley/valley_indicator.dart';
-export 'src/indicators/external/pivot/pivot_point_indicator.dart';
-export 'src/indicators/external/pivot/pivot_r1_indicator.dart';
-export 'src/indicators/external/pivot/pivot_r2_indicator.dart';
-export 'src/indicators/external/pivot/pivot_r3_indicator.dart';
-export 'src/indicators/external/pivot/pivot_s1_indicator.dart';
-export 'src/indicators/external/pivot/pivot_s2_indicator.dart';
-export 'src/indicators/external/pivot/pivot_s3_indicator.dart';
 export 'src/indicators/indicator.dart';
-export 'src/math/indicator_math.dart';
-export 'src/math/indicator_math_functions.dart';
 export 'src/models/data_input.dart' show IndicatorDataInput;
 export 'src/models/models.dart' show IndicatorOHLC, IndicatorResult;

@@ -126,17 +126,4 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
     lastResultIndex = entries.length - 1;
     return results;
   }
-
-  /// Runs [compute] with [fn] and applies the result via [applyBulkValues]
-  /// when [fn] is non-null; otherwise falls back to the default per-bar
-  /// [calculateValues].
-  ///
-  /// Intended as the common body of bulk-math [calculateValues] overrides:
-  /// `calculateValues() => calculateValuesWith(_sma, (sma) => sma(seriesFrom(indicator), period));`
-  List<T> calculateValuesWith<F>(F? fn, List<double> Function(F fn) compute) {
-    if (fn == null) {
-      return _calculateValuesPerBar();
-    }
-    return applyBulkValues(compute(fn));
-  }
 }

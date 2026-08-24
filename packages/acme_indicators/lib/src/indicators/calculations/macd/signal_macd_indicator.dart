@@ -1,5 +1,3 @@
-import '../../../math/indicator_math.dart';
-import '../../../math/indicator_math_functions.dart';
 import '../../../models/models.dart';
 import '../../cached_indicator.dart';
 import 'macd_indicator.dart';
@@ -12,25 +10,17 @@ import 'macd_indicator.dart';
 ///warm-up isn't biased by leading zeros.
 class SignalMACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   ///Initializes a signal of MACD indicator from the given [MACDIndicator].
-  ///
-  ///[macd] optionally overrides the bulk math used by [calculateValues];
-  ///otherwise [IndicatorMathRegistry.macd] is used if it has been globally
-  ///set. When neither is set, [calculateValues] isn't overridden and values
-  ///are computed one at a time via [calculate].
   SignalMACDIndicator.fromIndicator(
     MACDIndicator<T> super.indicator, {
     int period = 9,
-    MacdFn? macd,
   }) : _macdIndicator = indicator,
        _period = period,
        _multiplier = 2.0 / (period + 1),
-       _macd = macd ?? IndicatorMathRegistry.macd,
        super.fromIndicator();
 
   final MACDIndicator<T> _macdIndicator;
   final int _period;
   final double _multiplier;
-  final MacdFn? _macd;
 
   /// First index at which the signal line has a valid (non-zero) value.
   int get _signalStartIdx => _macdIndicator.slowPeriod - 1 + _period - 1;
@@ -57,17 +47,6 @@ class SignalMACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> 
       quote: ((_macdIndicator.getValue(index).quote - prevValue) * _multiplier) + prevValue,
     );
   }
-
-  @override
-  List<T> calculateValues() => calculateValuesWith(
-    _macd,
-    (macd) => macd(
-      seriesFrom(_macdIndicator.sourceIndicator),
-      _macdIndicator.fastPeriod,
-      _macdIndicator.slowPeriod,
-      _period,
-    ).signalVals,
-  );
 
   @override
   void copyValuesFrom(covariant SignalMACDIndicator<T> other) {

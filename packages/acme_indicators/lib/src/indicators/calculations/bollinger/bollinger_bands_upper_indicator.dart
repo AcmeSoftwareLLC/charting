@@ -1,7 +1,5 @@
 import 'package:acme_indicators/src/models/models.dart';
 
-import '../../../math/indicator_math.dart';
-import '../../../math/indicator_math_functions.dart';
 import '../../cached_indicator.dart';
 
 /// Bollinger bands upper indicator
@@ -14,19 +12,8 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
   ///  [deviation] the deviation above and below the middle, factored by k.
   ///                  Typically a StandardDeviationIndicator is used.
   ///  [k]         the scaling factor to multiply the deviation by. Typically 2
-  ///  [bandOffset] optionally overrides the bulk math used by
-  ///                  [calculateValues]; otherwise
-  ///                  [IndicatorMathRegistry.bandOffset] is used if it has
-  ///                  been globally set. When neither is set,
-  ///                  [calculateValues] isn't overridden and values are
-  ///                  computed one at a time via [calculate].
-  BollingerBandsUpperIndicator(
-    this.bbm,
-    this.deviation, {
-    this.k = 2,
-    BandOffsetFn? bandOffset,
-  }) : _bandOffset = bandOffset ?? IndicatorMathRegistry.bandOffset,
-       super.fromIndicator(deviation);
+  BollingerBandsUpperIndicator(this.bbm, this.deviation, {this.k = 2})
+    : super.fromIndicator(deviation);
 
   /// Deviation indicator
   final CachedIndicator<T> deviation;
@@ -37,18 +24,10 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
   /// Default is 2.
   final double k;
 
-  final BandOffsetFn? _bandOffset;
-
   @override
   T calculate(int index) => createResult(
     index: index,
     quote: bbm.getValue(index).quote + (deviation.getValue(index).quote * k),
-  );
-
-  @override
-  List<T> calculateValues() => calculateValuesWith(
-    _bandOffset,
-    (bandOffset) => bandOffset(seriesFrom(bbm), seriesFrom(deviation), k, 1),
   );
 
   @override

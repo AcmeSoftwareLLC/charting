@@ -2,8 +2,6 @@ import 'dart:math' as math;
 
 import 'package:acme_indicators/src/models/models.dart';
 
-import '../../../math/indicator_math.dart';
-import '../../../math/indicator_math_functions.dart';
 import '../../cached_indicator.dart';
 import '../../indicator.dart';
 import '../sma_indicator.dart';
@@ -14,17 +12,9 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   /// [indicator] the indicator
   /// [period]  the time frame
-  /// [variance] optionally overrides the bulk math used by
-  /// [calculateValues]; otherwise [IndicatorMathRegistry.variance] is used if
-  /// it has been globally set. When neither is set, [calculateValues] isn't
-  /// overridden and values are computed one at a time via [calculate].
-  VarianceIndicator(
-    this.indicator,
-    this.period, {
-    VarianceFn? variance,
-  }) : _sma = SMAIndicator<T>(indicator, period),
-       _variance = variance ?? IndicatorMathRegistry.variance,
-       super.fromIndicator(indicator);
+  VarianceIndicator(this.indicator, this.period)
+    : _sma = SMAIndicator<T>(indicator, period),
+      super.fromIndicator(indicator);
 
   /// Indicator
   final Indicator<T> indicator;
@@ -33,7 +23,6 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final int period;
 
   final SMAIndicator<T> _sma;
-  final VarianceFn? _variance;
 
   @override
   T calculate(int index) {
@@ -52,12 +41,6 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
     return createResult(index: index, quote: variance);
   }
-
-  @override
-  List<T> calculateValues() => calculateValuesWith(
-    _variance,
-    (variance) => variance(seriesFrom(indicator), period),
-  );
 
   @override
   void copyValuesFrom(covariant VarianceIndicator<T> other) {
