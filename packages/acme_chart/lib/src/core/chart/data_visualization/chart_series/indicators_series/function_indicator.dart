@@ -16,9 +16,9 @@ class FunctionIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   _compute;
 
   @override
-  T calculate(int index) => throw UnimplementedError(
-    'FunctionIndicator only supports bulk calculateValues(); '
-    'it has no per-bar implementation.',
+  T calculate(int index) => createResult(
+    index: index,
+    quote: _compute(entries, seriesFrom(_source))[index],
   );
 
   @override
