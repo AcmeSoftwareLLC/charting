@@ -205,6 +205,7 @@ class XAxisModel extends ChangeNotifier {
   bool get _followCurrentTick =>
       _autoPanEnabled &&
       isLive &&
+      width != null &&
       rightBoundEpoch > _nowEpoch &&
       _currentTickFarEnoughFromLeftBound;
 
