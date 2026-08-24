@@ -21,7 +21,9 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   // TODO(NA): Can be overridden on those indicators that can calculate
   //  results for their entire list at once in a more optimal way.
   /// Calculates indicator's result for all [entries] and caches them.
-  List<T> calculateValues() {
+  List<T> calculateValues() => _calculateValuesPerBar();
+
+  List<T> _calculateValuesPerBar() {
     for (int i = 0; i < entries.length; i++) {
       getValue(i);
     }
@@ -123,5 +125,18 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
     }
     lastResultIndex = entries.length - 1;
     return results;
+  }
+
+  /// Runs [compute] with [fn] and applies the result via [applyBulkValues]
+  /// when [fn] is non-null; otherwise falls back to the default per-bar
+  /// [calculateValues].
+  ///
+  /// Intended as the common body of bulk-math [calculateValues] overrides:
+  /// `calculateValues() => calculateValuesWith(_sma, (sma) => sma(seriesFrom(indicator), period));`
+  List<T> calculateValuesWith<F>(F? fn, List<double> Function(F fn) compute) {
+    if (fn == null) {
+      return _calculateValuesPerBar();
+    }
+    return applyBulkValues(compute(fn));
   }
 }

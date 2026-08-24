@@ -87,16 +87,15 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   );
 
   @override
-  List<T> calculateValues() {
-    final MacdFn? macd = _macd;
-    if (macd == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(
-      macd(seriesFrom(_sourceIndicator), _fastPeriod, _slowPeriod, _unusedSignalPeriod).macdVals,
-    );
-  }
+  List<T> calculateValues() => calculateValuesWith(
+    _macd,
+    (macd) => macd(
+      seriesFrom(_sourceIndicator),
+      _fastPeriod,
+      _slowPeriod,
+      _unusedSignalPeriod,
+    ).macdVals,
+  );
 
   @override
   void copyValuesFrom(covariant MACDIndicator<T> other) {

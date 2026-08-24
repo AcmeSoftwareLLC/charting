@@ -39,14 +39,10 @@ class StandardDeviationIndicator<T extends IndicatorResult>
       createResult(index: index, quote: sqrt(_variance.getValue(index).quote));
 
   @override
-  List<T> calculateValues() {
-    final SqrtFn? sqrtOf = _sqrtOf;
-    if (sqrtOf == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(sqrtOf(seriesFrom(_sourceIndicator), _period, 1.0));
-  }
+  List<T> calculateValues() => calculateValuesWith(
+    _sqrtOf,
+    (sqrtOf) => sqrtOf(seriesFrom(_sourceIndicator), _period, 1.0),
+  );
 
   @override
   void copyValuesFrom(covariant StandardDeviationIndicator<T> other) {

@@ -38,12 +38,6 @@ class SMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   }
 
   @override
-  List<T> calculateValues() {
-    final SmaFn? sma = _sma;
-    if (sma == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(sma(seriesFrom(indicator), period));
-  }
+  List<T> calculateValues() =>
+      calculateValuesWith(_sma, (sma) => sma(seriesFrom(indicator), period));
 }

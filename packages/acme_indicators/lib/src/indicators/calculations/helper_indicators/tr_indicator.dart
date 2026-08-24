@@ -40,12 +40,8 @@ class TRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   }
 
   @override
-  List<T> calculateValues() {
-    final TrueRangeFn? trueRange = _trueRange;
-    if (trueRange == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(trueRange(entries.highs, entries.lows, entries.closes));
-  }
+  List<T> calculateValues() => calculateValuesWith(
+    _trueRange,
+    (trueRange) => trueRange(entries.highs, entries.lows, entries.closes),
+  );
 }

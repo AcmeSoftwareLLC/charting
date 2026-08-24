@@ -30,14 +30,10 @@ class ATRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   T calculate(int index) => _averageTrueRangeIndicator.getValue(index);
 
   @override
-  List<T> calculateValues() {
-    final AtrFn? atr = _atr;
-    if (atr == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(atr(entries.highs, entries.lows, entries.closes, _period));
-  }
+  List<T> calculateValues() => calculateValuesWith(
+    _atr,
+    (atr) => atr(entries.highs, entries.lows, entries.closes, _period),
+  );
 
   @override
   void copyValuesFrom(covariant ATRIndicator<T> other) {

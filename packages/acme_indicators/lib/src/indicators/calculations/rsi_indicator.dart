@@ -58,14 +58,8 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   }
 
   @override
-  List<T> calculateValues() {
-    final RsiFn? rsi = _rsi;
-    if (rsi == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(rsi(seriesFrom(_sourceIndicator), _period));
-  }
+  List<T> calculateValues() =>
+      calculateValuesWith(_rsi, (rsi) => rsi(seriesFrom(_sourceIndicator), _period));
 
   @override
   void copyValuesFrom(covariant RSIIndicator<T> other) {

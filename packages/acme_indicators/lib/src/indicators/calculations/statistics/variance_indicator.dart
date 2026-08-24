@@ -54,14 +54,10 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   }
 
   @override
-  List<T> calculateValues() {
-    final VarianceFn? variance = _variance;
-    if (variance == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(variance(seriesFrom(indicator), period));
-  }
+  List<T> calculateValues() => calculateValuesWith(
+    _variance,
+    (variance) => variance(seriesFrom(indicator), period),
+  );
 
   @override
   void copyValuesFrom(covariant VarianceIndicator<T> other) {

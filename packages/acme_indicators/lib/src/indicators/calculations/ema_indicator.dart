@@ -50,14 +50,10 @@ abstract class AbstractEMAIndicator<T extends IndicatorResult>
   }
 
   @override
-  List<T> calculateValues() {
-    final EmaFn? ema = _ema;
-    if (ema == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(ema(seriesFrom(indicator), period, multiplier));
-  }
+  List<T> calculateValues() => calculateValuesWith(
+    _ema,
+    (ema) => ema(seriesFrom(indicator), period, multiplier),
+  );
 
   @override
   void copyValuesFrom(covariant AbstractEMAIndicator<T> other) {

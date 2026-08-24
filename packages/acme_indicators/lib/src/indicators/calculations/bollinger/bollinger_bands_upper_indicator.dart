@@ -46,14 +46,10 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
   );
 
   @override
-  List<T> calculateValues() {
-    final BandOffsetFn? bandOffset = _bandOffset;
-    if (bandOffset == null) {
-      return super.calculateValues();
-    }
-
-    return applyBulkValues(bandOffset(seriesFrom(bbm), seriesFrom(deviation), k, 1));
-  }
+  List<T> calculateValues() => calculateValuesWith(
+    _bandOffset,
+    (bandOffset) => bandOffset(seriesFrom(bbm), seriesFrom(deviation), k, 1),
+  );
 
   @override
   void copyValuesFrom(covariant BollingerBandsUpperIndicator<T> other) {
