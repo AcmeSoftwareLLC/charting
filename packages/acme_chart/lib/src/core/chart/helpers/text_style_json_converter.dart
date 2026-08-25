@@ -13,7 +13,7 @@ class TextStyleJsonConverter
       color: json['color'] != null ? Color(json['color'] as int) : null,
       fontSize: json['fontSize'] as double?,
       fontWeight: json['fontWeight'] != null
-          ? FontWeight.values[json['fontWeight'] as int]
+          ? _getFontWeightFromValue(json['fontWeight'] as int)
           : null,
       fontStyle: json['fontStyle'] != null
           ? FontStyle.values[json['fontStyle'] as int]
@@ -55,6 +55,14 @@ class TextStyleJsonConverter
       if (textStyle.decorationThickness != null)
         'decorationThickness': textStyle.decorationThickness,
     };
+  }
+
+  /// Convert a CSS-style weight value (100-900) back to its FontWeight.
+  FontWeight _getFontWeightFromValue(int value) {
+    return FontWeight.values.firstWhere(
+      (weight) => weight.value == value,
+      orElse: () => FontWeight.normal,
+    );
   }
 
   /// Convert int to TextDecoration
