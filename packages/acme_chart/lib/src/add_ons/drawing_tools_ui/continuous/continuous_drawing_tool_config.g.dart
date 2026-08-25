@@ -30,10 +30,10 @@ ContinuousDrawingToolConfig _$ContinuousDrawingToolConfigFromJson(
 Map<String, dynamic> _$ContinuousDrawingToolConfigToJson(
   ContinuousDrawingToolConfig instance,
 ) => <String, dynamic>{
+  'configId': instance.configId,
   'number': instance.number,
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
-  'configId': instance.configId,
   'lineStyle': instance.lineStyle,
   'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,
 };

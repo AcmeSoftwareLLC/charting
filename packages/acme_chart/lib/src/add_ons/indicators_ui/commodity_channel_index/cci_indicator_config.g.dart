@@ -8,7 +8,7 @@ part of 'cci_indicator_config.dart';
 
 CCIIndicatorConfig _$CCIIndicatorConfigFromJson(Map<String, dynamic> json) =>
     CCIIndicatorConfig(
-      period: json['period'] as int? ?? 20,
+      period: (json['period'] as num?)?.toInt() ?? 20,
       oscillatorLinesConfig: json['oscillatorLinesConfig'] == null
           ? const OscillatorLinesConfig(
               overboughtValue: 100,
@@ -21,10 +21,10 @@ CCIIndicatorConfig _$CCIIndicatorConfigFromJson(Map<String, dynamic> json) =>
       lineStyle: json['lineStyle'] == null
           ? const LineStyle(color: Colors.white)
           : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),
-      pipSize: json['pipSize'] as int? ?? 4,
+      pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
       showLastIndicator: json['showLastIndicator'] as bool? ?? false,
       title: json['title'] as String?,
-      number: json['number'] as int? ?? 0,
+      number: (json['number'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$CCIIndicatorConfigToJson(CCIIndicatorConfig instance) =>

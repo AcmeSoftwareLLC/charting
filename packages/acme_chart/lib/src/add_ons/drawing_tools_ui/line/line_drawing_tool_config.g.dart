@@ -19,8 +19,21 @@ LineDrawingToolConfig _$LineDrawingToolConfigFromJson(
           .toList() ??
       const <EdgePoint>[],
   lineStyle: json['lineStyle'] == null
-      ? const LineStyle(thickness: 0.9, color: Colors.white)
+      ? const LineStyle(color: CoreDesignTokens.coreColorSolidBlue700)
       : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),
+  labelStyle: json['labelStyle'] == null
+      ? const TextStyle(
+          color: CoreDesignTokens.coreColorSolidBlue700,
+          fontSize: 12,
+          fontWeight: FontWeight.normal,
+          fontFamily: 'Inter',
+        )
+      : const TextStyleJsonConverter().fromJson(
+          json['labelStyle'] as Map<String, dynamic>,
+        ),
+  overlayStyle: LineDrawingToolConfig._overlayStyleFromJson(
+    json['overlayStyle'] as Map<String, dynamic>?,
+  ),
   pattern:
       $enumDecodeNullable(_$DrawingPatternsEnumMap, json['pattern']) ??
       DrawingPatterns.solid,
@@ -30,11 +43,15 @@ LineDrawingToolConfig _$LineDrawingToolConfigFromJson(
 Map<String, dynamic> _$LineDrawingToolConfigToJson(
   LineDrawingToolConfig instance,
 ) => <String, dynamic>{
+  'configId': instance.configId,
   'number': instance.number,
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
-  'configId': instance.configId,
   'lineStyle': instance.lineStyle,
+  'labelStyle': const TextStyleJsonConverter().toJson(instance.labelStyle),
+  'overlayStyle': LineDrawingToolConfig._overlayStyleToJson(
+    instance.overlayStyle,
+  ),
   'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,
 };
 

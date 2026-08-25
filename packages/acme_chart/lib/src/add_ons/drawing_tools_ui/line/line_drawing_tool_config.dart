@@ -58,6 +58,7 @@ class LineDrawingToolConfig extends DrawingToolConfig {
   final TextStyle labelStyle;
 
   /// Drawing tool overlay style
+  @JsonKey(fromJson: _overlayStyleFromJson, toJson: _overlayStyleToJson)
   final OverlayStyle? overlayStyle;
 
   /// Drawing tool line pattern: 'solid', 'dotted', 'dashed'
@@ -125,4 +126,18 @@ class LineDrawingToolConfig extends DrawingToolConfig {
     drawingContext: drawingContext,
     getDrawingState: getDrawingState,
   );
+
+  static OverlayStyle? _overlayStyleFromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return null;
+    }
+    return OverlayStyle(color: Color(json['color'] as int));
+  }
+
+  static Map<String, dynamic>? _overlayStyleToJson(OverlayStyle? instance) {
+    if (instance == null) {
+      return null;
+    }
+    return {'color': instance.color.toARGB32()};
+  }
 }

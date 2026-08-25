@@ -30,10 +30,10 @@ FibfanDrawingToolConfig _$FibfanDrawingToolConfigFromJson(
 Map<String, dynamic> _$FibfanDrawingToolConfigToJson(
   FibfanDrawingToolConfig instance,
 ) => <String, dynamic>{
+  'configId': instance.configId,
   'number': instance.number,
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
-  'configId': instance.configId,
   'lineStyle': instance.lineStyle,
   'fillStyle': instance.fillStyle,
 };
