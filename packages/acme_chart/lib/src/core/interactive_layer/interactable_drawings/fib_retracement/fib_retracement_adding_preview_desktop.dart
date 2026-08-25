@@ -86,8 +86,8 @@ class FibRetracementAddingPreviewDesktop extends FibRetracementAddingPreview {
       // click (which relies on `endPoint` still being null to know it
       // hasn't been placed yet) isn't affected.
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
       interactableDrawing.endPoint = hoverPoint;
       try {
         interactableDrawing.paint(

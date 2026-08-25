@@ -129,14 +129,13 @@ class FibRetracementAddingPreviewMobile extends FibRetracementAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragStart(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragStart(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void onDragUpdate(
@@ -145,14 +144,13 @@ class FibRetracementAddingPreviewMobile extends FibRetracementAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragUpdate(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragUpdate(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void onDragEnd(
@@ -161,14 +159,13 @@ class FibRetracementAddingPreviewMobile extends FibRetracementAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragEnd(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragEnd(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void paint(
@@ -184,8 +181,8 @@ class FibRetracementAddingPreviewMobile extends FibRetracementAddingPreview {
     if (interactableDrawing.startPoint != null &&
         interactableDrawing.endPoint != null) {
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paint(
         canvas,
@@ -225,8 +222,7 @@ class FibRetracementAddingPreviewMobile extends FibRetracementAddingPreview {
   bool shouldRepaint(
     Set<DrawingToolState> drawingState,
     DrawingV2 oldDrawing,
-  ) =>
-      true;
+  ) => true;
 
   @override
   String get id => 'fib-retracement-adding-preview-mobile';

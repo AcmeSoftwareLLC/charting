@@ -28,8 +28,7 @@ abstract class FibRetracementAddingPreview
     EdgePoint point,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      Offset(epochToX(point.epoch), quoteToY(point.quote));
+  ) => Offset(epochToX(point.epoch), quoteToY(point.quote));
 
   /// Handles the creation of the retracement's two anchor points during the
   /// drawing process.
