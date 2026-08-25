@@ -161,7 +161,7 @@ abstract class IndicatorDataInput {
 | Awesome Oscillator | `AwesomeOscillatorIndicator` |
 | Williams %R | `WilliamsRIndicator` |
 | Rate of Change | `ROCIndicator` |
-| Gator Oscillator (Top / Bottom) | `GatorOscillatorIndicator` |
+| Gator Oscillator (Top / Bottom) | `GatorOscillatorIndicatorTopBar`, `GatorOscillatorIndicatorBottomBar` |
 
 ### 📡 Trend Indicators
 
