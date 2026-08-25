@@ -17,13 +17,13 @@ class CombinedBarrier extends HorizontalBarrier {
   /// Initializes a barrier with both horizontal and vertical barriers.
   CombinedBarrier(
     this.tick, {
-    String? id,
+    super.id,
     String? title,
     bool verticalLongLine = true,
     bool horizontalLongLine = false,
     HorizontalBarrierStyle? horizontalBarrierStyle,
     VerticalBarrierStyle? verticalBarrierStyle,
-    HorizontalBarrierVisibility visibility = HorizontalBarrierVisibility.normal,
+    super.visibility = HorizontalBarrierVisibility.normal,
   }) : verticalBarrier = VerticalBarrier.onTick(
          tick,
          title: title,
@@ -33,10 +33,8 @@ class CombinedBarrier extends HorizontalBarrier {
        super(
          tick.quote,
          epoch: tick.epoch,
-         id: id,
          longLine: horizontalLongLine,
          style: horizontalBarrierStyle,
-         visibility: visibility,
        );
 
   /// For vertical barrier.

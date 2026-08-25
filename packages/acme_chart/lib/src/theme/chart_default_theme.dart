@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:acme_chart/acme_chart.dart';
-import 'package:acme_chart/src/theme/painting_styles/bar_style.dart';
 import 'package:acme_chart/src/theme/painting_styles/entry_spot_style.dart';
 import 'package:flutter/material.dart';
 

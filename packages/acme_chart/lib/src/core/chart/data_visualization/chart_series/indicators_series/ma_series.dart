@@ -37,13 +37,12 @@ class MASeries extends AbstractSingleIndicatorSeries {
     MAOptions options, {
     String? id,
     LineStyle? style,
-    int offset = 0,
+    super.offset,
   }) : super(
          indicator,
          id ?? 'SMASeries-period${options.period}-type${options.type}',
          options: options,
          style: style ?? const LineStyle(thickness: 0.5),
-         offset: offset,
          lastTickIndicatorStyle: style != null
              ? getLastIndicatorStyle(
                  style.color,

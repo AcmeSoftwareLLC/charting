@@ -1,14 +1,11 @@
-import '../../../../../models/tick.dart';
-import '../../../../../theme/painting_styles/barrier_style.dart';
 import 'package:acme_indicators/acme_indicators.dart';
-import '../../../../../theme/painting_styles/data_series_style.dart';
 
+import '../../../../../models/tick.dart';
 import '../data_painter.dart';
 import '../data_series.dart';
 import '../series.dart';
 import '../series_painter.dart';
 import 'abstract_single_indicator_series.dart';
-import 'models/indicator_options.dart';
 
 /// Function to get a [DataPainter] object to paint the data.
 typedef DataPainterCreator =
@@ -38,19 +35,12 @@ class SingleIndicatorSeries extends AbstractSingleIndicatorSeries {
     required this.painterCreator,
     required this.indicatorCreator,
     required Indicator<Tick> inputIndicator,
-    IndicatorOptions? options,
+    super.options,
     String? id,
-    DataSeriesStyle? style,
-    int offset = 0,
-    HorizontalBarrierStyle? lastTickIndicatorStyle,
-  }) : super(
-         inputIndicator,
-         id ?? '$options',
-         options: options,
-         style: style,
-         offset: offset,
-         lastTickIndicatorStyle: lastTickIndicatorStyle,
-       );
+    super.style,
+    super.offset,
+    super.lastTickIndicatorStyle,
+  }) : super(inputIndicator, id ?? '$options');
 
   /// Function which will be called to get the painter object of this class.
   final DataPainterCreator painterCreator;
