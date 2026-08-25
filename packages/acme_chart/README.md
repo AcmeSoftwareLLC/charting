@@ -184,57 +184,55 @@ Chart(
 
 #### 📉 Moving Averages
 
-| Indicator | Config Class |
+All moving average types share a single `MAIndicatorConfig`, selected via its `movingAverageType` parameter:
+
+| Moving Average Type | `MovingAverageType` value |
 |-----------|-------------|
-| Simple Moving Average | `SMAIndicatorConfig` |
-| Exponential Moving Average | `EMAIndicatorConfig` |
-| Double Exponential Moving Average | `DEMAIndicatorConfig` |
-| Triple Exponential Moving Average | `TEMAIndicatorConfig` |
-| Triangular Moving Average | `TRIMAIndicatorConfig` |
-| Weighted Moving Average | `WMAIndicatorConfig` |
-| Modified Moving Average | `MMAIndicatorConfig` |
-| Least Squares Moving Average | `LSMAIndicatorConfig` |
-| Hull Moving Average | `HMAIndicatorConfig` |
-| Variable Moving Average | `VMAIndicatorConfig` |
-| Welles Wilder Smoothing | `WWSMAIndicatorConfig` |
-| Zero-Lag EMA | `ZELMAIndicatorConfig` |
+| Simple | `simple` |
+| Exponential | `exponential` |
+| Double Exponential | `doubleExponential` |
+| Triple Exponential | `tripleExponential` |
+| Triangular | `triangular` |
+| Weighted | `weighted` |
+| Hull | `hull` |
+| Variable | `variable` |
+| Welles Wilder Smoothing | `wellesWilder` |
+| Zero-Lag Exponential | `zeroLag` |
+| Time Series | `timeSeries` |
 
 #### 〰️ Oscillators
 
 | Indicator | Config Class |
 |-----------|-------------|
 | Relative Strength Index | `RSIIndicatorConfig` |
+| Fast / Slow Stochastic Oscillator | `StochasticOscillatorIndicatorConfig` |
 | Stochastic Momentum Index | `SMIIndicatorConfig` |
 | MACD Line / Signal / Histogram | `MACDIndicatorConfig` |
 | Awesome Oscillator | `AwesomeOscillatorIndicatorConfig` |
 | Williams %R | `WilliamsRIndicatorConfig` |
 | Rate of Change | `ROCIndicatorConfig` |
-| Chande Momentum Oscillator | `CMOIndicatorConfig` |
-| Gator Oscillator | `GatorOscillatorIndicatorConfig` |
+| Gator Oscillator | `GatorIndicatorConfig` |
 
 #### 📡 Trend Indicators
 
 | Indicator | Config Class |
 |-----------|-------------|
 | Average Directional Index | `ADXIndicatorConfig` |
-| Parabolic SAR | `ParabolicSARIndicatorConfig` |
-| Ichimoku Cloud | `IchimokuIndicatorConfig` |
+| Parabolic SAR | `ParabolicSARConfig` |
+| Ichimoku Cloud | `IchimokuCloudIndicatorConfig` |
 
 #### 💥 Volatility Indicators
 
 | Indicator | Config Class |
 |-----------|-------------|
 | Bollinger Bands | `BollingerBandsIndicatorConfig` |
-| Average True Range | `ATRIndicatorConfig` |
-| Standard Deviation | `StandardDeviationIndicatorConfig` |
-| Variance | `VarianceIndicatorConfig` |
 
 #### 📏 Channel Indicators
 
 | Indicator | Config Class |
 |-----------|-------------|
 | Donchian Channel | `DonchianChannelIndicatorConfig` |
-| Moving Average Envelope | `MAEnvelopeIndicatorConfig` |
+| Moving Average Envelope | `MAEnvIndicatorConfig` |
 
 #### 🔀 Other Indicators
 
@@ -244,8 +242,7 @@ Chart(
 | Commodity Channel Index | `CCIIndicatorConfig` |
 | Detrended Price Oscillator | `DPOIndicatorConfig` |
 | ZigZag | `ZigZagIndicatorConfig` |
-| Fixed Channel Bands | `FCBIndicatorConfig` |
-| Bullish / Bearish Pattern Recognition | `PatternIndicatorConfig` |
+| Fixed Channel Bands | `FractalChaosBandIndicatorConfig` |
 
 ---
 
@@ -383,6 +380,31 @@ AcmeChart(
 ```
 
 All `Chart` parameters are available on `AcmeChart` except `overlayConfigs` and `bottomConfigs`, which are managed internally. See the [AcmeChart documentation](doc/acme_chart_widget_usage.md) for full details.
+
+---
+
+## 🔬 Custom Indicator Math
+
+`FunctionIndicator` lets you compute an indicator series with your own bulk math function instead of the built-in `acme_indicators` calculation — useful for swapping in a faster or native implementation for a specific line:
+
+```dart
+final customRsi = FunctionIndicator<MyResult>(
+  someSourceIndicator,
+  (bars, values) => myFastRsiCompute(values),
+);
+```
+
+When several lines of the same indicator share one multi-output computation (e.g. Bollinger Bands' upper/middle/lower, or MACD's line/signal/histogram), wrap the computation in `MemoizedResult` — create one instance per indicator group and capture it in each line's `FunctionIndicator` closure, so the computation runs once and every line reads from the cached result:
+
+```dart
+final bollinger = MemoizedResult<({List<double> upper, List<double> middle, List<double> lower})>(
+  (bars, values) => myBollingerCompute(values),
+);
+
+final upper = FunctionIndicator<MyResult>(source, (bars, values) => bollinger(bars, values).upper);
+final middle = FunctionIndicator<MyResult>(source, (bars, values) => bollinger(bars, values).middle);
+final lower = FunctionIndicator<MyResult>(source, (bars, values) => bollinger(bars, values).lower);
+```
 
 ---
 

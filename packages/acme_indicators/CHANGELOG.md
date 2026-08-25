@@ -1,3 +1,8 @@
+## 1.0.1
+**August 25, 2026**
+
+- Fixed an out-of-bounds access in `ZigZagIndicator`'s loop condition.
+
 ## 1.0.0
 **June 12, 2026**
 

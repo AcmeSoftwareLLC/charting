@@ -1,6 +1,6 @@
 name: acme_indicators
 description: Pure Dart library for technical analysis computations - RSI, MACD, Bollinger Bands, Ichimoku, and 20+ more indicators with no Flutter dependency.
-version: 1.0.0
+version: 1.0.1
 
 homepage: https://acmesoftware.com
 repository: https://github.com/AcmeSoftwareLLC/charting/tree/main/packages/acme_indicators
