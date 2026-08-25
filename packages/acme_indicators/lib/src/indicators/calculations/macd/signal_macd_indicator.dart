@@ -8,7 +8,8 @@ import 'macd_indicator.dart';
 ///The signal EMA is taken over the MACD line's own valid range only (from
 ///index `slowPeriod - 1` onward), not over its zero-padded prefix, so its
 ///warm-up isn't biased by leading zeros.
-class SignalMACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
+class SignalMACDIndicator<T extends IndicatorResult>
+    extends CachedIndicator<T> {
   ///Initializes a signal of MACD indicator from the given [MACDIndicator].
   SignalMACDIndicator.fromIndicator(
     MACDIndicator<T> super.indicator, {
@@ -44,7 +45,9 @@ class SignalMACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> 
     final double prevValue = getValue(index - 1).quote;
     return createResult(
       index: index,
-      quote: ((_macdIndicator.getValue(index).quote - prevValue) * _multiplier) + prevValue,
+      quote:
+          ((_macdIndicator.getValue(index).quote - prevValue) * _multiplier) +
+          prevValue,
     );
   }
 
