@@ -44,14 +44,16 @@ void main() {
       expect(results.map((Tick t) => t.quote), <double>[1, 2, 3, 4]);
     });
 
-    test('calculate() throws since only bulk computation is supported', () {
+    test('calculate() computes the value for a single index', () {
       final Indicator<Tick> closeIndicator = CloseValueIndicator<Tick>(input);
       final FunctionIndicator<Tick> indicator = FunctionIndicator<Tick>(
         closeIndicator,
-        (List<IndicatorOHLC> bars, List<double> values) => values,
+        (List<IndicatorOHLC> bars, List<double> values) => <double>[
+          for (final double v in values) v * 2,
+        ],
       );
 
-      expect(() => indicator.calculate(0), throwsUnimplementedError);
+      expect(indicator.calculate(2).quote, 6);
     });
   });
 
