@@ -24,6 +24,16 @@ TrendDrawingToolConfig _$TrendDrawingToolConfigFromJson(
   lineStyle: json['lineStyle'] == null
       ? const LineStyle(thickness: 0.9, color: Colors.white)
       : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),
+  labelStyle: json['labelStyle'] == null
+      ? const TextStyle(
+          color: CoreDesignTokens.coreColorSolidBlue700,
+          fontSize: 12,
+          fontWeight: FontWeight.normal,
+          fontFamily: 'Inter',
+        )
+      : const TextStyleJsonConverter().fromJson(
+          json['labelStyle'] as Map<String, dynamic>,
+        ),
   pattern:
       $enumDecodeNullable(_$DrawingPatternsEnumMap, json['pattern']) ??
       DrawingPatterns.solid,
@@ -33,13 +43,14 @@ TrendDrawingToolConfig _$TrendDrawingToolConfigFromJson(
 Map<String, dynamic> _$TrendDrawingToolConfigToJson(
   TrendDrawingToolConfig instance,
 ) => <String, dynamic>{
+  'configId': instance.configId,
   'number': instance.number,
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
-  'configId': instance.configId,
   'fillStyle': instance.fillStyle,
   'lineStyle': instance.lineStyle,
   'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,
+  'labelStyle': const TextStyleJsonConverter().toJson(instance.labelStyle),
 };
 
 const _$DrawingPatternsEnumMap = {

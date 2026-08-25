@@ -9,6 +9,7 @@ import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_
 import 'package:acme_chart/src/core/interactive_layer/drawing_context.dart';
 import 'package:acme_chart/src/core/interactive_layer/helpers/types.dart';
 import 'package:acme_chart/src/core/chart/helpers/text_style_json_converter.dart';
+import 'package:acme_chart/src/core/interactive_layer/interactable_drawings/line/line_interactable_drawing.dart';
 import 'package:acme_chart/src/theme/design_tokens/core_design_tokens.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -16,15 +17,31 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'line_drawing_tool_config.g.dart';
 
-/// Line drawing tool config
+/// Line drawing tool config.
+///
+/// Placed with two anchors exactly like [SegmentDrawingToolConfig] (same
+/// fields, same hit-test/drag/toolbar/hover-or-selected measurement label,
+/// via [LineInteractableDrawing] extending [SegmentInteractableDrawing]) —
+/// but unlike a Segment, the rendered/clickable line extends past both
+/// anchors to the chart's edges, the way Horizontal/Vertical extend across
+/// their one dimension. [LineInteractableDrawing] shows no Y-axis value
+/// label of its own; that's [TrendDrawingToolConfig]'s addition, described
+/// below.
+///
+/// [overlayStyle] is this codebase's own addition — legacy (pre-V2) overlay
+/// styling for [getLabelPainter]. Note [TrendDrawingToolConfig] is a
+/// *separate*, unrelated config class (not a subclass of this one) with its
+/// own `labelStyle` field for [TrendLineInteractableDrawing]'s Y-axis value
+/// labels and price/percent/bar-count readout — see that class's doc
+/// comment for why it can't share this class's hierarchy.
 @JsonSerializable()
-class LineDrawingToolConfig extends DrawingToolConfig {
+class LineDrawingToolConfig extends SegmentDrawingToolConfig {
   /// Initializes
   const LineDrawingToolConfig({
     super.configId,
     super.drawingData,
     super.edgePoints = const <EdgePoint>[],
-    this.lineStyle = const LineStyle(
+    super.lineStyle = const LineStyle(
       color: CoreDesignTokens.coreColorSolidBlue700,
     ),
     this.labelStyle = const TextStyle(
@@ -34,7 +51,7 @@ class LineDrawingToolConfig extends DrawingToolConfig {
       fontFamily: 'Inter',
     ),
     this.overlayStyle,
-    this.pattern = DrawingPatterns.solid,
+    super.pattern = DrawingPatterns.solid,
     super.number,
   });
 
@@ -50,19 +67,15 @@ class LineDrawingToolConfig extends DrawingToolConfig {
       _$LineDrawingToolConfigToJson(this)
         ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
-  /// Drawing tool line style
-  final LineStyle lineStyle;
-
-  /// The style of the label showing on y-axis.
+  /// The style of the label showing on y-axis. Only consumed by
+  /// [TrendLineInteractableDrawing] (via [TrendDrawingToolConfig]) — see
+  /// the class doc comment above.
   @TextStyleJsonConverter()
   final TextStyle labelStyle;
 
   /// Drawing tool overlay style
+  @JsonKey(fromJson: _overlayStyleFromJson, toJson: _overlayStyleToJson)
   final OverlayStyle? overlayStyle;
-
-  /// Drawing tool line pattern: 'solid', 'dotted', 'dashed'
-  // TODO(maryia-binary): implement 'dotted' and 'dashed' patterns
-  final DrawingPatterns pattern;
 
   @override
   DrawingToolItem getItem(
@@ -113,13 +126,26 @@ class LineDrawingToolConfig extends DrawingToolConfig {
     }
   }
 
+  static OverlayStyle? _overlayStyleFromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return null;
+    }
+    return OverlayStyle(color: Color(json['color'] as int));
+  }
+
+  static Map<String, dynamic>? _overlayStyleToJson(OverlayStyle? instance) {
+    if (instance == null) {
+      return null;
+    }
+    return {'color': instance.color.toARGB32()};
+  }
+
   @override
-  InteractableDrawing getInteractableDrawing(
+  LineInteractableDrawing getInteractableDrawing(
     DrawingContext drawingContext,
     GetDrawingState getDrawingState,
-  ) => TrendLineInteractableDrawing(
+  ) => LineInteractableDrawing(
     config: this,
-    // TODO(NA): improve the logic.
     startPoint: edgePoints.isNotEmpty ? edgePoints.first : null,
     endPoint: edgePoints.isNotEmpty ? edgePoints.last : null,
     drawingContext: drawingContext,

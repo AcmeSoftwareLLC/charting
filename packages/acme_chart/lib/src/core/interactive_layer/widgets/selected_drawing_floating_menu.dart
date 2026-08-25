@@ -17,6 +17,7 @@ class SelectedDrawingFloatingMenu extends StatefulWidget {
     required this.interactiveLayerBehaviour,
     required this.onUpdateDrawing,
     required this.onRemoveDrawing,
+    required this.onCloneDrawing,
     super.key,
   });
 
@@ -31,6 +32,9 @@ class SelectedDrawingFloatingMenu extends StatefulWidget {
 
   /// Callback to remove the drawing.
   final UpdateDrawingTool onRemoveDrawing;
+
+  /// Callback to clone the drawing.
+  final UpdateDrawingTool onCloneDrawing;
 
   @override
   State<SelectedDrawingFloatingMenu> createState() =>
@@ -164,6 +168,7 @@ class _SelectedDrawingFloatingMenuState
                   _buildDragIcon(),
                   _buildDrawingMenuOptions(),
                   const SizedBox(width: 4),
+                  _buildCloneButton(context),
                   _buildRemoveButton(context),
                 ],
               ),
@@ -193,6 +198,25 @@ class _SelectedDrawingFloatingMenuState
 
   Widget _buildDrawingMenuOptions() =>
       widget.drawing.getToolBarMenu(onUpdate: widget.onUpdateDrawing);
+
+  Widget _buildCloneButton(BuildContext context) {
+    final ChartTheme theme = context.watch<ChartTheme>();
+
+    return SizedBox(
+      width: 32,
+      height: 32,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          foregroundColor: theme.floatingMenuDragIconColor,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(0),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        ),
+        onPressed: () => widget.onCloneDrawing(widget.drawing.config),
+        child: const Icon(Icons.content_copy, size: 16),
+      ),
+    );
+  }
 
   Widget _buildRemoveButton(BuildContext context) => SizedBox(
     width: 32,

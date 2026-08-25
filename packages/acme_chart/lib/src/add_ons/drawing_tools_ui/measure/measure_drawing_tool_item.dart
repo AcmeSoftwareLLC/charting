@@ -37,9 +37,8 @@ class MeasureDrawingToolItemState
       );
 
   @override
-  Widget getDrawingToolOptions() => Column(
-    children: <Widget>[_buildColorField()],
-  );
+  Widget getDrawingToolOptions() =>
+      Column(children: <Widget>[_buildColorField()]);
 
   Widget _buildColorField() => Row(
     children: <Widget>[

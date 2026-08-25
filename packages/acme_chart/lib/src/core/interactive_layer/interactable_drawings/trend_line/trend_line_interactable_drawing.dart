@@ -2,7 +2,7 @@ import 'dart:ui' as ui;
 
 import '../../../../add_ons/drawing_tools_ui/callbacks.dart';
 import '../../../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
-import '../../../../add_ons/drawing_tools_ui/line/line_drawing_tool_config.dart';
+import '../../../../add_ons/drawing_tools_ui/trend/trend_drawing_tool_config.dart';
 import '../../../../core/chart/data_visualization/chart_data.dart';
 import '../../../../core/chart/data_visualization/drawing_tools/data_model/drawing_paint_style.dart';
 import '../../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
@@ -33,10 +33,10 @@ import 'trend_line_adding_preview_mobile.dart';
 /// Handles rendering, hit testing, drag interactions, and state management for trend lines.
 /// Supports dragging individual points or the entire line with visual feedback and alignment guides.
 class TrendLineInteractableDrawing
-    extends InteractableDrawing<LineDrawingToolConfig> {
+    extends InteractableDrawing<TrendDrawingToolConfig> {
   /// Initializes [TrendLineInteractableDrawing].
   TrendLineInteractableDrawing({
-    required LineDrawingToolConfig config,
+    required TrendDrawingToolConfig config,
     required this.startPoint,
     required this.endPoint,
     required super.drawingContext,
@@ -364,6 +364,18 @@ class TrendLineInteractableDrawing
         // no glow effect is shown on endpoints as per requirements
       }
 
+      if (drawingState.contains(DrawingToolState.selected) ||
+          drawingState.contains(DrawingToolState.hovered)) {
+        _paintLineInfoLabel(
+          canvas,
+          startOffset,
+          endOffset,
+          chartConfig,
+          chartTheme,
+          animationInfo,
+        );
+      }
+
       // Draw alignment guides when dragging or long pressing
       if (drawingState.contains(DrawingToolState.dragging) &&
           isDraggingStartPoint != null) {
@@ -461,61 +473,110 @@ class TrendLineInteractableDrawing
         );
       }
     }
-    // Paint X-axis labels when selected
-    paintXAxisLabels(
-      canvas,
-      size,
-      epochToX,
-      quoteToY,
-      animationInfo,
-      chartConfig,
-      chartTheme,
-      getDrawingState,
-    );
   }
 
-  /// Paints epoch labels on the X-axis when the trend line is selected.
-  void paintXAxisLabels(
-    ui.Canvas canvas,
-    ui.Size size,
-    EpochToX epochToX,
-    QuoteToY quoteToY,
-    AnimationInfo animationInfo,
+  String _buildLineInfoText(
+    EdgePoint start,
+    EdgePoint end,
+    int granularity,
+    int pipSize,
+  ) {
+    final double priceDiff = end.quote - start.quote;
+    final double percent = start.quote == 0 ? 0 : priceDiff / start.quote * 100;
+    final int barCount = granularity <= 0
+        ? 0
+        : (end.epoch - start.epoch).abs() ~/ granularity;
+
+    return '${priceDiff.toStringAsFixed(pipSize)} '
+        '(${percent.toStringAsFixed(2)}%) $barCount Bars';
+  }
+
+  /// Paints the price/percent/bar-count readout as a small pill centered on
+  /// the line's midpoint, styled to match the existing axis value/epoch
+  /// labels (rounded background + border, same [LineStyle]/[ChartTheme]
+  /// colors).
+  void _paintLineInfoLabel(
+    Canvas canvas,
+    Offset startOffset,
+    Offset endOffset,
     ChartConfig chartConfig,
     ChartTheme chartTheme,
-    GetDrawingState getDrawingState,
+    AnimationInfo animationInfo,
   ) {
-    if (getDrawingState(this).contains(DrawingToolState.selected)) {
-      // Draw epoch label for start point
-      if (startPoint != null) {
-        drawEpochLabel(
-          canvas: canvas,
-          epochToX: epochToX,
-          epoch: startPoint!.epoch,
-          size: size,
-          textStyle: config.labelStyle,
-          animationProgress: animationInfo.stateChangePercent,
-          color: config.lineStyle.color,
-          backgroundColor: chartTheme.backgroundColor,
-        );
-      }
+    final String text = _buildLineInfoText(
+      startPoint!,
+      endPoint!,
+      chartConfig.granularity,
+      chartConfig.pipSize,
+    );
+    final Color color = config.lineStyle.color;
+    final double animationProgress = animationInfo.stateChangePercent;
 
-      // Draw epoch label for end point (only if different from start point to avoid overlap)
-      if (endPoint != null &&
-          startPoint != null &&
-          endPoint!.epoch != startPoint!.epoch) {
-        drawEpochLabel(
-          canvas: canvas,
-          epochToX: epochToX,
-          epoch: endPoint!.epoch,
-          size: size,
-          textStyle: config.labelStyle,
-          animationProgress: animationInfo.stateChangePercent,
-          color: config.lineStyle.color,
-          backgroundColor: chartTheme.backgroundColor,
-        );
-      }
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: config.labelStyle.copyWith(
+          color: config.labelStyle.color?.withValues(alpha: animationProgress),
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    final Offset midpoint = Offset(
+      (startOffset.dx + endOffset.dx) / 2,
+      (startOffset.dy + endOffset.dy) / 2,
+    );
+
+    final Offset lineVector = endOffset - startOffset;
+    final double lineLength = lineVector.distance;
+    Offset perpendicularUnit = lineLength > 0
+        ? Offset(-lineVector.dy, lineVector.dx) / lineLength
+        : const Offset(0, -1);
+    if (perpendicularUnit.dy > 0) {
+      // Keep the label consistently above the line rather than flipping
+      // sides depending on which way the line happens to slope.
+      perpendicularUnit = -perpendicularUnit;
     }
+
+    final double rectWidth = textPainter.width + 16;
+    const double rectHeight = 24;
+    const double gapFromLine = 14;
+    final Offset labelCenter =
+        midpoint + perpendicularUnit * (rectHeight / 2 + gapFromLine);
+    final Rect rect = Rect.fromCenter(
+      center: labelCenter,
+      width: rectWidth,
+      height: rectHeight,
+    );
+    final RRect roundedRect = RRect.fromRectAndRadius(
+      rect,
+      const Radius.circular(4),
+    );
+
+    canvas
+      ..drawRRect(
+        roundedRect,
+        Paint()
+          ..color = chartTheme.backgroundColor.withValues(
+            alpha: animationProgress,
+          )
+          ..style = PaintingStyle.fill,
+      )
+      ..drawRRect(
+        roundedRect,
+        Paint()
+          ..color = color.withValues(alpha: animationProgress)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.0,
+      );
+
+    textPainter.paint(
+      canvas,
+      Offset(
+        rect.left + (rectWidth - textPainter.width) / 2,
+        rect.top + (rectHeight - textPainter.height) / 2,
+      ),
+    );
   }
 
   @override
@@ -606,7 +667,7 @@ class TrendLineInteractableDrawing
   }
 
   @override
-  LineDrawingToolConfig getUpdatedConfig() =>
+  TrendDrawingToolConfig getUpdatedConfig() =>
       config.copyWith(edgePoints: <EdgePoint>[?startPoint, ?endPoint]);
 
   @override

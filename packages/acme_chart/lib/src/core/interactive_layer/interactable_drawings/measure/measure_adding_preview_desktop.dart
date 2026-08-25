@@ -122,8 +122,11 @@ class MeasureAddingPreviewDesktop extends MeasureAddingPreview {
     }
   }
 
-  /// Builds the "`<price diff> (<percent>%) <bar count>`" text, matching
-  /// ChartIQ's `measure` HUD format (`ChartEventListeners.js`):
+  /// Builds the "`Measure: <price diff> (<percent>%) <bar count>`" text,
+  /// matching ChartIQ's `measure` HUD exactly: the "Measure: " label prefix
+  /// comes from `ChartInfoContainer.ts` (`<span>Measure: </span><span>
+  /// ${this._measureValue}</span>`), while the value itself comes from
+  /// `ChartEventListeners.js`'s `setMeasure` hook:
   /// `(price2 - price1).toFixed(5) + " (" + (...).toFixed(2) + "%) " + Math.abs(tick2 - tick1)`.
   ///
   /// [granularity] is the chart's bar duration in milliseconds (same units
@@ -136,14 +139,12 @@ class MeasureAddingPreviewDesktop extends MeasureAddingPreview {
     int granularity,
   ) {
     final double priceDiff = end.quote - start.quote;
-    final double percent = start.quote == 0
-        ? 0
-        : priceDiff / start.quote * 100;
+    final double percent = start.quote == 0 ? 0 : priceDiff / start.quote * 100;
     final int barCount = granularity <= 0
         ? 0
         : (end.epoch - start.epoch).abs() ~/ granularity;
 
-    return '${priceDiff.toStringAsFixed(5)} (${percent.toStringAsFixed(2)}%) $barCount';
+    return 'Measure: ${priceDiff.toStringAsFixed(5)} (${percent.toStringAsFixed(2)}%) $barCount';
   }
 
   @override

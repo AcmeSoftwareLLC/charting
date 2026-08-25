@@ -6,22 +6,22 @@ import 'package:flutter/material.dart';
 
 import '../../helpers/paint_helpers.dart';
 import '../drawing_adding_preview.dart';
-import 'measure_interactable_drawing.dart';
+import 'line_interactable_drawing.dart';
 
-/// Base class for measure adding preview implementations.
+/// Base class for line adding preview implementations.
 ///
 /// Provides shared functionality for desktop and mobile implementations,
 /// including coordinate transformations, styling, and common drawing logic.
-abstract class MeasureAddingPreview
-    extends DrawingAddingPreview<MeasureInteractableDrawing> {
-  /// Initializes the base measure adding preview.
-  MeasureAddingPreview({
+abstract class LineAddingPreview
+    extends DrawingAddingPreview<LineInteractableDrawing> {
+  /// Initializes the base line adding preview.
+  LineAddingPreview({
     required super.interactiveLayerBehaviour,
     required super.interactableDrawing,
     required super.onAddingStateChange,
   });
 
-  /// Retrieves the line style configured for the measurement being created.
+  /// Retrieves the line style configured for the line being created.
   LineStyle getLineStyle() => interactableDrawing.config.lineStyle;
 
   /// Converts a chart coordinate point to screen coordinates.
@@ -54,10 +54,11 @@ abstract class MeasureAddingPreview
     );
   }
 
-  /// Handles the creation of measurement points during the drawing process.
+  /// Handles the creation of the line's two anchor points during the
+  /// drawing process.
   ///
   /// The first tap sets the start point, the second tap sets the end point
-  /// and completes the measurement.
+  /// and completes the line.
   void createPoint(
     TapUpDetails details,
     EpochFromX epochFromX,

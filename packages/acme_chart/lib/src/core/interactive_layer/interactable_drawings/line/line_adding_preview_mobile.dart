@@ -10,20 +10,19 @@ import 'package:flutter/widgets.dart';
 import '../../enums/drawing_tool_state.dart';
 import '../../helpers/types.dart';
 import '../../interactive_layer_states/interactive_adding_tool_state.dart';
-import 'segment_adding_preview.dart';
+import 'line_adding_preview.dart';
 
-/// A class to show a preview and handle adding a
-/// [SegmentInteractableDrawing] to the chart. It's for when we're on
-/// [InteractiveLayerMobileBehaviour].
+/// A class to show a preview and handle adding a [LineInteractableDrawing]
+/// to the chart. It's for when we're on [InteractiveLayerMobileBehaviour].
 ///
 /// This mobile preview provides immediate focus mode by:
-/// - Automatically placing a default segment in the center of the chart
+/// - Automatically placing a default line in the center of the chart
 /// - Immediately completing the adding process for instant focus mode
 /// - Delegating visual rendering to the main drawing for consistency
-/// - Providing full functionality (drag points, drag whole segment)
-class SegmentAddingPreviewMobile extends SegmentAddingPreview {
-  /// Initializes [SegmentAddingPreviewMobile].
-  SegmentAddingPreviewMobile({
+/// - Providing full functionality (drag points, drag whole line)
+class LineAddingPreviewMobile extends LineAddingPreview {
+  /// Initializes [LineAddingPreviewMobile].
+  LineAddingPreviewMobile({
     required super.interactiveLayerBehaviour,
     required super.interactableDrawing,
     required super.onAddingStateChange,
@@ -179,5 +178,5 @@ class SegmentAddingPreviewMobile extends SegmentAddingPreview {
   ) => true;
 
   @override
-  String get id => 'segment-adding-preview-mobile';
+  String get id => 'line-adding-preview-mobile';
 }

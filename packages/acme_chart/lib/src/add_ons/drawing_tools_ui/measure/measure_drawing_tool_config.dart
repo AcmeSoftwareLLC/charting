@@ -15,22 +15,35 @@ part 'measure_drawing_tool_config.g.dart';
 /// Measure drawing tool config.
 ///
 /// Matches ChartIQ's `measure` tool: it's placed exactly like
-/// [SegmentDrawingToolConfig] (a bounded line between two points), and while
-/// being placed it shows a live label with the price difference, percentage
-/// change, and bar count between the two points. Once placed, the "measure"
-/// identity is discarded — [getInteractableDrawing] hands the drawing off to
-/// [SegmentDrawingToolConfig]'s own interactable, so the finished result is
-/// a plain segment with no persisted label, indistinguishable from one drawn
-/// with the Segment tool.
+/// [SegmentDrawingToolConfig] (a bounded line between two points, same
+/// [lineStyle]/[pattern] fields, inherited rather than duplicated), and it
+/// renders/hit-tests/drags exactly like one too, via
+/// [MeasureInteractableDrawing] extending [SegmentInteractableDrawing].
+///
+/// Unlike an earlier version of this tool, the "measure" identity is *not*
+/// discarded once placed — [name] stays `dt_measure` through
+/// [getUpdatedConfig]/persistence/reload, specifically so
+/// [MeasureInteractableDrawing]'s price-difference / percentage-change /
+/// bar-count label keeps showing on hover or selection after placement, not
+/// just during the initial drawing gesture. Extending
+/// [SegmentDrawingToolConfig] (rather than [DrawingToolConfig] directly) is
+/// what makes this possible without duplicating any of Segment's config
+/// fields or interactable-drawing logic: [MeasureInteractableDrawing]
+/// inherits `getUpdatedConfig() => config.copyWith(...)` from
+/// [SegmentInteractableDrawing] unmodified, and since `config`'s *runtime*
+/// type is this class, Dart's dynamic dispatch calls this class's own
+/// [copyWith] override — producing a genuine [MeasureDrawingToolConfig]
+/// each time, even though the inherited method's *static* return type is
+/// [SegmentDrawingToolConfig].
 @JsonSerializable()
-class MeasureDrawingToolConfig extends DrawingToolConfig {
+class MeasureDrawingToolConfig extends SegmentDrawingToolConfig {
   /// Initializes
   const MeasureDrawingToolConfig({
     super.configId,
     super.drawingData,
     super.edgePoints = const <EdgePoint>[],
-    this.lineStyle = const LineStyle(thickness: 0.9, color: Colors.blue),
-    this.pattern = DrawingPatterns.solid,
+    super.lineStyle = const LineStyle(thickness: 0.9, color: Colors.blue),
+    super.pattern = DrawingPatterns.solid,
     super.number,
   });
 
@@ -45,13 +58,6 @@ class MeasureDrawingToolConfig extends DrawingToolConfig {
   Map<String, dynamic> toJson() =>
       _$MeasureDrawingToolConfigToJson(this)
         ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
-
-  /// Line style used both for the in-progress preview and for the segment
-  /// this measurement becomes once placed.
-  final LineStyle lineStyle;
-
-  /// Drawing tool line pattern: 'solid', 'dotted', 'dashed'
-  final DrawingPatterns pattern;
 
   @override
   DrawingToolItem getItem(
@@ -86,23 +92,11 @@ class MeasureDrawingToolConfig extends DrawingToolConfig {
   MeasureInteractableDrawing getInteractableDrawing(
     DrawingContext drawingContext,
     GetDrawingState getDrawingState,
-  ) {
-    // The measurement is never actually persisted as its own type — the
-    // moment it's placed it becomes a real segment (see class doc), so the
-    // interactable is built on top of a genuine [SegmentDrawingToolConfig]
-    // right from the start.
-    final SegmentDrawingToolConfig segmentConfig = SegmentDrawingToolConfig(
-      lineStyle: lineStyle,
-      pattern: pattern,
-      edgePoints: edgePoints,
-    );
-
-    return MeasureInteractableDrawing(
-      config: segmentConfig,
-      startPoint: edgePoints.isNotEmpty ? edgePoints[0] : null,
-      endPoint: edgePoints.length > 1 ? edgePoints[1] : null,
-      drawingContext: drawingContext,
-      getDrawingState: getDrawingState,
-    );
-  }
+  ) => MeasureInteractableDrawing(
+    config: this,
+    startPoint: edgePoints.isNotEmpty ? edgePoints[0] : null,
+    endPoint: edgePoints.length > 1 ? edgePoints[1] : null,
+    drawingContext: drawingContext,
+    getDrawingState: getDrawingState,
+  );
 }

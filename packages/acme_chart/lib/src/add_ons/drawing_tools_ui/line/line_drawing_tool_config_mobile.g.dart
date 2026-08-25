@@ -33,10 +33,10 @@ LineDrawingToolConfigMobile _$LineDrawingToolConfigMobileFromJson(
 Map<String, dynamic> _$LineDrawingToolConfigMobileToJson(
   LineDrawingToolConfigMobile instance,
 ) => <String, dynamic>{
+  'configId': instance.configId,
   'number': instance.number,
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
-  'configId': instance.configId,
   'lineStyle': instance.lineStyle,
   'overlayStyle': LineDrawingToolConfigMobile._overlayStyleToJson(
     instance.overlayStyle,
