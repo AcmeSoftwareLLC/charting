@@ -10,7 +10,7 @@ part 'bar_style.g.dart';
 /// Defines the style of painting histogram bar.
 @JsonSerializable()
 @ColorConverter()
-class BarStyle extends DataSeriesStyle with EquatableMixin {
+class BarStyle extends DataSeriesStyle with Equatable {
   /// Initializes a style that defines the style of painting histogram data.
   const BarStyle({
     this.positiveColor = const Color(0xFF4CAF50),
