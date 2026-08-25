@@ -33,10 +33,10 @@ TrendDrawingToolConfig _$TrendDrawingToolConfigFromJson(
 Map<String, dynamic> _$TrendDrawingToolConfigToJson(
   TrendDrawingToolConfig instance,
 ) => <String, dynamic>{
+  'configId': instance.configId,
   'number': instance.number,
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
-  'configId': instance.configId,
   'fillStyle': instance.fillStyle,
   'lineStyle': instance.lineStyle,
   'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,

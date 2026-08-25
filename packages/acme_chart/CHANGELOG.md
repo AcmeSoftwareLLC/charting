@@ -1,3 +1,12 @@
+## 1.0.2
+**August 25, 2026**
+
+- Added `StochasticOscillatorIndicatorConfig` and its indicator item (Fast/Slow Stochastic Oscillator).
+- Added `FunctionIndicator` and `MemoizedResult` for supplying custom bulk math computations to indicator series.
+- Exported `ChannelFillPainter` from `chart_series`.
+- Fixed indicator series repaint logic to also honor `super.shouldRepaint`.
+- Fixed a null-safety issue where `followCurrentTick` was checked before confirming width was non-null.
+
 ## 1.0.1
 **June 12, 2026**
 

@@ -8,10 +8,11 @@ part of 'smi_indicator_config.dart';
 
 SMIIndicatorConfig _$SMIIndicatorConfigFromJson(Map<String, dynamic> json) =>
     SMIIndicatorConfig(
-      period: json['period'] as int? ?? 10,
-      smoothingPeriod: json['smoothingPeriod'] as int? ?? 3,
-      doubleSmoothingPeriod: json['doubleSmoothingPeriod'] as int? ?? 3,
-      signalPeriod: json['signalPeriod'] as int? ?? 10,
+      period: (json['period'] as num?)?.toInt() ?? 10,
+      smoothingPeriod: (json['smoothingPeriod'] as num?)?.toInt() ?? 3,
+      doubleSmoothingPeriod:
+          (json['doubleSmoothingPeriod'] as num?)?.toInt() ?? 3,
+      signalPeriod: (json['signalPeriod'] as num?)?.toInt() ?? 10,
       smiOscillatorLimits: json['smiOscillatorLimits'] == null
           ? const OscillatorLinesConfig(
               oversoldValue: -40,
@@ -32,10 +33,10 @@ SMIIndicatorConfig _$SMIIndicatorConfigFromJson(Map<String, dynamic> json) =>
       signalLineStyle: json['signalLineStyle'] == null
           ? null
           : LineStyle.fromJson(json['signalLineStyle'] as Map<String, dynamic>),
-      pipSize: json['pipSize'] as int? ?? 4,
+      pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
       showLastIndicator: json['showLastIndicator'] as bool? ?? false,
       title: json['title'] as String?,
-      number: json['number'] as int? ?? 0,
+      number: (json['number'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$SMIIndicatorConfigToJson(SMIIndicatorConfig instance) =>

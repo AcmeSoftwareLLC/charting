@@ -19,10 +19,13 @@ HorizontalDrawingToolConfig _$HorizontalDrawingToolConfigFromJson(
           .toList() ??
       const <EdgePoint>[],
   lineStyle: json['lineStyle'] == null
-      ? const LineStyle(thickness: 0.9, color: Colors.white)
+      ? const LineStyle(color: CoreDesignTokens.coreColorSolidBlue700)
       : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),
   labelStyle: json['labelStyle'] == null
-      ? TextStyles.currentSpotTextStyle
+      ? const TextStyle(
+          color: CoreDesignTokens.coreColorSolidBlue700,
+          fontSize: 12,
+        )
       : const TextStyleJsonConverter().fromJson(
           json['labelStyle'] as Map<String, dynamic>,
         ),
@@ -36,10 +39,10 @@ HorizontalDrawingToolConfig _$HorizontalDrawingToolConfigFromJson(
 Map<String, dynamic> _$HorizontalDrawingToolConfigToJson(
   HorizontalDrawingToolConfig instance,
 ) => <String, dynamic>{
+  'configId': instance.configId,
   'number': instance.number,
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
-  'configId': instance.configId,
   'lineStyle': instance.lineStyle,
   'labelStyle': const TextStyleJsonConverter().toJson(instance.labelStyle),
   'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,

@@ -8,7 +8,7 @@ part of 'draggable_edge_point.dart';
 
 DraggableEdgePoint _$DraggableEdgePointFromJson(Map<String, dynamic> json) =>
     DraggableEdgePoint(
-      epoch: json['epoch'] as int? ?? 0,
+      epoch: (json['epoch'] as num?)?.toInt() ?? 0,
       quote: (json['quote'] as num?)?.toDouble() ?? 0,
       isDrawingDragged: json['isDrawingDragged'] as bool? ?? false,
       isDragged: json['isDragged'] as bool? ?? false,

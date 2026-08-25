@@ -122,7 +122,8 @@ class DonchianChannelsSeries extends Series {
     }
 
     final DonchianChannelsSeries oldSeries = previous as DonchianChannelsSeries;
-    return config.toJson().toString() != oldSeries.config.toJson().toString();
+    return config.toJson().toString() != oldSeries.config.toJson().toString() ||
+        super.shouldRepaint(previous);
   }
 
   @override

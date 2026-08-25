@@ -21,7 +21,9 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   // TODO(NA): Can be overridden on those indicators that can calculate
   //  results for their entire list at once in a more optimal way.
   /// Calculates indicator's result for all [entries] and caches them.
-  List<T> calculateValues() {
+  List<T> calculateValues() => _calculateValuesPerBar();
+
+  List<T> _calculateValuesPerBar() {
     for (int i = 0; i < entries.length; i++) {
       getValue(i);
     }
@@ -97,5 +99,31 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   T refreshValueFor(int index) {
     invalidate(index);
     return getValue(index);
+  }
+
+  /// Primes [indicator] (if it bulk-caches its own values) and returns its
+  /// per-bar quote series across [entries].
+  ///
+  /// Intended for use by bulk-math [calculateValues] overrides that need a
+  /// child indicator's values as a plain `List<double>`.
+  List<double> seriesFrom(Indicator<T> indicator) {
+    if (indicator is CachedIndicator<T>) {
+      indicator.calculateValues();
+    }
+    return <double>[
+      for (int i = 0; i < entries.length; i++) indicator.getValue(i).quote,
+    ];
+  }
+
+  /// Writes a bulk-computed [values] list into [results] and marks every
+  /// entry calculated. Returns [results], matching [calculateValues]'s contract.
+  ///
+  /// Intended as the common tail of bulk-math [calculateValues] overrides.
+  List<T> applyBulkValues(List<double> values) {
+    for (int i = 0; i < entries.length; i++) {
+      results[i] = createResult(index: i, quote: values[i]);
+    }
+    lastResultIndex = entries.length - 1;
+    return results;
   }
 }

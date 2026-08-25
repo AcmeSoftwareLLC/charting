@@ -17,12 +17,12 @@ FractalChaosBandIndicatorConfig _$FractalChaosBandIndicatorConfigFromJson(
       : LineStyle.fromJson(json['lowLineStyle'] as Map<String, dynamic>),
   fillColor: json['fillColor'] == null
       ? Colors.white12
-      : const ColorConverter().fromJson(json['fillColor'] as int),
+      : const ColorConverter().fromJson((json['fillColor'] as num).toInt()),
   showChannelFill: json['showChannelFill'] as bool? ?? false,
   showLastIndicator: json['showLastIndicator'] as bool? ?? false,
   title: json['title'] as String?,
-  number: json['number'] as int? ?? 0,
-  pipSize: json['pipSize'] as int? ?? 4,
+  number: (json['number'] as num?)?.toInt() ?? 0,
+  pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
 );
 
 Map<String, dynamic> _$FractalChaosBandIndicatorConfigToJson(

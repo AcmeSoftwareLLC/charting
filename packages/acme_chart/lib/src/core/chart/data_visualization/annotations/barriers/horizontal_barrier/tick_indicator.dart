@@ -17,17 +17,15 @@ class TickIndicator extends HorizontalBarrier {
   /// Initializes a tick indicator.
   TickIndicator(
     Tick tick, {
-    String? id,
+    super.id,
     HorizontalBarrierStyle? style,
-    HorizontalBarrierVisibility visibility = HorizontalBarrierVisibility.normal,
+    super.visibility = HorizontalBarrierVisibility.normal,
   }) : super(
          tick.quote,
          epoch: tick.epoch,
-         id: id,
          style:
              style ??
              const HorizontalBarrierStyle(labelShape: LabelShape.pentagon),
-         visibility: visibility,
          longLine: false,
        );
 }
@@ -40,18 +38,10 @@ class CandleIndicator extends HorizontalBarrier {
     required this.granularity,
     required this.serverTime,
     this.showTimer = false,
-    String? id,
-    HorizontalBarrierStyle style = const HorizontalBarrierStyle(),
-    HorizontalBarrierVisibility visibility =
-        HorizontalBarrierVisibility.keepBarrierLabelVisible,
-  }) : super(
-         candle.quote,
-         epoch: candle.epoch,
-         id: id,
-         style: style,
-         visibility: visibility,
-         longLine: false,
-       ) {
+    super.id,
+    HorizontalBarrierStyle super.style = const HorizontalBarrierStyle(),
+    super.visibility,
+  }) : super(candle.quote, epoch: candle.epoch, longLine: false) {
     _startTimer();
   }
 

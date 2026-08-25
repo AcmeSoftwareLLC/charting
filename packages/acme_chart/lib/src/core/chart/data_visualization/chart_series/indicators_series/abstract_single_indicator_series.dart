@@ -1,3 +1,6 @@
+import 'package:acme_indicators/acme_indicators.dart';
+import 'package:flutter/material.dart';
+
 import '../../../../../core/interactive_layer/crosshair/crosshair_dot_painter.dart';
 import '../../../../../core/interactive_layer/crosshair/crosshair_highlight_painter.dart';
 import '../../../../../core/interactive_layer/crosshair/crosshair_line_highlight_painter.dart';
@@ -5,11 +8,6 @@ import '../../../../../core/interactive_layer/crosshair/crosshair_variant.dart';
 import '../../../../../models/indicator_input.dart';
 import '../../../../../models/tick.dart';
 import '../../../../../theme/chart_theme.dart';
-import '../../../../../theme/painting_styles/barrier_style.dart';
-import '../../../../../theme/painting_styles/data_series_style.dart';
-import 'package:acme_indicators/acme_indicators.dart';
-import 'package:flutter/material.dart';
-
 import '../data_series.dart';
 import 'models/indicator_options.dart';
 
@@ -24,19 +22,14 @@ abstract class AbstractSingleIndicatorSeries extends DataSeries<Tick> {
     this.inputIndicator,
     String id, {
     this.options,
-    DataSeriesStyle? style,
+    super.style,
     this.offset = 0,
-    HorizontalBarrierStyle? lastTickIndicatorStyle,
+    super.lastTickIndicatorStyle,
   }) : _inputFirstTick = inputIndicator.entries.isNotEmpty
            ? inputIndicator.entries.first as Tick
            : null,
        _inputIndicatorData = inputIndicator.input as IndicatorInput,
-       super(
-         inputIndicator.entries as List<Tick>,
-         id: id,
-         style: style,
-         lastTickIndicatorStyle: lastTickIndicatorStyle,
-       );
+       super(inputIndicator.entries as List<Tick>, id: id);
 
   /// Input indicator to calculate this indicator value on.
   ///

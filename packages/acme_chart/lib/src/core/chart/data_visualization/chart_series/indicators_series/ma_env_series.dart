@@ -168,7 +168,8 @@ class MAEnvSeries extends Series {
       return true;
     }
 
-    return maEnvOptions != (previous as MAEnvSeries).maEnvOptions;
+    return maEnvOptions != (previous as MAEnvSeries).maEnvOptions ||
+        super.shouldRepaint(previous);
   }
 
   @override

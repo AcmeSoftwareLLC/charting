@@ -148,35 +148,34 @@ abstract class IndicatorDataInput {
 | Hull Moving Average | `HMAIndicator` |
 | Variable Moving Average | `VMAIndicator` |
 | Welles Wilder Smoothing | `WWSMAIndicator` |
-| Zero-Lag EMA | `ZELMAIndicator` |
+| Zero-Lag EMA | `ZLEMAIndicator` |
 
 ### 〰️ Oscillators
 
 | Indicator | Class |
 |-----------|-------|
 | Relative Strength Index | `RSIIndicator` |
-| Fast / Slow / Smoothed Stochastic | `StochasticIndicator` |
+| Fast / Slow / Smoothed Stochastic | `FastStochasticIndicator`, `SlowStochasticIndicator`, `SmoothedFastStochasticIndicator`, `SmoothedSlowStochasticIndicator` |
 | Stochastic Momentum Index | `SMIIndicator` |
 | MACD Line / Signal / Histogram | `MACDIndicator` |
 | Awesome Oscillator | `AwesomeOscillatorIndicator` |
 | Williams %R | `WilliamsRIndicator` |
 | Rate of Change | `ROCIndicator` |
-| Chande Momentum Oscillator | `CMOIndicator` |
-| Gator Oscillator (Top / Bottom) | `GatorOscillatorIndicator` |
+| Gator Oscillator (Top / Bottom) | `GatorOscillatorIndicatorTopBar`, `GatorOscillatorIndicatorBottomBar` |
 
 ### 📡 Trend Indicators
 
 | Indicator | Class |
 |-----------|-------|
 | ADX / +DI / -DI / Histogram | `ADXIndicator` |
-| Parabolic SAR | `ParabolicSARIndicator` |
-| Ichimoku Cloud (all five lines) | `IchimokuIndicator` |
+| Parabolic SAR | `ParabolicSarIndicator` |
+| Ichimoku Cloud (all five lines) | `IchimokuConversionLineIndicator`, `IchimokuBaseLineIndicator`, `IchimokuSpanAIndicator`, `IchimokuSpanBIndicator`, `IchimokuLaggingSpanIndicator` |
 
 ### 💥 Volatility Indicators
 
 | Indicator | Class |
 |-----------|-------|
-| Bollinger Bands (Upper / Lower / %B / BW) | `BollingerBandsIndicator` |
+| Bollinger Bands (Upper / Lower / Width) | `BollingerBandsUpperIndicator`, `BollingerBandsLowerIndicator`, `BollingerBandWidthIndicator` |
 | Average True Range | `ATRIndicator` |
 | Standard Deviation | `StandardDeviationIndicator` |
 | Variance | `VarianceIndicator` |
@@ -185,19 +184,18 @@ abstract class IndicatorDataInput {
 
 | Indicator | Class |
 |-----------|-------|
-| Donchian Channel | `DonchianChannelIndicator` |
-| Moving Average Envelope | `MAEnvelopeIndicator` |
+| Donchian Channel | `DonchianMiddleChannelIndicator` |
+| Moving Average Envelope | `MAEnvUpperIndicator`, `MAEnvLowerIndicator` |
 
 ### 🔀 Other Indicators
 
 | Indicator | Class |
 |-----------|-------|
-| Aroon Up / Down / Oscillator | `AroonIndicator` |
-| Commodity Channel Index | `CCIIndicator` |
+| Aroon Up / Down / Oscillator | `AroonUpIndicator`, `AroonDownIndicator`, `AroonOscillatorIndicator` |
+| Commodity Channel Index | `CommodityChannelIndexIndicator` |
 | Detrended Price Oscillator | `DPOIndicator` |
 | ZigZag | `ZigZagIndicator` |
-| Fixed Channel Bands (High / Low) | `FCBIndicator` |
-| Bullish / Bearish Pattern Recognition | `PatternIndicator` |
+| Fixed Channel Bands (High / Low) | `FCBHighIndicator`, `FCBLowIndicator` |
 
 ### 🔧 Helper Indicators
 

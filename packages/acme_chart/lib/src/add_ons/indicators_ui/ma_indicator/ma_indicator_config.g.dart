@@ -8,7 +8,7 @@ part of 'ma_indicator_config.dart';
 
 MAIndicatorConfig _$MAIndicatorConfigFromJson(Map<String, dynamic> json) =>
     MAIndicatorConfig(
-      period: json['period'] as int?,
+      period: (json['period'] as num?)?.toInt(),
       movingAverageType: $enumDecodeNullable(
         _$MovingAverageTypeEnumMap,
         json['movingAverageType'],
@@ -17,12 +17,12 @@ MAIndicatorConfig _$MAIndicatorConfigFromJson(Map<String, dynamic> json) =>
       lineStyle: json['lineStyle'] == null
           ? null
           : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),
-      offset: json['offset'] as int?,
+      offset: (json['offset'] as num?)?.toInt(),
       isOverlay: json['isOverlay'] as bool? ?? true,
-      pipSize: json['pipSize'] as int? ?? 4,
+      pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
       showLastIndicator: json['showLastIndicator'] as bool? ?? false,
       title: json['title'] as String?,
-      number: json['number'] as int? ?? 0,
+      number: (json['number'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$MAIndicatorConfigToJson(
@@ -30,7 +30,6 @@ Map<String, dynamic> _$MAIndicatorConfigToJson(
 ) => <String, dynamic>{
   'isOverlay': instance.isOverlay,
   'number': instance.number,
-  'title': instance.title,
   'showLastIndicator': instance.showLastIndicator,
   'pipSize': instance.pipSize,
   'period': instance.period,
@@ -38,6 +37,7 @@ Map<String, dynamic> _$MAIndicatorConfigToJson(
   'fieldType': instance.fieldType,
   'lineStyle': instance.lineStyle,
   'offset': instance.offset,
+  'title': instance.title,
 };
 
 const _$MovingAverageTypeEnumMap = {
