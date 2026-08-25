@@ -4,7 +4,7 @@ import 'package:acme_chart/src/theme/painting_styles/data_series_style.dart';
 import 'package:equatable/equatable.dart';
 
 /// Defines the style of painting candle data.
-class CandleStyle extends DataSeriesStyle with EquatableMixin {
+class CandleStyle extends DataSeriesStyle with Equatable {
   /// Initializes a style that defines the style of painting candle data.
   const CandleStyle({
     this.candleBullishBodyColor = const Color(0xFF00C390),

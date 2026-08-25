@@ -5,7 +5,7 @@ part 'edge_point.g.dart';
 
 /// A class that holds epoch and yCoord of the edge points.
 @JsonSerializable()
-class EdgePoint with EquatableMixin {
+class EdgePoint with Equatable {
   /// Initializes
   const EdgePoint({this.epoch = 0, this.quote = 0});
 

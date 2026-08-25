@@ -12,7 +12,7 @@ import 'package:meta/meta.dart';
 // we can use either <Tick>[] or <Candle>[] as input for
 // Close|High|Hl2|ValueIndicators.
 @immutable
-class Tick with EquatableMixin implements IndicatorOHLC, IndicatorResult {
+class Tick with Equatable implements IndicatorOHLC, IndicatorResult {
   /// Initializes
   const Tick({required this.epoch, required this.quote});
 

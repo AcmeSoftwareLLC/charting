@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 
 /// Candle class.
 @immutable
-class Candle extends Tick with EquatableMixin {
+class Candle extends Tick with Equatable {
   /// Initializes a candle class.
   const Candle({
     required super.epoch,
