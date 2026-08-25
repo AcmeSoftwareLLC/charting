@@ -102,6 +102,7 @@ export 'src/core/chart/data_visualization/chart_series/data_painters/bar_painter
 export 'src/core/chart/data_visualization/chart_series/data_painters/scatter_painter.dart';
 export 'src/core/chart/data_visualization/chart_series/line_series/line_painter.dart';
 export 'src/core/chart/data_visualization/chart_series/line_series/oscillator_line_painter.dart';
+export 'src/core/chart/data_visualization/chart_series/line_series/channel_fill_painter.dart';
 export 'src/core/chart/data_visualization/chart_series/line_series/line_series.dart';
 export 'src/core/chart/data_visualization/chart_series/ohlc_series/candle/candle_series.dart';
 export 'src/core/chart/data_visualization/chart_series/ohlc_series/hollow_candle/hollow_candle_series.dart';
