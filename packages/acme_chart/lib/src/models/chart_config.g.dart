@@ -15,6 +15,7 @@ ChartConfig _$ChartConfigFromJson(Map<String, dynamic> json) => ChartConfig(
         ),
   pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
   snapMarkersToIntervals: json['snapMarkersToIntervals'] as bool? ?? true,
+  magnetEnabled: json['magnetEnabled'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$ChartConfigToJson(ChartConfig instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$ChartConfigToJson(ChartConfig instance) =>
       'granularity': instance.granularity,
       'snapMarkersToIntervals': instance.snapMarkersToIntervals,
       'chartAxisConfig': instance.chartAxisConfig,
+      'magnetEnabled': instance.magnetEnabled,
     };

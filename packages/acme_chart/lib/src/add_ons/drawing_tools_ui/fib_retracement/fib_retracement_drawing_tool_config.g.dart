@@ -25,7 +25,7 @@ FibRetracementDrawingToolConfig _$FibRetracementDrawingToolConfigFromJson(
       ? const LineStyle(thickness: 0.9, color: Colors.white)
       : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),
   labelStyle: json['labelStyle'] == null
-      ? const TextStyle(fontSize: 11, color: Colors.white)
+      ? const TextStyle(fontSize: 11, color: Colors.blue)
       : const TextStyleJsonConverter().fromJson(
           json['labelStyle'] as Map<String, dynamic>,
         ),
