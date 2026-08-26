@@ -43,13 +43,15 @@ class _NoteTextFieldState extends State<NoteTextField> {
     text: widget.text,
   );
 
+  final FocusNode _focusNode = FocusNode();
+
   final Debounce _saveDebounce = Debounce(delay: notesTextSaveDebounce);
 
   @override
   void didUpdateWidget(NoteTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (widget.text != _controller.text) {
+    if (!_focusNode.hasFocus && widget.text != _controller.text) {
       _controller.text = widget.text;
     }
   }
@@ -70,6 +72,7 @@ class _NoteTextFieldState extends State<NoteTextField> {
     }
     _saveDebounce.cancel();
     _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -80,6 +83,7 @@ class _NoteTextFieldState extends State<NoteTextField> {
   @override
   Widget build(BuildContext context) => TextField(
     controller: _controller,
+    focusNode: _focusNode,
     autofocus: true,
     maxLines: null,
     style: widget.style,

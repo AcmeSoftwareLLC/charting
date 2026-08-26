@@ -1,3 +1,8 @@
+## 1.0.4
+**August 26, 2026**
+
+- Fixed slow, erratic typing when editing "Notes" drawing tool text boxes.
+
 ## 1.0.3
 **August 26, 2026**
 
