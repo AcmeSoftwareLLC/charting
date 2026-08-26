@@ -194,7 +194,8 @@ class ADXSeries extends Series {
     }
 
     final ADXSeries oldSeries = previous as ADXSeries;
-    return config.toJson().toString() != oldSeries.config.toJson().toString();
+    return config.toJson().toString() != oldSeries.config.toJson().toString() ||
+        super.shouldRepaint(previous);
   }
 
   @override

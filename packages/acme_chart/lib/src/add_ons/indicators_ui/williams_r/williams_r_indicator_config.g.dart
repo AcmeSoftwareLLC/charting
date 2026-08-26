@@ -9,7 +9,7 @@ part of 'williams_r_indicator_config.dart';
 WilliamsRIndicatorConfig _$WilliamsRIndicatorConfigFromJson(
   Map<String, dynamic> json,
 ) => WilliamsRIndicatorConfig(
-  period: json['period'] as int? ?? 14,
+  period: (json['period'] as num?)?.toInt() ?? 14,
   lineStyle: json['lineStyle'] == null
       ? const LineStyle(color: Colors.white)
       : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),
@@ -24,10 +24,10 @@ WilliamsRIndicatorConfig _$WilliamsRIndicatorConfigFromJson(
       : OscillatorLinesConfig.fromJson(
           json['oscillatorLimits'] as Map<String, dynamic>,
         ),
-  pipSize: json['pipSize'] as int? ?? 4,
+  pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
   showLastIndicator: json['showLastIndicator'] as bool? ?? false,
   title: json['title'] as String?,
-  number: json['number'] as int? ?? 0,
+  number: (json['number'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$WilliamsRIndicatorConfigToJson(

@@ -12,9 +12,9 @@ AwesomeOscillatorIndicatorConfig _$AwesomeOscillatorIndicatorConfigFromJson(
   barStyle: json['barStyle'] == null
       ? const BarStyle()
       : BarStyle.fromJson(json['barStyle'] as Map<String, dynamic>),
-  pipSize: json['pipSize'] as int? ?? 4,
+  pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
   title: json['title'] as String?,
-  number: json['number'] as int? ?? 0,
+  number: (json['number'] as num?)?.toInt() ?? 0,
   showLastIndicator: json['showLastIndicator'] as bool? ?? false,
 );
 

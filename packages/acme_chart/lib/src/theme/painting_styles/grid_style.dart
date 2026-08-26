@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 /// For defining the style of the chart's grid. (X and Y axes).
-class GridStyle with EquatableMixin {
+class GridStyle with Equatable {
   /// Initializes a style for defining the style of the chart's grid.
   const GridStyle({
     this.gridLineColor = const Color(0x0A181C25),

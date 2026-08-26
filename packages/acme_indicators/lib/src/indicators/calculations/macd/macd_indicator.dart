@@ -25,12 +25,17 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     super.indicator, {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
-  }) : _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod),
+  }) : _slowPeriod = slowMAPeriod,
+       _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod),
        _longTermEma = EMAIndicator<T>(indicator, slowMAPeriod),
        super.fromIndicator();
 
+  final int _slowPeriod;
   final EMAIndicator<T> _shortTermEma;
   final EMAIndicator<T> _longTermEma;
+
+  /// The slow (long-term) EMA period; the MACD line is valid from index `slowPeriod - 1` onward.
+  int get slowPeriod => _slowPeriod;
 
   @override
   T calculate(int index) => createResult(

@@ -151,4 +151,18 @@ class LineDrawingToolConfig extends SegmentDrawingToolConfig {
     drawingContext: drawingContext,
     getDrawingState: getDrawingState,
   );
+
+  static OverlayStyle? _overlayStyleFromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return null;
+    }
+    return OverlayStyle(color: Color(json['color'] as int));
+  }
+
+  static Map<String, dynamic>? _overlayStyleToJson(OverlayStyle? instance) {
+    if (instance == null) {
+      return null;
+    }
+    return {'color': instance.color.toARGB32()};
+  }
 }

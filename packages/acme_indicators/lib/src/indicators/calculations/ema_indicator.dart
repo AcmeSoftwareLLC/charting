@@ -6,7 +6,7 @@ import '../indicator.dart';
 /// Base class for Exponential Moving Average implementations.
 abstract class AbstractEMAIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
-  /// Initializes
+  /// Initializes.
   AbstractEMAIndicator(this.indicator, this.period, this.multiplier)
     : super.fromIndicator(indicator);
 

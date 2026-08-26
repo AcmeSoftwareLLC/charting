@@ -9,7 +9,7 @@ part of 'ma_env_indicator_config.dart';
 MAEnvIndicatorConfig _$MAEnvIndicatorConfigFromJson(
   Map<String, dynamic> json,
 ) => MAEnvIndicatorConfig(
-  period: json['period'] as int? ?? 50,
+  period: (json['period'] as num?)?.toInt() ?? 50,
   movingAverageType:
       $enumDecodeNullable(
         _$MovingAverageTypeEnumMap,
@@ -32,10 +32,10 @@ MAEnvIndicatorConfig _$MAEnvIndicatorConfigFromJson(
       : LineStyle.fromJson(json['lowerLineStyle'] as Map<String, dynamic>),
   fillColor: json['fillColor'] == null
       ? Colors.white12
-      : const ColorConverter().fromJson(json['fillColor'] as int),
+      : const ColorConverter().fromJson((json['fillColor'] as num).toInt()),
   showChannelFill: json['showChannelFill'] as bool? ?? true,
   showLastIndicator: json['showLastIndicator'] as bool? ?? false,
-  number: json['number'] as int? ?? 0,
+  number: (json['number'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$MAEnvIndicatorConfigToJson(

@@ -9,17 +9,17 @@ part of 'aroon_indicator_config.dart';
 AroonIndicatorConfig _$AroonIndicatorConfigFromJson(
   Map<String, dynamic> json,
 ) => AroonIndicatorConfig(
-  period: json['period'] as int? ?? 14,
+  period: (json['period'] as num?)?.toInt() ?? 14,
   upLineStyle: json['upLineStyle'] == null
       ? const LineStyle(color: Colors.green)
       : LineStyle.fromJson(json['upLineStyle'] as Map<String, dynamic>),
   downLineStyle: json['downLineStyle'] == null
       ? const LineStyle(color: Colors.red)
       : LineStyle.fromJson(json['downLineStyle'] as Map<String, dynamic>),
-  pipSize: json['pipSize'] as int? ?? 4,
+  pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
   showLastIndicator: json['showLastIndicator'] as bool? ?? false,
   title: json['title'] as String?,
-  number: json['number'] as int? ?? 0,
+  number: (json['number'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$AroonIndicatorConfigToJson(

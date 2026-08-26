@@ -9,7 +9,7 @@ part of 'rainbow_indicator_config.dart';
 RainbowIndicatorConfig _$RainbowIndicatorConfigFromJson(
   Map<String, dynamic> json,
 ) => RainbowIndicatorConfig(
-  period: json['period'] as int? ?? 50,
+  period: (json['period'] as num?)?.toInt() ?? 50,
   movingAverageType:
       $enumDecodeNullable(
         _$MovingAverageTypeEnumMap,
@@ -17,16 +17,18 @@ RainbowIndicatorConfig _$RainbowIndicatorConfigFromJson(
       ) ??
       MovingAverageType.simple,
   fieldType: json['fieldType'] as String? ?? 'close',
-  bandsCount: json['bandsCount'] as int? ?? 10,
+  bandsCount: (json['bandsCount'] as num?)?.toInt() ?? 10,
   rainbowLineStyles: (json['rainbowLineStyles'] as List<dynamic>?)
       ?.map((e) => LineStyle.fromJson(e as Map<String, dynamic>))
       .toList(),
   showLastIndicator: json['showLastIndicator'] as bool? ?? false,
+  number: (json['number'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$RainbowIndicatorConfigToJson(
   RainbowIndicatorConfig instance,
 ) => <String, dynamic>{
+  'number': instance.number,
   'showLastIndicator': instance.showLastIndicator,
   'period': instance.period,
   'movingAverageType': _$MovingAverageTypeEnumMap[instance.movingAverageType]!,

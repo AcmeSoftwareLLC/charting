@@ -33,10 +33,10 @@ ChannelDrawingToolConfig _$ChannelDrawingToolConfigFromJson(
 Map<String, dynamic> _$ChannelDrawingToolConfigToJson(
   ChannelDrawingToolConfig instance,
 ) => <String, dynamic>{
+  'configId': instance.configId,
   'number': instance.number,
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
-  'configId': instance.configId,
   'lineStyle': instance.lineStyle,
   'fillStyle': instance.fillStyle,
   'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,

@@ -8,9 +8,9 @@ part of 'macd_indicator_config.dart';
 
 MACDIndicatorConfig _$MACDIndicatorConfigFromJson(Map<String, dynamic> json) =>
     MACDIndicatorConfig(
-      fastMAPeriod: json['fastMAPeriod'] as int? ?? 12,
-      slowMAPeriod: json['slowMAPeriod'] as int? ?? 26,
-      signalPeriod: json['signalPeriod'] as int? ?? 9,
+      fastMAPeriod: (json['fastMAPeriod'] as num?)?.toInt() ?? 12,
+      slowMAPeriod: (json['slowMAPeriod'] as num?)?.toInt() ?? 26,
+      signalPeriod: (json['signalPeriod'] as num?)?.toInt() ?? 9,
       barStyle: json['barStyle'] == null
           ? const BarStyle()
           : BarStyle.fromJson(json['barStyle'] as Map<String, dynamic>),
@@ -20,17 +20,16 @@ MACDIndicatorConfig _$MACDIndicatorConfigFromJson(Map<String, dynamic> json) =>
       signalLineStyle: json['signalLineStyle'] == null
           ? const LineStyle(color: Colors.redAccent)
           : LineStyle.fromJson(json['signalLineStyle'] as Map<String, dynamic>),
-      pipSize: json['pipSize'] as int? ?? 4,
+      pipSize: (json['pipSize'] as num?)?.toInt() ?? 4,
       showLastIndicator: json['showLastIndicator'] as bool? ?? false,
       title: json['title'] as String?,
-      number: json['number'] as int? ?? 0,
+      number: (json['number'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$MACDIndicatorConfigToJson(
   MACDIndicatorConfig instance,
 ) => <String, dynamic>{
   'number': instance.number,
-  'title': instance.title,
   'showLastIndicator': instance.showLastIndicator,
   'pipSize': instance.pipSize,
   'fastMAPeriod': instance.fastMAPeriod,
@@ -39,4 +38,5 @@ Map<String, dynamic> _$MACDIndicatorConfigToJson(
   'barStyle': instance.barStyle,
   'lineStyle': instance.lineStyle,
   'signalLineStyle': instance.signalLineStyle,
+  'title': instance.title,
 };

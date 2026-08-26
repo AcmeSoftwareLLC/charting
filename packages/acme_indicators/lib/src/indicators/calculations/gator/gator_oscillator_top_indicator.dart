@@ -20,7 +20,7 @@ class GatorOscillatorIndicatorTopBar<T extends IndicatorResult>
          teethOffset: teethOffset,
        );
 
-  /// Initializes GatorBottomBar from [lipsIndicator] and [teethIndicator].
+  /// Initializes GatorBottomBar from [jawIndicator] and [teethIndicator].
   GatorOscillatorIndicatorTopBar.fromIndicators(
     this.jawIndicator,
     this.teethIndicator, {

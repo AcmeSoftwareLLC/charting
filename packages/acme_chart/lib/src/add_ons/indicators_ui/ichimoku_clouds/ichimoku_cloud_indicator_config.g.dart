@@ -9,10 +9,10 @@ part of 'ichimoku_cloud_indicator_config.dart';
 IchimokuCloudIndicatorConfig _$IchimokuCloudIndicatorConfigFromJson(
   Map<String, dynamic> json,
 ) => IchimokuCloudIndicatorConfig(
-  baseLinePeriod: json['baseLinePeriod'] as int? ?? 26,
-  conversionLinePeriod: json['conversionLinePeriod'] as int? ?? 9,
-  laggingSpanOffset: json['laggingSpanOffset'] as int? ?? -26,
-  spanBPeriod: json['spanBPeriod'] as int? ?? 52,
+  baseLinePeriod: (json['baseLinePeriod'] as num?)?.toInt() ?? 26,
+  conversionLinePeriod: (json['conversionLinePeriod'] as num?)?.toInt() ?? 9,
+  laggingSpanOffset: (json['laggingSpanOffset'] as num?)?.toInt() ?? -26,
+  spanBPeriod: (json['spanBPeriod'] as num?)?.toInt() ?? 52,
   conversionLineStyle: json['conversionLineStyle'] == null
       ? const LineStyle(color: Colors.indigo)
       : LineStyle.fromJson(json['conversionLineStyle'] as Map<String, dynamic>),
@@ -30,7 +30,7 @@ IchimokuCloudIndicatorConfig _$IchimokuCloudIndicatorConfigFromJson(
       : LineStyle.fromJson(json['laggingLineStyle'] as Map<String, dynamic>),
   showLastIndicator: json['showLastIndicator'] as bool? ?? false,
   title: json['title'] as String?,
-  number: json['number'] as int? ?? 0,
+  number: (json['number'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$IchimokuCloudIndicatorConfigToJson(

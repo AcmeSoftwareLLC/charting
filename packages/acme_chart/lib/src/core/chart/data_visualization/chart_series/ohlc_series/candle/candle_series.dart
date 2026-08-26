@@ -1,12 +1,10 @@
+import 'package:flutter/material.dart';
+
 import '../../../../../../core/interactive_layer/crosshair/crosshair_candle_highlight_painter.dart';
 import '../../../../../../core/interactive_layer/crosshair/crosshair_dot_painter.dart';
 import '../../../../../../core/interactive_layer/crosshair/crosshair_highlight_painter.dart';
 import '../../../../../../models/candle.dart';
 import '../../../../../../theme/chart_theme.dart';
-import '../../../../../../theme/painting_styles/barrier_style.dart';
-import '../../../../../../theme/painting_styles/candle_style.dart';
-import 'package:flutter/material.dart';
-
 import '../../data_series.dart';
 import '../../series_painter.dart';
 import '../ohlc_type_series.dart';
@@ -18,14 +16,9 @@ class CandleSeries extends OHLCTypeSeries {
   CandleSeries(
     List<Candle> entries, {
     String? id,
-    CandleStyle? style,
-    HorizontalBarrierStyle? lastTickIndicatorStyle,
-  }) : super(
-         entries,
-         id ?? 'CandleSeries',
-         style: style,
-         lastTickIndicatorStyle: lastTickIndicatorStyle,
-       );
+    super.style,
+    super.lastTickIndicatorStyle,
+  }) : super(entries, id ?? 'CandleSeries');
 
   @override
   SeriesPainter<DataSeries<Candle>> createPainter() => CandlePainter(this);

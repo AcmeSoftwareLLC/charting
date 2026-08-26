@@ -225,7 +225,8 @@ class IchimokuCloudSeries extends Series {
     }
 
     final IchimokuCloudSeries oldSeries = previous as IchimokuCloudSeries;
-    return config.toJson().toString() != oldSeries.config.toJson().toString();
+    return config.toJson().toString() != oldSeries.config.toJson().toString() ||
+        super.shouldRepaint(previous);
   }
 
   @override

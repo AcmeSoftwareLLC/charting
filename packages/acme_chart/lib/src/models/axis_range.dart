@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 /// Class that represents the range of epoch from left to right.
 /// Can use to represent the x-axis range on the chart.
-class EpochRange with EquatableMixin {
+class EpochRange with Equatable {
   /// Initializes.
   EpochRange({required this.leftEpoch, required this.rightEpoch});
 
@@ -18,7 +18,7 @@ class EpochRange with EquatableMixin {
 
 /// Class that represents the range of quotes from top to bottom.
 /// Can use to represent the Y-axis range of the chart.
-class QuoteRange with EquatableMixin {
+class QuoteRange with Equatable {
   /// Initializes.
   QuoteRange({required this.topQuote, required this.bottomQuote});
 

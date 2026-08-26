@@ -9,7 +9,7 @@ part 'line_style.g.dart';
 /// Defines the style of painting line data.
 @JsonSerializable()
 @ColorConverter()
-class LineStyle extends DataSeriesStyle with EquatableMixin {
+class LineStyle extends DataSeriesStyle with Equatable {
   /// Initializes a style that defines the style of painting line data.
   const LineStyle({
     this.color = const Color(0xFF85ACB0),
