@@ -30,9 +30,8 @@ class FibRetracementDrawingToolConfig extends DrawingToolConfig {
   });
 
   /// Initializes from JSON.
-  factory FibRetracementDrawingToolConfig.fromJson(
-    Map<String, dynamic> json,
-  ) => _$FibRetracementDrawingToolConfigFromJson(json);
+  factory FibRetracementDrawingToolConfig.fromJson(Map<String, dynamic> json) =>
+      _$FibRetracementDrawingToolConfigFromJson(json);
 
   /// Drawing tool name
   static const String name = 'dt_fib_retracement';

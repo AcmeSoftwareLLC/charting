@@ -69,14 +69,13 @@ class FibfanAddingPreviewMobile extends FibfanAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragStart(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragStart(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void onDragUpdate(
@@ -85,14 +84,13 @@ class FibfanAddingPreviewMobile extends FibfanAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragUpdate(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragUpdate(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void onDragEnd(
@@ -101,14 +99,13 @@ class FibfanAddingPreviewMobile extends FibfanAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragEnd(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragEnd(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void paint(
@@ -124,8 +121,8 @@ class FibfanAddingPreviewMobile extends FibfanAddingPreview {
     if (interactableDrawing.startPoint != null &&
         interactableDrawing.endPoint != null) {
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paint(
         canvas,
@@ -174,8 +171,7 @@ class FibfanAddingPreviewMobile extends FibfanAddingPreview {
   bool shouldRepaint(
     Set<DrawingToolState> drawingState,
     DrawingV2 oldDrawing,
-  ) =>
-      true;
+  ) => true;
 
   @override
   String get id => 'fibfan-adding-preview-mobile';

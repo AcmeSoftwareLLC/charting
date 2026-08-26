@@ -72,14 +72,13 @@ class RectangleAddingPreviewMobile extends RectangleAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragStart(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragStart(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void onDragUpdate(
@@ -88,14 +87,13 @@ class RectangleAddingPreviewMobile extends RectangleAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragUpdate(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragUpdate(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void onDragEnd(
@@ -104,14 +102,13 @@ class RectangleAddingPreviewMobile extends RectangleAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragEnd(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragEnd(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void paint(
@@ -130,8 +127,8 @@ class RectangleAddingPreviewMobile extends RectangleAddingPreview {
       // Delegate to main drawing with selected state simulation for full
       // visual appearance.
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paint(
         canvas,
@@ -185,8 +182,7 @@ class RectangleAddingPreviewMobile extends RectangleAddingPreview {
   bool shouldRepaint(
     Set<DrawingToolState> drawingState,
     DrawingV2 oldDrawing,
-  ) =>
-      true;
+  ) => true;
 
   @override
   String get id => 'rectangle-adding-preview-mobile';

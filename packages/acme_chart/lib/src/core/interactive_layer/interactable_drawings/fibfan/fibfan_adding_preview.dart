@@ -29,8 +29,7 @@ abstract class FibfanAddingPreview
     EdgePoint point,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      Offset(epochToX(point.epoch), quoteToY(point.quote));
+  ) => Offset(epochToX(point.epoch), quoteToY(point.quote));
 
   /// Draws a dashed preview line between [startPosition] and [endPosition].
   void drawPreviewLine(
@@ -44,7 +43,10 @@ abstract class FibfanAddingPreview
       ..lineTo(endPosition.dx, endPosition.dy);
 
     canvas.drawPath(
-      dashPath(linePath, dashArray: CircularIntervalList<double>(<double>[2, 2])),
+      dashPath(
+        linePath,
+        dashArray: CircularIntervalList<double>(<double>[2, 2]),
+      ),
       Paint()
         ..color = lineStyle.color
         ..style = PaintingStyle.stroke

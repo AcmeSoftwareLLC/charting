@@ -70,8 +70,10 @@ class FibRetracementDrawingToolItemState
   );
 
   LineStyle get _currentFillStyle =>
-      _fillStyle ?? (widget.config as FibRetracementDrawingToolConfig).fillStyle;
+      _fillStyle ??
+      (widget.config as FibRetracementDrawingToolConfig).fillStyle;
 
   LineStyle get _currentLineStyle =>
-      _lineStyle ?? (widget.config as FibRetracementDrawingToolConfig).lineStyle;
+      _lineStyle ??
+      (widget.config as FibRetracementDrawingToolConfig).lineStyle;
 }

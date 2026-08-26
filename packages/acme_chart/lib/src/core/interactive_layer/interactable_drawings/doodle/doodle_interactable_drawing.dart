@@ -60,8 +60,11 @@ class DoodleInteractableDrawing
     if (points.length < 2) {
       return points.isNotEmpty &&
           (offset -
-                  Offset(epochToX(points.first.epoch), quoteToY(points.first.quote)))
-              .distance <=
+                      Offset(
+                        epochToX(points.first.epoch),
+                        quoteToY(points.first.quote),
+                      ))
+                  .distance <=
               hitTestMargin;
     }
 
@@ -250,11 +253,10 @@ class DoodleInteractableDrawing
       config.copyWith(edgePoints: List<EdgePoint>.of(points));
 
   @override
-  bool isInViewPort(EpochRange epochRange, QuoteRange quoteRange) => points
-      .any(
-        (EdgePoint point) =>
-            point.isInEpochRange(epochRange.leftEpoch, epochRange.rightEpoch),
-      );
+  bool isInViewPort(EpochRange epochRange, QuoteRange quoteRange) => points.any(
+    (EdgePoint point) =>
+        point.isInEpochRange(epochRange.leftEpoch, epochRange.rightEpoch),
+  );
 
   @override
   DrawingAddingPreview<InteractableDrawing<DrawingToolConfig>>

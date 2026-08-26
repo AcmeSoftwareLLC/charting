@@ -86,14 +86,13 @@ class ChannelAddingPreviewMobile extends ChannelAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragStart(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragStart(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void onDragUpdate(
@@ -102,14 +101,13 @@ class ChannelAddingPreviewMobile extends ChannelAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragUpdate(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragUpdate(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void onDragEnd(
@@ -118,14 +116,13 @@ class ChannelAddingPreviewMobile extends ChannelAddingPreview {
     QuoteFromY quoteFromY,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      interactableDrawing.onDragEnd(
-        details,
-        epochFromX,
-        quoteFromY,
-        epochToX,
-        quoteToY,
-      );
+  ) => interactableDrawing.onDragEnd(
+    details,
+    epochFromX,
+    quoteFromY,
+    epochToX,
+    quoteToY,
+  );
 
   @override
   void paint(
@@ -145,8 +142,8 @@ class ChannelAddingPreviewMobile extends ChannelAddingPreview {
       // Delegate to main drawing with selected state simulation for full
       // visual appearance.
       Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-            DrawingToolState.selected,
-          };
+        DrawingToolState.selected,
+      };
 
       interactableDrawing.paint(
         canvas,
@@ -192,8 +189,7 @@ class ChannelAddingPreviewMobile extends ChannelAddingPreview {
   bool shouldRepaint(
     Set<DrawingToolState> drawingState,
     DrawingV2 oldDrawing,
-  ) =>
-      true;
+  ) => true;
 
   @override
   String get id => 'channel-adding-preview-mobile';

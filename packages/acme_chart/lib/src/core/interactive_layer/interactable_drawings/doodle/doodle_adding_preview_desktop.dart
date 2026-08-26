@@ -89,10 +89,7 @@ class DoodleAddingPreviewDesktop extends DoodleAddingPreview {
     final List<EdgePoint> points = interactableDrawing.points;
 
     final Path path = Path()
-      ..moveTo(
-        epochToX(points.first.epoch),
-        quoteToY(points.first.quote),
-      );
+      ..moveTo(epochToX(points.first.epoch), quoteToY(points.first.quote));
     for (final EdgePoint point in points.skip(1)) {
       path.lineTo(epochToX(point.epoch), quoteToY(point.quote));
     }

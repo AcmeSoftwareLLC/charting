@@ -29,8 +29,7 @@ abstract class ChannelAddingPreview
     EdgePoint point,
     EpochToX epochToX,
     QuoteToY quoteToY,
-  ) =>
-      Offset(epochToX(point.epoch), quoteToY(point.quote));
+  ) => Offset(epochToX(point.epoch), quoteToY(point.quote));
 
   /// Draws a dashed line between [startPosition] and [endPosition].
   void drawPreviewLine(

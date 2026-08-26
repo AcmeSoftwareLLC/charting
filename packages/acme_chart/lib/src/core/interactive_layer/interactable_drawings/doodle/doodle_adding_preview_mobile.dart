@@ -84,8 +84,8 @@ class DoodleAddingPreviewMobile extends DoodleAddingPreview {
     }
 
     Set<DrawingToolState> mockGetDrawingState(DrawingV2 drawing) => {
-          DrawingToolState.selected,
-        };
+      DrawingToolState.selected,
+    };
 
     interactableDrawing.paint(
       canvas,
@@ -114,8 +114,7 @@ class DoodleAddingPreviewMobile extends DoodleAddingPreview {
   bool shouldRepaint(
     Set<DrawingToolState> drawingState,
     DrawingV2 oldDrawing,
-  ) =>
-      true;
+  ) => true;
 
   @override
   String get id => 'doodle-adding-preview-mobile';

@@ -198,8 +198,7 @@ class InteractiveAddingToolState extends InteractiveState
     final bool hitExistingPoint =
         _drawingPreview?.hitTest(details.localPosition, epochToX, quoteToY) ??
         false;
-    final bool canStartFresh =
-        _drawingPreview?.canStartDragFromEmpty ?? false;
+    final bool canStartFresh = _drawingPreview?.canStartDragFromEmpty ?? false;
 
     if (hitExistingPoint || canStartFresh) {
       // To trigger the animation of the interactive layer, so the adding
