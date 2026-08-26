@@ -1,3 +1,12 @@
+## 1.0.3
+**August 26, 2026**
+
+- Added new interactive drawing tools: Rectangle, Channel, Notes, Ellipse, Fibonacci Retracement, Fib Fan, Trade Ratio, Doodle, Segment, and Measure.
+- Added magnet snapping for drawing tools via the new `magnetEnabled` property on `ChartConfig`.
+- Added a copy button for drawings and improved trend line interaction handling.
+- Updated line and label drawing tool configs to default to blue styling.
+- Removed unused overlay style JSON serialization methods.
+
 ## 1.0.2
 **August 25, 2026**
 
