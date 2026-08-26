@@ -79,6 +79,7 @@ class Chart extends StatefulWidget {
     this.showScrollToLastTickButton,
     this.loadingAnimationColor,
     this.useDrawingToolsV2 = false,
+    this.magnetEnabled = false,
     super.key,
   });
 
@@ -202,6 +203,10 @@ class Chart extends StatefulWidget {
   /// The interactive layer behaviour.
   final InteractiveLayerBehaviour? interactiveLayerBehaviour;
 
+  /// Whether new drawing tool points snap to the nearest candle's time
+  /// bucket instead of the exact cursor position ("magnet" mode).
+  final bool magnetEnabled;
+
   @override
   // TODO(Ramin): Make this customizable from outside.
   State<StatefulWidget> createState() =>
@@ -280,6 +285,7 @@ abstract class _ChartState extends State<Chart> with WidgetsBindingObserver {
       pipSize: widget.pipSize,
       granularity: widget.granularity,
       chartAxisConfig: widget.chartAxisConfig,
+      magnetEnabled: widget.magnetEnabled,
     );
     // Calculate default msPerPx based on granularity and default interval width (which defaults to 20 pixels), msPerPx could be null in situations like when data fit mode is enabled.
     final double defaultMsPerPx =

@@ -48,11 +48,11 @@ Map<String, dynamic> _$LineDrawingToolConfigToJson(
   'drawingData': instance.drawingData,
   'edgePoints': instance.edgePoints,
   'lineStyle': instance.lineStyle,
+  'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,
   'labelStyle': const TextStyleJsonConverter().toJson(instance.labelStyle),
   'overlayStyle': LineDrawingToolConfig._overlayStyleToJson(
     instance.overlayStyle,
   ),
-  'pattern': _$DrawingPatternsEnumMap[instance.pattern]!,
 };
 
 const _$DrawingPatternsEnumMap = {

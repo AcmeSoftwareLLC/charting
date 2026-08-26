@@ -81,6 +81,40 @@ Chart(
 
 If you don't specify an `interactiveLayerBehaviour`, the chart will use `InteractiveLayerDesktopBehaviour` on web and `InteractiveLayerMobileBehaviour` on other platforms.
 
+#### Available Drawing Tools (V2)
+
+The Interactive Layer implementation ships with the following drawing tools out of the box:
+
+- **Line** - a straight line between two points
+- **Trend Line** - a line extended based on trend direction
+- **Horizontal Line** and **Vertical Line**
+- **Rectangle**
+- **Channel**
+- **Ellipse**
+- **Segment**
+- **Doodle** - freehand sketching
+- **Measure** - measures price and time distance between two points
+- **Notes** - a text annotation anchored to a point on the chart
+- **Fibonacci Retracement** and **Fib Fan**
+- **Trade Ratio** - visualizes risk/reward zones for a potential trade
+
+Each tool has its own configuration class (e.g. `RectangleDrawingToolConfig`, `EllipseDrawingToolConfig`, `TradeRatioDrawingToolConfig`) under `lib/src/core/interactive_layer/interactable_drawings/<tool>/`, exposing options such as line style, fill color, and label styling.
+
+#### Magnet Mode
+
+Set `magnetEnabled: true` on `ChartConfig` to have drawing tool edge points snap to nearby candle data points while adding or dragging a drawing:
+
+```dart
+Chart(
+  mainSeries: yourDataSeries,
+  granularity: yourGranularity,
+  useDrawingToolsV2: true,
+  config: ChartConfig(
+    magnetEnabled: true,
+  ),
+  // other chart parameters...
+)
+```
 
 #### Custom Interactive Layer Behavior
 

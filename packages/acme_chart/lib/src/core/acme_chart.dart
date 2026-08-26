@@ -70,11 +70,16 @@ class AcmeChart extends StatefulWidget {
     this.crosshairVariant = CrosshairVariant.smallScreen,
     this.interactiveLayerBehaviour,
     this.useDrawingToolsV2 = false,
+    this.magnetEnabled = false,
     super.key,
   });
 
   /// Whether to use the new drawing tools v2 or not.
   final bool useDrawingToolsV2;
+
+  /// Whether new drawing tool points snap to the nearest candle's time
+  /// bucket instead of the exact cursor position ("magnet" mode).
+  final bool magnetEnabled;
 
   /// Chart's main data series
   final DataSeries<Tick> mainSeries;
@@ -406,6 +411,7 @@ class _AcmeChartState extends State<AcmeChart> {
             crosshairVariant: widget.crosshairVariant,
             interactiveLayerBehaviour: _interactiveLayerBehaviour,
             useDrawingToolsV2: widget.useDrawingToolsV2,
+            magnetEnabled: widget.magnetEnabled,
           ),
           if (widget.indicatorsRepo == null) _buildIndicatorsIcon(),
           if (widget.drawingToolsRepo == null) _buildDrawingToolsIcon(),

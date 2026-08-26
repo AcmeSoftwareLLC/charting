@@ -24,6 +24,11 @@ FibfanDrawingToolConfig _$FibfanDrawingToolConfigFromJson(
   lineStyle: json['lineStyle'] == null
       ? const LineStyle(thickness: 0.9, color: Colors.white)
       : LineStyle.fromJson(json['lineStyle'] as Map<String, dynamic>),
+  labelStyle: json['labelStyle'] == null
+      ? const TextStyle(fontSize: 11, color: Colors.white)
+      : const TextStyleJsonConverter().fromJson(
+          json['labelStyle'] as Map<String, dynamic>,
+        ),
   number: (json['number'] as num?)?.toInt() ?? 0,
 );
 
@@ -36,4 +41,5 @@ Map<String, dynamic> _$FibfanDrawingToolConfigToJson(
   'edgePoints': instance.edgePoints,
   'lineStyle': instance.lineStyle,
   'fillStyle': instance.fillStyle,
+  'labelStyle': const TextStyleJsonConverter().toJson(instance.labelStyle),
 };

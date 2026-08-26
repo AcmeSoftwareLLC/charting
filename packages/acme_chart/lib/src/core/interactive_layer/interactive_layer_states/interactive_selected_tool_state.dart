@@ -1,4 +1,5 @@
 import '../../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
+import '../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import '../../../core/interactive_layer/interactive_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -24,6 +25,10 @@ import 'interactive_normal_state.dart';
 /// providing appropriate responses to gestures and maintaining the selected state.
 class InteractiveSelectedToolState extends InteractiveState
     with InteractiveHoverState {
+  /// Pixel offset applied to a cloned drawing's points so it doesn't land
+  /// in a perfect overlap on top of the original it was cloned from.
+  static const double _clonePixelOffset = 20;
+
   /// Initializes the state with the interactive layer and the [selected] tool.
   ///
   /// The [selected] parameter is the drawing tool that has been selected by the user
@@ -210,7 +215,16 @@ class InteractiveSelectedToolState extends InteractiveState
   }
 
   @override
-  List<Widget> get previewWidgets => [_buildSelectedDrawingFloatingMenu()];
+  List<Widget> get previewWidgets => [
+    ?_buildSelectedDrawingOverlay(),
+    _buildSelectedDrawingFloatingMenu(),
+  ];
+
+  Widget? _buildSelectedDrawingOverlay() => selected.getSelectedOverlay(
+    epochToX: epochToX,
+    quoteToY: quoteToY,
+    onUpdate: (config) => interactiveLayer.saveDrawing(config),
+  );
 
   Widget _buildSelectedDrawingFloatingMenu() => SelectedDrawingFloatingMenu(
     drawing: selected,
@@ -237,6 +251,22 @@ class InteractiveSelectedToolState extends InteractiveState
       );
 
       interactiveLayer.removeDrawing(config);
+    },
+    onCloneDrawing: (config) {
+      if (selected.id != config.configId) {
+        return;
+      }
+
+      final List<EdgePoint> clonedPoints = config.edgePoints
+          .map(
+            (point) => EdgePoint(
+              epoch: epochFromX(epochToX(point.epoch) + _clonePixelOffset),
+              quote: quoteFromY(quoteToY(point.quote) + _clonePixelOffset),
+            ),
+          )
+          .toList();
+
+      interactiveLayer.addDrawing(config.copyWith(edgePoints: clonedPoints));
     },
   );
 }

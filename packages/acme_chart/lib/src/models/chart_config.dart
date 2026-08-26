@@ -14,6 +14,7 @@ class ChartConfig {
     this.chartAxisConfig = const ChartAxisConfig(),
     this.pipSize = 4,
     this.snapMarkersToIntervals = true,
+    this.magnetEnabled = false,
   });
 
   /// Initializes from JSON.
@@ -38,12 +39,18 @@ class ChartConfig {
   /// Chart Axis configuration.
   final ChartAxisConfig chartAxisConfig;
 
+  /// Whether new drawing tool points snap to the nearest candle's time
+  /// bucket instead of the exact cursor position ("magnet" mode).
+  final bool magnetEnabled;
+
   @override
   bool operator ==(covariant ChartConfig other) =>
       pipSize == other.pipSize &&
       granularity == other.granularity &&
-      snapMarkersToIntervals == other.snapMarkersToIntervals;
+      snapMarkersToIntervals == other.snapMarkersToIntervals &&
+      magnetEnabled == other.magnetEnabled;
 
   @override
-  int get hashCode => Object.hash(pipSize, granularity, snapMarkersToIntervals);
+  int get hashCode =>
+      Object.hash(pipSize, granularity, snapMarkersToIntervals, magnetEnabled);
 }
