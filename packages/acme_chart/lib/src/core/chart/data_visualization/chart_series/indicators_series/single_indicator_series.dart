@@ -40,6 +40,7 @@ class SingleIndicatorSeries extends AbstractSingleIndicatorSeries {
     super.style,
     super.offset,
     super.lastTickIndicatorStyle,
+    super.axisGroup,
   }) : super(inputIndicator, id ?? '$options');
 
   /// Function which will be called to get the painter object of this class.

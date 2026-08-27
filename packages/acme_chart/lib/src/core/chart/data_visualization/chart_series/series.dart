@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 /// Base class of all chart series.
 abstract class Series implements ChartData {
   /// Initializes a base class of all chart series.
-  Series(this.id, {this.style}) {
+  Series(this.id, {this.style, this.axisGroup}) {
     seriesPainter = createPainter();
     id = '$runtimeType${seriesPainter.runtimeType}$id';
   }
@@ -24,6 +24,22 @@ abstract class Series implements ChartData {
 
   /// The painting style of this [Series].
   final ChartPaintingStyle? style;
+
+  /// Which axis this series scales against.
+  ///
+  /// Only meaningful for overlay series (drawn on the main chart alongside
+  /// the candles): `null` (the default) shares the main price axis, same as
+  /// before. A non-null value scales this series on its own value range
+  /// instead — still painted layered over the candles, but excluded from the
+  /// shared candle/overlay min/max, so a small- or large-scale indicator
+  /// (e.g. a MACD-derived signal) doesn't distort the price axis. Overlay
+  /// series with the same non-null [axisGroup] share one combined scale
+  /// (e.g. a thick/thin pair of the same indicator family); different groups
+  /// are scaled and painted separately, so one indicator's range never
+  /// distorts another's (e.g. a 0-10-bounded indicator and a MACD-scale
+  /// indicator must use different groups). Ignored for non-overlay
+  /// (bottom-panel) series, which already have their own axis.
+  final String? axisGroup;
 
   /// Minimum value of this series in a visible range of the chart.
   @protected

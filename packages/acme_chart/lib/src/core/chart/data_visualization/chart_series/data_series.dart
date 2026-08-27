@@ -28,7 +28,8 @@ abstract class DataSeries<T extends Tick> extends Series {
     required String id,
     DataSeriesStyle? style,
     this.lastTickIndicatorStyle,
-  }) : super(id, style: style) {
+    String? axisGroup,
+  }) : super(id, style: style, axisGroup: axisGroup) {
     _minMaxCalculator = MinMaxCalculator(
       minValueOf as double Function(Tick),
       maxValueOf as double Function(Tick),

@@ -1,6 +1,8 @@
 ## 1.0.4
-**August 26, 2026**
+**August 27, 2026**
 
+- Added `Series.axisGroup`: an overlay series can now be scaled on its own value range instead of the shared price axis, while still rendering layered over the candles. `null` (default) shares the main price axis; a non-null value scales independently, and overlay series sharing the same `axisGroup` value share one combined scale — so unrelated indicators with very different ranges (e.g. a 0-10-bounded oscillator and a MACD-scale signal) don't distort each other.
+- Fixed `MinMaxCalculator` treating a `NaN` entry (e.g. an indicator's not-yet-warmed-up values) as the largest key in its sorted map, silently corrupting `Series.maxValue`/`minValue` for the whole visible frame whenever any `NaN` entry was in view.
 - Fixed slow, erratic typing when editing "Notes" drawing tool text boxes.
 
 ## 1.0.3

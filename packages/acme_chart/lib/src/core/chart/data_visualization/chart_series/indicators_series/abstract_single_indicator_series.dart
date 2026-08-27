@@ -25,6 +25,7 @@ abstract class AbstractSingleIndicatorSeries extends DataSeries<Tick> {
     super.style,
     this.offset = 0,
     super.lastTickIndicatorStyle,
+    super.axisGroup,
   }) : _inputFirstTick = inputIndicator.entries.isNotEmpty
            ? inputIndicator.entries.first as Tick
            : null,
