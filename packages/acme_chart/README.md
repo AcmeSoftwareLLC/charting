@@ -180,6 +180,25 @@ Chart(
 
 <img src="https://raw.githubusercontent.com/AcmeSoftwareLLC/charting/main/packages/acme_chart/doc/images/bb_smi_rsi.png" alt="bb_smi_rsi" width="450" height="250">
 
+### Independent Axis Scaling for Overlay Series
+
+By default, every overlay series (anything sharing the main chart with the candles) is scaled against the shared price axis. When an overlay indicator's values live on a different scale than price (e.g. a MACD-derived signal layered on top of the candles), that shared scaling can compress it into an unreadable line or distort the price axis.
+
+`Series` (and its subclasses, e.g. `SingleIndicatorSeries`) exposes an `axisGroup` constructor parameter to opt out of the shared scale:
+
+- `null` (the default) — shares the main price axis, same as before.
+- Any non-null `String` — the series is scaled on its own value range instead, while still painting layered over the candles. Series that share the same `axisGroup` value are combined into one scale together; series with different `axisGroup` values are scaled and painted separately, so unrelated indicators with very different ranges (e.g. a 0–10-bounded oscillator and a MACD-scale signal) don't distort each other.
+
+```dart
+SingleIndicatorSeries(
+  input: macdIndicator,
+  options: MACDIndicatorOptions(),
+  axisGroup: 'macd',
+)
+```
+
+`axisGroup` is not yet available on the `overlayConfigs`/`IndicatorConfig` shortcut above — use it when constructing `Series` directly (e.g. as `overlaySeries` on the lower-level `MainChart` widget). It has no effect on `bottomConfigs` indicators, which already render on their own independent axis.
+
 ### Available Indicators
 
 #### 📉 Moving Averages

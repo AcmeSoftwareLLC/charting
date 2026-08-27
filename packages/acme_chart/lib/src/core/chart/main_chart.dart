@@ -418,7 +418,8 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
             super.build(context),
             if (_sharedAxisOverlaySeries.isNotEmpty)
               _buildSeries(_sharedAxisOverlaySeries),
-            for (final List<Series> group in _independentAxisOverlaySeriesGroups)
+            for (final List<Series> group
+                in _independentAxisOverlaySeriesGroups)
               _buildIndependentAxisSeries(group),
             if (widget.markerSeries != null) _buildMarkerArea(),
             _buildAnnotations(),
