@@ -28,6 +28,7 @@ import 'data_visualization/chart_series/series.dart';
 import 'data_visualization/markers/marker_series.dart';
 import 'data_visualization/models/animation_info.dart';
 import 'data_visualization/models/chart_object.dart';
+import 'helpers/functions/conversion.dart' show quoteToCanvasY;
 import 'helpers/functions/helper_functions.dart';
 import 'helpers/functions/snap_epoch.dart';
 import '../../misc/callbacks.dart';
@@ -415,8 +416,11 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
               _buildLoadingAnimation(),
             // _buildQuoteGridLabel(gridLineQuotes),
             super.build(context),
-            if (widget.overlaySeries != null)
-              _buildSeries(widget.overlaySeries!),
+            if (_sharedAxisOverlaySeries.isNotEmpty)
+              _buildSeries(_sharedAxisOverlaySeries),
+            for (final List<Series> group
+                in _independentAxisOverlaySeriesGroups)
+              _buildIndependentAxisSeries(group),
             if (widget.markerSeries != null) _buildMarkerArea(),
             _buildAnnotations(),
             if (widget.drawingTools != null && widget.useDrawingToolsV2)
@@ -544,6 +548,35 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
     ),
   );
 
+  /// Overlay series folded into the shared price axis (current/default
+  /// behavior, [Series.axisGroup] is `null`): their values contribute to
+  /// [getSeriesMinMaxValue] and are painted with the same
+  /// [chartQuoteToCanvasY] as the candles.
+  List<Series> get _sharedAxisOverlaySeries =>
+      widget.overlaySeries
+          ?.where((Series series) => series.axisGroup == null)
+          .toList() ??
+      const <Series>[];
+
+  /// Overlay series scaled on their own value range (see [Series.axisGroup]):
+  /// still painted layered over the candles, but excluded from the shared
+  /// price axis's min/max.
+  ///
+  /// Grouped by [Series.axisGroup] — each group gets its own separate scale,
+  /// so e.g. a 0-10-bounded indicator and a MACD-scale indicator never share
+  /// an axis and distort each other's range.
+  List<List<Series>> get _independentAxisOverlaySeriesGroups {
+    final Map<String, List<Series>> groups = <String, List<Series>>{};
+    for (final Series series in widget.overlaySeries ?? const <Series>[]) {
+      final String? axisGroup = series.axisGroup;
+      if (axisGroup == null) {
+        continue;
+      }
+      groups.putIfAbsent(axisGroup, () => <Series>[]).add(series);
+    }
+    return groups.values.toList();
+  }
+
   // Main series and indicators on top of main series.
   Widget _buildSeries(List<Series> series) => MultipleAnimatedBuilder(
     animations: <Listenable>[
@@ -571,6 +604,57 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
       ),
     ),
   );
+
+  /// Paints [series] layered over the candles, each scaled on the combined
+  /// min/max of just this group instead of the shared price axis.
+  ///
+  /// Bounds here are recomputed every build (not animated) — acceptable for
+  /// an indicator overlay; the shared-axis path keeps its animated bounds.
+  Widget _buildIndependentAxisSeries(List<Series> series) =>
+      MultipleAnimatedBuilder(
+        animations: <Listenable>[crosshairZoomOutAnimation],
+        builder: (BuildContext context, Widget? child) {
+          final double minQuote = series.getMinValue();
+          final double maxQuote = series.getMaxValue();
+
+          // No visible data yet for this group (e.g. still warming up) —
+          // nothing sensible to scale against.
+          if (minQuote.isNaN || maxQuote.isNaN) {
+            return const SizedBox.shrink();
+          }
+
+          final double canvasHeight = canvasSize?.height ?? 200;
+
+          double quoteToCanvasYForSeries(double quote) => quoteToCanvasY(
+            quote: quote,
+            topBoundQuote: maxQuote,
+            bottomBoundQuote: minQuote,
+            canvasHeight: canvasHeight,
+            topPadding: verticalPadding,
+            bottomPadding: verticalPadding,
+          );
+
+          return RepaintBoundary(
+            child: CustomPaint(
+              painter: BaseChartDataPainter(
+                animationInfo: AnimationInfo(
+                  currentTickPercent: currentTickAnimation.value,
+                ),
+                series: series,
+                chartConfig: context.watch<ChartConfig>(),
+                theme: context.watch<ChartTheme>(),
+                epochToCanvasX: xAxis.xFromEpoch,
+                quoteToCanvasY: quoteToCanvasYForSeries,
+                rightBoundEpoch: xAxis.rightBoundEpoch,
+                leftBoundEpoch: xAxis.leftBoundEpoch,
+                topY: quoteToCanvasYForSeries(maxQuote),
+                bottomY: quoteToCanvasYForSeries(minQuote),
+                chartScaleModel: context.watch<ChartScaleModel>(),
+              ),
+            ),
+          );
+        },
+      );
 
   Widget _buildMarkerArea() => MultipleAnimatedBuilder(
     animations: <Listenable>[
@@ -606,8 +690,17 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
     double minQuote = minMaxValues[0];
     double maxQuote = minMaxValues[1];
 
-    minQuote = safeMin(minQuote, widget.chartDataList.getMinValue());
-    maxQuote = safeMax(maxQuote, widget.chartDataList.getMaxValue());
+    // Independent-axis overlay series are excluded here (see
+    // _buildIndependentAxisSeries): they're scaled on their own min/max, and
+    // must not distort the shared price axis.
+    final List<ChartData> sharedAxisData = <ChartData>[
+      widget.mainSeries,
+      ..._sharedAxisOverlaySeries,
+      ...?widget.annotations,
+    ];
+
+    minQuote = safeMin(minQuote, sharedAxisData.getMinValue());
+    maxQuote = safeMax(maxQuote, sharedAxisData.getMaxValue());
     return <double>[minQuote, maxQuote];
   }
 }

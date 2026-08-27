@@ -93,11 +93,21 @@ class MinMaxCalculator {
   }
 
   void _incrementCount(double value) {
+    // NaN sentinels (e.g. an indicator's not-yet-warmed-up entries) sort as
+    // the largest key in this SplayTreeMap, which would silently corrupt
+    // `max` for the whole visible frame. Skip them so min/max reflect only
+    // the entries that actually have a value.
+    if (value.isNaN) {
+      return;
+    }
     _visibleEntriesCount.putIfAbsent(value, () => 0);
     _visibleEntriesCount[value] = _visibleEntriesCount[value]! + 1;
   }
 
   void _decrementCount(double value) {
+    if (value.isNaN) {
+      return;
+    }
     if (_visibleEntriesCount[value] != null) {
       _visibleEntriesCount[value] = _visibleEntriesCount[value]! - 1;
       if (_visibleEntriesCount[value] == 0) {
