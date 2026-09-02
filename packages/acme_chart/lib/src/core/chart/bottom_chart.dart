@@ -21,6 +21,7 @@ class BottomChart extends BasicChart {
     required this.granularity,
     required this.title,
     super.pipSize,
+    super.showQuoteGrid,
     super.key,
     this.onRemove,
     this.onEdit,

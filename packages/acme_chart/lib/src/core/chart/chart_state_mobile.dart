@@ -61,6 +61,7 @@ class _ChartStateMobile extends _ChartState {
         isHidden: repository?.getHiddenStatus(index) ?? false,
         granularity: widget.granularity,
         pipSize: config.pipSize,
+        showQuoteGrid: config.showQuoteGrid,
         title:
             '${config.shortTitle} ${config.number > 0 ? config.number : ''}'
             ' (${config.configSummary})',

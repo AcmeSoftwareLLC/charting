@@ -38,6 +38,7 @@ abstract class IndicatorConfig extends AddOnConfig {
     super.isOverlay,
     this.showLastIndicator = false,
     this.pipSize = 4,
+    this.showQuoteGrid = true,
     super.number,
   });
 
@@ -106,6 +107,10 @@ abstract class IndicatorConfig extends AddOnConfig {
 
   /// Number of digits after decimal point in price.
   final int pipSize;
+
+  /// Whether to show the y-axis quote grid (lines + labels) for this
+  /// indicator's pane.
+  final bool showQuoteGrid;
 
   /// Key of indicator name property in JSON.
   static const String nameKey = 'name';

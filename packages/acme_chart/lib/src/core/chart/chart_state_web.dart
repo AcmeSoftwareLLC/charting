@@ -63,6 +63,7 @@ class _ChartStateWeb extends _ChartState {
                 series: series,
                 granularity: widget.granularity,
                 pipSize: widget.bottomConfigs[index].pipSize,
+                showQuoteGrid: widget.bottomConfigs[index].showQuoteGrid,
                 title: widget.bottomConfigs[index].title,
                 currentTickAnimationDuration: currentTickAnimationDuration,
                 quoteBoundsAnimationDuration: quoteBoundsAnimationDuration,

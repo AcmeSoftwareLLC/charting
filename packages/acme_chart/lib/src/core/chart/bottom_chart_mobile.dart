@@ -23,6 +23,7 @@ class BottomChartMobile extends BasicChart {
     required this.title,
     this.showFrame = true,
     super.pipSize,
+    super.showQuoteGrid,
     super.key,
     this.onHideUnhideToggle,
     this.onSwap,

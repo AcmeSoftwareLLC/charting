@@ -35,6 +35,7 @@ class BasicChart extends StatefulWidget {
     this.onQuoteAreaChanged,
     this.currentTickAnimationDuration = _defaultDuration,
     this.quoteBoundsAnimationDuration = _defaultDuration,
+    this.showQuoteGrid = true,
   }) : chartAxisConfig = chartAxisConfig ?? const ChartAxisConfig();
 
   /// The main series to display on the chart.
@@ -42,6 +43,13 @@ class BasicChart extends StatefulWidget {
 
   /// The pip size of to paint marker labels.
   final int pipSize;
+
+  /// Whether to show the y-axis quote grid (lines + labels) for this pane.
+  ///
+  /// This is ANDed with the app-wide [ChartAxisConfig.showQuoteGrid] flag,
+  /// allowing a single pane (e.g. an indicator with no meaningful quote
+  /// scale) to opt out without affecting other panes.
+  final bool showQuoteGrid;
 
   /// The opacity of the chart's data.
   final double opacity;
@@ -405,10 +413,12 @@ class BasicChartState<T extends BasicChart> extends State<T>
       return Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid)
+          if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid &&
+              widget.showQuoteGrid)
             _buildQuoteGridLine(gridLineQuotes),
           _buildChartData(),
-          if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid)
+          if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid &&
+              widget.showQuoteGrid)
             _buildQuoteGridLabel(gridLineQuotes),
         ],
       );
