@@ -1,5 +1,4 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'screens/home_screen.dart';
 
@@ -34,8 +33,6 @@ class ShowcaseApp extends StatelessWidget {
       localizationsDelegates: const [
         ChartLocalization.delegate,
         GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en')],
       home: HomeScreen(),
