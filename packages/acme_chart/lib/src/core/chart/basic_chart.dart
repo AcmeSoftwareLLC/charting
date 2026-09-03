@@ -410,17 +410,22 @@ class BasicChartState<T extends BasicChart> extends State<T>
       final YAxisModel yAxisModel = _setupYAxisModel(canvasSize!);
 
       final List<double> gridLineQuotes = calculateGridLineQuotes(yAxisModel);
-      return Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid &&
-              widget.showQuoteGrid)
-            _buildQuoteGridLine(gridLineQuotes),
-          _buildChartData(),
-          if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid &&
-              widget.showQuoteGrid)
-            _buildQuoteGridLabel(gridLineQuotes),
-        ],
+      return GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTapUp: (TapUpDetails details) =>
+            widget.mainSeries.onTap(details.localPosition),
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid &&
+                widget.showQuoteGrid)
+              _buildQuoteGridLine(gridLineQuotes),
+            _buildChartData(),
+            if (context.read<ChartConfig>().chartAxisConfig.showQuoteGrid &&
+                widget.showQuoteGrid)
+              _buildQuoteGridLabel(gridLineQuotes),
+          ],
+        ),
       );
     },
   );

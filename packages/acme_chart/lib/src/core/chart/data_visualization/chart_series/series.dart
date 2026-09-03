@@ -81,6 +81,12 @@ abstract class Series implements ChartData {
   /// as well.
   SeriesPainter<Series>? createPainter();
 
+  /// Called when this series' pane receives a tap at [localPosition], in the
+  /// same coordinate space as [paint]'s `size`/canvas. Override to make a
+  /// drawn region (e.g. a label) interactive. Returns `true` if the tap was
+  /// handled by this series.
+  bool onTap(Offset localPosition) => false;
+
   /// Paints [seriesPainter]'s data on the [canvas].
   @override
   void paint(
