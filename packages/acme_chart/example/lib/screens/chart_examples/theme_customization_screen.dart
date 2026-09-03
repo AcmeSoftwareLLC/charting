@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import '../../widgets/color_picker_widget.dart';
 import 'base_chart_screen.dart';
@@ -121,7 +121,7 @@ class CustomLightTheme extends ChartDefaultLightTheme {
 /// Screen that displays a chart with theme customization.
 class ThemeCustomizationScreen extends BaseChartScreen {
   /// Initialize the theme customization screen.
-  const ThemeCustomizationScreen({Key? key}) : super(key: key);
+  const ThemeCustomizationScreen({super.key});
 
   @override
   State<ThemeCustomizationScreen> createState() =>

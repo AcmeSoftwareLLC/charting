@@ -6,7 +6,7 @@ import '../../../../../core/chart/data_visualization/drawing_tools/data_model/ed
 import '../../../../../core/chart/data_visualization/drawing_tools/drawing_creator.dart';
 import '../../../../../core/chart/data_visualization/drawing_tools/trend/trend_drawing.dart';
 import '../../../../../models/tick.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../data_model/drawing_parts.dart';
 
 /// Creates a Trend drawing right after selecting the trend drawing tool

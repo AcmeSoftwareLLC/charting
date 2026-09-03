@@ -1,7 +1,7 @@
 import '../../../core/chart/helpers/paint_functions/paint_text.dart';
 import '../../../theme/painting_styles/grid_style.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A class that paints a lable on the Y axis of grid.
 class YGridLabelPainter extends CustomPainter {

@@ -1,6 +1,6 @@
 import 'package:acme_chart/generated/l10n.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/gator/gator_indicator_config.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../indicator_config.dart';
 import '../indicator_item.dart';

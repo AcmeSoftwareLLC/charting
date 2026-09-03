@@ -22,7 +22,7 @@ import '../models/tick.dart';
 import '../theme/chart_theme.dart';
 import '../widgets/animated_popup.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

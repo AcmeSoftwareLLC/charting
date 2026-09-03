@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import '../utils/color_utils.dart';
 
@@ -8,14 +8,14 @@ class AcmeColorPicker extends StatelessWidget {
   const AcmeColorPicker({
     required this.selectedColor,
     required this.onColorChanged,
-    Key? key,
+    super.key,
     this.presetColors,
     this.showCustomColorOption = true,
     this.label,
     this.labelWidth = 120,
     this.colorSize = 24,
     this.spacing = 8,
-  }) : super(key: key);
+  });
 
   /// The currently selected color.
   final Color selectedColor;
@@ -153,8 +153,7 @@ Future<Color?> showAcmeColorPickerDialog(
 /// A dialog with advanced color picking options.
 class AcmeColorPickerDialog extends StatefulWidget {
   /// Creates an AcmeColorPickerDialog.
-  const AcmeColorPickerDialog({required this.initialColor, Key? key})
-    : super(key: key);
+  const AcmeColorPickerDialog({required this.initialColor, super.key});
 
   /// The initial color to display.
   final Color initialColor;
@@ -193,7 +192,7 @@ class _AcmeColorPickerDialogState extends State<AcmeColorPickerDialog> {
       backgroundColor,
     );
 
-    return Container(
+    return SizedBox(
       width: 300,
       child: Column(
         mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,5 @@
 import '../../../../core/chart/data_visualization/extensions/extensions.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Any component other than chart data (line or candle) which can take a
 /// rectangle on the chart's canvas.

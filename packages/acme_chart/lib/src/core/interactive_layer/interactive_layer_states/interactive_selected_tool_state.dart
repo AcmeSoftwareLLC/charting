@@ -1,7 +1,7 @@
 import '../../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
 import '../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import '../../../core/interactive_layer/interactive_layer.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 

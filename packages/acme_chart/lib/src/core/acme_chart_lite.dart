@@ -17,7 +17,7 @@ import '../models/chart_axis_config.dart';
 import '../models/tick.dart';
 import '../theme/chart_theme.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'interactive_layer/interactive_layer_behaviours/interactive_layer_behaviour.dart';

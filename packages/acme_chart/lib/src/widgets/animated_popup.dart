@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// To be used as the container of the popup dialogs with animation
 class AnimatedPopupDialog extends StatefulWidget {

@@ -1,5 +1,5 @@
 import '../../../../../../theme/painting_styles/candle_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../data_painter.dart';
 import '../ohlc_painting.dart';

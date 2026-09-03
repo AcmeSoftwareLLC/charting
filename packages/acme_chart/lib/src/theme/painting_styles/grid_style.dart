@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// For defining the style of the chart's grid. (X and Y axes).
 class GridStyle with Equatable {

@@ -3,7 +3,7 @@ import 'package:acme_chart/src/add_ons/indicators_ui/indicator_config.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/widgets/color_selector.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/chart_series/indicators_series/ma_series.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../indicator_item.dart';
 import 'ma_indicator_config.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 // TODO(NA): Change to a non-singleton class in the future, since it can be an
 // anti-pattern in some cases, and usually leads to tight coupling in the

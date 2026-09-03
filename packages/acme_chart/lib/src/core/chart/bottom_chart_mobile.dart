@@ -7,7 +7,7 @@ import '../../theme/colors.dart';
 import '../../theme/dimens.dart';
 import '../../theme/text_styles.dart';
 import '../../widgets/bottom_indicator_title.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'basic_chart.dart';
 import 'bottom_chart.dart';

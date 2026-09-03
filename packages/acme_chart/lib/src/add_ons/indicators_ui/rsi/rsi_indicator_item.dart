@@ -4,7 +4,7 @@ import 'package:acme_chart/src/add_ons/indicators_ui/oscillator_lines/oscillator
 import 'package:acme_chart/src/add_ons/indicators_ui/widgets/oscillator_limit.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../indicator_item.dart';
 import 'rsi_indicator_config.dart';

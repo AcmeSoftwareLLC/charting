@@ -5,7 +5,7 @@ import '../../../../../../core/chart/data_visualization/models/animation_info.da
 import '../../../../../../core/chart/data_visualization/models/barrier_objects.dart';
 import '../../../../../../core/chart/helpers/paint_functions/paint_line.dart';
 import '../../../../../../theme/painting_styles/barrier_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../chart_data.dart';
 import 'vertical_barrier.dart';

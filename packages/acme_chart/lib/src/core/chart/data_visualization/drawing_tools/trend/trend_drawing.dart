@@ -17,7 +17,7 @@ import '../../../../../core/chart/data_visualization/functions/min_max_calculato
 import '../../../../../models/tick.dart';
 import '../../../../../theme/chart_theme.dart';
 import '../../../../../theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'trend_drawing.g.dart';

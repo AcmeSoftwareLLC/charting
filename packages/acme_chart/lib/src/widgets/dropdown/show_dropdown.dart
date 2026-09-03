@@ -1,6 +1,6 @@
 import 'package:acme_chart/src/theme/chart_theme.dart';
 import 'package:acme_chart/src/widgets/glassy_blur_effect_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 /// A builder function type for creating a drop-down picker widget to get the

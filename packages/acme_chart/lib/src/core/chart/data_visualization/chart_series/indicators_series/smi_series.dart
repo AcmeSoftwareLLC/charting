@@ -12,7 +12,7 @@ import '../../../../../models/tick.dart';
 import '../../../../../theme/chart_theme.dart';
 import '../../../../../theme/painting_styles/line_style.dart';
 import 'package:acme_indicators/acme_indicators.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../data_series.dart';
 import '../series.dart';

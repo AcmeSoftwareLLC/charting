@@ -7,7 +7,7 @@ import '../../../../../../models/chart_config.dart';
 import '../../../../../../models/tick.dart';
 import '../../../../../../theme/chart_theme.dart';
 import '../../../../../../theme/painting_styles/barrier_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../chart_data.dart';
 import 'horizontal_barrier.dart';

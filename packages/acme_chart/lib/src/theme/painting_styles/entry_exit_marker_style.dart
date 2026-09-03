@@ -1,5 +1,5 @@
 import 'package:acme_chart/src/theme/painting_styles/chart_painting_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Defines the style of an entry or exit marker.
 class EntryExitMarkerStyle extends ChartPaintingStyle {

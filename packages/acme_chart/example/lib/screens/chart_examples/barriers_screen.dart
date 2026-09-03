@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'base_chart_screen.dart';
 
 /// Screen that displays a chart with barriers.
 class BarriersScreen extends BaseChartScreen {
   /// Initialize the barriers screen.
-  const BarriersScreen({Key? key}) : super(key: key);
+  const BarriersScreen({super.key});
 
   @override
   State<BarriersScreen> createState() => _BarriersScreenState();

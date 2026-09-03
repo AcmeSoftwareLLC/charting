@@ -5,7 +5,7 @@ import 'package:acme_chart/src/add_ons/indicators_ui/widgets/oscillator_limit.da
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/indicator_config.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../indicator_item.dart';
 import 'cci_indicator_config.dart';

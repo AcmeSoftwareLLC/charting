@@ -11,7 +11,7 @@ import '../../../../../models/indicator_input.dart';
 import '../../../../../models/tick.dart';
 import '../../../../../theme/chart_theme.dart';
 import 'package:acme_indicators/acme_indicators.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../chart_data.dart';
 import '../series.dart';

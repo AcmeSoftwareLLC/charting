@@ -14,7 +14,7 @@ import '../../../../core/chart/data_visualization/drawing_tools/rectangle/rectan
 import '../../../../core/chart/data_visualization/drawing_tools/trend/trend_drawing.dart';
 import '../../../../models/chart_config.dart';
 import '../../../../theme/chart_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'continuous/continuous_line_drawing.dart';
 import 'vertical/vertical_drawing.dart';

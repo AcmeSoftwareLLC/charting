@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Widget that shows the bottom indicator title.
 class BottomIndicatorTitle extends StatelessWidget {

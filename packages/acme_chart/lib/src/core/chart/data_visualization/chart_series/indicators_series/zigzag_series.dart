@@ -2,7 +2,7 @@ import '../../../../../core/chart/data_visualization/chart_data.dart';
 import '../../../../../core/chart/data_visualization/chart_series/line_series/line_painter.dart';
 import '../../../../../models/tick.dart';
 import '../../../../../theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:acme_indicators/acme_indicators.dart';
 import '../data_series.dart';

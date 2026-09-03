@@ -5,7 +5,7 @@ import '../../../../core/chart/data_visualization/models/chart_scale_model.dart'
 import '../../../../models/chart_config.dart';
 import '../../../../theme/chart_theme.dart';
 import '../../../../theme/painting_styles/chart_painting_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Base class of all chart series.
 abstract class Series implements ChartData {

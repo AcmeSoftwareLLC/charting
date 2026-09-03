@@ -1,6 +1,6 @@
 import 'package:acme_chart/src/theme/chart_theme.dart';
 import 'package:acme_chart/src/widgets/chart_bottom_sheet.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'assets_search_bar.dart';
 import 'market_item.dart';

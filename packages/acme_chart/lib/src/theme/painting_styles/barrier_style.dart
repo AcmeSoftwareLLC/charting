@@ -1,5 +1,5 @@
 import 'package:acme_chart/src/theme/painting_styles/chart_painting_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Barrier style.
 abstract class BarrierStyle extends ChartPaintingStyle {

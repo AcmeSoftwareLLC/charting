@@ -1,5 +1,5 @@
 import 'package:acme_chart/acme_chart.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chart_config.g.dart';

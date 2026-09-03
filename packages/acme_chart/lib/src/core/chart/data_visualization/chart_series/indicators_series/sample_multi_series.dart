@@ -5,7 +5,7 @@ import '../../../../../core/chart/data_visualization/models/chart_scale_model.da
 import '../../../../../models/chart_config.dart';
 import '../../../../../models/indicator_input.dart';
 import '../../../../../theme/chart_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../chart_data.dart';
 import '../series.dart';

@@ -1,5 +1,5 @@
 import '../../../core/interactive_layer/crosshair/crosshair_highlight_painter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A custom painter to paint a highlighted point at the crosshair position for line charts.
 class CrosshairLineHighlightPainter extends CrosshairHighlightPainter {

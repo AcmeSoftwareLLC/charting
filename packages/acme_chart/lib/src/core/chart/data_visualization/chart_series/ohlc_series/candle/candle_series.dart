@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../../../core/interactive_layer/crosshair/crosshair_candle_highlight_painter.dart';
 import '../../../../../../core/interactive_layer/crosshair/crosshair_dot_painter.dart';

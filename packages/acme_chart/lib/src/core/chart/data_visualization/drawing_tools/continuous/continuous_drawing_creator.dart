@@ -1,7 +1,7 @@
 import '../../../../../core/chart/data_visualization/drawing_tools/continuous/continuous_line_drawing.dart';
 import '../../../../../core/chart/data_visualization/drawing_tools/drawing_creator.dart';
 import '../../../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../data_model/drawing_parts.dart';
 
 /// Creates a Continuous drawing piece by piece collected on every gesture

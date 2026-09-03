@@ -7,7 +7,7 @@ import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_model/point.dart';
 import 'package:acme_chart/src/core/interactive_layer/drawing_context.dart';
 import 'package:acme_chart/src/core/interactive_layer/helpers/types.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Drawing tools config
 @immutable

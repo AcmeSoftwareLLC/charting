@@ -2,7 +2,7 @@ import '../../../../core/chart/data_visualization/markers/chart_marker.dart';
 import '../../../../core/chart/x_axis/x_axis_model.dart';
 import '../../../../theme/chart_theme.dart';
 import '../../../../theme/painting_styles/marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/chart/data_visualization/models/chart_scale_model.dart';
 import '../../../../core/chart/data_visualization/models/animation_info.dart';

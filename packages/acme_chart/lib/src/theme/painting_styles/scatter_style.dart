@@ -1,5 +1,5 @@
 import 'package:acme_chart/src/core/chart/helpers/color_converter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'data_series_style.dart';

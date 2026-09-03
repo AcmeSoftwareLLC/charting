@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import '../../widgets/color_picker_widget.dart';
 import 'base_chart_screen.dart';
@@ -7,7 +7,7 @@ import 'base_chart_screen.dart';
 /// Screen that displays a candle chart example.
 class CandleChartScreen extends BaseChartScreen {
   /// Initialize the candle chart screen.
-  const CandleChartScreen({Key? key}) : super(key: key);
+  const CandleChartScreen({super.key});
 
   @override
   State<CandleChartScreen> createState() => _CandleChartScreenState();

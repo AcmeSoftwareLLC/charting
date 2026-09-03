@@ -1,7 +1,7 @@
 import '../../../../core/chart/x_axis/x_axis_model.dart';
 import '../../../../theme/chart_theme.dart';
 import '../../../../theme/painting_styles/marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'active_marker.dart';
 import 'active_marker_painter.dart';

@@ -3,7 +3,7 @@ import 'package:acme_chart/src/theme/painting_styles/grid_style.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
 import 'package:acme_chart/src/theme/painting_styles/marker_style.dart';
 import 'package:acme_chart/src/theme/text_styles.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'chart_default_theme.dart';
 import 'colors.dart';

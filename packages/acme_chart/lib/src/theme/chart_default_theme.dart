@@ -2,7 +2,7 @@
 
 import 'package:acme_chart/acme_chart.dart';
 import 'package:acme_chart/src/theme/painting_styles/entry_spot_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'dimens.dart';
 import 'text_styles.dart';

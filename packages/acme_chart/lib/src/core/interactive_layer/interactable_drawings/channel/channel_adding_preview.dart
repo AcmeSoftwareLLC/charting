@@ -2,7 +2,7 @@ import '../../../../core/chart/data_visualization/chart_data.dart';
 import '../../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import '../../../../core/interactive_layer/interactive_layer_states/interactive_adding_tool_state.dart';
 import '../../../../theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../helpers/paint_helpers.dart';
 import '../drawing_adding_preview.dart';

@@ -4,7 +4,7 @@ import 'package:acme_chart/src/add_ons/drawing_tools_ui/drawing_tool_item.dart';
 import 'package:acme_chart/src/add_ons/drawing_tools_ui/fibfan/fibfan_drawing_tool_config.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/widgets/color_selector.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Fibfan drawing tool item in the list of drawing tools
 class FibfanDrawingToolItem extends DrawingToolItem {

@@ -9,7 +9,7 @@ import 'package:acme_chart/src/core/interactive_layer/drawing_context.dart';
 import 'package:acme_chart/src/core/interactive_layer/helpers/types.dart';
 import 'package:acme_chart/src/core/interactive_layer/interactable_drawings/fib_retracement/fib_retracement_interactable_drawing.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'fib_retracement_drawing_tool_item.dart';
 

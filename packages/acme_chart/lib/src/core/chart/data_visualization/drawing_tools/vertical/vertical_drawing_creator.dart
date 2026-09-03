@@ -2,7 +2,7 @@ import '../../../../../core/chart/data_visualization/drawing_tools/drawing_creat
 import '../../../../../core/chart/data_visualization/drawing_tools/data_model/drawing_parts.dart';
 import '../../../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import '../../../../../models/chart_config.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'vertical_drawing.dart';
 
 /// Creates a Vertical line drawing

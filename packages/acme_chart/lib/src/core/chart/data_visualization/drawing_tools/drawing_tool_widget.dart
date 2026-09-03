@@ -16,7 +16,7 @@ import '../../../../core/chart/data_visualization/drawing_tools/trend/trend_draw
 import '../../../../core/chart/data_visualization/drawing_tools/vertical/vertical_drawing_creator.dart';
 import '../../../../models/tick.dart';
 import '../../../../models/chart_config.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../../../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
 
 /// The class acts as a bridge between the selected drawing tool and the

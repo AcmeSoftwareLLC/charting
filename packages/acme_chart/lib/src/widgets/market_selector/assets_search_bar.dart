@@ -1,6 +1,6 @@
 import 'package:acme_chart/src/theme/chart_theme.dart';
 import 'package:acme_chart/generated/l10n.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 /// A widget to handle search interaction and its TextFiled.

@@ -13,7 +13,7 @@ import '../../../../../core/chart/data_visualization/drawing_tools/drawing.dart'
 import '../../../../../core/chart/data_visualization/drawing_tools/line_vector_drawing_mixin.dart';
 import '../../../../../core/chart/helpers/paint_functions/paint_dot.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'line_drawing_mobile.g.dart';

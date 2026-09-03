@@ -5,7 +5,7 @@ import '../../../../core/chart/y_axis/y_axis_config.dart';
 import '../../../../theme/chart_theme.dart';
 import '../../../../theme/painting_styles/grid_style.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Paints x-axis grid lines and labels.
 void paintXGrid(

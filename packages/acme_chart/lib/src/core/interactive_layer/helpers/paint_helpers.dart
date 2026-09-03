@@ -5,7 +5,7 @@ import '../../../core/chart/data_visualization/drawing_tools/data_model/drawing_
 import '../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import '../../../core/chart/helpers/chart_date_utils.dart';
 import '../../../theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Draws alignment guides (horizontal and vertical lines) for a single point
 void drawPointAlignmentGuides(

@@ -3,7 +3,7 @@ import '../../../../core/chart/data_visualization/chart_series/series_painter.da
 import '../../../../core/chart/data_visualization/models/animation_info.dart';
 import '../../../../core/chart/helpers/paint_functions/paint_entry_exit_marker.dart';
 import '../../../../theme/painting_styles/marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'marker.dart';
 import 'marker_icon_painters/marker_icon_painter.dart';

@@ -13,7 +13,7 @@ import '../../core/chart/data_visualization/markers/marker_area.dart';
 import '../../core/chart/loading_animation.dart';
 import '../../core/chart/x_axis/x_axis_model.dart';
 import '../../models/chart_config.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import '../drawing_tool_chart/drawing_tool_chart.dart';
 import '../interactive_layer/interactive_layer.dart';

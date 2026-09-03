@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../../../../core/chart/data_visualization/markers/marker.dart';
 
 /// Defines the various types of markers that can be displayed on a financial chart.

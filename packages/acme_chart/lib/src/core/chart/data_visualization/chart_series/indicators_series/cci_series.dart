@@ -5,7 +5,7 @@ import '../../../../../models/indicator_input.dart';
 import '../../../../../models/tick.dart';
 import '../../../../../theme/painting_styles/line_style.dart';
 import 'package:acme_indicators/acme_indicators.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../series.dart';
 import '../series_painter.dart';

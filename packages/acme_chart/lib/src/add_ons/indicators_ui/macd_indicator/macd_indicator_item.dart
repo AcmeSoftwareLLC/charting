@@ -1,5 +1,5 @@
 import 'package:acme_chart/generated/l10n.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../indicator_config.dart';
 import '../indicator_item.dart';

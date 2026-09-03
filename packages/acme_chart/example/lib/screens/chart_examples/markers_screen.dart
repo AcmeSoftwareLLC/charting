@@ -1,14 +1,14 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'base_chart_screen.dart';
 
 /// Screen that displays a chart with markers.
 class MarkersScreen extends BaseChartScreen {
   /// Initialize the markers screen.
-  const MarkersScreen({Key? key}) : super(key: key);
+  const MarkersScreen({super.key});
 
   @override
   State<MarkersScreen> createState() => _MarkersScreenState();

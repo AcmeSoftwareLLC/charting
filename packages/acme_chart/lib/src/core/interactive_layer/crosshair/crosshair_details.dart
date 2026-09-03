@@ -7,7 +7,7 @@ import '../../../core/chart/helpers/chart_date_utils.dart';
 import '../../../models/tick.dart';
 import '../../../theme/chart_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../../../theme/dimens.dart';
 
 /// The details to show on a crosshair.

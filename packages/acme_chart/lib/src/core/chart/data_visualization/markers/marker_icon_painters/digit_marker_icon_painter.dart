@@ -14,7 +14,7 @@ import '../../../../../core/chart/helpers/paint_functions/paint_text.dart';
 import '../../../../../core/chart/y_axis/y_axis_config.dart';
 import '../../../../../theme/chart_theme.dart';
 import '../../../../../theme/painting_styles/marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A specialized painter for rendering digit contract markers on financial charts.
 ///

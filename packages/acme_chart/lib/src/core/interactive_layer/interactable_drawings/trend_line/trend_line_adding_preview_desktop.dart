@@ -8,7 +8,7 @@ import '../../../../models/chart_config.dart';
 import '../../../../theme/chart_theme.dart';
 import '../../../../theme/painting_styles/line_style.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../helpers/types.dart';
 import '../../interactive_layer_states/interactive_adding_tool_state.dart';

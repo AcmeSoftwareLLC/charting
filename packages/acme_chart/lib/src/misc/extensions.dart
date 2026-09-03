@@ -1,5 +1,5 @@
 import 'package:acme_chart/generated/l10n.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Build context extensions.
 extension ContextExtension on BuildContext {

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../models/feature_item.dart';
 import 'chart_examples/line_chart_screen.dart';
 import 'chart_examples/line_chart_with_indicator_screen.dart';
@@ -17,7 +17,7 @@ import 'chart_examples/theme_customization_screen.dart';
 /// The home screen of the showcase app.
 class HomeScreen extends StatelessWidget {
   /// Initialize the home screen.
-  HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

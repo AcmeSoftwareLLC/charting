@@ -4,7 +4,7 @@ import '../../../../../core/chart/data_visualization/chart_data.dart';
 import '../../../../../core/chart/data_visualization/models/animation_info.dart';
 import '../../../../../models/tick.dart';
 import '../../../../../theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../data_painter.dart';
 import '../data_series.dart';

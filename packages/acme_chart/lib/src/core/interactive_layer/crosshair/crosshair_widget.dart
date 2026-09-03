@@ -2,7 +2,7 @@ import '../../../core/chart/data_visualization/chart_series/data_series.dart';
 import '../../../core/interactive_layer/crosshair/crosshair_area.dart';
 import '../../../core/interactive_layer/crosshair/crosshair_variant.dart';
 import '../../../models/tick.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'crosshair_controller.dart';
 
 /// A widget that displays the crosshair on the chart.

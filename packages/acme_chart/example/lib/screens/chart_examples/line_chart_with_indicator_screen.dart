@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'base_chart_screen.dart';
 
 /// Screen that displays a line chart with a top indicator.
 class LineChartWithIndicatorScreen extends BaseChartScreen {
   /// Initialize the line chart with indicator screen.
-  const LineChartWithIndicatorScreen({Key? key}) : super(key: key);
+  const LineChartWithIndicatorScreen({super.key});
 
   @override
   State<LineChartWithIndicatorScreen> createState() =>

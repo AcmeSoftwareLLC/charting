@@ -11,7 +11,7 @@ import 'package:acme_chart/src/core/chart/data_visualization/chart_series/series
 import 'package:acme_chart/src/models/indicator_input.dart';
 import 'package:acme_chart/src/models/tick.dart';
 import 'package:acme_indicators/acme_indicators.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'adx/adx_indicator_config.dart';
 import 'alligator/alligator_indicator_config.dart';
 import 'bollinger_bands/bollinger_bands_indicator_config.dart';

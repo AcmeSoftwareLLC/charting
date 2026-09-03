@@ -3,11 +3,11 @@ import 'package:acme_chart/src/add_ons/indicators_ui/widgets/dropdown_menu.dart'
     as chart_dropdown;
 import 'package:acme_chart/src/add_ons/indicators_ui/widgets/field_widget.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/oscillator_lines/oscillator_lines_config.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/indicator_config.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/chart_series/indicators_series/ma_series.dart';
-import 'package:flutter/material.dart' hide DropdownMenu;
+import 'package:material_ui/material_ui.dart' hide DropdownMenu;
 
 import '../indicator_item.dart';
 import 'smi_indicator_config.dart';

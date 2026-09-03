@@ -5,7 +5,7 @@ import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/drawing_data.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'continuous_drawing_tool_item.dart';
 

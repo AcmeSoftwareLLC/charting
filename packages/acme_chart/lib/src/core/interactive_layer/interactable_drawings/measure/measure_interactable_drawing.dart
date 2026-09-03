@@ -6,7 +6,7 @@ import '../../../../core/interactive_layer/enums/drawing_tool_state.dart';
 import '../../../../core/interactive_layer/interactive_layer_states/interactive_adding_tool_state.dart';
 import '../../../../models/chart_config.dart';
 import '../../../../theme/chart_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../helpers/types.dart';
 import '../drawing_adding_preview.dart';

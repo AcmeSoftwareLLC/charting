@@ -3,7 +3,7 @@
 import 'package:acme_chart/src/theme/design_tokens/component_design_tokens.dart';
 import 'package:acme_chart/src/theme/design_tokens/dark_theme_design_tokens.dart';
 import 'package:acme_chart/src/theme/design_tokens/light_theme_design_tokens.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Acme Chart colors. It can be called
 /// as [BrandColors.coral].

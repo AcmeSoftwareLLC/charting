@@ -4,7 +4,7 @@ import '../../../core/chart/data_visualization/models/animation_info.dart';
 import '../../../core/chart/data_visualization/models/chart_scale_model.dart';
 import '../../../models/chart_config.dart';
 import '../../../theme/chart_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../data_visualization/chart_series/line_series/line_series.dart';
 import '../data_visualization/chart_series/ohlc_series/candle/candle_series.dart';

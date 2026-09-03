@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A place holder to show until SVG icons load.
 class AssetIconPlaceholder extends StatelessWidget {

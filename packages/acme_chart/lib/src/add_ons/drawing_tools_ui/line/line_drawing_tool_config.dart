@@ -12,7 +12,7 @@ import 'package:acme_chart/src/core/chart/helpers/text_style_json_converter.dart
 import 'package:acme_chart/src/core/interactive_layer/interactable_drawings/line/line_interactable_drawing.dart';
 import 'package:acme_chart/src/theme/design_tokens/core_design_tokens.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'line_drawing_tool_config.g.dart';

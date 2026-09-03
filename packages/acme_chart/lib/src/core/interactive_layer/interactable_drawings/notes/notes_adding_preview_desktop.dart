@@ -6,7 +6,7 @@ import '../../../../models/chart_config.dart';
 import '../../../../theme/chart_theme.dart';
 import '../../../../widgets/note_text_field.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../helpers/paint_helpers.dart';
 import '../../helpers/types.dart';

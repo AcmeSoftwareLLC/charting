@@ -1,6 +1,6 @@
 import '../../../core/chart/helpers/paint_functions/paint_text.dart';
 import '../../../core/chart/y_axis/y_grid_label_painter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A painter for drawing Y-axis grid labels in a web-based chart.
 ///

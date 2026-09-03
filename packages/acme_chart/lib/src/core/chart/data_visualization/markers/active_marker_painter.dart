@@ -1,5 +1,5 @@
 import '../../../../core/chart/helpers/paint_functions/paint_text.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../theme/painting_styles/marker_style.dart';
 

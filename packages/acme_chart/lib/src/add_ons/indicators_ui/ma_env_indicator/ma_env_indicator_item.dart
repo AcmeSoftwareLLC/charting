@@ -2,7 +2,7 @@ import 'package:acme_chart/generated/l10n.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/ma_indicator/ma_indicator_item.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
 import 'package:acme_indicators/acme_indicators.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../indicator_config.dart';
 import '../indicator_item.dart';

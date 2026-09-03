@@ -1,5 +1,5 @@
 import 'package:acme_chart/src/add_ons/repository.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'callbacks.dart';
 import 'drawing_tool_config.dart';

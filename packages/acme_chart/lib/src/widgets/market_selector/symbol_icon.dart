@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Provides the path to the PNG file located in the consumer app's assets.
 ///

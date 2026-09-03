@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A dropdown menu with label.
 class DropdownMenu<T> extends StatelessWidget {

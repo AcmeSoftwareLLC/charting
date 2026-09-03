@@ -2,7 +2,7 @@ import 'package:acme_chart/generated/l10n.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/indicator_config.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/indicator_item.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/stochastic_oscillator_indicator/stochastic_oscillator_indicator_config.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Stochastic Oscillator indicator item in the list of indicator which provide
 /// this indicators options menu.

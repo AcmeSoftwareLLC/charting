@@ -1,6 +1,6 @@
 import 'package:acme_chart/src/theme/chart_theme.dart';
 import 'package:acme_chart/generated/l10n.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 /// Page to show when the api call couldn't get any result.

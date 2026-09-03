@@ -2,7 +2,7 @@
 /// The tokens.json file is generated from Figma tokens and can be found in the design tokens repository.
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Core tokens that are shared between light and dark themes
 class CoreDesignTokens {

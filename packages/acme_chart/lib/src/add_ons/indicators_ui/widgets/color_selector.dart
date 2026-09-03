@@ -1,6 +1,6 @@
 import 'package:acme_chart/src/widgets/color_picker/color_button.dart';
 import 'package:acme_chart/src/widgets/color_picker/color_picker_sheet.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Color selector widget.
 class ColorSelector extends StatelessWidget {

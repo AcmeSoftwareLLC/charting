@@ -4,7 +4,7 @@ import '../../../../core/chart/data_visualization/markers/marker_props.dart';
 import '../../../../core/chart/helpers/paint_functions/paint_time_marker_utils.dart';
 import '../../../../theme/chart_theme.dart';
 import '../../../../theme/painting_styles/marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Renders a vertical dashed line with a stopwatch icon to indicate the start time of a contract.
 ///

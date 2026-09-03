@@ -15,7 +15,7 @@ import '../../../../../models/chart_config.dart';
 import '../../../../../models/tick.dart';
 import '../../../../../theme/chart_theme.dart';
 import '../../../../../theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'vertical_drawing.g.dart';

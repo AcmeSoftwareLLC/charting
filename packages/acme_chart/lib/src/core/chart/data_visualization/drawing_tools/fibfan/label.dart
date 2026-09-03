@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../../core/chart/data_visualization/drawing_tools/data_model/vector.dart';
 import '../../../../../theme/painting_styles/line_style.dart';

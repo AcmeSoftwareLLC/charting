@@ -1,6 +1,6 @@
 import '../../../../core/chart/x_axis/widgets/x_axis_base.dart';
 import '../../../../models/chart_config.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 /// A class representing the X-axis for a web-based chart.

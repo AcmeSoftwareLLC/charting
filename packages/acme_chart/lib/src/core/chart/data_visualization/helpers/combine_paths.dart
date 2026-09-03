@@ -2,7 +2,7 @@ import '../../../../core/chart/data_visualization/chart_data.dart';
 import '../../../../core/chart/data_visualization/chart_series/data_series.dart';
 import '../../../../core/chart/data_visualization/helpers/find_intersection.dart';
 import '../../../../models/tick.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Combines and intersects two paths to generate upper and lower paths.
 ///

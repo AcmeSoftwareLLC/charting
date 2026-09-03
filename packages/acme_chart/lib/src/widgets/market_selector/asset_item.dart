@@ -1,6 +1,6 @@
 import 'package:acme_chart/src/theme/chart_theme.dart';
 import 'package:acme_chart/src/theme/colors.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'closed_tag.dart';

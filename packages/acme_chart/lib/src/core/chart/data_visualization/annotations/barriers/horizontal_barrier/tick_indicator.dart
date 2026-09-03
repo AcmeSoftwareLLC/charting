@@ -6,7 +6,7 @@ import '../../../../../../core/chart/data_visualization/chart_series/series_pain
 import '../../../../../../models/candle.dart';
 import '../../../../../../models/tick.dart';
 import '../../../../../../theme/painting_styles/barrier_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'candle_indicator_painter.dart';
 import 'horizontal_barrier.dart';

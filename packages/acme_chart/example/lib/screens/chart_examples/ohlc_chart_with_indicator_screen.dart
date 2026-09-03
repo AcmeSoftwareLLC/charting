@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'base_chart_screen.dart';
 
@@ -21,7 +21,7 @@ enum ColorType {
 /// Screen that displays an OHLC chart with an indicator.
 class OHLCChartWithIndicatorScreen extends BaseChartScreen {
   /// Initialize the OHLC chart with indicator screen.
-  const OHLCChartWithIndicatorScreen({Key? key}) : super(key: key);
+  const OHLCChartWithIndicatorScreen({super.key});
 
   @override
   State<OHLCChartWithIndicatorScreen> createState() =>

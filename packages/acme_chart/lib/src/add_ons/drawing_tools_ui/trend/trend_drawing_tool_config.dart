@@ -7,7 +7,7 @@ import 'package:acme_chart/src/core/chart/helpers/text_style_json_converter.dart
 import 'package:acme_chart/src/core/interactive_layer/drawing_context.dart';
 import 'package:acme_chart/src/core/interactive_layer/helpers/types.dart';
 import 'package:acme_chart/src/theme/design_tokens/core_design_tokens.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../callbacks.dart';

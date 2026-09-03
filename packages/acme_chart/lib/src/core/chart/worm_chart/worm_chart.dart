@@ -8,7 +8,7 @@ import '../../../core/chart/helpers/functions/helper_functions.dart';
 import '../../../models/tick.dart';
 import '../../../theme/painting_styles/line_style.dart';
 import '../../../theme/painting_styles/scatter_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'worm_chart_painter.dart';
 

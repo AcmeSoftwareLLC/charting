@@ -14,7 +14,7 @@ import '../../../../theme/chart_theme.dart';
 import '../../../../theme/painting_styles/line_style.dart';
 import '../../../../widgets/color_picker/color_picker_dropdown_button.dart';
 import '../../../../widgets/note_text_field.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../helpers/paint_helpers.dart';
 import '../../helpers/types.dart';

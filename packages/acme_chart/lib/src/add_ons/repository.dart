@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Holds indicators/drawing tools that were added to the Chart during runtime.
 abstract class Repository<T> extends ChangeNotifier {

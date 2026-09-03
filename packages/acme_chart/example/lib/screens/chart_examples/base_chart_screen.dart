@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import '../../utils/chart_data_provider.dart';
 
 /// Base class for all chart example screens.
 abstract class BaseChartScreen extends StatefulWidget {
   /// Initialize the base chart screen.
-  const BaseChartScreen({Key? key}) : super(key: key);
+  const BaseChartScreen({super.key});
 }
 
 /// Base state class for all chart example screens.

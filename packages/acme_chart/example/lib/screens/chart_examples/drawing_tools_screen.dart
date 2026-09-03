@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'package:provider/provider.dart';
 import 'base_chart_screen.dart';
@@ -7,7 +7,7 @@ import 'base_chart_screen.dart';
 /// Screen that displays information about drawing tools.
 class DrawingToolsScreen extends BaseChartScreen {
   /// Initialize the drawing tools screen.
-  const DrawingToolsScreen({Key? key}) : super(key: key);
+  const DrawingToolsScreen({super.key});
 
   @override
   State<DrawingToolsScreen> createState() => _DrawingToolsScreenState();

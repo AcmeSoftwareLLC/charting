@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'base_chart_screen.dart';
 
@@ -21,7 +21,7 @@ enum ColorType {
 /// Screen that displays a candle chart with an indicator.
 class CandleChartWithIndicatorScreen extends BaseChartScreen {
   /// Initialize the candle chart with indicator screen.
-  const CandleChartWithIndicatorScreen({Key? key}) : super(key: key);
+  const CandleChartWithIndicatorScreen({super.key});
 
   @override
   State<CandleChartWithIndicatorScreen> createState() =>

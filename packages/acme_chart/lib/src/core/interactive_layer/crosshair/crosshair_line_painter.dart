@@ -1,5 +1,5 @@
 import '../../../theme/chart_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A custom painter to paint the crosshair `line`.
 abstract class CrosshairLinePainter extends CustomPainter {

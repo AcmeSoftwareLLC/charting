@@ -4,7 +4,7 @@ import 'package:acme_chart/src/core/chart/data_visualization/chart_series/series
 import 'package:acme_chart/src/models/indicator_input.dart';
 import 'package:acme_chart/src/theme/painting_styles/bar_style.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../callbacks.dart';

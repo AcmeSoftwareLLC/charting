@@ -2,7 +2,7 @@ import '../../../../../core/chart/data_visualization/drawing_tools/data_model/dr
 import '../../../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import '../../../../../core/chart/data_visualization/drawing_tools/drawing_creator.dart';
 import '../../../../../core/chart/data_visualization/drawing_tools/fibfan/fibfan_drawing.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Creates a Fibfan drawing piece by piece collected on every gesture
 /// exists in a widget tree starting from selecting a line drawing tool and

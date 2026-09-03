@@ -1,5 +1,5 @@
 import 'package:acme_indicators/acme_indicators.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../../core/interactive_layer/crosshair/crosshair_dot_painter.dart';
 import '../../../../../core/interactive_layer/crosshair/crosshair_highlight_painter.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'screens/home_screen.dart';
@@ -13,7 +13,7 @@ void main() {
 /// The main application widget.
 class ShowcaseApp extends StatelessWidget {
   /// Initialize the showcase app.
-  const ShowcaseApp({Key? key}) : super(key: key);
+  const ShowcaseApp({super.key});
 
   @override
   Widget build(BuildContext context) {

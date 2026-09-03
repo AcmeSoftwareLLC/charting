@@ -1,7 +1,7 @@
 import '../../../../core/chart/data_visualization/markers/marker.dart';
 import '../../../../core/chart/data_visualization/chart_data.dart';
 import '../../../../core/chart/helpers/paint_functions/paint_text.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math' as math;
 
 import '../../../../theme/painting_styles/marker_style.dart';

@@ -7,7 +7,7 @@ import '../../../../core/chart/gestures/gesture_manager.dart';
 import '../../../../core/chart/x_axis/x_axis_model.dart';
 import '../../../../models/chart_config.dart';
 import '../../../../theme/chart_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'animated_active_marker.dart';
 import 'animated_active_marker_group.dart';

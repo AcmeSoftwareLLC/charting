@@ -1,5 +1,5 @@
 import '../../../../models/tick.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Directions in which marker can face.
 enum MarkerDirection {

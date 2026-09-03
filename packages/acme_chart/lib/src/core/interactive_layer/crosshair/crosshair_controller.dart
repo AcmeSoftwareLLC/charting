@@ -5,7 +5,7 @@ import '../../../core/chart/x_axis/x_axis_model.dart';
 import '../../../models/tick.dart';
 import '../../../models/candle.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Represents the immutable state of the crosshair at any given moment.
 ///

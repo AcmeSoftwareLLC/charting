@@ -1,5 +1,5 @@
 import '../../../../theme/painting_styles/entry_exit_marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Paints the entry or exit markers based on the [style] passed.
 void paintEntryExitMarker(

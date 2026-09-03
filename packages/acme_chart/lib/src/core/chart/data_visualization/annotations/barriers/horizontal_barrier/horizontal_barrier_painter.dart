@@ -10,7 +10,7 @@ import '../../../../../../core/chart/helpers/paint_functions/paint_line.dart';
 import '../../../../../../core/chart/helpers/paint_functions/paint_text.dart';
 import '../../../../../../core/chart/y_axis/y_axis_config.dart';
 import '../../../../../../theme/painting_styles/barrier_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'horizontal_barrier.dart';
 import 'tick_indicator.dart';

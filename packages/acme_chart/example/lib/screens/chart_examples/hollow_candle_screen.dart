@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'base_chart_screen.dart';
 
@@ -21,7 +21,7 @@ enum ColorType {
 /// Screen that displays a hollow candle chart example.
 class HollowCandleScreen extends BaseChartScreen {
   /// Initialize the hollow candle chart screen.
-  const HollowCandleScreen({Key? key}) : super(key: key);
+  const HollowCandleScreen({super.key});
 
   @override
   State<HollowCandleScreen> createState() => _HollowCandleScreenState();

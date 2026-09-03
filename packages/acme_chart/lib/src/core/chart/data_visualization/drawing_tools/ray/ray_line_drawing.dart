@@ -7,7 +7,7 @@ import '../../../../../core/chart/data_visualization/drawing_tools/data_model/po
 import '../../../../../core/chart/data_visualization/drawing_tools/drawing.dart';
 import '../../../../../core/chart/data_visualization/drawing_tools/line/line_drawing.dart';
 import '../../../../../models/tick.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../../../../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
 import '../../../../../add_ons/drawing_tools_ui/line/line_drawing_tool_config.dart';

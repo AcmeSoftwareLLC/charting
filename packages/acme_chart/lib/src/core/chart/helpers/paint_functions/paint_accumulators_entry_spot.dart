@@ -1,5 +1,5 @@
 import '../../../../theme/painting_styles/entry_spot_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Paints an entry spot point for accumulators.
 void paintAccumulatorsEntrySpot(

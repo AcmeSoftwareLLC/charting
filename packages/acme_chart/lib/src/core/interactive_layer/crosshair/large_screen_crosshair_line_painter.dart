@@ -1,6 +1,6 @@
 import '../../../core/chart/helpers/paint_functions/paint_line.dart';
 import '../../../core/interactive_layer/crosshair/crosshair_line_painter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A custom painter to paint the crosshair `line` for large screens.
 class LargeScreenCrosshairLinePainter extends CrosshairLinePainter {

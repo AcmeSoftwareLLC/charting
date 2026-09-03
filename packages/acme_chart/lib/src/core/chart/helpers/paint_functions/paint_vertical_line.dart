@@ -1,6 +1,6 @@
 import 'package:acme_chart/src/core/chart/helpers/paint_functions/paint_line.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Renders a vertical dashed line between two points on the chart.
 ///

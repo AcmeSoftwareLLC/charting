@@ -1,5 +1,5 @@
 import 'package:acme_chart/src/add_ons/indicators_ui/awesome_oscillator/awesome_oscillator_indicator_config.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../indicator_config.dart';
 import '../indicator_item.dart';

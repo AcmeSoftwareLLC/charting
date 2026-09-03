@@ -7,7 +7,7 @@ import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_model/point.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'line_drawing_tool_config_mobile.g.dart';

@@ -2,7 +2,7 @@ import '../../../../core/chart/data_visualization/markers/marker_props.dart';
 import '../../../../core/chart/data_visualization/markers/chart_marker.dart';
 import '../../../../core/chart/data_visualization/markers/marker.dart';
 import '../../../../theme/painting_styles/marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Chart open position marker.
 /// MarkerGroup is a container class that organizes related chart markers into a logical unit.

@@ -1,5 +1,5 @@
 import '../../../core/chart/helpers/paint_functions/paint_loading.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// The painter that paints loading on the given area.
 class LoadingPainter extends CustomPainter {

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A widget to play a pulse highlight animation on its child.
 class AnimatedHighlight extends StatefulWidget {

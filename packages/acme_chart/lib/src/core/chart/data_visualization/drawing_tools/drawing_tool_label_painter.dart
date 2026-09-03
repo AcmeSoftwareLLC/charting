@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
 import '../../../../models/chart_config.dart';

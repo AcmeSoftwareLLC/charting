@@ -1,5 +1,5 @@
 import '../../../../core/chart/data_visualization/models/animation_info.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Paints a blinking semi-transparent glow around [center].
 void paintBlinkingGlow(

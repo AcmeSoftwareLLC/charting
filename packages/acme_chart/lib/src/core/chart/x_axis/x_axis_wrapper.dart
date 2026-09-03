@@ -2,7 +2,7 @@ import '../../../../core_chart.dart';
 import '../../../core/chart/x_axis/widgets/x_axis_mobile.dart';
 import '../../../core/chart/x_axis/widgets/x_axis_web.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 const Duration _defaultDuration = Duration(milliseconds: 300);
 

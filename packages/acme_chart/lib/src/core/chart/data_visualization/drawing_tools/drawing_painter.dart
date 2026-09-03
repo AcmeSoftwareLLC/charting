@@ -13,7 +13,7 @@ import '../../../../models/chart_config.dart';
 import '../../../../models/tick.dart';
 import '../../../../theme/chart_theme.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 /// Paints every existing drawing.

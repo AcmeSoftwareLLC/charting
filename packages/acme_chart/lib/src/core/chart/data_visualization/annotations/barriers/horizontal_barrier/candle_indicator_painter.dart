@@ -7,7 +7,7 @@ import '../../../../../../core/chart/data_visualization/models/barrier_objects.d
 import '../../../../../../core/chart/helpers/functions/helper_functions.dart';
 import '../../../../../../core/chart/helpers/paint_functions/paint_text.dart';
 import '../../../../../../theme/painting_styles/barrier_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'horizontal_barrier.dart';
 import 'horizontal_barrier_painter.dart';

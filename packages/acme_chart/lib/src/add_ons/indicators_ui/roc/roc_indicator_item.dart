@@ -3,7 +3,7 @@ import 'package:acme_chart/src/add_ons/indicators_ui/indicator_config.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/indicator_item.dart';
 import 'package:acme_chart/src/add_ons/indicators_ui/roc/roc_indicator_config.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// ROC indicator item in the list of indicator which provide this
 /// indicators options menu.

@@ -9,7 +9,7 @@ import 'package:acme_chart/src/add_ons/indicators_ui/awesome_oscillator/awesome_
 import 'package:acme_chart/src/add_ons/indicators_ui/smi/smi_indicator_config.dart';
 import 'package:acme_chart/src/add_ons/repository.dart';
 import 'package:acme_chart/src/widgets/animated_popup.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 import './ma_indicator/ma_indicator_config.dart';

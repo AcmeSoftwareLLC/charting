@@ -1,7 +1,7 @@
 import '../../../../../core/chart/data_visualization/models/animation_info.dart';
 import '../../../../../models/tick.dart';
 import '../../../../../theme/painting_styles/scatter_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../chart_data.dart';
 import '../data_painter.dart';

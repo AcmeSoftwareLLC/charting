@@ -3,7 +3,7 @@ import '../../../../core/chart/data_visualization/markers/marker.dart';
 import '../../../../core/chart/data_visualization/markers/marker_group.dart';
 import '../../../../core/chart/data_visualization/markers/marker_props.dart';
 import '../../../../theme/painting_styles/marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Active marker data bound to a marker group.
 class ActiveMarkerGroup extends MarkerGroup {

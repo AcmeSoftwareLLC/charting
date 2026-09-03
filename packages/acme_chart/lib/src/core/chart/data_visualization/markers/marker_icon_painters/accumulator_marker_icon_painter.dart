@@ -8,7 +8,7 @@ import '../../../../../core/chart/helpers/paint_functions/paint_line.dart';
 import '../../../../../core/chart/helpers/paint_functions/paint_text.dart';
 import '../../../../../core/chart/y_axis/y_axis_config.dart';
 import '../../../../../theme/chart_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// AccumulatorMarkerIconPainter is a specialized painter for rendering accumulator contract markers on charts.
 ///

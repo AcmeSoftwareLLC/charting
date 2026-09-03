@@ -2,7 +2,7 @@ import 'package:acme_chart/generated/l10n.dart';
 import 'package:acme_chart/src/theme/painting_styles/scatter_style.dart';
 import 'package:acme_chart/src/widgets/color_picker/color_button.dart';
 import 'package:acme_chart/src/widgets/color_picker/color_picker_sheet.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../indicator_config.dart';
 import '../indicator_item.dart';

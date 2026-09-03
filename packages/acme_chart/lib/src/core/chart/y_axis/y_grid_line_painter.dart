@@ -1,6 +1,6 @@
 import '../../../theme/painting_styles/grid_style.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A `CustomPainter` that paints the Y axis grids.
 

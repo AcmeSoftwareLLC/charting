@@ -13,7 +13,7 @@ import '../../models/chart_axis_config.dart';
 import '../../models/chart_config.dart';
 import '../../models/indicator_input.dart';
 import '../../theme/chart_default_light_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import '../../add_ons/indicators_ui/indicator_config.dart';

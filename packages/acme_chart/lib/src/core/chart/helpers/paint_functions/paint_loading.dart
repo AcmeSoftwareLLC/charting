@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Paints loading animation from screen left edge to [loadingRightBoundX].
 void paintLoadingAnimation({

@@ -4,7 +4,7 @@ import 'package:acme_chart/src/add_ons/drawing_tools_ui/trend/trend_drawing_tool
 import 'package:acme_chart/src/add_ons/indicators_ui/widgets/color_selector.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_model/drawing_pattern.dart';
 import 'package:acme_chart/src/theme/painting_styles/line_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../drawing_tool_item.dart';
 

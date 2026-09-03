@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A widget to manage the over-scroll to dismiss for a scrollable inside its
 /// [child] that being shown by calling [showBottomSheet()].

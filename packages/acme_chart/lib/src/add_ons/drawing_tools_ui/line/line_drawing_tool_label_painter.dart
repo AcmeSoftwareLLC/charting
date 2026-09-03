@@ -2,7 +2,7 @@ import 'package:acme_chart/acme_chart.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/data_model/point.dart';
 import 'package:acme_chart/src/core/chart/data_visualization/drawing_tools/drawing_tool_label_painter.dart';
 import 'package:acme_chart/src/theme/text_styles.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Line drawing tool label painter.
 abstract class LineDrawingToolLabelPainter extends DrawingToolLabelPainter {

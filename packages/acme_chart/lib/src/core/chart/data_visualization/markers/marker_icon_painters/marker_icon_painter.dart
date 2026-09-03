@@ -1,6 +1,6 @@
 import '../../../../../core/chart/data_visualization/markers/marker.dart';
 import '../../../../../theme/painting_styles/marker_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Foundation class for painting markers on canvas
 abstract class MarkerIconPainter {

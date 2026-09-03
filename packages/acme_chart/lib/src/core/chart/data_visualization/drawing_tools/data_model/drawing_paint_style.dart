@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A class that holds the paint style of the drawings
 class DrawingPaintStyle {

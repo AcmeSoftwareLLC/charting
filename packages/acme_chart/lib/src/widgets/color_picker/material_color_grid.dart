@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Grid of material color options.
 /// Columns are shades and rows are color swatches.

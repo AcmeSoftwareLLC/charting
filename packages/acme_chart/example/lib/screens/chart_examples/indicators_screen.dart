@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:acme_chart/acme_chart.dart';
 import 'base_chart_screen.dart';
 
 /// Screen that displays a chart with indicators.
 class IndicatorsScreen extends BaseChartScreen {
   /// Initialize the indicators screen.
-  const IndicatorsScreen({Key? key}) : super(key: key);
+  const IndicatorsScreen({super.key});
 
   @override
   State<IndicatorsScreen> createState() => _IndicatorsScreenState();

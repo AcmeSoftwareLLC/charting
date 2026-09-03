@@ -1,6 +1,6 @@
 import '../../../core/interactive_layer/crosshair/crosshair_highlight_painter.dart';
 import '../../../models/candle.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A custom painter to paint a highlighted hollow candle at the crosshair position.
 class CrosshairHollowCandleHighlightPainter extends CrosshairHighlightPainter {

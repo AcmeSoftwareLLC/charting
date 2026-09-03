@@ -6,7 +6,7 @@ import '../../../core/chart/helpers/functions/conversion.dart';
 import '../../../models/tick.dart';
 import '../../../models/time_range.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../helpers/functions/snap_epoch.dart';
 import 'functions/calc_no_overlay_time_gaps.dart';

@@ -9,7 +9,7 @@ import '../../../../../../core/chart/helpers/paint_functions/paint_line.dart';
 import '../../../../../../theme/colors.dart';
 import '../../../../../../theme/painting_styles/barrier_style.dart';
 import '../../../../../../theme/painting_styles/entry_spot_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'accumulators_entry_spot_barrier.dart';
 

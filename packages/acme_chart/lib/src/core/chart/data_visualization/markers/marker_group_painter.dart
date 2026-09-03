@@ -4,7 +4,7 @@ import '../../../../core/chart/data_visualization/markers/marker_group.dart';
 import '../../../../core/chart/data_visualization/markers/marker_group_series.dart';
 import '../../../../core/chart/data_visualization/markers/marker_icon_painters/marker_group_icon_painter.dart';
 import '../../../../core/chart/data_visualization/models/animation_info.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A specialized painter class responsible for rendering marker groups on a financial chart.
 ///

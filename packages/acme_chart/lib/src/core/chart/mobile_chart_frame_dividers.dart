@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A class to draw dividers on the right side of the chart frame.
 class MobileChartFrameDividers extends StatelessWidget {
