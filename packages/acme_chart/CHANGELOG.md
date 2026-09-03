@@ -3,6 +3,7 @@
 
 - Added `BasicChart.showQuoteGrid` / `IndicatorConfig.showQuoteGrid`: lets an individual pane hide its y-axis quote grid (lines + labels) independently of the shared `ChartAxisConfig.showQuoteGrid` setting.
 - Added tap interactivity: `BasicChart` now detects taps and forwards them to the pane's series via the new `Series.onTap(Offset localPosition)` method, letting series subclasses handle taps on drawn regions.
+- Migrated to material_ui.
 
 ## 1.0.4
 **August 27, 2026**
