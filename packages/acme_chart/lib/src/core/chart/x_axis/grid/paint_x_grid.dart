@@ -15,6 +15,7 @@ void paintXGrid(
   required ChartTheme style,
   required List<DateTime> timestamps,
   required double msPerPx,
+  String Function(DateTime time)? labelBuilder,
 }) {
   assert(timestamps.length == xCoords.length);
   final GridStyle gridStyle = style.gridStyle;
@@ -36,6 +37,7 @@ void paintXGrid(
       xCoords: xCoords,
       gridStyle: gridStyle,
       timestamps: timestamps,
+      labelBuilder: labelBuilder,
     );
   } else {
     _paintTimeLabels(
@@ -44,6 +46,7 @@ void paintXGrid(
       xCoords: xCoords,
       gridStyle: gridStyle,
       timestamps: timestamps,
+      labelBuilder: labelBuilder,
     );
   }
 }
@@ -87,11 +90,13 @@ void _paintTimeLabels(
   required List<double> xCoords,
   required GridStyle gridStyle,
   required List<DateTime> timestamps,
+  String Function(DateTime time)? labelBuilder,
 }) {
+  final String Function(DateTime time) buildLabel = labelBuilder ?? timeLabel;
   for (int index = 0; index < timestamps.length; index++) {
     paintText(
       canvas,
-      text: timeLabel(timestamps[index]),
+      text: buildLabel(timestamps[index]),
       anchor: Offset(
         xCoords[index],
         size.height - gridStyle.xLabelsAreaHeight / 2,
@@ -107,17 +112,19 @@ void _paintTimeLabelsWeb(
   required List<double> xCoords,
   required GridStyle gridStyle,
   required List<DateTime> timestamps,
+  String Function(DateTime time)? labelBuilder,
 }) {
   final TextStyle textStyle = TextStyle(
     fontSize: gridStyle.xLabelStyle.fontSize,
     height: gridStyle.xLabelStyle.height,
     color: gridStyle.xLabelStyle.color,
   );
+  final String Function(DateTime time) buildLabel = labelBuilder ?? timeLabel;
 
   for (int index = 0; index < timestamps.length; index++) {
     paintText(
       canvas,
-      text: timeLabel(timestamps[index]),
+      text: buildLabel(timestamps[index]),
       anchor: Offset(
         xCoords[index],
         size.height - gridStyle.xLabelsAreaHeight / 2,

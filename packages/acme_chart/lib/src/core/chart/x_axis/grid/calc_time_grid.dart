@@ -3,10 +3,16 @@ const Duration _day = Duration(days: 1);
 const Duration _month = Duration(days: 30);
 
 /// Creates a list of [DateTime] with gaps of [timeGridInterval].
+///
+/// [utcOffset] shifts day/month/interval boundary calculation to the target
+/// timezone (e.g. so "day" ticks land on that timezone's midnight rather than
+/// UTC midnight). Defaults to [Duration.zero] (UTC). The returned [DateTime]s
+/// remain true instants (i.e. usable directly for epoch-based positioning).
 List<DateTime> gridTimestamps({
   required Duration timeGridInterval,
   required int leftBoundEpoch,
   required int rightBoundEpoch,
+  Duration utcOffset = Duration.zero,
 }) {
   final List<DateTime> timestamps = <DateTime>[];
   final DateTime rightBoundTime = DateTime.fromMillisecondsSinceEpoch(
@@ -14,51 +20,69 @@ List<DateTime> gridTimestamps({
     isUtc: true,
   );
 
-  DateTime t = _gridEpochStart(timeGridInterval, leftBoundEpoch);
+  DateTime t = _gridEpochStart(timeGridInterval, leftBoundEpoch, utcOffset);
 
   while (t.compareTo(rightBoundTime) <= 0) {
     timestamps.add(t);
-    t = timeGridInterval == _month ? _addMonth(t) : t.add(timeGridInterval);
+    t = timeGridInterval == _month
+        ? _addMonth(t, utcOffset)
+        : t.add(timeGridInterval);
   }
   return timestamps;
 }
 
-DateTime _gridEpochStart(Duration timeGridInterval, int leftBoundEpoch) {
+DateTime _gridEpochStart(
+  Duration timeGridInterval,
+  int leftBoundEpoch,
+  Duration utcOffset,
+) {
   if (timeGridInterval == _month) {
-    return _closestFutureMonthStart(leftBoundEpoch);
+    return _closestFutureMonthStart(leftBoundEpoch, utcOffset);
   } else if (timeGridInterval == _week) {
-    final DateTime t = _closestFutureDayStart(leftBoundEpoch);
-    final int daysUntilMonday = (8 - t.weekday) % 7;
+    final DateTime t = _closestFutureDayStart(leftBoundEpoch, utcOffset);
+    final int daysUntilMonday = (8 - t.add(utcOffset).weekday) % 7;
     return t.add(Duration(days: daysUntilMonday));
   } else if (timeGridInterval == _day) {
-    return _closestFutureDayStart(leftBoundEpoch);
+    return _closestFutureDayStart(leftBoundEpoch, utcOffset);
   } else {
     final int diff = timeGridInterval.inMilliseconds;
-    final int firstLeft = (leftBoundEpoch / diff).ceil() * diff;
-    return DateTime.fromMillisecondsSinceEpoch(firstLeft, isUtc: true);
+    final int offsetMs = utcOffset.inMilliseconds;
+    final int firstLeftLocal =
+        ((leftBoundEpoch + offsetMs) / diff).ceil() * diff;
+    return DateTime.fromMillisecondsSinceEpoch(
+      firstLeftLocal - offsetMs,
+      isUtc: true,
+    );
   }
 }
 
-DateTime _closestFutureDayStart(int epoch) {
+DateTime _closestFutureDayStart(int epoch, Duration utcOffset) {
   final DateTime time = DateTime.fromMillisecondsSinceEpoch(epoch, isUtc: true);
+  final DateTime local = time.add(utcOffset);
   final DateTime dayStart = DateTime.utc(
-    time.year,
-    time.month,
-    time.day,
-  ); // time 00:00:00
+    local.year,
+    local.month,
+    local.day,
+  ).subtract(utcOffset); // local time 00:00:00, as a real instant
   return dayStart.isBefore(time) ? dayStart.add(_day) : dayStart;
 }
 
-DateTime _closestFutureMonthStart(int epoch) {
+DateTime _closestFutureMonthStart(int epoch, Duration utcOffset) {
   final DateTime time = DateTime.fromMillisecondsSinceEpoch(epoch, isUtc: true);
+  final DateTime local = time.add(utcOffset);
   final DateTime monthStart = DateTime.utc(
-    time.year,
-    time.month,
-  ); // day 1, time 00:00:00
-  return monthStart.isBefore(time) ? _addMonth(monthStart) : monthStart;
+    local.year,
+    local.month,
+  ).subtract(utcOffset); // local day 1, time 00:00:00, as a real instant
+  return monthStart.isBefore(time)
+      ? _addMonth(monthStart, utcOffset)
+      : monthStart;
 }
 
-DateTime _addMonth(DateTime time) => DateTime.utc(time.year, time.month + 1);
+DateTime _addMonth(DateTime time, Duration utcOffset) {
+  final DateTime local = time.add(utcOffset);
+  return DateTime.utc(local.year, local.month + 1).subtract(utcOffset);
+}
 
 /// Px width of duration in ms on time axis with current scale.
 /// Conversion callback dependency of [timeGridInterval].

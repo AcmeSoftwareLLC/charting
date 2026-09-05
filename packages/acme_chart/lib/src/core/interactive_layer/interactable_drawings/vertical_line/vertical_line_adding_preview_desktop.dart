@@ -145,6 +145,7 @@ class VerticalLineAddingPreviewDesktop
         textStyle: interactableDrawing.config.labelStyle,
         color: interactableDrawing.config.lineStyle.color,
         backgroundColor: chartTheme.backgroundColor,
+        utcOffset: chartConfig.chartTimeConfig.utcOffset,
       );
     }
   }

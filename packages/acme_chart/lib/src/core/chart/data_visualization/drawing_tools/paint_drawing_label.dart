@@ -29,7 +29,7 @@ void paintDrawingLabel(
     final DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(
       epochFromX!(coord),
       isUtc: true,
-    );
+    ).add(config.chartTimeConfig.utcOffset);
 
     labelString = DateFormat('MM-dd HH:mm:ss').format(dateTime);
   }

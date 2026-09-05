@@ -11,6 +11,7 @@ import '../../core/drawing_tool_chart/drawing_tools.dart';
 import '../../misc/callbacks.dart';
 import '../../models/chart_axis_config.dart';
 import '../../models/chart_config.dart';
+import '../../models/chart_time_config.dart';
 import '../../models/indicator_input.dart';
 import '../../theme/chart_default_light_theme.dart';
 import 'package:material_ui/material_ui.dart';
@@ -64,6 +65,7 @@ class Chart extends StatefulWidget {
     this.opacity = 1.0,
     this.annotations,
     this.chartAxisConfig = const ChartAxisConfig(),
+    this.chartTimeConfig = const ChartTimeConfig(),
     this.showCrosshair = false,
     this.indicatorsRepo,
     this.msPerPx,
@@ -148,6 +150,10 @@ class Chart extends StatefulWidget {
 
   /// Configurations for chart's axes.
   final ChartAxisConfig chartAxisConfig;
+
+  /// Configuration for how chart timestamps are displayed (timezone, custom
+  /// label formatting for the x-axis and crosshair).
+  final ChartTimeConfig chartTimeConfig;
 
   /// Whether the crosshair should be shown or not.
   final bool showCrosshair;
@@ -285,6 +291,7 @@ abstract class _ChartState extends State<Chart> with WidgetsBindingObserver {
       pipSize: widget.pipSize,
       granularity: widget.granularity,
       chartAxisConfig: widget.chartAxisConfig,
+      chartTimeConfig: widget.chartTimeConfig,
       magnetEnabled: widget.magnetEnabled,
     );
     // Calculate default msPerPx based on granularity and default interval width (which defaults to 20 pixels), msPerPx could be null in situations like when data fit mode is enabled.

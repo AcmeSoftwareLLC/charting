@@ -12,6 +12,7 @@ class ChartConfig {
   const ChartConfig({
     required this.granularity,
     this.chartAxisConfig = const ChartAxisConfig(),
+    this.chartTimeConfig = const ChartTimeConfig(),
     this.pipSize = 4,
     this.snapMarkersToIntervals = true,
     this.magnetEnabled = false,
@@ -38,6 +39,12 @@ class ChartConfig {
 
   /// Chart Axis configuration.
   final ChartAxisConfig chartAxisConfig;
+
+  /// Chart time formatting and timezone configuration.
+  ///
+  /// Contains callbacks, so it is excluded from JSON (de)serialization.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final ChartTimeConfig chartTimeConfig;
 
   /// Whether new drawing tool points snap to the nearest candle's time
   /// bucket instead of the exact cursor position ("magnet" mode).
