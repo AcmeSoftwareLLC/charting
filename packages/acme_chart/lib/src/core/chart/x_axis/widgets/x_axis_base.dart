@@ -2,6 +2,7 @@ import '../../../../core/chart/gestures/gesture_manager.dart';
 import '../../../../core/chart/helpers/functions/helper_functions.dart';
 import '../../../../misc/callbacks.dart';
 import '../../../../models/chart_config.dart';
+import '../../../../models/chart_time_config.dart';
 import '../../../../models/tick.dart';
 import '../../../../theme/chart_theme.dart';
 import 'package:material_ui/material_ui.dart';
@@ -127,7 +128,7 @@ class XAxisState extends State<XAxisBase> with TickerProviderStateMixin {
       minIntervalWidth: widget.minIntervalWidth,
       maxIntervalWidth: widget.maxIntervalWidth,
       dataFitPadding: widget.dataFitPadding,
-    );
+    )..utcOffset = chartConfig.chartTimeConfig.utcOffset;
 
     gestureManager = context.read<GestureManagerState>()
       ..registerCallback(_model.onScaleAndPanStart)
@@ -147,6 +148,7 @@ class XAxisState extends State<XAxisBase> with TickerProviderStateMixin {
   void didUpdateWidget(XAxisBase oldWidget) {
     super.didUpdateWidget(oldWidget);
 
+    _model.utcOffset = context.read<ChartConfig>().chartTimeConfig.utcOffset;
     _model.update(
       isLive: widget.isLive,
       granularity: context.read<ChartConfig>().granularity,
@@ -199,6 +201,9 @@ class XAxisState extends State<XAxisBase> with TickerProviderStateMixin {
 
         final List<DateTime> noOverlapGridTimestamps = _model
             .getNoOverlapGridTimestamps();
+        final ChartTimeConfig timeConfig = context
+            .read<ChartConfig>()
+            .chartTimeConfig;
 
         return Stack(
           fit: StackFit.expand,
@@ -209,7 +214,7 @@ class XAxisState extends State<XAxisBase> with TickerProviderStateMixin {
                   painter: XGridPainter(
                     timestamps: noOverlapGridTimestamps
                         .map<DateTime>(
-                          (DateTime time) => /*timeLabel(time)*/ time,
+                          (DateTime time) => time.add(timeConfig.utcOffset),
                         )
                         .toList(),
                     xCoords: noOverlapGridTimestamps
@@ -220,6 +225,7 @@ class XAxisState extends State<XAxisBase> with TickerProviderStateMixin {
                         .toList(),
                     style: chartTheme,
                     msPerPx: _model.msPerPx,
+                    labelBuilder: timeConfig.axisTimeLabelBuilder,
                   ),
                 ),
               ),

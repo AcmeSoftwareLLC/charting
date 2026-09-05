@@ -121,6 +121,11 @@ class XAxisModel extends ChangeNotifier {
   /// Default to this interval width on granularity change.
   final double defaultIntervalWidth;
 
+  /// Fixed offset applied to grid-tick selection and used when displaying
+  /// axis labels, so ticks land on the configured timezone's boundaries
+  /// rather than UTC's. Defaults to [Duration.zero] (UTC).
+  Duration utcOffset = Duration.zero;
+
   /// Max distance between [rightBoundEpoch] and [_nowEpoch] in pixels.
   /// Limits panning to the right.
   double _maxCurrentTickOffset = 200;
@@ -625,6 +630,7 @@ class XAxisModel extends ChangeNotifier {
       ),
       leftBoundEpoch: leftBoundEpoch,
       rightBoundEpoch: rightBoundEpoch,
+      utcOffset: utcOffset,
     );
     return calculateNoOverlapGridTimestamps(
       gridTimestampList,

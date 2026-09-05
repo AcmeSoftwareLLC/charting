@@ -1,3 +1,9 @@
+## 1.0.6
+**September 5, 2026**
+
+- Added `Chart.chartTimeConfig` for configuring the timezone (`utcOffset`) used across axis, crosshair, and drawing-tool time labels, instead of always forcing UTC.
+- Added custom label builder callbacks on `ChartTimeConfig` for the x-axis and crosshair, so implementors can fully customize the displayed time format (e.g. always show seconds).
+
 ## 1.0.5
 **September 3, 2026**
 

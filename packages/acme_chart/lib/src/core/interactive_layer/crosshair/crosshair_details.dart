@@ -3,7 +3,8 @@ import 'dart:ui';
 import '../../../core/interactive_layer/crosshair/crosshair_variant.dart';
 import '../../../core/interactive_layer/crosshair/find.dart';
 import '../../../core/chart/data_visualization/chart_series/data_series.dart';
-import '../../../core/chart/helpers/chart_date_utils.dart';
+import '../../../models/chart_config.dart';
+import '../../../models/chart_time_config.dart';
 import '../../../models/tick.dart';
 import '../../../theme/chart_theme.dart';
 import 'package:provider/provider.dart';
@@ -86,10 +87,21 @@ class CrosshairDetails extends StatelessWidget {
     BuildContext context,
     CrosshairVariant crosshairVariant,
   ) {
-    final String date = ChartDateUtils.formatDate(crosshairTick.epoch);
-    final String time = ChartDateUtils.formatTimeWithSeconds(
+    final ChartTimeConfig timeConfig = context
+        .read<ChartConfig>()
+        .chartTimeConfig;
+    final DateTime displayTime = DateTime.fromMillisecondsSinceEpoch(
       crosshairTick.epoch,
-    );
+      isUtc: true,
+    ).add(timeConfig.utcOffset);
+    final String date =
+        (timeConfig.crosshairDateLabelBuilder ?? defaultCrosshairDateLabel)(
+          displayTime,
+        );
+    final String time =
+        (timeConfig.crosshairTimeLabelBuilder ?? defaultCrosshairTimeLabel)(
+          displayTime,
+        );
     final ChartTheme theme = context.watch<ChartTheme>();
     final style = theme.crosshairInformationBoxTimeLabelStyle.copyWith(
       color: theme.crosshairInformationBoxTextSubtle,

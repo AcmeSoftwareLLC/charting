@@ -1,12 +1,13 @@
 import 'dart:math';
 
 import '../../../core/chart/data_visualization/chart_series/data_series.dart';
-import '../../../core/chart/helpers/chart_date_utils.dart';
 import '../../../core/chart/x_axis/x_axis_model.dart';
 import '../../../core/interactive_layer/crosshair/crosshair_highlight_painter.dart';
 import '../../../core/interactive_layer/crosshair/crosshair_variant.dart';
 import '../../../core/interactive_layer/crosshair/large_screen_crosshair_line_painter.dart';
 import '../../../core/interactive_layer/crosshair/small_screen_crosshair_line_painter.dart';
+import '../../../models/chart_config.dart';
+import '../../../models/chart_time_config.dart';
 import '../../../models/tick.dart';
 import '../../../theme/chart_theme.dart';
 import 'package:material_ui/material_ui.dart';
@@ -153,6 +154,13 @@ class CrosshairArea extends StatelessWidget {
 
     final XAxisModel xAxis = context.watch<XAxisModel>();
     final ChartTheme theme = context.read<ChartTheme>();
+    final ChartTimeConfig timeConfig = context
+        .read<ChartConfig>()
+        .chartTimeConfig;
+    final DateTime displayTime = DateTime.fromMillisecondsSinceEpoch(
+      tick.epoch,
+      isUtc: true,
+    ).add(timeConfig.utcOffset);
     return Stack(
       clipBehavior: Clip.none,
       children: <Widget>[
@@ -227,7 +235,8 @@ class CrosshairArea extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
-                  ChartDateUtils.formatDateTimeWithSeconds(tick.epoch),
+                  '${(timeConfig.crosshairDateLabelBuilder ?? defaultCrosshairDateLabel)(displayTime)} '
+                  '${(timeConfig.crosshairTimeLabelBuilder ?? defaultCrosshairTimeLabel)(displayTime)}',
                   style: theme.crosshairAxisLabelStyle.copyWith(
                     color: theme.crosshairInformationBoxTextDefault,
                   ),

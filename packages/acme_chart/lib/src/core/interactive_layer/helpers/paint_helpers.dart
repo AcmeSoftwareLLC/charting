@@ -3,8 +3,8 @@ import 'dart:ui';
 import '../../../core/chart/data_visualization/chart_data.dart';
 import '../../../core/chart/data_visualization/drawing_tools/data_model/drawing_paint_style.dart';
 import '../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
-import '../../../core/chart/helpers/chart_date_utils.dart';
 import '../../../theme/painting_styles/line_style.dart';
+import 'package:intl/intl.dart' show DateFormat;
 import 'package:material_ui/material_ui.dart';
 
 /// Draws alignment guides (horizontal and vertical lines) for a single point
@@ -296,10 +296,17 @@ void drawEpochLabel({
   double neonOpacity = 0.4,
   double neonStrokeWidth = 8,
   double neonBlurRadius = 6,
+  Duration utcOffset = Duration.zero,
 }) {
   // Calculate X position based on the epoch
   final double xPosition = epochToX(epoch);
-  final String formattedTime = ChartDateUtils.formatCompactDateTime(epoch);
+  final DateTime displayTime = DateTime.fromMillisecondsSinceEpoch(
+    epoch,
+    isUtc: true,
+  ).add(utcOffset);
+  final String formattedTime = DateFormat(
+    'MM/dd/yy HH:mm:ss',
+  ).format(displayTime);
 
   // Create text painter to measure text dimensions
   final TextPainter textPainter = _getTextPainter(

@@ -151,6 +151,7 @@ export 'src/core/chart/helpers/functions/convert_range.dart';
 export 'src/models/candle.dart';
 export 'src/models/chart_axis_config.dart';
 export 'src/models/chart_style.dart';
+export 'src/models/chart_time_config.dart';
 export 'src/models/indicator_input.dart';
 export 'src/models/tick.dart';
 export 'src/theme/chart_default_dark_theme.dart';
