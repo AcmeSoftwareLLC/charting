@@ -80,6 +80,7 @@ export 'src/core/chart/data_visualization/annotations/barriers/vertical_barrier/
 export 'src/core/chart/data_visualization/annotations/chart_annotation.dart';
 export 'src/core/chart/data_visualization/chart_data.dart';
 export 'src/core/chart/data_visualization/chart_series/data_series.dart';
+export 'src/core/chart/data_visualization/chart_series/visible_entries.dart';
 export 'src/core/chart/data_visualization/chart_series/indicators_series/adx_series.dart';
 export 'src/core/chart/data_visualization/chart_series/indicators_series/alligator_series.dart';
 export 'src/core/chart/data_visualization/chart_series/indicators_series/aroon_series.dart';

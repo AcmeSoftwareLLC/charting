@@ -1,3 +1,8 @@
+## 1.0.7
+**September 11, 2026**
+
+- Exported `VisibleEntries` so implementers can reference it when overriding `SingleIndicatorSeries`.
+
 ## 1.0.6
 **September 5, 2026**
 
