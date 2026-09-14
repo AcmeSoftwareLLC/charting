@@ -1,3 +1,8 @@
+## 1.0.8
+**September 14, 2026**
+
+- Added `HorizontalBarrierStyle.labelOffset` to vertically shift a barrier's value label without moving the barrier line itself, so two barriers with close values (e.g. bid/ask) can have their labels separated instead of overlapping.
+
 ## 1.0.7
 **September 11, 2026**
 
