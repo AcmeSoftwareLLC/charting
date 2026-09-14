@@ -126,10 +126,11 @@ class HorizontalBarrierPainter<T extends HorizontalBarrier>
       animatedValue.toStringAsFixed(chartConfig.pipSize),
       style.textStyle,
     );
+
     final Rect labelArea = Rect.fromCenter(
       center: Offset(
         size.width - rightMargin - style.labelPadding - valuePainter.width / 2,
-        y,
+        y + style.labelOffset,
       ),
       width: valuePainter.width + style.labelPadding * 2,
       height: style.labelHeight,

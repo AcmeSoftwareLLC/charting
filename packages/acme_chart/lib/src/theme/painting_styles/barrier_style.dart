@@ -42,6 +42,7 @@ class HorizontalBarrierStyle extends BarrierStyle {
     this.labelShape = LabelShape.rectangle,
     this.labelHeight = 24,
     this.labelPadding = 4,
+    this.labelOffset = 0,
     super.color,
     super.titleBackgroundColor,
     this.secondaryBackgroundColor = const Color(0xFF607D8B),
@@ -64,6 +65,11 @@ class HorizontalBarrierStyle extends BarrierStyle {
 
   /// Padding of label.
   final double labelPadding;
+
+  /// Vertical shift, in pixels, of the value label away from the barrier's own
+  /// position. Negative moves it up. The line stays on the barrier's value, so
+  /// this only separates the label from a neighbouring one it would overlap.
+  final double labelOffset;
 
   /// Whether to have a blinking dot animation where barrier and chart data
   /// are intersected.
@@ -103,6 +109,7 @@ class HorizontalBarrierStyle extends BarrierStyle {
     LabelShape? labelShape,
     double? labelHeight,
     double? labelPadding,
+    double? labelOffset,
     Color? color,
     Color? titleBackgroundColor,
     Color? secondaryBackgroundColor,
@@ -118,6 +125,7 @@ class HorizontalBarrierStyle extends BarrierStyle {
     labelShape: labelShape ?? this.labelShape,
     labelHeight: labelHeight ?? this.labelHeight,
     labelPadding: labelPadding ?? this.labelPadding,
+    labelOffset: labelOffset ?? this.labelOffset,
     color: color ?? this.color,
     titleBackgroundColor: titleBackgroundColor ?? this.titleBackgroundColor,
     secondaryBackgroundColor:
