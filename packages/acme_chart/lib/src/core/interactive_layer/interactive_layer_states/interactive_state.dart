@@ -96,6 +96,14 @@ abstract class InteractiveState {
     return false;
   }
 
+  /// Handles secondary tap (right-click) event.
+  /// Returns true if the secondary tap was handled by a drawing tool, false otherwise.
+  bool onSecondaryTap(TapUpDetails details) {
+    // Default implementation returns false
+    // Subclasses can override this to provide specific secondary tap handling logic
+    return false;
+  }
+
   /// Handles pan update event.
   /// Returns true if the pan update is affecting a drawing tool, false otherwise.
   bool onPanUpdate(DragUpdateDetails details) {

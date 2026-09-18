@@ -514,7 +514,9 @@ class _InteractiveLayerGestureHandlerState
                   GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
                     () => TapGestureRecognizer(),
                     (TapGestureRecognizer instance) {
-                      instance.onTapUp = _handleTapUp;
+                      instance
+                        ..onTapUp = _handleTapUp
+                        ..onSecondaryTapUp = _handleSecondaryTapUp;
                     },
                   ),
 
@@ -838,6 +840,18 @@ class _InteractiveLayerGestureHandlerState
   // Tap handler
   void _handleTapUp(TapUpDetails details) {
     final bool hitDrawing = widget.interactiveLayerBehaviour.onTap(details);
+
+    _updateInteractionMode(
+      hitDrawing ? InteractionMode.drawingTool : InteractionMode.none,
+    );
+    _interactionNotifier.notify();
+  }
+
+  // Secondary tap (right-click) handler
+  void _handleSecondaryTapUp(TapUpDetails details) {
+    final bool hitDrawing = widget.interactiveLayerBehaviour.onSecondaryTap(
+      details,
+    );
 
     _updateInteractionMode(
       hitDrawing ? InteractionMode.drawingTool : InteractionMode.none,

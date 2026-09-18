@@ -19,16 +19,11 @@ import '../interactive_layer_states/interactive_normal_state.dart';
 import '../interactive_layer_states/interactive_selected_tool_state.dart';
 import '../interactive_layer_states/interactive_state.dart';
 
-/// The base class for managing [InteractiveLayerBase]'s behaviour according to
-/// a platform or a condition.
-/// [InteractiveLayerBase] uses this to manage gestures and the layer state in
-/// every scenarios.
-/// The way we're handling the gestures and [currentState] transitions can
-/// be customized by extending this class.
+/// Manages gestures and [currentState] transitions for [InteractiveLayerBase],
+/// customizable per platform or condition by extending this class.
 ///
-/// Check out [InteractiveLayerMobileBehaviour] and
-/// [InteractiveLayerDesktopBehaviour] to see specific implementations for two
-/// different platforms.
+/// See [InteractiveLayerMobileBehaviour] and [InteractiveLayerDesktopBehaviour]
+/// for the platform-specific implementations.
 abstract class InteractiveLayerBehaviour {
   /// Creates an instance of [InteractiveLayerBehaviour].
   InteractiveLayerBehaviour({InteractiveLayerController? controller})
@@ -76,9 +71,8 @@ abstract class InteractiveLayerBehaviour {
 
   /// Initializes the [InteractiveLayerBehaviour].
   ///
-  /// This method can be called multiple times (e.g., when the widget rebuilds
-  /// during symbol switches). It will update the references to the new
-  /// controller, interactive layer, and callback even if already initialized.
+  /// Safe to call multiple times (e.g. on widget rebuilds during symbol
+  /// switches) — later calls just update the stored references.
   void init({
     required InteractiveLayerBase interactiveLayer,
     required VoidCallback onUpdate,
@@ -100,22 +94,17 @@ abstract class InteractiveLayerBehaviour {
     _initialized = true;
   }
 
-  /// Return the adding preview of the [drawing] we're currently adding for this
-  /// Behaviour.
+  /// The adding preview for [drawing].
   DrawingAddingPreview getAddingDrawingPreview(
     InteractableDrawing drawing,
     Function(AddingStateInfo) onAddingStateChange,
   );
 
-  /// Updates the interactive layer state to the new state.
+  /// Updates the interactive layer state to [newState], then calls
+  /// [onUpdate].
   ///
-  /// Calls [onUpdate] callback to notify the interactive layer to update its
-  /// UI after the state change.
-  ///
-  /// [waitForAnimation]
-  /// If set to `true`, the method will wait for the state change animation.
-  /// If set to `false`, it will not wait for the animation to complete.
-  /// If `null` will not play animation for state change.
+  /// [waitForAnimation] controls whether this awaits the state-change
+  /// animation before returning.
   Future<void> updateStateTo(
     InteractiveState newState,
     StateChangeAnimationDirection direction, {
@@ -134,8 +123,7 @@ abstract class InteractiveLayerBehaviour {
     onUpdate();
   }
 
-  /// Handles the addition of a drawing tool.
-  /// Will be called when we want to add [drawingTool] to the layer.
+  /// Starts adding [drawingTool] to the layer.
   void startAddingTool(DrawingToolConfig drawingTool) {
     updateStateTo(
       InteractiveAddingToolState(drawingTool, interactiveLayerBehaviour: this),
@@ -145,13 +133,10 @@ abstract class InteractiveLayerBehaviour {
     );
   }
 
-  /// Will be called right after the process of [startAddingTool] is completed
-  /// without cancellation.
+  /// Called once [startAddingTool] completes without cancellation.
   ///
-  /// It can be used to perform any additional actions after a new tool is added
-  ///
-  /// By default, it will update the state to [InteractiveSelectedToolState]
-  /// with the newly added drawing.
+  /// By default, updates the state to [InteractiveSelectedToolState] with
+  /// the newly added [drawing]. Override to add extra behavior.
   void aNewToolsIsAdded(InteractableDrawing drawing) => updateStateTo(
     InteractiveSelectedToolState(
       selected: drawing,
@@ -169,20 +154,19 @@ abstract class InteractiveLayerBehaviour {
   DrawingZOrder getToolZOrder(DrawingV2 drawing) =>
       currentState.getToolZOrder(drawing);
 
-  /// The extra drawings that the current interactive state can show in
-  /// [InteractiveLayerBase].
-  ///
-  /// These [previewDrawings] are usually meant to be drawings with a shorter
-  /// lifespan, used for preview purposes or for showing temporary guides when
-  /// the user is interacting with [InteractiveLayerBase].
+  /// Short-lived drawings the current state shows for preview or temporary
+  /// guides on top of [InteractiveLayerBase].
   List<DrawingV2> get previewDrawings => currentState.previewDrawings;
 
-  /// The extra widgets that the current interactive state can show on top of
-  /// interactive layer.
+  /// Extra widgets the current state shows on top of the interactive layer.
   List<Widget> get previewWidgets => currentState.previewWidgets;
 
   /// Handles tap event.
   bool onTap(TapUpDetails details) => currentState.onTap(details);
+
+  /// Handles secondary tap (right-click) event.
+  bool onSecondaryTap(TapUpDetails details) =>
+      currentState.onSecondaryTap(details);
 
   /// Handles pan update event.
   bool onPanUpdate(DragUpdateDetails details) =>
@@ -204,12 +188,7 @@ abstract class InteractiveLayerBehaviour {
   /// Handles long press end event.
   bool onLongPressEnd() => currentState.onLongPressEnd();
 
-  /// Checks if a point hits any drawing (both regular drawings and preview drawings).
-  ///
-  /// This method is used for hit testing to determine if a given local position
-  /// intersects with any interactive drawing elements.
-  ///
-  /// Returns `true` if the position hits any drawing, `false` otherwise.
+  /// Whether [localPosition] hits any regular or preview drawing.
   bool hitTestDrawings(Offset localPosition) {
     // First check if the point is within the floating menu bounds
     // If it is, don't allow drawing hit testing to prevent interference

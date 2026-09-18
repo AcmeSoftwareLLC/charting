@@ -39,6 +39,7 @@ class InteractiveSelectedToolState extends InteractiveState
   InteractiveSelectedToolState({
     required this.selected,
     required super.interactiveLayerBehaviour,
+    this.showFloatingMenu = false,
   });
 
   /// The selected tool.
@@ -46,6 +47,14 @@ class InteractiveSelectedToolState extends InteractiveState
   /// This is the drawing tool that is currently selected and will respond to
   /// manipulation gestures. It will be rendered with a selected appearance.
   final InteractableDrawing selected;
+
+  /// Whether the floating edit menu (edit/clone/delete) should be shown for
+  /// [selected].
+  ///
+  /// Selecting a drawing (via left tap/drag) enables manipulation without
+  /// opening the menu; the menu only opens via a right-click/secondary tap,
+  /// see [onSecondaryTap].
+  final bool showFloatingMenu;
 
   bool _draggingStartedOnTool = false;
 
@@ -173,6 +182,29 @@ class InteractiveSelectedToolState extends InteractiveState
   }
 
   @override
+  bool onSecondaryTap(TapUpDetails details) {
+    final InteractableDrawing<DrawingToolConfig>? hitDrawing = anyDrawingHit(
+      details.localPosition,
+    );
+
+    if (hitDrawing == null) {
+      return false; // No drawing was hit, leave the state unchanged.
+    }
+
+    interactiveLayerBehaviour.updateStateTo(
+      InteractiveSelectedToolState(
+        selected: hitDrawing,
+        interactiveLayerBehaviour: interactiveLayerBehaviour,
+        showFloatingMenu: true,
+      ),
+      StateChangeAnimationDirection.forward,
+      waitForAnimation: false,
+      animate: false,
+    );
+    return true; // A drawing was hit, floating menu is now shown.
+  }
+
+  @override
   bool onHover(PointerHoverEvent event) {
     return getToolState(selected).contains(DrawingToolState.dragging);
   }
@@ -217,7 +249,7 @@ class InteractiveSelectedToolState extends InteractiveState
   @override
   List<Widget> get previewWidgets => [
     ?_buildSelectedDrawingOverlay(),
-    _buildSelectedDrawingFloatingMenu(),
+    if (showFloatingMenu) _buildSelectedDrawingFloatingMenu(),
   ];
 
   Widget? _buildSelectedDrawingOverlay() => selected.getSelectedOverlay(

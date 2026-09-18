@@ -70,4 +70,27 @@ class InteractiveNormalState extends InteractiveState
 
     return true; // A drawing was hit
   }
+
+  @override
+  bool onSecondaryTap(TapUpDetails details) {
+    final InteractableDrawing<DrawingToolConfig>? hitDrawing = anyDrawingHit(
+      details.localPosition,
+    );
+
+    if (hitDrawing == null) {
+      return false; // No drawing was hit
+    }
+
+    interactiveLayerBehaviour.updateStateTo(
+      InteractiveSelectedToolState(
+        selected: hitDrawing,
+        interactiveLayerBehaviour: interactiveLayerBehaviour,
+        showFloatingMenu: true,
+      ),
+      StateChangeAnimationDirection.forward,
+      waitForAnimation: false,
+    );
+
+    return true; // A drawing was hit, floating menu is now shown.
+  }
 }

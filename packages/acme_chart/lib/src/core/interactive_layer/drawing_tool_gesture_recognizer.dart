@@ -98,7 +98,11 @@ class DrawingToolGestureRecognizer extends OneSequenceGestureRecognizer {
     _globalStartPosition = event.position;
     _localStartPosition = event.localPosition;
     _startTimeStamp = event.timeStamp;
-    _isDrawingToolHit = hitTest(event.localPosition);
+    // Only claim primary-button (left click / touch) pointers so a
+    // secondary-button (right-click) pointer down on a drawing falls through
+    // to the arena's other members, e.g. TapGestureRecognizer.onSecondaryTapUp.
+    final bool isPrimaryButton = event.buttons & kPrimaryButton != 0;
+    _isDrawingToolHit = isPrimaryButton && hitTest(event.localPosition);
     _longPressDetected = false;
     _hasMovedSignificantly = false;
 
