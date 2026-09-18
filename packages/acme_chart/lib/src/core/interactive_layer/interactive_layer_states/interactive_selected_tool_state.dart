@@ -4,7 +4,6 @@ import '../../../core/interactive_layer/interactive_layer.dart';
 import '../../../theme/painting_styles/line_style.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/widgets.dart';
 
 import '../helpers/types.dart';
 import '../interactable_drawings/drawing_v2.dart';
