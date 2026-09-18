@@ -219,6 +219,52 @@ class Chart extends StatefulWidget {
       kIsWeb ? _ChartStateWeb() : _ChartStateMobile(); // ignore: no_logic_in_create_state
 }
 
+/// Caches the [Series] list built from an [IndicatorConfig] list, keyed by
+/// config/candle-list identity (not `==`, since some subclasses don't
+/// implement it) and granularity.
+class _IndicatorSeriesCache {
+  List<IndicatorConfig>? _configs;
+  List<Object?>? _input;
+  int? _granularity;
+  List<Series>? _result;
+
+  List<Series>? get(
+    List<IndicatorConfig> configs,
+    List<Object?> input,
+    int granularity,
+    List<Series>? Function() compute,
+  ) {
+    if (_configs != null &&
+        identical(_input, input) &&
+        _granularity == granularity &&
+        _sameConfigs(_configs!, configs)) {
+      return _result;
+    }
+
+    final List<Series>? result = compute();
+    _configs = configs;
+    _input = input;
+    _granularity = granularity;
+    _result = result;
+    return result;
+  }
+
+  bool _sameConfigs(List<IndicatorConfig> a, List<IndicatorConfig> b) {
+    if (identical(a, b)) {
+      return true;
+    }
+    if (a.length != b.length) {
+      return false;
+    }
+    for (int i = 0; i < a.length; i++) {
+      if (!identical(a[i], b[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+
 // ignore: prefer_mixin
 abstract class _ChartState extends State<Chart> with WidgetsBindingObserver {
   bool? _followCurrentTick;
@@ -226,6 +272,9 @@ abstract class _ChartState extends State<Chart> with WidgetsBindingObserver {
   late ChartTheme _chartTheme;
   late List<Series>? bottomSeries;
   int? expandedIndex;
+
+  final _IndicatorSeriesCache _overlaySeriesCache = _IndicatorSeriesCache();
+  final _IndicatorSeriesCache _bottomSeriesCache = _IndicatorSeriesCache();
 
   @override
   void initState() {
@@ -244,18 +293,28 @@ abstract class _ChartState extends State<Chart> with WidgetsBindingObserver {
     _controller = widget.controller ?? ChartController();
   }
 
-  List<Series>? _getIndicatorSeries(List<IndicatorConfig>? configs) {
+  /// Memoized via [cache] since rebuilding the indicator graph can trigger a
+  /// full, synchronous recomputation per indicator.
+  List<Series>? _getIndicatorSeries(
+    List<IndicatorConfig>? configs,
+    _IndicatorSeriesCache cache,
+  ) {
     if (configs == null) {
       return null;
     }
 
-    return configs
-        .map(
-          (IndicatorConfig indicatorConfig) => indicatorConfig.getSeries(
-            IndicatorInput(widget.mainSeries.input, widget.granularity),
-          ),
-        )
-        .toList();
+    return cache.get(
+      configs,
+      widget.mainSeries.input,
+      widget.granularity,
+      () => configs
+          .map(
+            (IndicatorConfig indicatorConfig) => indicatorConfig.getSeries(
+              IndicatorInput(widget.mainSeries.input, widget.granularity),
+            ),
+          )
+          .toList(),
+    );
   }
 
   void _initChartTheme() {
@@ -305,10 +364,12 @@ abstract class _ChartState extends State<Chart> with WidgetsBindingObserver {
 
     final List<Series>? overlaySeries = _getIndicatorSeries(
       widget.overlayConfigs,
+      _overlaySeriesCache,
     );
 
     final List<Series>? bottomSeries = _getIndicatorSeries(
       widget.bottomConfigs,
+      _bottomSeriesCache,
     );
 
     final List<ChartData> chartDataList = <ChartData>[

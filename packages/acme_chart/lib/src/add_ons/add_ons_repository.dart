@@ -120,6 +120,20 @@ class AddOnsRepository<T extends AddOnConfig> extends ChangeNotifier
     notifyListeners();
   }
 
+  /// Replaces all items with [configs] and updates storage, notifying
+  /// listeners once instead of once per item.
+  @override
+  void replaceAll(List<T> configs) {
+    items
+      ..clear()
+      ..addAll(configs);
+    _hiddenStatus
+      ..clear()
+      ..addAll(List<bool>.filled(configs.length, false));
+    _writeToPrefs();
+    notifyListeners();
+  }
+
   /// Removes indicator/drawing tool at [index] from repository and
   /// updates storage.
   @override

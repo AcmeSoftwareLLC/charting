@@ -8,6 +8,10 @@ abstract class Repository<T> extends ChangeNotifier {
   /// To adds a new indicator or drawing tool.
   void add(T config);
 
+  /// Replaces all items with [configs] in a single update, notifying
+  /// listeners once instead of once per item.
+  void replaceAll(List<T> configs);
+
   /// Edits an existing indicator or drawing tool at the specified [index].
   /// This method allows you to modify the settings and properties of the
   /// indicator or tool

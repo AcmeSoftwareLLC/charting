@@ -1,3 +1,9 @@
+## 1.0.9
+**September 18, 2026**
+
+- Added `Repository.replaceAll` / `AddOnsRepository.replaceAll` to replace all configs in one update, notifying listeners once.
+- `Chart` now caches indicator `Series` to skip recomputation on unrelated rebuilds.
+
 ## 1.0.8
 **September 14, 2026**
 
