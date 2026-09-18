@@ -167,6 +167,32 @@ abstract class InteractiveState {
     // Subclasses can override this to provide specific duplicate handling logic
     return false;
   }
+
+  /// Handles a key press cycling the selected drawing tool's line color.
+  /// Returns true if a drawing tool's color was changed, false otherwise.
+  bool onCycleColorKey() {
+    // Default implementation returns false
+    // Subclasses can override this to provide specific color-cycling logic
+    return false;
+  }
+
+  /// Handles a key press increasing the selected drawing tool's line
+  /// thickness. Returns true if a drawing tool's thickness was changed,
+  /// false otherwise.
+  bool onThickenKey() {
+    // Default implementation returns false
+    // Subclasses can override this to provide specific thickening logic
+    return false;
+  }
+
+  /// Handles a key press decreasing the selected drawing tool's line
+  /// thickness. Returns true if a drawing tool's thickness was changed,
+  /// false otherwise.
+  bool onThinKey() {
+    // Default implementation returns false
+    // Subclasses can override this to provide specific thinning logic
+    return false;
+  }
 }
 
 /// Extension that provides utility methods for interactive states.

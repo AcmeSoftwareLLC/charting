@@ -559,8 +559,11 @@ class _InteractiveLayerGestureHandlerState
     );
   }
 
-  /// Deletes the selected drawing tool on Delete/Backspace, and duplicates it
-  /// on Ctrl/Cmd+D.
+  /// Keyboard shortcuts for the selected drawing tool:
+  /// * Delete/Backspace deletes it.
+  /// * Ctrl/Cmd+D duplicates it.
+  /// * C cycles its line color.
+  /// * ] / [ thickens / thins its line.
   KeyEventResult _handleKeyEvent(FocusNode node, KeyEvent event) {
     if (event is! KeyDownEvent) {
       return KeyEventResult.ignored;
@@ -568,15 +571,22 @@ class _InteractiveLayerGestureHandlerState
 
     final InteractiveState currentState =
         widget.interactiveLayerBehaviour.currentState;
+    final LogicalKeyboardKey key = event.logicalKey;
 
     final bool handled;
-    if (event.logicalKey == LogicalKeyboardKey.delete ||
-        event.logicalKey == LogicalKeyboardKey.backspace) {
+    if (key == LogicalKeyboardKey.delete ||
+        key == LogicalKeyboardKey.backspace) {
       handled = currentState.onDeleteKey();
-    } else if (event.logicalKey == LogicalKeyboardKey.keyD &&
+    } else if (key == LogicalKeyboardKey.keyD &&
         (HardwareKeyboard.instance.isControlPressed ||
             HardwareKeyboard.instance.isMetaPressed)) {
       handled = currentState.onDuplicateKey();
+    } else if (key == LogicalKeyboardKey.keyC) {
+      handled = currentState.onCycleColorKey();
+    } else if (key == LogicalKeyboardKey.bracketRight) {
+      handled = currentState.onThickenKey();
+    } else if (key == LogicalKeyboardKey.bracketLeft) {
+      handled = currentState.onThinKey();
     } else {
       return KeyEventResult.ignored;
     }

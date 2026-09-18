@@ -68,6 +68,7 @@ class TradeRatioDrawingToolConfig extends DrawingToolConfig {
         ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Style of the diagonal line connecting the two anchor points.
+  @override
   final LineStyle lineStyle;
 
   /// Unused by this tool; kept for parity with the shared `copyWith` surface

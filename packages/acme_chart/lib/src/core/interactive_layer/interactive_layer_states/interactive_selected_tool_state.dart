@@ -1,6 +1,7 @@
 import '../../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
 import '../../../core/chart/data_visualization/drawing_tools/data_model/edge_point.dart';
 import '../../../core/interactive_layer/interactive_layer.dart';
+import '../../../theme/painting_styles/line_style.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
@@ -28,6 +29,12 @@ class InteractiveSelectedToolState extends InteractiveState
   /// Pixel offset applied to a cloned drawing's points so it doesn't land
   /// in a perfect overlap on top of the original it was cloned from.
   static const double _clonePixelOffset = 20;
+
+  /// Colors cycled through by [onCycleColorKey].
+  static const List<Color> _colorCycle = Colors.primaries;
+
+  /// Discrete thickness steps cycled through by [onThickenKey]/[onThinKey].
+  static const List<double> _thicknessSteps = <double>[1, 2, 3, 4];
 
   /// Initializes the state with the interactive layer and the [selected] tool.
   ///
@@ -256,6 +263,52 @@ class InteractiveSelectedToolState extends InteractiveState
   bool onDuplicateKey() {
     _cloneSelected();
     return true;
+  }
+
+  @override
+  bool onCycleColorKey() {
+    final LineStyle currentStyle = selected.config.lineStyle;
+    final int currentIndex = _colorCycle.indexWhere(
+      (Color color) => color.toARGB32() == currentStyle.color.toARGB32(),
+    );
+    final Color nextColor =
+        _colorCycle[(currentIndex + 1) % _colorCycle.length];
+
+    _updateLineStyle(currentStyle.copyWith(color: nextColor));
+    return true;
+  }
+
+  @override
+  bool onThickenKey() {
+    _stepThickness(1);
+    return true;
+  }
+
+  @override
+  bool onThinKey() {
+    _stepThickness(-1);
+    return true;
+  }
+
+  void _stepThickness(int direction) {
+    final LineStyle currentStyle = selected.config.lineStyle;
+    final int currentIndex = _thicknessSteps.indexOf(currentStyle.thickness);
+    final int nextIndex = (currentIndex == -1 ? 0 : currentIndex + direction)
+        .clamp(0, _thicknessSteps.length - 1);
+
+    _updateLineStyle(
+      currentStyle.copyWith(thickness: _thicknessSteps[nextIndex]),
+    );
+  }
+
+  /// Applies [lineStyle] to [selected] and persists the change.
+  void _updateLineStyle(LineStyle lineStyle) {
+    final DrawingToolConfig updated = selected.config.copyWith(
+      lineStyle: lineStyle,
+    );
+    selected.config = updated;
+    interactiveLayer.saveDrawing(updated);
+    interactiveLayerBehaviour.onUpdate();
   }
 
   /// Deselects [selected] and removes it from the layer.

@@ -37,6 +37,7 @@ class RayDrawingToolConfig extends DrawingToolConfig {
         ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
+  @override
   final LineStyle lineStyle;
 
   /// Drawing tool line pattern: 'solid', 'dotted', 'dashed'

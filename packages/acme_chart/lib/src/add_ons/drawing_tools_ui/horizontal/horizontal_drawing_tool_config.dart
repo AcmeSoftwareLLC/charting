@@ -50,6 +50,7 @@ class HorizontalDrawingToolConfig extends DrawingToolConfig {
         ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
+  @override
   final LineStyle lineStyle;
 
   /// The style of the label showing on y-axis when the tools is selected.

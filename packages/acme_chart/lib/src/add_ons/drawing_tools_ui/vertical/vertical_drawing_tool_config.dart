@@ -50,6 +50,7 @@ class VerticalDrawingToolConfig extends DrawingToolConfig {
         ..putIfAbsent(DrawingToolConfig.nameKey, () => name);
 
   /// Drawing tool line style
+  @override
   final LineStyle lineStyle;
 
   /// The style of the label showing on x-axis when the tool is selected.

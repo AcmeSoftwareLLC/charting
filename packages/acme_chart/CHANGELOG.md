@@ -3,6 +3,7 @@
 
 - Pressing Delete/Backspace now deletes the currently selected drawing tool.
 - Pressing Ctrl/Cmd+D now duplicates the currently selected drawing tool.
+- Pressing C now cycles the selected drawing tool's line color, and `]`/`[` thicken/thin its line.
 
 ## 1.0.9
 **September 18, 2026**

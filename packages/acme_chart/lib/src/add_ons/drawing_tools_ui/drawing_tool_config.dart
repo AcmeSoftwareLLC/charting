@@ -80,6 +80,9 @@ abstract class DrawingToolConfig extends AddOnConfig {
   /// Drawing tool edge points.
   final List<EdgePoint> edgePoints;
 
+  /// The line style (color, thickness) of this drawing tool.
+  LineStyle get lineStyle;
+
   /// Key of drawing tool name property in JSON.
   static const String nameKey = 'name';
 

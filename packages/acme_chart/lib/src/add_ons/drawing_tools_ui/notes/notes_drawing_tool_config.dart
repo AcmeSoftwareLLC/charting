@@ -56,6 +56,7 @@ class NotesDrawingToolConfig extends DrawingToolConfig {
   final String text;
 
   /// Border style of the note box.
+  @override
   final LineStyle lineStyle;
 
   /// Background fill style of the note box.
