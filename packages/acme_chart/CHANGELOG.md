@@ -2,6 +2,7 @@
 **September 18, 2026**
 
 - Pressing Delete/Backspace now deletes the currently selected drawing tool.
+- Pressing Ctrl/Cmd+D now duplicates the currently selected drawing tool.
 
 ## 1.0.9
 **September 18, 2026**

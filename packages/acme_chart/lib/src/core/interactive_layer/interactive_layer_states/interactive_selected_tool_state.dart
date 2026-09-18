@@ -252,6 +252,12 @@ class InteractiveSelectedToolState extends InteractiveState
     return true;
   }
 
+  @override
+  bool onDuplicateKey() {
+    _cloneSelected();
+    return true;
+  }
+
   /// Deselects [selected] and removes it from the layer.
   void _removeSelected() {
     interactiveLayerBehaviour.updateStateTo(
@@ -263,6 +269,22 @@ class InteractiveSelectedToolState extends InteractiveState
     );
 
     interactiveLayer.removeDrawing(selected.config);
+  }
+
+  /// Adds a copy of [selected], offset so it doesn't perfectly overlap the
+  /// original.
+  void _cloneSelected() {
+    final DrawingToolConfig config = selected.config;
+    final List<EdgePoint> clonedPoints = config.edgePoints
+        .map(
+          (point) => EdgePoint(
+            epoch: epochFromX(epochToX(point.epoch) + _clonePixelOffset),
+            quote: quoteFromY(quoteToY(point.quote) + _clonePixelOffset),
+          ),
+        )
+        .toList();
+
+    interactiveLayer.addDrawing(config.copyWith(edgePoints: clonedPoints));
   }
 
   @override
@@ -300,16 +322,7 @@ class InteractiveSelectedToolState extends InteractiveState
         return;
       }
 
-      final List<EdgePoint> clonedPoints = config.edgePoints
-          .map(
-            (point) => EdgePoint(
-              epoch: epochFromX(epochToX(point.epoch) + _clonePixelOffset),
-              quote: quoteFromY(quoteToY(point.quote) + _clonePixelOffset),
-            ),
-          )
-          .toList();
-
-      interactiveLayer.addDrawing(config.copyWith(edgePoints: clonedPoints));
+      _cloneSelected();
     },
   );
 }

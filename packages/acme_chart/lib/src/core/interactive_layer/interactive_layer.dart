@@ -35,6 +35,7 @@ import 'interactive_layer_base.dart';
 import 'enums/state_change_direction.dart';
 import 'interactive_layer_behaviours/interactive_layer_behaviour.dart';
 import 'interactive_layer_states/interactive_normal_state.dart';
+import 'interactive_layer_states/interactive_state.dart';
 
 /// Defines the different interaction modes for the interactive layer.
 ///
@@ -558,19 +559,28 @@ class _InteractiveLayerGestureHandlerState
     );
   }
 
-  /// Deletes the selected drawing tool when Delete/Backspace is pressed.
+  /// Deletes the selected drawing tool on Delete/Backspace, and duplicates it
+  /// on Ctrl/Cmd+D.
   KeyEventResult _handleKeyEvent(FocusNode node, KeyEvent event) {
     if (event is! KeyDownEvent) {
       return KeyEventResult.ignored;
     }
 
-    if (event.logicalKey != LogicalKeyboardKey.delete &&
-        event.logicalKey != LogicalKeyboardKey.backspace) {
+    final InteractiveState currentState =
+        widget.interactiveLayerBehaviour.currentState;
+
+    final bool handled;
+    if (event.logicalKey == LogicalKeyboardKey.delete ||
+        event.logicalKey == LogicalKeyboardKey.backspace) {
+      handled = currentState.onDeleteKey();
+    } else if (event.logicalKey == LogicalKeyboardKey.keyD &&
+        (HardwareKeyboard.instance.isControlPressed ||
+            HardwareKeyboard.instance.isMetaPressed)) {
+      handled = currentState.onDuplicateKey();
+    } else {
       return KeyEventResult.ignored;
     }
 
-    final bool handled = widget.interactiveLayerBehaviour.currentState
-        .onDeleteKey();
     return handled ? KeyEventResult.handled : KeyEventResult.ignored;
   }
 

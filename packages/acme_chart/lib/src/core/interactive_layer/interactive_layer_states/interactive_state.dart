@@ -159,6 +159,14 @@ abstract class InteractiveState {
     // Subclasses can override this to provide specific delete handling logic
     return false;
   }
+
+  /// Handles a Ctrl/Cmd+D key press.
+  /// Returns true if a drawing tool was duplicated, false otherwise.
+  bool onDuplicateKey() {
+    // Default implementation returns false
+    // Subclasses can override this to provide specific duplicate handling logic
+    return false;
+  }
 }
 
 /// Extension that provides utility methods for interactive states.
