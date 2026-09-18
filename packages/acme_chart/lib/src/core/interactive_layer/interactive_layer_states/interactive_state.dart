@@ -151,6 +151,14 @@ abstract class InteractiveState {
     // Subclasses can override this to provide specific long press end handling logic
     return false;
   }
+
+  /// Handles a Delete/Backspace key press.
+  /// Returns true if a drawing tool was deleted, false otherwise.
+  bool onDeleteKey() {
+    // Default implementation returns false
+    // Subclasses can override this to provide specific delete handling logic
+    return false;
+  }
 }
 
 /// Extension that provides utility methods for interactive states.

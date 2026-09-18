@@ -18,6 +18,7 @@ import '../../models/axis_range.dart';
 import '../../models/chart_config.dart';
 import '../../theme/chart_theme.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
@@ -385,6 +386,8 @@ class _InteractiveLayerGestureHandlerState
   // Custom gesture recognizer for drawing tools
   late DrawingToolGestureRecognizer _drawingToolGestureRecognizer;
 
+  final FocusNode _focusNode = FocusNode(debugLabel: 'InteractiveLayer');
+
   @override
   void initState() {
     super.initState();
@@ -503,52 +506,72 @@ class _InteractiveLayerGestureHandlerState
           hitTest: widget.interactiveLayerBehaviour.hitTestDrawings,
           onCrosshairCancel: _cancelCrosshair,
         );
-        return MouseRegion(
-          onHover: (event) => _handleHover(event, xAxis),
-          onExit: _handleExit,
-          cursor: _mouseCursor,
-          child: RawGestureDetector(
-            gestures: <Type, GestureRecognizerFactory>{
-              // Configure tap recognizer
-              TapGestureRecognizer:
-                  GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
-                    () => TapGestureRecognizer(),
-                    (TapGestureRecognizer instance) {
+        return Focus(
+          focusNode: _focusNode,
+          onKeyEvent: _handleKeyEvent,
+          child: MouseRegion(
+            onHover: (event) => _handleHover(event, xAxis),
+            onExit: _handleExit,
+            cursor: _mouseCursor,
+            child: RawGestureDetector(
+              gestures: <Type, GestureRecognizerFactory>{
+                // Configure tap recognizer
+                TapGestureRecognizer:
+                    GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
+                      () => TapGestureRecognizer(),
+                      (TapGestureRecognizer instance) {
+                        instance
+                          ..onTapUp = _handleTapUp
+                          ..onSecondaryTapUp = _handleSecondaryTapUp;
+                      },
+                    ),
+
+                // Configure our custom drawing tool gesture recognizer
+                DrawingToolGestureRecognizer:
+                    GestureRecognizerFactoryWithHandlers<
+                      DrawingToolGestureRecognizer
+                    >(() => _drawingToolGestureRecognizer, (
+                      DrawingToolGestureRecognizer instance,
+                    ) {
+                      // Configuration is done in the reset method
+                    }),
+
+                // Configure long press recognizer
+                LongPressGestureRecognizer:
+                    GestureRecognizerFactoryWithHandlers<
+                      LongPressGestureRecognizer
+                    >(() => LongPressGestureRecognizer(), (
+                      LongPressGestureRecognizer instance,
+                    ) {
                       instance
-                        ..onTapUp = _handleTapUp
-                        ..onSecondaryTapUp = _handleSecondaryTapUp;
-                    },
-                  ),
-
-              // Configure our custom drawing tool gesture recognizer
-              DrawingToolGestureRecognizer:
-                  GestureRecognizerFactoryWithHandlers<
-                    DrawingToolGestureRecognizer
-                  >(() => _drawingToolGestureRecognizer, (
-                    DrawingToolGestureRecognizer instance,
-                  ) {
-                    // Configuration is done in the reset method
-                  }),
-
-              // Configure long press recognizer
-              LongPressGestureRecognizer:
-                  GestureRecognizerFactoryWithHandlers<
-                    LongPressGestureRecognizer
-                  >(() => LongPressGestureRecognizer(), (
-                    LongPressGestureRecognizer instance,
-                  ) {
-                    instance
-                      ..onLongPressStart = _handleLongPressStart
-                      ..onLongPressMoveUpdate = _handleLongPressMoveUpdate
-                      ..onLongPressEnd = _handleLongPressEnd;
-                  }),
-            },
-            behavior: HitTestBehavior.opaque,
-            child: Stack(children: [_buildDrawingsLayer(context, xAxis)]),
+                        ..onLongPressStart = _handleLongPressStart
+                        ..onLongPressMoveUpdate = _handleLongPressMoveUpdate
+                        ..onLongPressEnd = _handleLongPressEnd;
+                    }),
+              },
+              behavior: HitTestBehavior.opaque,
+              child: Stack(children: [_buildDrawingsLayer(context, xAxis)]),
+            ),
           ),
         );
       },
     );
+  }
+
+  /// Deletes the selected drawing tool when Delete/Backspace is pressed.
+  KeyEventResult _handleKeyEvent(FocusNode node, KeyEvent event) {
+    if (event is! KeyDownEvent) {
+      return KeyEventResult.ignored;
+    }
+
+    if (event.logicalKey != LogicalKeyboardKey.delete &&
+        event.logicalKey != LogicalKeyboardKey.backspace) {
+      return KeyEventResult.ignored;
+    }
+
+    final bool handled = widget.interactiveLayerBehaviour.currentState
+        .onDeleteKey();
+    return handled ? KeyEventResult.handled : KeyEventResult.ignored;
   }
 
   Widget _buildDrawingsLayer(
@@ -685,6 +708,7 @@ class _InteractiveLayerGestureHandlerState
     _interactionNotifier.dispose();
     _stateChangeController.dispose();
     _drawingToolGestureRecognizer.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -724,6 +748,7 @@ class _InteractiveLayerGestureHandlerState
     // The custom gesture recognizer has already determined that a drawing was hit,
     // so we don't need to check again with widget.interactiveLayerBehaviour.onPanStart(details);
     // Just delegate to the interactive state and update the mode
+    _focusNode.requestFocus();
     widget.interactiveLayerBehaviour.onPanStart(details);
     _updateInteractionMode(InteractionMode.drawingTool);
 
@@ -839,6 +864,7 @@ class _InteractiveLayerGestureHandlerState
 
   // Tap handler
   void _handleTapUp(TapUpDetails details) {
+    _focusNode.requestFocus();
     final bool hitDrawing = widget.interactiveLayerBehaviour.onTap(details);
 
     _updateInteractionMode(

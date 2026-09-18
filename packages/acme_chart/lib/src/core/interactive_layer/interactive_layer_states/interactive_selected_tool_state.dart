@@ -247,6 +247,25 @@ class InteractiveSelectedToolState extends InteractiveState
   }
 
   @override
+  bool onDeleteKey() {
+    _removeSelected();
+    return true;
+  }
+
+  /// Deselects [selected] and removes it from the layer.
+  void _removeSelected() {
+    interactiveLayerBehaviour.updateStateTo(
+      InteractiveNormalState(
+        interactiveLayerBehaviour: interactiveLayerBehaviour,
+      ),
+      StateChangeAnimationDirection.backward,
+      waitForAnimation: false,
+    );
+
+    interactiveLayer.removeDrawing(selected.config);
+  }
+
+  @override
   List<Widget> get previewWidgets => [
     ?_buildSelectedDrawingOverlay(),
     if (showFloatingMenu) _buildSelectedDrawingFloatingMenu(),
@@ -274,15 +293,7 @@ class InteractiveSelectedToolState extends InteractiveState
         return;
       }
 
-      interactiveLayerBehaviour.updateStateTo(
-        InteractiveNormalState(
-          interactiveLayerBehaviour: interactiveLayerBehaviour,
-        ),
-        StateChangeAnimationDirection.backward,
-        waitForAnimation: false,
-      );
-
-      interactiveLayer.removeDrawing(config);
+      _removeSelected();
     },
     onCloneDrawing: (config) {
       if (selected.id != config.configId) {
