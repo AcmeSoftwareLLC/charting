@@ -5,8 +5,7 @@ import '../../../models/tick.dart';
 import '../../chart/data_visualization/chart_data.dart';
 import '../crosshair/find.dart';
 
-/// Snaps [position] onto the nearest OHLC point of the candle under it,
-/// mirroring ChartIQ's `magnetize()`.
+/// Snaps [position] onto the nearest OHLC point of the candle under it.
 ///
 /// The x moves to the candle's own x, the y to whichever of its open / high /
 /// low / close is nearest *in pixels* — nearest on screen, not in price, so it

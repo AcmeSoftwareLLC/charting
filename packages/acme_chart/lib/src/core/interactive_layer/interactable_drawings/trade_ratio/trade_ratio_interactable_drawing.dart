@@ -180,12 +180,6 @@ class TradeRatioInteractableDrawing
     final List<_ProjectedLevel> levels = <_ProjectedLevel>[];
     for (int i = 0; i < config.levels.length; i++) {
       final double percent = config.levels[i];
-      // Matches ChartIQ's `retracement` tool: 0% sits at the start anchor
-      // (the entry). Positive percentages extend past the start anchor,
-      // away from the end anchor (e.g. 100% is one full span beyond the
-      // start, on the opposite side from the end anchor). Negative
-      // percentages extend past the end anchor instead, continuing in the
-      // same direction as the start->end move.
       final double price = startQuote - span * (percent / 100);
       final double y = quoteToY(price);
 

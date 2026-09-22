@@ -924,15 +924,10 @@ class _InteractiveLayerGestureHandlerState
   /// [position] snapped to the nearest OHLC point of the candle under it when
   /// the magnet is on, otherwise unchanged.
   ///
-  /// Snapping the pointer position itself — rather than the quote the drawing
-  /// derives from it — is what makes the preview line, the alignment guides
-  /// and the placed point all land on the same magnet point, since they all
-  /// read the position this returns.
-  ///
-  /// Like ChartIQ's `magnetize()` this only applies while a tool is being
-  /// placed: repositioning an existing drawing is never magnetized (ChartIQ
-  /// returns early on `repositioningDrawing`), and neither is a freehand
-  /// doodle, whose stroke samples aren't aiming at candle points.
+  /// Snapping the pointer position itself, rather than the quote the drawing
+  /// derives from it, is what makes the preview line, the alignment guides,
+  /// and the placed point all land on the same magnet point. Only applies
+  /// while a tool is being placed — not to repositioning or doodles.
   Offset _magnetized(Offset position) {
     if (!widget.chartConfig.magnetEnabled) {
       _magnetPoint = null;

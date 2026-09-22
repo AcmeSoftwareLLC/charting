@@ -11,28 +11,20 @@ import 'measure_adding_preview_desktop.dart';
 
 /// Interactable drawing implementation for the measure drawing tool.
 ///
-/// It's a [SegmentInteractableDrawing] through and through — same geometry,
-/// hit-test, drag, toolbar — so it's rendered and edited exactly like a
-/// Segment. Unlike an earlier version of this tool, it does *not* become a
-/// plain segment once placed: [MeasureDrawingToolConfig] extends
-/// [SegmentDrawingToolConfig] rather than discarding its identity, so
-/// [getUpdatedConfig] (inherited from [SegmentInteractableDrawing]
-/// unmodified) still persists a genuine [MeasureDrawingToolConfig] across
-/// reloads, and picking the tool again keeps its placement behaviour.
+/// A [SegmentInteractableDrawing] through and through — same geometry,
+/// hit-test, drag, toolbar — so it renders and edits exactly like a Segment.
+/// [MeasureDrawingToolConfig] extends [SegmentDrawingToolConfig] rather than
+/// discarding its identity once placed, so reloading keeps it a genuine
+/// measure drawing.
 ///
-/// The one thing "measure" changes is what's shown *while it's being placed*:
+/// What "measure" changes is the placement preview:
 /// [getAddingPreviewForDesktopBehaviour] swaps in
-/// [MeasureAddingPreviewDesktop], which overlays a live price difference /
-/// percentage change / bar count label next to the preview line.
-/// [getAddingPreviewForMobileBehaviour] reuses [SegmentAddingPreviewMobile]
-/// unchanged, since mobile completes placement immediately with no
-/// equivalent "measuring" window.
+/// [MeasureAddingPreviewDesktop] for a live price-diff/percent/bar-count
+/// label; [getAddingPreviewForMobileBehaviour] reuses
+/// [SegmentAddingPreviewMobile] unchanged, since mobile places instantly.
 ///
-/// Once placed it paints nothing beyond the segment itself. The measurement
-/// readout for a finished drawing belongs to the embedding app's chart HUD —
-/// as in ChartIQ, where `setMeasure` writes into a fixed chart info
-/// container rather than onto the canvas — so that hovering any drawing can
-/// report it in one consistent place.
+/// Once placed it paints nothing beyond the segment itself — the readout is
+/// the embedding app's, in its chart HUD, not on the canvas.
 class MeasureInteractableDrawing extends SegmentInteractableDrawing {
   /// Initializes [MeasureInteractableDrawing].
   MeasureInteractableDrawing({

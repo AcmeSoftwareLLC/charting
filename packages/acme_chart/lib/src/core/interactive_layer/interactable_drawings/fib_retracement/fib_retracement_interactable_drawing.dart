@@ -40,8 +40,8 @@ class _FibLevel {
 }
 
 /// The nine levels a Fibonacci retracement is conventionally drawn with, in
-/// ascending order (used to pick adjacent pairs for the shaded bands between
-/// them). Matches ChartIQ's `fibRetracement` recommended levels.
+/// ascending order (used to pick adjacent pairs for the shaded bands
+/// between them).
 const List<_FibLevel> _fibRetracementLevels = <_FibLevel>[
   _FibLevel(0, '0%'),
   _FibLevel(0.236, '23.6%'),
