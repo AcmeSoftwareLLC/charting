@@ -57,7 +57,7 @@ class HorizontalBarrierPainter<T extends HorizontalBarrier>
 
     _paint = Paint()
       ..style = PaintingStyle.fill
-      ..strokeWidth = 1
+      ..strokeWidth = style.lineWidth
       ..color = style.color;
 
     BarrierArrowType arrowType = BarrierArrowType.none;
@@ -267,7 +267,7 @@ class HorizontalBarrierPainter<T extends HorizontalBarrier>
         mainLineStartX,
         y,
         style.lineColor,
-        1,
+        style.lineWidth,
       );
     } else {
       _paint.color = style.lineColor;

@@ -28,7 +28,7 @@ class TradeRatioAddingPreviewDesktop
     onAddingStateChange(AddingStateInfo(0, 2));
   }
 
-  Offset? _hoverPosition;
+  EdgePoint? _hoverPoint;
 
   @override
   String get id => 'trade-ratio-adding-preview-desktop';
@@ -44,7 +44,10 @@ class TradeRatioAddingPreviewDesktop
     EpochToX epochToX,
     QuoteToY quoteToY,
   ) {
-    _hoverPosition = event.localPosition;
+    _hoverPoint = EdgePoint(
+      epoch: epochFromX(event.localPosition.dx),
+      quote: quoteFromY(event.localPosition.dy),
+    );
   }
 
   @override
@@ -72,23 +75,28 @@ class TradeRatioAddingPreviewDesktop
 
     drawFocusedCircle(paintStyle, lineStyle, canvas, startOffset, 10, 3);
 
-    if (_hoverPosition != null) {
-      canvas.drawPath(
-        dashPath(
-          Path()
-            ..moveTo(startOffset.dx, startOffset.dy)
-            ..lineTo(_hoverPosition!.dx, _hoverPosition!.dy),
-          dashArray: CircularIntervalList<double>(<double>[2, 2]),
-        ),
-        Paint()
-          ..color = lineStyle.color
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = lineStyle.thickness,
-      );
+    final EdgePoint? hoverPoint = _hoverPoint;
+    if (hoverPoint != null && interactableDrawing.endPoint == null) {
+      try {
+        interactableDrawing.endPoint = hoverPoint;
+        interactableDrawing.paint(
+          canvas,
+          size,
+          epochToX,
+          quoteToY,
+          animationInfo,
+          chartConfig,
+          chartTheme,
+          getDrawingState,
+        );
+      } finally {
+        interactableDrawing.endPoint = null;
+      }
+
       drawPointAlignmentGuides(
         canvas,
         size,
-        _hoverPosition!,
+        Offset(epochToX(hoverPoint.epoch), quoteToY(hoverPoint.quote)),
         lineColor: lineStyle.color,
       );
     }

@@ -54,6 +54,7 @@ class HorizontalBarrierStyle extends BarrierStyle {
     this.hasLine = true,
     this.labelShapeBackgroundColor = const Color(0xFF000000),
     this.lineColor = const Color(0xFF000000),
+    this.lineWidth = 1,
     super.textStyle,
   }) : blinkingDotColor = blinkingDotColor ?? color;
 
@@ -104,6 +105,9 @@ class HorizontalBarrierStyle extends BarrierStyle {
   /// Color of the line.
   final Color lineColor;
 
+  /// Stroke width of the barrier line, dashed or solid.
+  final double lineWidth;
+
   /// Creates a copy of this object.
   HorizontalBarrierStyle copyWith({
     LabelShape? labelShape,
@@ -121,6 +125,7 @@ class HorizontalBarrierStyle extends BarrierStyle {
     bool? hasLine,
     Color? labelShapeBackgroundColor,
     Color? lineColor,
+    double? lineWidth,
   }) => HorizontalBarrierStyle(
     labelShape: labelShape ?? this.labelShape,
     labelHeight: labelHeight ?? this.labelHeight,
@@ -140,11 +145,12 @@ class HorizontalBarrierStyle extends BarrierStyle {
     labelShapeBackgroundColor:
         labelShapeBackgroundColor ?? this.labelShapeBackgroundColor,
     lineColor: lineColor ?? this.lineColor,
+    lineWidth: lineWidth ?? this.lineWidth,
   );
 
   @override
   String toString() =>
-      '${super.toString()}, $hasBlinkingDot $labelShape $labelShapeBackgroundColor $lineColor';
+      '${super.toString()}, $hasBlinkingDot $labelShape $labelShapeBackgroundColor $lineColor $lineWidth';
 }
 
 /// Vertical barrier style.

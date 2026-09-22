@@ -465,7 +465,12 @@ class TradeRatioInteractableDrawing
         textDirection: TextDirection.ltr,
       )..layout();
 
-      final double labelX = min(level.nearX, farX) + tradeRatioLabelPadding;
+      final double lineNearX = min(level.nearX, farX);
+      final double labelX =
+          (lineNearX - labelPainter.width - tradeRatioLabelPadding).clamp(
+            tradeRatioLabelPadding,
+            double.infinity,
+          );
       // Sit just above the line rather than centered on it — centering
       // makes the line cut straight through the text.
       labelPainter.paint(

@@ -22,10 +22,12 @@ part 'measure_drawing_tool_config.g.dart';
 ///
 /// Unlike an earlier version of this tool, the "measure" identity is *not*
 /// discarded once placed — [name] stays `dt_measure` through
-/// [getUpdatedConfig]/persistence/reload, specifically so
-/// [MeasureInteractableDrawing]'s price-difference / percentage-change /
-/// bar-count label keeps showing on hover or selection after placement, not
-/// just during the initial drawing gesture. Extending
+/// [getUpdatedConfig]/persistence/reload, so a reloaded drawing is still a
+/// measure drawing and placing it again keeps
+/// [MeasureInteractableDrawing]'s live placement-time label. (The
+/// price-difference / percentage-change / bar-count readout for a *placed*
+/// drawing is the embedding app's, drawn in its chart HUD like ChartIQ's
+/// `setMeasure`, not on the canvas.) Extending
 /// [SegmentDrawingToolConfig] (rather than [DrawingToolConfig] directly) is
 /// what makes this possible without duplicating any of Segment's config
 /// fields or interactable-drawing logic: [MeasureInteractableDrawing]
