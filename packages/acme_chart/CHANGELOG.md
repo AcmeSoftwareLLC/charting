@@ -1,3 +1,12 @@
+## 1.0.11
+**September 21, 2026**
+
+- The magnet now snaps drawing points to a candle's nearest OHLC value, not just its time bucket, and marks the captured point with a dot. Off with no candle under the pointer, when repositioning, and for doodles.
+- Fixed magnet-snapped points landing one bar left of their candle.
+- A placed measure drawing no longer paints its readout on the canvas; the live label while placing is unchanged.
+- Trade ratio level lines now render while the second point is being placed, and their labels sit left of each line instead of overlapping it.
+- `HorizontalBarrierStyle` takes a `lineWidth` for dashed and solid lines alike, defaulting to the previous `1`.
+
 ## 1.0.10
 **September 18, 2026**
 

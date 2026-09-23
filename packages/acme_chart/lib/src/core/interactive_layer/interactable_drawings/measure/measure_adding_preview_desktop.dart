@@ -14,23 +14,21 @@ import '../../interactive_layer_states/interactive_adding_tool_state.dart';
 import 'measure_adding_preview.dart';
 
 /// The text style used for the live measurement label. It's not
-/// user-configurable — like ChartIQ's own "Measure:" HUD text, it's a fixed,
-/// transient overlay rather than a styleable part of the drawing.
+/// user-configurable — it's a fixed, transient overlay rather than a
+/// styleable part of the drawing.
 const TextStyle _measurementLabelStyle = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.normal,
   fontFamily: 'Inter',
 );
 
-/// A class to show a preview and handle adding a
-/// [MeasureInteractableDrawing] to the chart. It's for when we're on
+/// Adding preview for [MeasureInteractableDrawing] on
 /// [InteractiveLayerDesktopBehaviour].
 ///
-/// While hovering after the first point is placed, this shows a live
-/// measurement label — price difference, percentage change, and bar count —
-/// for the segment that would be created if the user clicked now, matching
-/// ChartIQ's "Measure:" HUD. The label is only ever shown here, during
-/// placement; the finished drawing (a plain segment) never carries it.
+/// While hovering after the first point is placed, shows a live measurement
+/// label (price difference, percentage change, bar count) for the segment
+/// that would be created on click. Shown only during placement; the
+/// finished drawing (a plain segment) never carries it.
 class MeasureAddingPreviewDesktop extends MeasureAddingPreview {
   /// Initializes [MeasureAddingPreviewDesktop].
   MeasureAddingPreviewDesktop({
@@ -122,17 +120,11 @@ class MeasureAddingPreviewDesktop extends MeasureAddingPreview {
     }
   }
 
-  /// Builds the "`Measure: <price diff> (<percent>%) <bar count>`" text,
-  /// matching ChartIQ's `measure` HUD exactly: the "Measure: " label prefix
-  /// comes from `ChartInfoContainer.ts` (`<span>Measure: </span><span>
-  /// ${this._measureValue}</span>`), while the value itself comes from
-  /// `ChartEventListeners.js`'s `setMeasure` hook:
-  /// `(price2 - price1).toFixed(5) + " (" + (...).toFixed(2) + "%) " + Math.abs(tick2 - tick1)`.
+  /// Builds the "`Measure: <price diff> (<percent>%) <bar count>`" text.
   ///
   /// [granularity] is the chart's bar duration in milliseconds (same units
   /// as [EdgePoint.epoch]); the bar count is estimated as the elapsed time
-  /// between the two points divided by it, which is what this drawing-tool
-  /// layer has in place of ChartIQ's actual candle-index difference.
+  /// between the two points divided by it.
   String _buildLiveMeasurementText(
     EdgePoint start,
     EdgePoint end,

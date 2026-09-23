@@ -12,7 +12,10 @@ import '../../core/interactive_layer/crosshair/crosshair_variant.dart';
 import '../../core/interactive_layer/crosshair/crosshair_widget.dart';
 import '../../core/interactive_layer/drawing_context.dart';
 import '../../core/interactive_layer/drawing_tool_gesture_recognizer.dart';
+import '../../add_ons/drawing_tools_ui/doodle/doodle_drawing_tool_config.dart';
+import '../../core/interactive_layer/helpers/magnet.dart';
 import '../../core/interactive_layer/helpers/types.dart';
+import '../../core/interactive_layer/interactive_layer_states/interactive_adding_tool_state.dart';
 import '../../core/interactive_layer/interactive_layer_states/interactive_selected_tool_state.dart';
 import '../../models/axis_range.dart';
 import '../../models/chart_config.dart';
@@ -30,6 +33,7 @@ import '../drawing_tool_chart/drawing_tools.dart';
 import 'interactable_drawings/drawing_v2.dart';
 import 'interactable_drawings/interactable_drawing.dart';
 import 'interactable_drawing_custom_painter.dart';
+import 'magnet_dot_painter.dart';
 import 'interaction_notifier.dart';
 import 'interactive_layer_base.dart';
 import 'enums/state_change_direction.dart';
@@ -384,6 +388,10 @@ class _InteractiveLayerGestureHandlerState
 
   MouseCursor _mouseCursor = SystemMouseCursors.basic;
 
+  /// Where the magnet has captured the pointer, painted as [MagnetDotPainter]'s
+  /// dot. `null` when the magnet isn't holding anything.
+  Offset? _magnetPoint;
+
   // Custom gesture recognizer for drawing tools
   late DrawingToolGestureRecognizer _drawingToolGestureRecognizer;
 
@@ -646,6 +654,17 @@ class _InteractiveLayerGestureHandlerState
                     (DrawingV2 drawing) =>
                         _buildDrawing(drawing, context, xAxis, animationValue),
                   ),
+                  if (_magnetPoint case final Offset magnetPoint?)
+                    CustomPaint(
+                      painter: MagnetDotPainter(
+                        position: magnetPoint,
+                        radius: MagnetDotPainter.radiusFor(
+                          xAxis.msPerPx == 0
+                              ? 0
+                              : widget.chartConfig.granularity / xAxis.msPerPx,
+                        ),
+                      ),
+                    ),
                   CrosshairWidget(
                     mainSeries: widget.series,
                     quoteToCanvasY: widget.quoteToY,
@@ -825,8 +844,23 @@ class _InteractiveLayerGestureHandlerState
         _mouseCursor = newMouseCursor;
       });
     }
+    final Offset localPosition = _magnetized(event.localPosition);
     final bool layerConsumingHover = widget.interactiveLayerBehaviour.onHover(
-      event,
+      localPosition == event.localPosition
+          ? event
+          : PointerHoverEvent(
+              viewId: event.viewId,
+              timeStamp: event.timeStamp,
+              kind: event.kind,
+              device: event.device,
+              // Deliberately a *local* offset in the global `position` slot:
+              // with no `transform`, `localPosition` falls back to it, which
+              // is the field the drawing layer reads. Anything added here
+              // that needs a true global position has to carry a `transform`
+              // as well — the crosshair below is given the original event
+              // precisely because it isn't magnetized.
+              position: localPosition,
+            ),
     );
 
     _interactionNotifier.notify();
@@ -876,16 +910,64 @@ class _InteractiveLayerGestureHandlerState
   }
 
   void _handleExit(PointerExitEvent event) {
+    if (_magnetPoint != null) {
+      _magnetPoint = null;
+      _interactionNotifier.notify();
+    }
+
     // Only handle exit events if we're not in drawing tool mode
     if (_currentInteractionMode != InteractionMode.drawingTool) {
       widget.crosshairController.onExit(event);
     }
   }
 
+  /// [position] snapped to the nearest OHLC point of the candle under it when
+  /// the magnet is on, otherwise unchanged.
+  ///
+  /// Snapping the pointer position itself, rather than the quote the drawing
+  /// derives from it, is what makes the preview line, the alignment guides,
+  /// and the placed point all land on the same magnet point. Only applies
+  /// while a tool is being placed — not to repositioning or doodles.
+  Offset _magnetized(Offset position) {
+    if (!widget.chartConfig.magnetEnabled) {
+      _magnetPoint = null;
+      return position;
+    }
+
+    final InteractiveState state =
+        widget.interactiveLayerBehaviour.currentState;
+    if (state is! InteractiveAddingToolState ||
+        state.addingTool is DoodleDrawingToolConfig) {
+      _magnetPoint = null;
+      return position;
+    }
+
+    _magnetPoint = magnetizedPosition(
+      position,
+      // The painted list, not `input`: a DataSeries subclass may prepare its
+      // own `entries` from the input, and the x-axis plots those.
+      entries: widget.series.entries ?? widget.series.input,
+      epochFromX: widget.epochFromX,
+      epochToX: widget.epochToX,
+      quoteToY: widget.quoteToY,
+    );
+
+    return _magnetPoint ?? position;
+  }
+
   // Tap handler
   void _handleTapUp(TapUpDetails details) {
     _focusNode.requestFocus();
-    final bool hitDrawing = widget.interactiveLayerBehaviour.onTap(details);
+    final Offset localPosition = _magnetized(details.localPosition);
+    final bool hitDrawing = widget.interactiveLayerBehaviour.onTap(
+      localPosition == details.localPosition
+          ? details
+          : TapUpDetails(
+              kind: details.kind,
+              globalPosition: details.globalPosition,
+              localPosition: localPosition,
+            ),
+    );
 
     _updateInteractionMode(
       hitDrawing ? InteractionMode.drawingTool : InteractionMode.none,

@@ -444,42 +444,44 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
   );
 
   // ignore: unused_element
-  Widget _buildInteractiveLayer(
-    BuildContext context,
-    XAxisModel xAxis,
-  ) => MultipleAnimatedBuilder(
-    animations: [
-      topBoundQuoteAnimationController,
-      bottomBoundQuoteAnimationController,
-      _yAxisNotifier,
-    ],
-    builder: (_, _) {
-      final ChartConfig chartConfig = context.watch<ChartConfig>();
+  Widget _buildInteractiveLayer(BuildContext context, XAxisModel xAxis) =>
+      MultipleAnimatedBuilder(
+        animations: [
+          topBoundQuoteAnimationController,
+          bottomBoundQuoteAnimationController,
+          _yAxisNotifier,
+        ],
+        builder: (_, _) {
+          final ChartConfig chartConfig = context.watch<ChartConfig>();
 
-      return InteractiveLayer(
-        drawingTools: widget.drawingTools!,
-        series: widget.mainSeries as DataSeries<Tick>,
-        drawingToolsRepo: context.watch<Repository<DrawingToolConfig>>(),
-        chartConfig: chartConfig,
-        quoteToCanvasY: chartQuoteToCanvasY,
-        epochToCanvasX: xAxis.xFromEpoch,
-        quoteFromCanvasY: chartQuoteFromCanvasY,
-        epochFromCanvasX: chartConfig.magnetEnabled
-            ? (double x) =>
-                  snapEpochToGranularity(xAxis.epochFromX(x), xAxis.granularity)
-            : xAxis.epochFromX,
-        quoteRange: QuoteRange(
-          topQuote: chartQuoteFromCanvasY(0),
-          bottomQuote: chartQuoteFromCanvasY(_yAxisNotifier.value.canvasHeight),
-        ),
-        interactiveLayerBehaviour: _interactiveLayerBehaviour,
-        crosshairController: crosshairController,
-        crosshairVariant: widget.crosshairVariant,
-        crosshairZoomOutAnimation: crosshairZoomOutAnimation,
-        pipSize: widget.pipSize,
+          return InteractiveLayer(
+            drawingTools: widget.drawingTools!,
+            series: widget.mainSeries as DataSeries<Tick>,
+            drawingToolsRepo: context.watch<Repository<DrawingToolConfig>>(),
+            chartConfig: chartConfig,
+            quoteToCanvasY: chartQuoteToCanvasY,
+            epochToCanvasX: xAxis.xFromEpoch,
+            quoteFromCanvasY: chartQuoteFromCanvasY,
+            epochFromCanvasX: chartConfig.magnetEnabled
+                ? (double x) => snapEpochToNearestGranularity(
+                    xAxis.epochFromX(x),
+                    xAxis.granularity,
+                  )
+                : xAxis.epochFromX,
+            quoteRange: QuoteRange(
+              topQuote: chartQuoteFromCanvasY(0),
+              bottomQuote: chartQuoteFromCanvasY(
+                _yAxisNotifier.value.canvasHeight,
+              ),
+            ),
+            interactiveLayerBehaviour: _interactiveLayerBehaviour,
+            crosshairController: crosshairController,
+            crosshairVariant: widget.crosshairVariant,
+            crosshairZoomOutAnimation: crosshairZoomOutAnimation,
+            pipSize: widget.pipSize,
+          );
+        },
       );
-    },
-  );
 
   // ignore: unused_element
   Widget _buildDrawingToolChart(DrawingTools drawingTools) =>

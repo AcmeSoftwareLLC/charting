@@ -212,6 +212,11 @@ class InteractiveSelectedToolState extends InteractiveState
 
   @override
   bool onHover(PointerHoverEvent event) {
+    // Needed so [InteractiveHoverState] updates `_hoveredTool`; otherwise no
+    // drawing ever renders as hovered while one is selected. The return value
+    // stays the drag check, not the mixin's, so crosshair suppression doesn't
+    // change just because the pointer passes over another drawing.
+    super.onHover(event);
     return getToolState(selected).contains(DrawingToolState.dragging);
   }
 

@@ -14,27 +14,21 @@ part 'measure_drawing_tool_config.g.dart';
 
 /// Measure drawing tool config.
 ///
-/// Matches ChartIQ's `measure` tool: it's placed exactly like
-/// [SegmentDrawingToolConfig] (a bounded line between two points, same
-/// [lineStyle]/[pattern] fields, inherited rather than duplicated), and it
-/// renders/hit-tests/drags exactly like one too, via
-/// [MeasureInteractableDrawing] extending [SegmentInteractableDrawing].
+/// Extends [SegmentDrawingToolConfig] rather than [DrawingToolConfig]
+/// directly, so it's placed, rendered, hit-tested, and dragged exactly like
+/// a segment ([MeasureInteractableDrawing] extends
+/// [SegmentInteractableDrawing]), without duplicating any of Segment's
+/// fields or logic.
 ///
 /// Unlike an earlier version of this tool, the "measure" identity is *not*
 /// discarded once placed — [name] stays `dt_measure` through
-/// [getUpdatedConfig]/persistence/reload, specifically so
-/// [MeasureInteractableDrawing]'s price-difference / percentage-change /
-/// bar-count label keeps showing on hover or selection after placement, not
-/// just during the initial drawing gesture. Extending
-/// [SegmentDrawingToolConfig] (rather than [DrawingToolConfig] directly) is
-/// what makes this possible without duplicating any of Segment's config
-/// fields or interactable-drawing logic: [MeasureInteractableDrawing]
-/// inherits `getUpdatedConfig() => config.copyWith(...)` from
-/// [SegmentInteractableDrawing] unmodified, and since `config`'s *runtime*
-/// type is this class, Dart's dynamic dispatch calls this class's own
-/// [copyWith] override — producing a genuine [MeasureDrawingToolConfig]
-/// each time, even though the inherited method's *static* return type is
-/// [SegmentDrawingToolConfig].
+/// [getUpdatedConfig]/persistence/reload, since `config`'s *runtime* type
+/// stays this class and Dart's dynamic dispatch calls this class's own
+/// [copyWith] override. So a reloaded drawing is still a measure drawing,
+/// and placing it again keeps [MeasureInteractableDrawing]'s live
+/// placement-time label. (The price-difference / percentage-change /
+/// bar-count readout for a *placed* drawing is the embedding app's, drawn
+/// in its chart HUD, not on the canvas.)
 @JsonSerializable()
 class MeasureDrawingToolConfig extends SegmentDrawingToolConfig {
   /// Initializes
