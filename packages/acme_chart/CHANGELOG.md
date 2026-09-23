@@ -1,5 +1,5 @@
 ## 1.0.11
-**September 21, 2026**
+**September 23, 2026**
 
 - The magnet now snaps drawing points to a candle's nearest OHLC value, not just its time bucket, and marks the captured point with a dot. Off with no candle under the pointer, when repositioning, and for doodles.
 - Fixed magnet-snapped points landing one bar left of their candle.
