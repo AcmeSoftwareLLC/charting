@@ -1,12 +1,15 @@
-import 'dart:ui';
-
 import '../../add_ons/drawing_tools_ui/drawing_tool_config.dart';
 import '../../core/interactive_layer/interactive_layer.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 
 import 'interactive_layer_states/interactive_adding_tool_state.dart';
 import 'interactive_layer_states/interactive_selected_tool_state.dart';
 import 'interactive_layer_states/interactive_state.dart';
+
+/// Builds extra floating menu actions for the selected drawing with
+/// [drawingToolConfig].
+typedef FloatingMenuActionsBuilder =
+    Widget Function(BuildContext context, DrawingToolConfig drawingToolConfig);
 
 /// A controller similar to [ListView.scrollController] to control interactive
 /// layer from outside in addition to get some information from internal
@@ -41,6 +44,10 @@ class InteractiveLayerController extends ChangeNotifier {
 
   /// The callback to be called when a new drawing tool going to be added.
   Function(DrawingToolConfig)? onAddNewTool;
+
+  /// Builds extra actions shown in the selected drawing's floating menu,
+  /// before its clone and remove buttons.
+  FloatingMenuActionsBuilder? floatingMenuActionsBuilder;
 
   /// Sets the current state of the interactive layer and notifies listeners.
   set currentState(InteractiveState state) {

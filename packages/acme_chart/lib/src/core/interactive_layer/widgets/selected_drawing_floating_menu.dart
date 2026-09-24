@@ -101,6 +101,7 @@ class _SelectedDrawingFloatingMenuState
     // Use local dragged position if available, otherwise use controller's position
     final effectivePosition =
         _draggedPosition ?? _controller.floatingMenuPosition;
+    final actionsBuilder = _controller.floatingMenuActionsBuilder;
 
     return Positioned(
       left: effectivePosition.dx,
@@ -168,6 +169,8 @@ class _SelectedDrawingFloatingMenuState
                   _buildDragIcon(),
                   _buildDrawingMenuOptions(),
                   const SizedBox(width: 4),
+                  if (actionsBuilder != null)
+                    actionsBuilder(context, widget.drawing.config),
                   _buildCloneButton(context),
                   _buildRemoveButton(context),
                 ],
