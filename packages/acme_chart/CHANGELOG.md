@@ -1,3 +1,8 @@
+## 1.0.13
+**September 24, 2026**
+
+- Added `InteractiveLayerController.floatingMenuActionsBuilder` for custom actions in a selected drawing's floating menu.
+
 ## 1.0.12
 **September 24, 2026**
 
