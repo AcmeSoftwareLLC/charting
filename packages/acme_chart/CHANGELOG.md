@@ -1,3 +1,7 @@
+## 1.0.12
+**September 24, 2026**
+
+- The scroll-to-last-tick button now appears as soon as the crosshair is dismissed, instead of staying stale until an unrelated chart rebuild.
 ## 1.0.11
 **September 23, 2026**
 
