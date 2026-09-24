@@ -900,8 +900,9 @@ class _InteractiveLayerGestureHandlerState
       return SystemMouseCursors.resizeUpDown;
     }
 
-    if (_currentInteractionMode == InteractionMode.crosshair ||
-        (widget.crosshairVariant != CrosshairVariant.smallScreen)) {
+    if (widget.showCrosshair &&
+        (_currentInteractionMode == InteractionMode.crosshair ||
+            widget.crosshairVariant != CrosshairVariant.smallScreen)) {
       return SystemMouseCursors.precise; // Use precise cursor for crosshair
     }
 
