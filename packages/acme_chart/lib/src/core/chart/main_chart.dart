@@ -159,7 +159,11 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
   bool get _isScrollToLastTickAvailable =>
       (widget._mainSeries.entries?.isNotEmpty ?? false) &&
       xAxis.rightBoundEpoch < widget._mainSeries.entries!.last.epoch &&
-      !crosshairController.isCrosshairActive;
+      !_isCrosshairOccludingScrollToLastTickButton;
+
+  bool get _isCrosshairOccludingScrollToLastTickButton =>
+      widget.crosshairVariant == CrosshairVariant.smallScreen &&
+      crosshairController.isCrosshairActive;
 
   /// Crosshair related state.
   late AnimationController crosshairZoomOutAnimationController;
@@ -427,12 +431,17 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
               _buildInteractiveLayer(context, xAxis)
             else if (widget.drawingTools != null)
               _buildDrawingToolChart(widget.drawingTools!),
-            if (widget.showScrollToLastTickButton &&
-                _isScrollToLastTickAvailable)
+            if (widget.showScrollToLastTickButton)
               Positioned(
                 bottom: 0,
                 right: quoteLabelsTouchAreaWidth,
-                child: _buildScrollToLastTickButton(),
+                child: ListenableBuilder(
+                  listenable: crosshairController,
+                  builder: (BuildContext context, Widget? child) =>
+                      _isScrollToLastTickAvailable
+                      ? _buildScrollToLastTickButton()
+                      : const SizedBox.shrink(),
+                ),
               ),
             if (widget.showDataFitButton &&
                 (widget._mainSeries.entries?.isNotEmpty ?? false))
@@ -478,6 +487,7 @@ class _ChartImplementationState extends BasicChartState<MainChart> {
             crosshairController: crosshairController,
             crosshairVariant: widget.crosshairVariant,
             crosshairZoomOutAnimation: crosshairZoomOutAnimation,
+            showCrosshair: widget.showCrosshair,
             pipSize: widget.pipSize,
           );
         },
